@@ -1,0 +1,6 @@
+syntax = "proto3";
+package seaofshadows.webgl.gl;
+
+message GlBase {
+  int64 id = 1;
+}
