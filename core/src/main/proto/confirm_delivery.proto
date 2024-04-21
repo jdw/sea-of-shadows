@@ -1,6 +1,0 @@
-syntax = "proto3";
-package seaofshadows;
-
-message ConfirmDelivery {
-  int32 message = 1;
-}
