@@ -22,7 +22,7 @@ kotlin {
         browser {
             commonWebpackConfig {
                 outputPath = File("${project.projectDir}/output")
-                outputFileName = "${SeaOfShadowsProject.NAME}-terminal.js"
+                outputFileName = "${SeaOfShadowsProject.name}-terminal.js"
                 //output?.libraryTarget = "commonjs2"
                 //output?.library = "SeaOfShadows"
             }

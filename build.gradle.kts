@@ -21,8 +21,8 @@ allprojects {
         plugin("idea")
     }
 
-    version = SeaOfShadowsProject.VERSION
-    group = SeaOfShadowsProject.GROUP
+    version = SeaOfShadowsProject.version
+    group = SeaOfShadowsProject.group
 
     repositories {
         mavenLocal()
