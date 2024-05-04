@@ -1,5 +1,4 @@
 import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.javaVersion
-import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinVersion
 import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxCoroutinesVersion
 import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxSerializationVersion
 
@@ -11,14 +10,14 @@ buildscript {
 
 plugins {
     id("java-library")
-    id("maven-publish")
+    //TODO id("maven-publish")
 }
 
 kotlin {
     jvm() {
         withJava()
     }
-    js(IR) {
+    js() {
         browser()
     }
 
@@ -27,16 +26,16 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-                implementation("org.jetbrains.kotlin:kotlin-stdlib-common:$kotlinVersion")
+                implementation(project(":core"))
+
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$kotlinxSerializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinxSerializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesVersion")
             }
         }
-        val jsMain by getting {
+        val jvmMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlin:kotlin-stdlib-js:$kotlinVersion")
+
             }
         }
     }

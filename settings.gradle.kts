@@ -1,7 +1,7 @@
 pluginManagement {
     plugins {
-        val kotlinVersion: String by settings
         val foojayResolverConventionVersion: String by settings
+        val kotlinVersion: String by settings
 
         id("java")
         id("org.gradle.toolchains.foojay-resolver-convention") version foojayResolverConventionVersion
@@ -18,8 +18,8 @@ pluginManagement {
     }
 }
 
-rootProject.name = "sea-of-shadows"
-
-include("core")
-include("webgl")
-include("generator")
+include(":core")
+include(":canvas-2d")
+include(":canvas-webgl")
+include(":cli")
+include(":terminal")
