@@ -49,11 +49,11 @@ tasks.forEach { task ->
     }
 }
 
-tasks.create("listRepos") {
-    doLast {
-        println("Repositories: ")
-        project.repositories.forEach {
-            println(" * Name: " + it.name + "\n * info: " + it)
-        }
-    }
-}
+//tasks.create("listRepos") {
+//    doLast {
+//        println("Repositories: ")
+//        project.repositories.forEach {
+//            println(" * Name: " + it.name + "\n * info: " + it)
+//        }
+//    }
+//}
