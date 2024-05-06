@@ -1,16 +1,15 @@
-package com.github.jdw.seaofshadows.core
+package com.github.jdw.seaofshadows.core.messaging
 
-import com.github.jdw.seaofshadows.core.messages.Channels
 import kotlinx.coroutines.channels.Channel
 
-class Bridge(private val channels: Map<Channels, Channel<ByteArray>>,
-             private val outgoing: ((ByteArray) -> Unit),
-             private val incoming: ((ByteArray) -> Unit),
+class Bridge(val channels: Map<Channels, Channel<ByteArray>>,
+             val outgoing: ((ByteArray) -> Unit),
+             val incoming: ((ByteArray) -> Unit),
              /**
               * Server takes initiative to close socket
               */
-             private val closeSocket: (() -> Unit),
-             private val arcs: Map<Channels, Arc>
+             val closeSocket: (() -> Unit),
+             val arcs: Map<Channels, Arc>
     ) {
     var otherSideOk: Boolean = false
         get() {
@@ -29,6 +28,8 @@ class Bridge(private val channels: Map<Channels, Channel<ByteArray>>,
     }
 
     companion object {
+        fun build(): Builder = Builder()
+
         class Builder() {
             private var outgoing: ((ByteArray) -> Unit)? = null
             private var incoming: ((ByteArray) -> Unit)? = null
@@ -36,23 +37,13 @@ class Bridge(private val channels: Map<Channels, Channel<ByteArray>>,
             private var arcs: MutableMap<Channels, Arc> = mutableMapOf()
             private var channels: MutableMap<Channels, Channel<ByteArray>> = mutableMapOf()
 
-            fun statusArc(arc: Arc): Builder {
-                arcs[Channels.STATUS] = arc
-                return this
-            }
-
-            fun arcForRenderMessages(arc: Arc): Builder {
+            fun renderArc(arc: Arc): Builder {
                 arcs[Channels.RENDER] = arc
                 return this
             }
 
-            fun arcForLogMessages(arc: Arc): Builder {
+            fun logArc(arc: Arc): Builder {
                 arcs[Channels.LOG] = arc
-                return this
-            }
-
-            fun statusChannel(c: Channel<ByteArray>): Builder {
-                channels[Channels.STATUS]
                 return this
             }
 
@@ -93,14 +84,10 @@ class Bridge(private val channels: Map<Channels, Channel<ByteArray>>,
                     ?: throw NullPointerException("Arc for rendering not set!")
                 arcs[Channels.LOG]
                     ?: throw NullPointerException("Arc for logging not set!")
-                arcs[Channels.STATUS]
-                    ?: throw NullPointerException("Arc for status updates not set!")
                 channels[Channels.RENDER]
                     ?: throw NullPointerException("Channel for rendering not set!")
                 channels[Channels.LOG]
                     ?: throw NullPointerException("Channel for logging not set!")
-                channels[Channels.STATUS]
-                    ?: throw NullPointerException("Channel for status updates not set!")
 
                 return Bridge(
                     channels = channels.toMap(),

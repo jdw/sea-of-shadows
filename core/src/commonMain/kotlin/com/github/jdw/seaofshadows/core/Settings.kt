@@ -1,41 +1,43 @@
 package com.github.jdw.seaofshadows.core
 
+import com.github.jdw.seaofshadows.core.messaging.Protocol
 import kotlinx.serialization.Serializable
 
-const val seaOfShadows = "sea-of-shadows"
+const val seaOfShadows = "seaofshadows"
 const val baseEndpointPath = seaOfShadows
-const val defaultCanvasId = "$seaOfShadows--canvas-1"
+const val defaultCanvasId = "$seaOfShadows-canvas-1"
+
 
 /**
- * Default location is "example.com/sea-of-shadows/settings.json". See extension functions for validation.
+ * Default location is "example.com/seaofshadows/settings.json". See extension functions for validation.
  */
 @Serializable
 data class Settings(
     /**
      * The endpoints available for Sea of Shadows.
      *
-     * *Default:* {"WEBSOCKET": "/sea-of-shadows/websocket"}
+     * *Default:* {"WEBSOCKET": "/seaofshadows/websocket"}
      */
-    val endpoints: Map<MeansOfCommunication, String> = mapOf(MeansOfCommunication.WEBSOCKET to "/$baseEndpointPath/${MeansOfCommunication.WEBSOCKET.name.lowercase()}"),
+    val endpoints: Map<Protocol.Supported, String> = mapOf(Protocol.Supported.WEBSOCKET to "/$baseEndpointPath/${Protocol.Supported.WEBSOCKET.name.lowercase()}"),
 
     /**
      * Prioritization for the different means of communication. The lower the number the earlier prioritization.
      *
      * *Default:* {"0": "WEBSOCKET"}
      */
-    val meansOfCommunicationPrioritizations: Map<Int, MeansOfCommunication> = mapOf(0 to MeansOfCommunication.WEBSOCKET),
+    val meansOfCommunicationPrioritizations: Map<Int, Protocol.Supported> = mapOf(0 to Protocol.Supported.WEBSOCKET),
 
     /**
-     * A set of expected canvas IDs that should be available upon initialization.
+     * A set of expected canvas IDs (that should be available upon initialization) and their respected required rendering context.
      *
-     * *Default*: [["sea-of-shadows--canvas-1"]]
+     * *Default*: [["seaofshadows-canvas-1"]]
      */
     val expectedCanvasIds: Set<String> = setOf(defaultCanvasId),
 
     /**
      * The expected canvas IDs must be available in 'expectedCanvasId', the context is defined in [Context] enum class.
      *
-     * *Default:* {"sea-of-shadows--canvas-1": "WEBGL1"}
+     * *Default:* {"seaofshadows-canvas-1": "WEBGL1"}
      */
     val expectedCanvasIdsCapabilities: Map<String, Context> = mapOf(defaultCanvasId to Context.WEBGL1),
 
@@ -51,14 +53,14 @@ data class Settings(
     /**
      * The name of the Sea of Shadows cookie.
      *
-     * *Default:* "sea-of-shadows"
+     * *Default:* "seaofshadows"
      */
     val cookieName: String = seaOfShadows,
 
     /**
      * Path of the settings GET endpoint
      *
-     * *Default:* "sea-of-shadows/settings"
+     * *Default:* "seaofshadows/settings"
      */
     val settingsRestGetEndpoint: String = "$baseEndpointPath/settings"
 )

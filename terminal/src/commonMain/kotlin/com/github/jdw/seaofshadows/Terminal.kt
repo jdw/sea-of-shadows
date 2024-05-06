@@ -1,9 +1,9 @@
 package com.github.jdw.seaofshadows
 
-import com.github.jdw.seaofshadows.core.MeansOfCommunication
 import com.github.jdw.seaofshadows.core.Settings
-import com.github.jdw.seaofshadows.core.messages.Render
-import com.github.jdw.seaofshadows.webgl1.Payload
+import com.github.jdw.seaofshadows.core.messaging.Protocol
+import com.github.jdw.seaofshadows.core.messaging.Render
+import com.github.jdw.seaofshadows.core.messaging.ResultMessage
 import io.ktor.client.*
 import io.ktor.client.plugins.websocket.*
 import io.ktor.http.*
@@ -14,59 +14,78 @@ import kotlinx.coroutines.await
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.encodeToByteArray
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromDynamic
 import kotlinx.serialization.protobuf.ProtoBuf
 import org.khronos.webgl.WebGLRenderingContext
+import org.w3c.dom.HTMLCanvasElement
 import kotlin.js.Promise
 
 class Terminal {
     @OptIn(ExperimentalSerializationApi::class)
-    suspend fun run(settingsUrl: String) {
-        val json = Promise.resolve(window.fetch(settingsUrl).then {response->
+    suspend fun fetchSettings(url: String): Settings {
+        val json = Promise.resolve(window.fetch(url).then {response->
             response.json()
         }.then {
             it
         }).await()
 
-        val settings = Json.decodeFromDynamic<Settings>(json)
-
+        // println(json)
+        return Json.decodeFromDynamic(json)
+    }
+    @OptIn(ExperimentalSerializationApi::class)
+    suspend fun run(settings: Settings) {
         val client = HttpClient {
             install(WebSockets) {
                 maxFrameSize = Long.MAX_VALUE
             }
         }
 
-        client.webSocket(method = HttpMethod.Get, host = "localhost", port = 9000, path = settings.endpoints[MeansOfCommunication.WEBSOCKET]!!) {
-            while(true) {
-                println("Waiting for incoming message...")
-                val incomingMessage = incoming.receive() as? Frame.Binary
-                val renderMessagePayload = incomingMessage!!.readBytes()
+        val host = window.location.host.split(":").first()
+        println("host = $host")
+        println("port = ${window.location.port}")
+        println("path = ${settings.endpoints[Protocol.Supported.WEBSOCKET]!!}")
 
-                val renderMessage: Render.Message = ProtoBuf.decodeFromByteArray(renderMessagePayload)
-                val canvas = document.getElementById(renderMessage.id)!!.asDynamic()
+        client.webSocket(method = HttpMethod.Get, host = host, port = window.location.port.toInt(), path = settings.endpoints[Protocol.Supported.WEBSOCKET]!!) {
+            println("Inside client.webSocket...")
+            val canvas = document.getElementById(settings.expectedCanvasIds.first()) as HTMLCanvasElement
+            val gl = canvas.getContext("webgl") as WebGLRenderingContext
 
-                val gl: WebGLRenderingContext = canvas.getContext("webgl")
-                when (renderMessage.method) {
-                    Render.Method.CLEAR -> {
-                        println("Received clear method message...")
-                        val clear: Payload.Clear = ProtoBuf.decodeFromByteArray(renderMessage.payload)
-                        gl.clear(clear.mask)
+            // No exception so far so must be OK
+            outgoing.send(Frame.Text(Protocol.SystemTalk.TALK_PROTOBUF.name))
+            outgoing.send(Frame.Text(Protocol.SystemTalk.CONTEXT_WEBGL1_OK.name))
+
+            for (frame in incoming) {
+                (frame as? Frame.Text)?.let { text ->
+                    //SerializationTarget.PROTOBUF -> ProtoBuf.encodeToByteArray(rm).decodeToString()
+                    val rm: Render.Message = ProtoBuf.decodeFromByteArray(text.readBytes())
+
+                    var result = "OK"
+                    try {
+                        when (rm.method) {
+                            Render.Method.CLEAR -> {
+                                val mask: Int = Json.decodeFromString(rm.parameters)
+                                gl.clear(mask)
+                            }
+
+                            Render.Method.CLEAR_COLOR -> {
+                                val parameters: List<Float> = Json.decodeFromString(rm.parameters)
+                                gl.clearColor(parameters[0], parameters[1], parameters[2], parameters[3])
+                            }
+                        }
                     }
-                    Render.Method.CLEAR_COLOR -> {
-                        println("Received clearColor method message...")
-                        val clearColor: Payload.ClearColor = ProtoBuf.decodeFromByteArray(renderMessage.payload)
-                        gl.clearColor(clearColor.red, clearColor.green, clearColor.blue, clearColor.alpha)
+                    catch(e: Exception) {
+                        result = e.message
+                            ?: "Exception without message set found!"
+                        result = Json.encodeToString(result)
                     }
+
+                    outgoing.send(Frame.Text(ProtoBuf.encodeToByteArray(ResultMessage(result, rm.state)).decodeToString()))
                 }
-
-                println("Sending ack for state ${renderMessage.state}...")
-                val ack = ProtoBuf.encodeToByteArray(Render.Ack(renderMessage.state))
-                send(Frame.Binary(false, ack))
             }
         }
 
         client.close()
-
     }
 }

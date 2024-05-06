@@ -19,16 +19,8 @@ plugins {
 kotlin {
     js(IR) {
         browser()
-        browser {
-            commonWebpackConfig {
-                outputPath = File("${project.projectDir}/output")
-                outputFileName = "${SeaOfShadowsProject.name}-terminal.js"
-                //output?.libraryTarget = "commonjs2"
-                //output?.library = "SeaOfShadows"
-            }
-        }
+
         binaries.library()
-        binaries.executable()
     }
 
     applyDefaultHierarchyTemplate()

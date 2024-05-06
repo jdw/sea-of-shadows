@@ -1,5 +1,3 @@
-import com.github.jdw.seaofshadows.SeaOfShadowsProject
-
 buildscript {
     repositories {
         mavenLocal()
@@ -15,14 +13,17 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
+val VERSION: String by properties
+val GROUP: String by properties
+
 allprojects {
     apply {
         plugin("java")
         plugin("idea")
     }
 
-    version = SeaOfShadowsProject.version
-    group = SeaOfShadowsProject.group
+    version = VERSION
+    group = GROUP
 
     repositories {
         mavenLocal()

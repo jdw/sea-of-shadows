@@ -1,7 +1,5 @@
 package com.github.jdw.seaofshadows.canvas2d
 
-import com.github.jdw.seaofshadows.core.dom.Event
-
 class Context {
     enum class Property {
         FILLSTYLE

@@ -4,9 +4,9 @@ import org.gradle.kotlin.dsl.provideDelegate
 import org.jetbrains.kotlin.konan.properties.loadProperties
 
 object SeaOfShadowsProject {
-    val version: String by loadProperties("gradle.properties")
-    val name: String by loadProperties("gradle.properties")
-    val group: String by loadProperties("gradle.properties")
+    val VERSION: String by loadProperties("gradle.properties")
+    val NAME: String by loadProperties("gradle.properties")
+    val GROUP: String by loadProperties("gradle.properties")
 
     object Dependencies {
         val kotlinVersion: String by loadProperties("gradle.properties")

@@ -24,10 +24,10 @@ include(":canvas-webgl")
 include(":cli")
 include(":terminal")
 
-val name: String by settings
+val NAME: String by settings
 
-project(":core").name = "$name-core"
-project(":canvas-2d").name = "$name-canvas-2d"
-project(":canvas-webgl").name = "$name-canvas-webgl"
-project(":cli").name = name
-project(":terminal").name = "$name-terminal"
+project(":core").name = "$NAME-core"
+project(":canvas-2d").name = "$NAME-canvas-2d"
+project(":canvas-webgl").name = "$NAME-canvas-webgl"
+project(":cli").name = NAME
+project(":terminal").name = "$NAME-terminal"
