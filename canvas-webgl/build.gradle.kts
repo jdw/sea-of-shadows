@@ -1,7 +1,7 @@
-import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.javaVersion
-import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinVersion
-import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxCoroutinesVersion
-import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxSerializationVersion
+//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.javaVersion
+//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinVersion
+//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxCoroutinesVersion
+//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxSerializationVersion
 
 buildscript {
     repositories {
@@ -13,6 +13,12 @@ plugins {
     id("java-library")
     id("maven-publish")
 }
+
+val kotlinxSerializationVersion: String by properties
+val cliktVersion: String by properties
+val kotlinVersion: String by properties
+val kotlinxCoroutinesVersion: String by properties
+val javaVersion: String by properties
 
 kotlin {
     jvm() {

@@ -1,7 +1,8 @@
-import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.cliktVersion
-import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.javaVersion
-import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxCoroutinesVersion
-import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxSerializationVersion
+//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.cliktVersion
+//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.javaVersion
+//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxCoroutinesVersion
+//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxSerializationVersion
+//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinVersion
 import java.net.URI
 
 plugins {
@@ -11,6 +12,12 @@ plugins {
 repositories {
     maven { url = URI("https://repo.repsy.io/mvn/chrynan/public") }
 }
+
+val kotlinxSerializationVersion: String by properties
+val cliktVersion: String by properties
+val kotlinVersion: String by properties
+val kotlinxCoroutinesVersion: String by properties
+val javaVersion: String by properties
 
 kotlin {
     jvm() {
@@ -32,6 +39,7 @@ kotlin {
                 implementation("com.github.kittinunf.fuel:fuel-jvm:3.0.0-alpha1")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:$kotlinxCoroutinesVersion")
                 implementation("com.chrynan.uri:uri-core:0.4.0")
+                implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
             }
         }
     }
