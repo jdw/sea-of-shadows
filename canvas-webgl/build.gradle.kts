@@ -34,6 +34,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":seaofshadows-core"))
+                implementation(project(":shared-webgl"))
 
                 //implementation("org.jetbrains.kotlin:kotlin-dom-api-compat:$kotlinVersion")
                 implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")

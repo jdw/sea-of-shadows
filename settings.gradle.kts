@@ -21,6 +21,7 @@ pluginManagement {
 include(":core")
 include(":canvas-2d")
 include(":canvas-webgl")
+include(":shared-webgl")
 include(":cli")
 include(":terminal")
 
