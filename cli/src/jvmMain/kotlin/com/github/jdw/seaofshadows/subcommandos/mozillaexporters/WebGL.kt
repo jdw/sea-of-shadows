@@ -68,7 +68,7 @@ class WebGL() {
         code.add("}")
 
         Glob.debug("Printing code...")
-        println(code.get())
+        println(code.toString())
     }
 
     private fun exportConstants(doc: Document, id: String) {

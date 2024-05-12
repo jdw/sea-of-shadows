@@ -1,12 +1,11 @@
 package com.github.jdw.seaofshadows.subcommandos.mozillaexporters
 
 class Code {
-    private val code = ArrayList<String>()
+    private val lines = ArrayList<String>()
     private var dents = ""
 
     fun add(line: String) {
-
-        code.add("$dents$line\n")
+        lines.add("$dents$line\n")
     }
 
     fun indent() {
@@ -21,7 +20,7 @@ class Code {
         dents = ""
     }
 
-    fun get(): String {
-        return code.joinToString(separator = "")
+    override fun toString(): String {
+        return lines.joinToString(separator = "")
     }
 }
