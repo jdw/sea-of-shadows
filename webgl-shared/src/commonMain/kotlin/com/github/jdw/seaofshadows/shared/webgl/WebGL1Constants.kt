@@ -1,6 +1,6 @@
 package com.github.jdw.seaofshadows.shared.webgl
 
-abstract class WebGLConstants() {
+open class WebGL1Constants() {
 	// https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Constants#clearing_buffers
 	/**
 	 * Passed to [clear] to clear the current depth buffer.

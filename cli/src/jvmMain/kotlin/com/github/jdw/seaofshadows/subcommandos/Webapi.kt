@@ -2,24 +2,38 @@ package com.github.jdw.seaofshadows.subcommandos
 
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.arguments.argument
+import com.github.ajalt.clikt.parameters.arguments.validate
 import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.option
-import com.github.jdw.seaofshadows.subcommandos.mozillaexporters.WebGL
+import com.github.ajalt.clikt.parameters.options.validate
+import com.github.jdw.seaofshadows.subcommandos.mozillaexporters.WebGL1
+import com.github.jdw.seaofshadows.subcommandos.mozillaexporters.WebGL2
 import kotlinx.coroutines.runBlocking
 import kotlin.system.exitProcess
 
 
 class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from $MOZILLA_BASE_URL to local Kotlin files and classes.") {
-    val supportedApis: Set<String> = setOf("WebGL")
-    val api by argument(help = "The APIs listed at the aforementioned site but without spaces and kept capitalization. ${supportedApis.supportedValues('<' to '>', '|')}")
+    val supportedApis: Set<String> = setOf("WebGL1", "WebGL2")
+    val api by argument(help = "The APIs listed at the aforementioned site but without spaces and kept capitalization. ${supportedApis.supportedValues('<' to '>', '|')}.")
+        .validate {
+            require(supportedApis.contains(it)) {
+                "The API argument must be any of ${supportedApis.supportedValues('<' to '>', '|')}."
+            }
+        }
     val supportedSections: Set<String> = setOf("constants", "extensions", "interfaces")
-    val section by option("-s", "--section", help = "Supported sections of the WebGL API. ${supportedSections.supportedValues('<' to '>', '|')}.").default("")
-    val version by option("-v", "--version", help = "API version.")
+    val section by option("-s", "--section", help = "Supported sections of the WebGL1 API. ${supportedSections.supportedValues('<' to '>', '|')}.")
+        .default("")
+        .validate {
+            require(supportedSections.contains(it)) {
+                "Section must be any of ${supportedSections.supportedValues('<' to '>', '|')}."
+            }
+        }
 
     override fun run() {
         runBlocking {
             when (api) {
-                "WebGL" -> WebGL().run(section)
+                "WebGL1" -> WebGL1().run(section)
+                "WebGL2" -> WebGL2().run(section)
             }
         }
 

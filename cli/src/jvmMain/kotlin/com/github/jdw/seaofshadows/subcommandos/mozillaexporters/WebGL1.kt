@@ -8,23 +8,21 @@ import fuel.httpGet
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 
-class WebGL() {
+class WebGL1() {
     private val code = Code()
 
     suspend fun run(section: String) {
         when (section) {
-            "constants" -> constantsWebGLRun()
+            "constants" -> constantsRun()
             else -> throw Exception("Section '$section' unhandled!")
         }
+
+        Glob.debug("Printing code...")
+        println(code.toString())
     }
 
-    suspend fun constantsWebGLRun() {
-        Glob.debug("Running WebGL exporter...")
-        val response = coroutineScope {
-            async {
-                MOZILLA_WEBGL_CONSTANTS_URL.httpGet()
-            }
-        }.await()
+    private suspend fun constantsRun() {
+        Glob.debug("Running WebGL1 constants exporter...")
 
         val constantsIds = mutableSetOf<String>()
         val ariaLabelledBysToSkip = setOf<String>(
@@ -39,6 +37,12 @@ class WebGL() {
             "vertex_attributes_2",
             "framebuffers_and_renderbuffers_2",
             "see_also")
+
+        val response = coroutineScope {
+            async {
+                MOZILLA_WEBGL_CONSTANTS_URL.httpGet()
+            }
+        }.await()
 
         Glob.debug("Constants document fetched...")
         val constantsDoc = Ksoup.parse(response.body)
@@ -59,16 +63,13 @@ class WebGL() {
 
         code.add("package com.github.jdw.seaofshadows.shared.webgl")
         code.add("")
-        code.add("abstract class WebGLConstants() {")
+        code.add("abstract class WebGL1Constants() {")
         code.indent()
         constantsIds.forEach {
             exportConstants(constantsDoc, it)
         }
         code.undent()
         code.add("}")
-
-        Glob.debug("Printing code...")
-        println(code.toString())
     }
 
     private fun exportConstants(doc: Document, id: String) {
