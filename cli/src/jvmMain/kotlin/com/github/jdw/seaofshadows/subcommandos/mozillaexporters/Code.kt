@@ -1,6 +1,8 @@
 package com.github.jdw.seaofshadows.subcommandos.mozillaexporters
 
-class Code {
+import java.io.File
+
+class Code(val file: File) {
     private val lines = ArrayList<String>()
     private var dents = ""
 
@@ -22,5 +24,9 @@ class Code {
 
     override fun toString(): String {
         return lines.joinToString(separator = "")
+    }
+
+    fun save() {
+        file.writeText(toString())
     }
 }

@@ -1,6 +1,10 @@
 package com.github.jdw.seaofshadows.shared.webgl
 
-open class WebGL1Constants() {
+/**
+ * The WebGL API provides several constants that are passed into or returned by functions. All constants are of type GLenum.
+ * Standard WebGL constants are installed on the [WebGLRenderingContext] and [WebGL2RenderingContext] objects, so that you use them as gl.<CONSTANT_NAME>
+ */
+abstract class WebGLConstants() {
 	// https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Constants#clearing_buffers
 	/**
 	 * Passed to [clear] to clear the current depth buffer.
@@ -537,6 +541,7 @@ open class WebGL1Constants() {
 	// https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Constants#data_types
 	val BYTE = 0x1400
 	
+	
 	val SHORT = 0x1402
 	
 	val UNSIGNED_SHORT = 0x1403
@@ -561,7 +566,6 @@ open class WebGL1Constants() {
 	val LUMINANCE_ALPHA = 0x190A
 	
 	// https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Constants#pixel_types
-	val UNSIGNED_BYTE = 0x1401
 	
 	val UNSIGNED_SHORT_4_4_4_4 = 0x8033
 	
@@ -1697,4 +1701,3 @@ open class WebGL1Constants() {
 	val GPU_DISJOINT_EXT = 0x8FBB
 	
 }
-

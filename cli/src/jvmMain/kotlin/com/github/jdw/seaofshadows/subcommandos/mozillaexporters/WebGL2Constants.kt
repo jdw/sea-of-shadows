@@ -7,22 +7,14 @@ import com.github.jdw.seaofshadows.subcommandos.Webapi.Companion.MOZILLA_WEBGL_C
 import fuel.httpGet
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import java.io.File
 
-class WebGL2 {
-    private val code = Code()
+class WebGL2Constants {
+    private lateinit var code: Code
 
-    suspend fun run(section: String) {
-        when (section) {
-            "constants" -> constantsRun()
-            else -> throw Exception("Section '$section' unhandled!")
-        }
-
-        Glob.debug("Printing code...")
-        println(code)
-    }
-
-    private suspend fun constantsRun() {
-        Glob.debug("Running WebGL2 constants exporter...")
+    suspend fun run(path: File) {
+        code = Code(File("${path.absolutePath}/WebGL2Constants.kt"))
+        Glob.debug("Running WebGL2Constants constants exporter...")
 
         val constantsSectionIds = setOf<String>(
             "getting_gl_parameter_information_2",
@@ -44,7 +36,7 @@ class WebGL2 {
         code.add("package com.github.jdw.seaofshadows.shared.webgl")
         code.add("")
         code.add("/**")
-        code.add(" * These constants are defined on the [WebGL2RenderingContext] interface. All WebGL1 1 constants are also available in a WebGL1 2 context.")
+        code.add(" * These constants are defined on the [WebGL2RenderingContext] interface. All WebGL1 constants are also available in a WebGL2 context.")
         code.add(" */")
         code.add("abstract class WebGL2Constants(): WebGLConstants() {")
         code.indent()
@@ -55,6 +47,9 @@ class WebGL2 {
         }
         code.undent()
         code.add("}")
+
+        Glob.debug("Saving code to file '${code.file}'...")
+        code.save()
     }
 
     private fun exportConstants(doc: Document, id: String) {
@@ -74,7 +69,8 @@ class WebGL2 {
                     if ("getting_gl_parameter_information_2" == id) "Constant passed to [WebGLRenderingContext.getParameter] specifies what information to return."
                     else trs[2].html().replace("<code>", "[").replace("</code>", "]")
 
-                if (!setOf("DEPTH_STENCIL_ATTACHMENT", "DEPTH_STENCIL").contains(constantName)) {
+                // Skip already defined in WebGL1 constants class
+                if (!setOf("DEPTH_STENCIL_ATTACHMENT", "DEPTH_STENCIL", "UNSIGNED_BYTE").contains(constantName)) {
                     if (description != "") {
                         code.add("/**")
                         code.add(" * $description")

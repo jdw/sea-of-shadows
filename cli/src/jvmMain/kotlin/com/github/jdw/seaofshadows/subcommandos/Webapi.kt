@@ -5,14 +5,17 @@ import com.github.ajalt.clikt.parameters.arguments.argument
 import com.github.ajalt.clikt.parameters.arguments.validate
 import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.option
+import com.github.ajalt.clikt.parameters.options.required
 import com.github.ajalt.clikt.parameters.options.validate
-import com.github.jdw.seaofshadows.subcommandos.mozillaexporters.WebGL1
-import com.github.jdw.seaofshadows.subcommandos.mozillaexporters.WebGL2
+import com.github.ajalt.clikt.parameters.types.file
+import com.github.jdw.seaofshadows.subcommandos.mozillaexporters.WebGL1Constants
+import com.github.jdw.seaofshadows.subcommandos.mozillaexporters.WebGL1Interfaces
+import com.github.jdw.seaofshadows.subcommandos.mozillaexporters.WebGL2Constants
 import kotlinx.coroutines.runBlocking
 import kotlin.system.exitProcess
 
 
-class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from $MOZILLA_BASE_URL to local Kotlin files and classes.") {
+class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from $MOZILLA_WEBGL_BASE_URL to local Kotlin files and classes.") {
     val supportedApis: Set<String> = setOf("WebGL1", "WebGL2")
     val api by argument(help = "The APIs listed at the aforementioned site but without spaces and kept capitalization. ${supportedApis.supportedValues('<' to '>', '|')}.")
         .validate {
@@ -28,12 +31,18 @@ class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from $MOZ
                 "Section must be any of ${supportedSections.supportedValues('<' to '>', '|')}."
             }
         }
+    val path by option("-p", "--path", help = "The path to write to.").file(canBeDir = true, mustExist = true).required()
 
     override fun run() {
         runBlocking {
             when (api) {
-                "WebGL1" -> WebGL1().run(section)
-                "WebGL2" -> WebGL2().run(section)
+                "WebGL1" -> when (section) {
+                    "constants" -> WebGL1Constants().run(path)
+                    "interfaces" -> WebGL1Interfaces().run(path)
+                }
+                "WebGL2" -> when (section) {
+                    "constants" -> WebGL2Constants().run(path)
+                }
             }
         }
 
@@ -41,7 +50,7 @@ class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from $MOZ
     }
 
     companion object {
-        const val MOZILLA_BASE_URL = "https://developer.mozilla.org/en-US/docs/Web/API"
+        const val MOZILLA_WEBGL_BASE_URL = "https://developer.mozilla.org/en-US/docs/Web/API"
         const val MOZILLA_WEBGL_CONSTANTS_URL = "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Constants"
     }
 }

@@ -7,23 +7,14 @@ import com.github.jdw.seaofshadows.subcommandos.Webapi.Companion.MOZILLA_WEBGL_C
 import fuel.httpGet
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import java.io.File
 
-class WebGL1() {
-    private val code = Code()
+class WebGL1Constants() {
+    private lateinit var code: Code
 
-    suspend fun run(section: String) {
-        when (section) {
-            "constants" -> constantsRun()
-            else -> throw Exception("Section '$section' unhandled!")
-        }
-
-        Glob.debug("Printing code...")
-        println(code.toString())
-    }
-
-    private suspend fun constantsRun() {
+    suspend fun run(path: File) {
         Glob.debug("Running WebGL1 constants exporter...")
-
+        code = Code(File("${path.absolutePath}/WebGLConstants.kt"))
         val constantsIds = mutableSetOf<String>()
         val ariaLabelledBysToSkip = setOf<String>(
             "table_of_contents",
@@ -63,13 +54,20 @@ class WebGL1() {
 
         code.add("package com.github.jdw.seaofshadows.shared.webgl")
         code.add("")
-        code.add("abstract class WebGL1Constants() {")
+        code.add("/**")
+        code.add(" * The WebGL API provides several constants that are passed into or returned by functions. All constants are of type GLenum.")
+        code.add(" * Standard WebGL constants are installed on the [WebGLRenderingContext] and [WebGL2RenderingContext] objects, so that you use them as gl.<CONSTANT_NAME>")
+        code.add(" */")
+        code.add("abstract class WebGLConstants() {")
         code.indent()
         constantsIds.forEach {
             exportConstants(constantsDoc, it)
         }
         code.undent()
         code.add("}")
+
+        Glob.debug("Saving code to file '${code.file}'...")
+        code.save()
     }
 
     private fun exportConstants(doc: Document, id: String) {
@@ -102,12 +100,14 @@ class WebGL1() {
                     }
                 }
                 else {
-                    if (description != "") {
-                        code.add("/**")
-                        code.add(" * $description")
-                        code.add(" */")
+                    if (!setOf("UNSIGNED_BYTE").contains(constantName)) {
+                        if (description != "") {
+                            code.add("/**")
+                            code.add(" * $description")
+                            code.add(" */")
+                        }
+                        code.add("val $constantName = $value")
                     }
-                    code.add("val $constantName = $value")
                 }
                 code.add("")
             }
