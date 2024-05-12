@@ -1,10 +1,11 @@
 package com.github.jdw.seaofshadows.subcommandos.mozillaexporters
 
-class KotlinCode {
+class Code {
     private val code = ArrayList<String>()
     private var dents = ""
 
     fun add(line: String) {
+
         code.add("$dents$line\n")
     }
 

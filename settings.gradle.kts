@@ -19,16 +19,15 @@ pluginManagement {
 }
 
 include(":core")
-include(":canvas-2d")
-include(":canvas-webgl")
-include(":shared-webgl")
+include(":webgl-shared")
+include(":webgl1-canvas")
+include(":webgl1-terminal")
 include(":cli")
-include(":terminal")
+
 
 val NAME: String by settings
 
 project(":core").name = "$NAME-core"
-project(":canvas-2d").name = "$NAME-canvas-2d"
-project(":canvas-webgl").name = "$NAME-canvas-webgl"
+project(":webgl1-canvas").name = "$NAME-canvas-webgl1"
 project(":cli").name = NAME
-project(":terminal").name = "$NAME-terminal"
+project(":webgl1-terminal").name = "$NAME-terminal-webgl1"

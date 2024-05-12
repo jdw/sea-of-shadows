@@ -36,7 +36,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":seaofshadows-core"))
-                implementation(project(":seaofshadows-canvas-webgl"))
+                implementation(project(":seaofshadows-canvas-webgl1"))
 
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$kotlinxSerializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinxSerializationVersion")
@@ -50,7 +50,7 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 implementation(project(":seaofshadows-core"))
-                implementation(project(":seaofshadows-canvas-webgl"))
+                implementation(project(":seaofshadows-canvas-webgl1"))
 
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesVersion")
                 implementation("io.ktor:ktor-client-core-js:$ktorVersion")

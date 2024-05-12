@@ -7,13 +7,19 @@ import com.github.jdw.seaofshadows.subcommandos.Webapi.Companion.MOZILLA_WEBGL_C
 import fuel.httpGet
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlin.math.exp
 
-class WebGL1() {
-    private val code = KotlinCode()
+class WebGL() {
+    private val code = Code()
 
-    suspend fun run() {
-        Glob.debug("Running WebGL1 exporter...")
+    suspend fun run(section: String) {
+        when (section) {
+            "constants" -> constantsWebGLRun()
+            else -> throw Exception("Section '$section' unhandled!")
+        }
+    }
+
+    suspend fun constantsWebGLRun() {
+        Glob.debug("Running WebGL exporter...")
         val response = coroutineScope {
             async {
                 MOZILLA_WEBGL_CONSTANTS_URL.httpGet()
@@ -51,8 +57,9 @@ class WebGL1() {
                 constantsIds.add(attrValue)
             }
 
-        code.add("package com.github.jdw.seaofshadows.webgl1")
-        code.add("class WebGL() {")
+        code.add("package com.github.jdw.seaofshadows.shared.webgl")
+        code.add("")
+        code.add("abstract class WebGLConstants() {")
         code.indent()
         constantsIds.forEach {
             exportConstants(constantsDoc, it)
