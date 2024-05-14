@@ -11,7 +11,7 @@ import com.github.ajalt.clikt.parameters.types.file
 import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.subcommandos.importers.WebGL1Constants
 import com.github.jdw.seaofshadows.subcommandos.importers.WebGL2Constants
-import com.github.jdw.seaofshadows.subcommandos.importers.WebGL2Interfaces
+import com.github.jdw.seaofshadows.subcommandos.importers.WebGL2
 import fuel.httpGet
 import kotlinx.coroutines.runBlocking
 import kotlin.io.path.Path
@@ -23,19 +23,11 @@ import kotlin.system.exitProcess
 
 
 class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from ${Glob.MOZILLA_API_BASE_URL} to local Kotlin files and classes.") {
-    val supportedApis: Set<String> = setOf("WebGL1", "WebGL2")
+    val supportedApis: Set<String> = setOf("WebGL2")
     val api by argument(help = "The APIs listed at the aforementioned site but without spaces and kept capitalization. ${supportedApis.supportedValues('<' to '>', '|')}.")
         .validate {
             require(supportedApis.contains(it)) {
                 "The API argument must be any of ${supportedApis.supportedValues('<' to '>', '|')}."
-            }
-        }
-    val supportedSections: Set<String> = setOf("constants", "extensions", "interfaces")
-    val section by option("-s", "--section", help = "Supported sections of the WebGL1 API. ${supportedSections.supportedValues('<' to '>', '|')}.")
-        .default("")
-        .validate {
-            require(supportedSections.contains(it)) {
-                "Section must be any of ${supportedSections.supportedValues('<' to '>', '|')}."
             }
         }
     val path by option("-p", "--path", help = "The path to write to.").file(canBeDir = true, mustExist = true).required()
@@ -43,13 +35,7 @@ class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from ${Gl
     override fun run() {
         runBlocking {
             when (api) {
-                "WebGL1" -> when (section) {
-                    "constants" -> WebGL1Constants().run(path)
-                }
-                "WebGL2" -> when (section) {
-                    "constants" -> WebGL2Constants().run(path)
-                    "interfaces" -> WebGL2Interfaces().run(path)
-                }
+                "WebGL2" -> WebGL2().run(path)
             }
         }
 
@@ -58,8 +44,6 @@ class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from ${Gl
 
     companion object {
         fun fetchCache(httpUrl: String): String {
-            println("---- ${Glob.KHRONOS_WEBGL1_IDL}")
-            println("---- ${Glob.MOZILLA_WEBGL_CONSTANTS_URL}")
             val cacheBasePath = "cache"
 
             val path =

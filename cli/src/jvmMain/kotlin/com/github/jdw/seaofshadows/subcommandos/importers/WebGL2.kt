@@ -9,65 +9,7 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.filter
 import java.io.File
 
-class WebGL2Interfaces {
-    data class Parameter(
-        val name: String,
-        val order: Int, // Maintain the same order as in the API doc!
-        val parent: Method
-    ) {
-        var typeChanged = false
-        var type: String = ""
-            //TODO "Array" should be supported by kotlin-stdlib SIC
-            get() = when (field) {
-                "Array" -> {
-                    typeChanged = true
-                    "Array<String>"
-                }
-                else -> {
-                    typeChanged = false
-                    field
-                }
-            }
-        var kdoc: String = ""
-    }
-
-    data class Method(val doc: Document, val name: String, var url: String) {
-        var returnTypeUncertain: Boolean = false
-        var returnType: String = ""
-        val parameters = mutableListOf<Parameter>()
-            get() {
-                field.sortBy { it.order }
-                return field
-            }
-        var kdoc: String = ""
-
-        fun getUncertainties(): String {
-            Glob.debug("Getting uncertainties for $name...")
-            var ret = ""
-            parameters.toList().forEach { p ->
-                assert("" != p.name)
-                if ("" == p.type) ret += "${p.name} = empty type, "
-                if (p.typeChanged) ret += "${p.name} type changed, "
-                if ("" != p.kdoc) ret += "${p.name} = empty kdoc, "
-
-                var order = 0
-                val size = parameters.size
-                (parameters.first().order..parameters.last().order).forEach { idx ->
-                    if (idx < 0 || size < idx) ret += "idx = $idx"
-                    if (parameters[idx].order != order) ret += "${p.name} = OOO (${p.order} != $order), "
-                    order++
-                }
-            }
-            if ("" == kdoc) ret += "kdoc empty, "
-            if (returnTypeUncertain) ret += "return = uncertain, "
-
-            return if ("" == ret) ret
-                else {
-                    "// $ret".removeSuffix(", ")
-                }
-        }
-    }
-
+class WebGL2 {
     private val webGLActiveInfo: suspend (Code) -> Unit = { code ->
         val doc = Ksoup.parse(fetchCache("https://developer.mozilla.org/en-US/docs/Web/API/WebGLActiveInfo"))
         val clazz = doc.title().split(" - Web APIs | MDN")[0]
