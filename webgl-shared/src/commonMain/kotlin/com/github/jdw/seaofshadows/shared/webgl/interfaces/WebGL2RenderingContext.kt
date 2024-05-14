@@ -1,5 +1,16 @@
 package com.github.jdw.seaofshadows.shared.webgl.interfaces
 
+import com.github.jdw.seaofshadows.shared.webgl.GLbitfield
+import com.github.jdw.seaofshadows.shared.webgl.GLboolean
+import com.github.jdw.seaofshadows.shared.webgl.GLenum
+import com.github.jdw.seaofshadows.shared.webgl.GLfloat
+import com.github.jdw.seaofshadows.shared.webgl.GLint
+import com.github.jdw.seaofshadows.shared.webgl.GLint64
+import com.github.jdw.seaofshadows.shared.webgl.GLintptr
+import com.github.jdw.seaofshadows.shared.webgl.GLsizei
+import com.github.jdw.seaofshadows.shared.webgl.GLsizeiptr
+import com.github.jdw.seaofshadows.shared.webgl.GLuint
+
 interface WebGL2RenderingContext {
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.beginQuery()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> starts an asynchronous query. The <code>target</code> parameter indicates which kind of query to begin.</p>
@@ -10,14 +21,14 @@ Specifies an occlusion query: these queries detect whether an object is visible 
 Same as above, but less accurate and faster version.
 Number of primitives that are written to transform feedback buffers.
 	 */
-	fun beginQuery(query: WebGLQuery,target: GLenum,): Unit // return type, 
+	fun beginQuery(query: WebGLQuery, target: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.beginTransformFeedback()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> starts a transform feedback operation.</p>
 	 *
 	 * @param primitivemode A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the output type of the primitives that will be recorded into the buffer objects that are bound for transform feedback. Possible values:
 	 */
-	fun beginTransformFeedback(primitivemode: GLenum,): Unit // return type, 
+	fun beginTransformFeedback(primitivemode: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.bindBufferBase()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> binds a given <a href="/en-US/docs/Web/API/WebGLBuffer"><code>WebGLBuffer</code></a> to a given binding point (<code>target</code>) at a given <code>index</code>.</p>
@@ -26,7 +37,7 @@ Number of primitives that are written to transform feedback buffers.
 	 * @param index A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the index of the <code>target</code>.
 	 * @param target A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the target for the bind operation. Possible values:
 	 */
-	fun bindBufferBase(buffer: WebGLBuffer,index: GLuint,target: GLenum,): Unit // return type, 
+	fun bindBufferBase(buffer: WebGLBuffer, index: GLuint, target: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.bindBufferRange()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> binds a range of a given <a href="/en-US/docs/Web/API/WebGLBuffer"><code>WebGLBuffer</code></a> to a given binding point (<code>target</code>) at a given <code>index</code>.</p>
@@ -37,7 +48,7 @@ Number of primitives that are written to transform feedback buffers.
 	 * @param size A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLsizeiptr"><code>GLsizeiptr</code></a> specifying the amount of data that can be read from the buffer.
 	 * @param target A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the target for the bind operation. Possible values:
 	 */
-	fun bindBufferRange(buffer: WebGLBuffer,index: GLuint,offset: GLintptr,size: GLsizeiptr,target: GLenum,): Unit // return type, 
+	fun bindBufferRange(buffer: WebGLBuffer, index: GLuint, offset: GLintptr, size: GLsizeiptr, target: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.bindSampler()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> binds a passed <a href="/en-US/docs/Web/API/WebGLSampler"><code>WebGLSampler</code></a> object to the texture unit at the passed index.</p>
@@ -45,7 +56,7 @@ Number of primitives that are written to transform feedback buffers.
 	 * @param sampler A <a href="/en-US/docs/Web/API/WebGLSampler"><code>WebGLSampler</code></a> object to bind.
 	 * @param unit A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the index of the texture unit to which to bind the sampler to.
 	 */
-	fun bindSampler(sampler: WebGLSampler,unit: GLuint,): Unit // return type, 
+	fun bindSampler(sampler: WebGLSampler, unit: GLuint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.bindTransformFeedback()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> binds a passed <a href="/en-US/docs/Web/API/WebGLTransformFeedback"><code>WebGLTransformFeedback</code></a> object to the current GL state.</p>
@@ -53,14 +64,14 @@ Number of primitives that are written to transform feedback buffers.
 	 * @param target A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the target (binding point). Must be <code>gl.TRANSFORM_FEEDBACK</code>.
 	 * @param transformfeedback A <a href="/en-US/docs/Web/API/WebGLTransformFeedback"><code>WebGLTransformFeedback</code></a> object to bind.
 	 */
-	fun bindTransformFeedback(target: GLenum,transformfeedback: WebGLTransformFeedback,): Unit // return type, 
+	fun bindTransformFeedback(target: GLenum, transformfeedback: WebGLTransformFeedback): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.bindVertexArray()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> binds a passed <a href="/en-US/docs/Web/API/WebGLVertexArrayObject"><code>WebGLVertexArrayObject</code></a> object to the buffer.</p>
 	 *
 	 * @param vertexarray A <a href="/en-US/docs/Web/API/WebGLVertexArrayObject"><code>WebGLVertexArrayObject</code></a> (VAO) object to bind.
 	 */
-	fun bindVertexArray(vertexarray: WebGLVertexArrayObject,): Unit // return type, 
+	fun bindVertexArray(vertexarray: WebGLVertexArrayObject): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.blitFramebuffer()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> transfers a block of pixels from the read framebuffer to the draw framebuffer. Read and draw framebuffers are bound using <a href="/en-US/docs/Web/API/WebGLRenderingContext/bindFramebuffer"><code>WebGLRenderingContext.bindFramebuffer()</code></a>.</p>
@@ -70,7 +81,7 @@ Number of primitives that are written to transform feedback buffers.
 	 * @param mask A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLbitfield"><code>GLbitfield</code></a> specifying a bitwise OR mask indicating which buffers are to be copied. Possible values:
 	 * @param srcx0_srcy0_srcx1_srcy1 A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> specifying the bounds of the source rectangle.
 	 */
-	fun blitFramebuffer(dstx0_dsty0_dstx1_dsty1: GLint,filter: GLenum,mask: GLbitfield,srcx0_srcy0_srcx1_srcy1: GLint,): Unit // return type, 
+	fun blitFramebuffer(dstx0_dsty0_dstx1_dsty1: GLint, filter: GLenum, mask: GLbitfield, srcx0_srcy0_srcx1_srcy1: GLint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.bufferData()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> creates and initializes the buffer object's data store.</p>
@@ -99,7 +110,7 @@ The contents are intended to be specified once by reading data from WebGL, and u
 The contents are intended to be respecified repeatedly by reading data from WebGL, and used many times as the source for WebGL drawing and image specification commands.
 The contents are intended to be specified once by reading data from WebGL, and used at most a few times as the source for WebGL drawing and image specification commands.
 	 */
-	fun bufferData(length: GLuint,size: GLsizeiptr,srcdata: ArrayBuffer,srcoffset: GLuint,target: GLenum,usage: GLenum,): Unit // return type, 
+	fun bufferData(length: GLuint, size: GLsizeiptr, srcdata: ArrayBuffer, srcoffset: GLuint, target: GLenum, usage: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.bufferSubData()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> updates a subset of a buffer object's data store.</p>
@@ -118,7 +129,7 @@ Buffer used for storing uniform blocks.
 Buffer used for pixel transfer operations.
 Buffer used for pixel transfer operations.
 	 */
-	fun bufferSubData(dstbyteoffset: GLintptr,length: GLuint,srcdata: ArrayBuffer,srcoffset: GLuint,target: GLenum,): Unit // return type, 
+	fun bufferSubData(dstbyteoffset: GLintptr, length: GLuint, srcdata: ArrayBuffer, srcoffset: GLuint, target: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.clearBuffer[fiuv]()</code></strong> methods of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> clear buffers from the currently bound framebuffer.</p>
@@ -129,7 +140,7 @@ Buffer used for pixel transfer operations.
 	 * @param stencil A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> specifying the value to clear the stencil render buffer to.
 	 * @param values An <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a>, <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> or <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLfloat"><code>GLfloat</code></a> values or an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array"><code>Int32Array</code></a>, <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array"><code>Uint32Array</code></a> or <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a> specifying the values to clear to.
 	 */
-	fun clearBuffer(buffer: GLenum,depth: GLfloat,drawbuffer: GLint,stencil: GLint,values: GLint,): Unit // return type, 
+	fun clearBuffer(buffer: GLenum, depth: GLfloat, drawbuffer: GLint, stencil: GLint, values: GLint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.clientWaitSync()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> blocks and waits for a <a href="/en-US/docs/Web/API/WebGLSync"><code>WebGLSync</code></a> object to become signaled or a given timeout to be passed.</p>
@@ -138,7 +149,7 @@ Buffer used for pixel transfer operations.
 	 * @param sync A <a href="/en-US/docs/Web/API/WebGLSync"><code>WebGLSync</code></a> object on which to wait on.
 	 * @param timeout A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint64"><code>GLint64</code></a> specifying a timeout (in nanoseconds) for which to wait for the sync object to become signaled. Must not be larger than <code>gl.MAX_CLIENT_WAIT_TIMEOUT_WEBGL</code>.
 	 */
-	fun clientWaitSync(flags: GLbitfield,sync: WebGLSync,timeout: GLint64,): Unit // return type, 
+	fun clientWaitSync(flags: GLbitfield, sync: WebGLSync, timeout: GLint64): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.compressedTexSubImage3D()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> specifies a three-dimensional sub-rectangle for a texture image in a compressed format.</p>
@@ -156,7 +167,7 @@ Buffer used for pixel transfer operations.
 	 * @param yoffset A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> specifying the y offset within the compressed texture image.
 	 * @param zoffset A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> specifying the z offset within the compressed texture image.
 	 */
-	fun compressedTexSubImage3D(depth: GLsizei,format: GLenum,height: GLsizei,imagesize: GLint,level: GLint,offset: GLint,srcdata: TypedArray,target: GLenum,width: GLsizei,xoffset: GLint,yoffset: GLint,zoffset: GLint,): Unit // return type, 
+	fun compressedTexSubImage3D(depth: GLsizei, format: GLenum, height: GLsizei, imagesize: GLint, level: GLint, offset: GLint, srcdata: TypedArray, target: GLenum, width: GLsizei, xoffset: GLint, yoffset: GLint, zoffset: GLint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.copyBufferSubData()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> copies part of the data of a buffer to another buffer.</p>
@@ -165,7 +176,7 @@ Buffer used for pixel transfer operations.
 	 * @param readtarget_writetarget A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the binding point (target) from whose data store should be read or written. Possible values:
 	 * @param size A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLsizei"><code>GLsizei</code></a> in bytes specifying the size of the data to be copied from <code>readTarget</code> to <code>writeTarget</code>.
 	 */
-	fun copyBufferSubData(readoffset_writeoffset: GLintptr,readtarget_writetarget: GLenum,size: GLsizei,): Unit // return type, 
+	fun copyBufferSubData(readoffset_writeoffset: GLintptr, readtarget_writetarget: GLenum, size: GLsizei): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.copyTexSubImage3D()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> copies pixels from the current <a href="/en-US/docs/Web/API/WebGLFramebuffer"><code>WebGLFramebuffer</code></a> into an existing 3D texture sub-image.</p>
@@ -180,7 +191,7 @@ Buffer used for pixel transfer operations.
 	 * @param yoffset A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> specifying the y offset within the texture image.
 	 * @param zoffset A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> specifying the z offset within the texture image.
 	 */
-	fun copyTexSubImage3D(height: GLsizei,level: GLint,target: GLenum,width: GLsizei,x: GLint,xoffset: GLint,y: GLint,yoffset: GLint,zoffset: GLint,): Unit // return type, 
+	fun copyTexSubImage3D(height: GLsizei, level: GLint, target: GLenum, width: GLsizei, x: GLint, xoffset: GLint, y: GLint, yoffset: GLint, zoffset: GLint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.createQuery()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> creates and initializes <a href="/en-US/docs/Web/API/WebGLQuery"><code>WebGLQuery</code></a> objects, which provide ways to asynchronously query for information.</p>
@@ -211,35 +222,35 @@ Buffer used for pixel transfer operations.
 	 *
 	 * @param query A <a href="/en-US/docs/Web/API/WebGLQuery"><code>WebGLQuery</code></a> object to delete.
 	 */
-	fun deleteQuery(query: WebGLQuery,): Unit // return type, 
+	fun deleteQuery(query: WebGLQuery): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.deleteSampler()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> deletes a given <a href="/en-US/docs/Web/API/WebGLSampler"><code>WebGLSampler</code></a> object.</p>
 	 *
 	 * @param sampler A <a href="/en-US/docs/Web/API/WebGLSampler"><code>WebGLSampler</code></a> object to delete.
 	 */
-	fun deleteSampler(sampler: WebGLSampler,): Unit // return type, 
+	fun deleteSampler(sampler: WebGLSampler): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.deleteSync()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> deletes a given <a href="/en-US/docs/Web/API/WebGLSync"><code>WebGLSync</code></a> object.</p>
 	 *
 	 * @param sync A <a href="/en-US/docs/Web/API/WebGLSync"><code>WebGLSync</code></a> object to delete.
 	 */
-	fun deleteSync(sync: WebGLSync,): Unit // return type, 
+	fun deleteSync(sync: WebGLSync): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.deleteTransformFeedback()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> deletes a given <a href="/en-US/docs/Web/API/WebGLTransformFeedback"><code>WebGLTransformFeedback</code></a> object.</p>
 	 *
 	 * @param transformfeedback A <a href="/en-US/docs/Web/API/WebGLTransformFeedback"><code>WebGLTransformFeedback</code></a> object to delete.
 	 */
-	fun deleteTransformFeedback(transformfeedback: WebGLTransformFeedback,): Unit // return type, 
+	fun deleteTransformFeedback(transformfeedback: WebGLTransformFeedback): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.deleteVertexArray()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> deletes a given <a href="/en-US/docs/Web/API/WebGLVertexArrayObject"><code>WebGLVertexArrayObject</code></a> object.</p>
 	 *
 	 * @param vertexarray A <a href="/en-US/docs/Web/API/WebGLVertexArrayObject"><code>WebGLVertexArrayObject</code></a> (VAO) object to delete.
 	 */
-	fun deleteVertexArray(vertexarray: WebGLVertexArrayObject,): Unit // return type, 
+	fun deleteVertexArray(vertexarray: WebGLVertexArrayObject): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.drawArraysInstanced()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> renders primitives from array data like the <a href="/en-US/docs/Web/API/WebGLRenderingContext/drawArrays" title="gl.drawArrays()"><code>gl.drawArrays()</code></a> method. In addition, it can execute multiple instances of the range of elements.</p>
@@ -252,7 +263,7 @@ Buffer used for pixel transfer operations.
 	 * @param instancecount A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLsizei"><code>GLsizei</code></a> specifying the number of instances of the range of elements to execute.
 	 * @param mode A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the type primitive to render. Possible values are:
 	 */
-	fun drawArraysInstanced(count: GLsizei,first: GLint,instancecount: GLsizei,mode: GLenum,): Unit // return type, 
+	fun drawArraysInstanced(count: GLsizei, first: GLint, instancecount: GLsizei, mode: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.drawBuffers()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> defines draw buffers to which fragment colors are written into. The draw buffer settings are part of the state of the currently bound framebuffer or the drawingbuffer if no framebuffer is bound.</p>
@@ -262,7 +273,7 @@ Fragment shader output is not written into any color buffer.
 Fragment shader output is written into the back color buffer.
 Fragment shader output is written in the nth color attachment of the current framebuffer.
 	 */
-	fun drawBuffers(buffers: GLenum,): Unit // return type, 
+	fun drawBuffers(buffers: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.drawElementsInstanced()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> renders primitives from array data like the <a href="/en-US/docs/Web/API/WebGLRenderingContext/drawElements" title="gl.drawElements()"><code>gl.drawElements()</code></a> method. In addition, it can execute multiple instances of a set of elements.</p>
@@ -276,7 +287,7 @@ Fragment shader output is written in the nth color attachment of the current fra
 	 * @param offset A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLintptr"><code>GLintptr</code></a> specifying an offset in the element array buffer. Must be a valid multiple of the size of the given <code>type</code>.
 	 * @param type A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the type of the values in the element array buffer. Possible values are:
 	 */
-	fun drawElementsInstanced(count: GLsizei,instancecount: GLsizei,mode: GLenum,offset: GLintptr,type: GLenum,): Unit // return type, 
+	fun drawElementsInstanced(count: GLsizei, instancecount: GLsizei, mode: GLenum, offset: GLintptr, type: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.drawRangeElements()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> renders primitives from array data in a given range.</p>
@@ -288,7 +299,7 @@ Fragment shader output is written in the nth color attachment of the current fra
 	 * @param start A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the minimum array index contained in <code>offset</code>.
 	 * @param type A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the type of the values in the element array buffer. Possible values are:
 	 */
-	fun drawRangeElements(count: GLsizei,end: GLuint,mode: GLenum,offset: GLintptr,start: GLuint,type: GLenum,): Unit // return type, 
+	fun drawRangeElements(count: GLsizei, end: GLuint, mode: GLenum, offset: GLintptr, start: GLuint, type: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.endQuery()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> marks the end of a given query target.</p>
@@ -298,7 +309,7 @@ Specifies an occlusion query: these queries detect whether an object is visible 
 Same as above, but less accurate and faster version.
 Number of primitives that are written to transform feedback buffers.
 	 */
-	fun endQuery(target: GLenum,): Unit // return type, 
+	fun endQuery(target: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.endTransformFeedback()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> ends a transform feedback operation.</p>
@@ -312,7 +323,7 @@ Number of primitives that are written to transform feedback buffers.
 	 * @param condition A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the condition that must be met to set the sync object's state to signaled. Must be <code>gl.SYNC_GPU_COMMANDS_COMPLETE</code>.
 	 * @param flags A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLbitfield"><code>GLbitfield</code></a> specifying a bitwise combination of flags controlling the behavior of the sync object. Must be <code>0</code> (exists for extensions only).
 	 */
-	fun fenceSync(condition: GLenum,flags: GLbitfield,): Unit // return type, 
+	fun fenceSync(condition: GLenum, flags: GLbitfield): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.framebufferTextureLayer()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> attaches a single layer of a texture to a framebuffer.</p>
@@ -324,7 +335,7 @@ Number of primitives that are written to transform feedback buffers.
 	 * @param target A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the binding point (target). Possible values:
 	 * @param texture A <a href="/en-US/docs/Web/API/WebGLTexture"><code>WebGLTexture</code></a> object whose image to attach.
 	 */
-	fun framebufferTextureLayer(attachment: GLenum,layer: GLint,level: GLint,target: GLenum,texture: WebGLTexture,): Unit // return type, 
+	fun framebufferTextureLayer(attachment: GLenum, layer: GLint, level: GLint, target: GLenum, texture: WebGLTexture): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getActiveUniformBlockName()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> retrieves the name of the active uniform block at a given index within a <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a>.</p>
@@ -332,7 +343,7 @@ Number of primitives that are written to transform feedback buffers.
 	 * @param program A <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a> containing the uniform block.
 	 * @param uniformblockindex A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the index of the uniform block to whose name to retrieve.
 	 */
-	fun getActiveUniformBlockName(program: WebGLProgram,uniformblockindex: GLuint,): Unit // return type, 
+	fun getActiveUniformBlockName(program: WebGLProgram, uniformblockindex: GLuint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getActiveUniformBlockParameter()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> retrieves information about an active uniform block within a <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a>.</p>
@@ -347,7 +358,7 @@ Returns a <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLboolean"><code>
 	 * @param program A <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a> containing the active uniform block.
 	 * @param uniformblockindex A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the index of the active uniform block within the program.
 	 */
-	fun getActiveUniformBlockParameter(pname: GLenum,program: WebGLProgram,uniformblockindex: GLuint,): Unit // return type, 
+	fun getActiveUniformBlockParameter(pname: GLenum, program: WebGLProgram, uniformblockindex: GLuint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getActiveUniforms()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> retrieves information about active uniforms within a <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a>.</p>
@@ -363,7 +374,7 @@ Returns an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><
 	 * @param program A <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a> containing the active uniforms.
 	 * @param uniformindices An <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the indices of the active uniforms to query.
 	 */
-	fun getActiveUniforms(pname: GLenum,program: WebGLProgram,uniformindices: GLuint,): Unit // return type, 
+	fun getActiveUniforms(pname: GLenum, program: WebGLProgram, uniformindices: GLuint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getBufferSubData()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> reads data from a buffer binding point and writes them to an <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> or <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a>.</p>
@@ -382,7 +393,7 @@ Buffer used for storing uniform blocks.
 Buffer used for pixel transfer operations.
 Buffer used for pixel transfer operations.
 	 */
-	fun getBufferSubData(dstdata: TypedArray,dstoffset: GLuint,length: GLuint,srcbyteoffset: GLintptr,target: GLenum,): Unit // return type, 
+	fun getBufferSubData(dstdata: TypedArray, dstoffset: GLuint, length: GLuint, srcbyteoffset: GLintptr, target: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getFragDataLocation()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns the binding of color numbers to user-defined varying out variables.</p>
@@ -390,7 +401,7 @@ Buffer used for pixel transfer operations.
 	 * @param name A string specifying the name of the user-defined varying out variable.
 	 * @param program A <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a> to query.
 	 */
-	fun getFragDataLocation(name: ,program: WebGLProgram,): Unit // return type, 
+	fun getFragDataLocation(name: , program: WebGLProgram): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getIndexedParameter()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns indexed information about a given <code>target</code>.</p>
@@ -399,7 +410,7 @@ Buffer used for pixel transfer operations.
 	 * @param target A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the target for which to return information. Possible values:
 When using the <a href="/en-US/docs/Web/API/OES_draw_buffers_indexed"><code>OES_draw_buffers_indexed</code></a> WebGL 2 extension, the following values are available additionally:
 	 */
-	fun getIndexedParameter(index: GLuint,target: GLenum,): Unit // return type, 
+	fun getIndexedParameter(index: GLuint, target: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getInternalformatParameter()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns information about implementation-dependent support for internal formats.</p>
@@ -410,7 +421,7 @@ Returns a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Arra
 	 * @param target A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the target renderbuffer object. Possible values:
 Buffer data storage for single images in a renderable internal format.
 	 */
-	fun getInternalformatParameter(internalformat: GLenum,pname: GLenum,target: GLenum,): Unit // return type, 
+	fun getInternalformatParameter(internalformat: GLenum, pname: GLenum, target: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getQuery()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns the currently active <a href="/en-US/docs/Web/API/WebGLQuery"><code>WebGLQuery</code></a> for the <code>target</code>, or <a href="/en-US/docs/Web/JavaScript/Reference/Operators/null"><code>null</code></a>.</p>
@@ -421,7 +432,7 @@ Specifies an occlusion query: these queries detect whether an object is visible 
 Same as above, but less accurate and faster version.
 Number of primitives that are written to transform feedback buffers.
 	 */
-	fun getQuery(pname: GLenum,target: GLenum,): Unit // return type, 
+	fun getQuery(pname: GLenum, target: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getQueryParameter()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns parameter information of a <a href="/en-US/docs/Web/API/WebGLQuery"><code>WebGLQuery</code></a> object.</p>
@@ -431,7 +442,7 @@ Returns a <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLu
 Returns a <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLboolean"><code>GLboolean</code></a> indicating whether or not a query result is available.
 	 * @param query A <a href="/en-US/docs/Web/API/WebGLQuery"><code>WebGLQuery</code></a> object.
 	 */
-	fun getQueryParameter(pname: GLenum,query: WebGLQuery,): Unit // return type, 
+	fun getQueryParameter(pname: GLenum, query: WebGLQuery): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getSamplerParameter()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns parameter information of a <a href="/en-US/docs/Web/API/WebGLSampler"><code>WebGLSampler</code></a> object.</p>
@@ -439,7 +450,7 @@ Returns a <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLboolean"><code>
 	 * @param pname A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying which information to return. Possible values:
 	 * @param sampler A <a href="/en-US/docs/Web/API/WebGLSampler"><code>WebGLSampler</code></a> object.
 	 */
-	fun getSamplerParameter(pname: GLenum,sampler: WebGLSampler,): Unit // return type, 
+	fun getSamplerParameter(pname: GLenum, sampler: WebGLSampler): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getSyncParameter()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns parameter information of a <a href="/en-US/docs/Web/API/WebGLSync"><code>WebGLSync</code></a> object.</p>
@@ -451,7 +462,7 @@ Returns a <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLe
 Returns a <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> indicating the flags with which the sync object was created (always 0 as no flags are supported).
 	 * @param sync A <a href="/en-US/docs/Web/API/WebGLSync"><code>WebGLSync</code></a> object.
 	 */
-	fun getSyncParameter(pname: GLenum,sync: WebGLSync,): Unit // return type, 
+	fun getSyncParameter(pname: GLenum, sync: WebGLSync): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getTransformFeedbackVarying()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns information about varying variables from <a href="/en-US/docs/Web/API/WebGLTransformFeedback"><code>WebGLTransformFeedback</code></a> buffers.</p>
@@ -459,7 +470,7 @@ Returns a <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLe
 	 * @param index A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the index of the varying variable whose information to retrieve<code>.</code>
 	 * @param program A <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a>.
 	 */
-	fun getTransformFeedbackVarying(index: GLuint,program: WebGLProgram,): Unit // return type, 
+	fun getTransformFeedbackVarying(index: GLuint, program: WebGLProgram): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getUniformBlockIndex()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> retrieves the index of a uniform block within a <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a>.</p>
@@ -467,7 +478,7 @@ Returns a <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLe
 	 * @param program A <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a> containing the uniform block.
 	 * @param uniformname A string specifying the name of the uniform block to whose index to retrieve.
 	 */
-	fun getUniformBlockIndex(program: WebGLProgram,uniformname: ,): Unit // return type, 
+	fun getUniformBlockIndex(program: WebGLProgram, uniformname: ): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.getUniformIndices()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> retrieves the indices of a number of uniforms within a <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a>.</p>
@@ -475,7 +486,7 @@ Returns a <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLe
 	 * @param program A <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a> containing uniforms whose indices to query.
 	 * @param uniformnames An <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of string specifying the names of the uniforms to query.
 	 */
-	fun getUniformIndices(program: WebGLProgram,uniformnames: Array,): Unit // return type, 
+	fun getUniformIndices(program: WebGLProgram, uniformnames: Array<String>): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.invalidateFramebuffer()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> invalidates the contents of attachments in a framebuffer.</p>
@@ -490,7 +501,7 @@ Collection buffer data storage of color, alpha, depth and stencil buffers used t
 Equivalent to <code>gl.FRAMEBUFFER</code>.
 Used as a source for reading operations.
 	 */
-	fun invalidateFramebuffer(attachments: GLenum,target: GLenum,): Unit // return type, 
+	fun invalidateFramebuffer(attachments: GLenum, target: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.invalidateSubFramebuffer()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> invalidates portions of the contents of attachments in a framebuffer.</p>
@@ -509,42 +520,42 @@ Used as a source for reading operations.
 	 * @param x A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> specifying the left origin of the pixel rectangle to invalidate.
 	 * @param y A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> specifying the bottom origin of the pixel rectangle to invalidate.
 	 */
-	fun invalidateSubFramebuffer(attachments: GLenum,height: GLsizei,target: GLenum,width: GLsizei,x: GLint,y: GLint,): Unit // return type, 
+	fun invalidateSubFramebuffer(attachments: GLenum, height: GLsizei, target: GLenum, width: GLsizei, x: GLint, y: GLint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.isQuery()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns <code>true</code> if the passed object is a valid <a href="/en-US/docs/Web/API/WebGLQuery"><code>WebGLQuery</code></a> object.</p>
 	 *
 	 * @param query A <a href="/en-US/docs/Web/API/WebGLQuery"><code>WebGLQuery</code></a> object to test.
 	 */
-	fun isQuery(query: WebGLQuery,): Unit // return type, 
+	fun isQuery(query: WebGLQuery): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.isSampler()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns <code>true</code> if the passed object is a valid <a href="/en-US/docs/Web/API/WebGLSampler"><code>WebGLSampler</code></a> object.</p>
 	 *
 	 * @param sampler A <a href="/en-US/docs/Web/API/WebGLSampler"><code>WebGLSampler</code></a> object to test.
 	 */
-	fun isSampler(sampler: WebGLSampler,): Unit // return type, 
+	fun isSampler(sampler: WebGLSampler): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.isSync()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns <code>true</code> if the passed object is a valid <a href="/en-US/docs/Web/API/WebGLSync"><code>WebGLSync</code></a> object.</p>
 	 *
 	 * @param sync A <a href="/en-US/docs/Web/API/WebGLSync"><code>WebGLSync</code></a> object to test.
 	 */
-	fun isSync(sync: WebGLSync,): Unit // return type, 
+	fun isSync(sync: WebGLSync): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.isTransformFeedback()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns <code>true</code> if the passed object is a valid <a href="/en-US/docs/Web/API/WebGLTransformFeedback"><code>WebGLTransformFeedback</code></a> object.</p>
 	 *
 	 * @param transformfeedback A <a href="/en-US/docs/Web/API/WebGLTransformFeedback"><code>WebGLTransformFeedback</code></a> object to test.
 	 */
-	fun isTransformFeedback(transformfeedback: WebGLTransformFeedback,): Unit // return type, 
+	fun isTransformFeedback(transformfeedback: WebGLTransformFeedback): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.isVertexArray()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> returns <code>true</code> if the passed object is a valid <a href="/en-US/docs/Web/API/WebGLVertexArrayObject"><code>WebGLVertexArrayObject</code></a> object.</p>
 	 *
 	 * @param vertexarray A <a href="/en-US/docs/Web/API/WebGLVertexArrayObject"><code>WebGLVertexArrayObject</code></a> (VAO) object to test.
 	 */
-	fun isVertexArray(vertexarray: WebGLVertexArrayObject,): Unit // return type, 
+	fun isVertexArray(vertexarray: WebGLVertexArrayObject): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.pauseTransformFeedback()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> pauses a transform feedback operation.</p>
@@ -560,7 +571,7 @@ Reads from the back color buffer.
 Reads from no color buffer.
 Reads from one of the 16 color attachment buffers.
 	 */
-	fun readBuffer(source: GLenum,): Unit // return type, 
+	fun readBuffer(source: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.renderbufferStorageMultisample()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns creates and initializes a renderbuffer object's data store and allows specifying a number of samples to be used.</p>
@@ -572,7 +583,7 @@ Reads from one of the 16 color attachment buffers.
 Buffer data storage for single images in a renderable internal format.
 	 * @param width A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLsizei"><code>GLsizei</code></a> specifying the width of the renderbuffer in pixels.
 	 */
-	fun renderbufferStorageMultisample(height: GLsizei,internalformat: GLenum,samples: GLsizei,target: GLenum,width: GLsizei,): Unit // return type, 
+	fun renderbufferStorageMultisample(height: GLsizei, internalformat: GLenum, samples: GLsizei, target: GLenum, width: GLsizei): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.resumeTransformFeedback()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> resumes a transform feedback operation.</p>
@@ -596,7 +607,7 @@ A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</cod
 A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the texture wrapping function for the texture coordinate t.
 	 * @param sampler A <a href="/en-US/docs/Web/API/WebGLSampler"><code>WebGLSampler</code></a> object.
 	 */
-	fun samplerParameter(param: GLint,pname: GLenum,sampler: WebGLSampler,): Unit // return type, 
+	fun samplerParameter(param: GLint, pname: GLenum, sampler: WebGLSampler): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGLRenderingContext.texImage3D()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> specifies a three-dimensional texture image.</p>
@@ -614,7 +625,7 @@ A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</cod
 	 * @param type A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the data type of the texel data. Possible values:
 	 * @param width A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLsizei"><code>GLsizei</code></a> specifying the width of the texture.
 	 */
-	fun texImage3D(border: GLint,depth: GLsizei,format: GLenum,height: GLsizei,internalformat: GLint,level: GLint,offset: GLintptr,source: ImageBitmap,srcdata: TypedArray,target: GLenum,type: GLenum,width: GLsizei,): Unit // return type, 
+	fun texImage3D(border: GLint, depth: GLsizei, format: GLenum, height: GLsizei, internalformat: GLint, level: GLint, offset: GLintptr, source: ImageBitmap, srcdata: TypedArray, target: GLenum, type: GLenum, width: GLsizei): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.texStorage2D()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> specifies all levels of two-dimensional texture storage.</p>
@@ -626,7 +637,7 @@ Unlike OpenGL 3.0, WebGL 2 <strong>doesn't support</strong> the following ETC2 a
 	 * @param target A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the binding point (target) of the active texture. Possible values:
 	 * @param width A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLsizei"><code>GLsizei</code></a> specifying the width of the texture.
 	 */
-	fun texStorage2D(height: GLsizei,internalformat: GLenum,levels: GLint,target: GLenum,width: GLsizei,): Unit // return type, 
+	fun texStorage2D(height: GLsizei, internalformat: GLenum, levels: GLint, target: GLenum, width: GLsizei): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.texStorage3D()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> specifies all levels of a three-dimensional texture or two-dimensional array texture.</p>
@@ -639,7 +650,7 @@ In addition if the <a href="/en-US/docs/Web/API/WEBGL_compressed_texture_etc"><c
 	 * @param target A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the binding point (target) of the active texture. Possible values:
 	 * @param width A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLsizei"><code>GLsizei</code></a> specifying the width of the texture.
 	 */
-	fun texStorage3D(depth: GLsizei,height: GLsizei,internalformat: GLenum,level: GLint,target: GLenum,width: GLsizei,): Unit // return type, 
+	fun texStorage3D(depth: GLsizei, height: GLsizei, internalformat: GLenum, level: GLint, target: GLenum, width: GLsizei): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.texSubImage3D()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> specifies a sub-rectangle of the current texture.</p>
@@ -658,7 +669,7 @@ In addition if the <a href="/en-US/docs/Web/API/WEBGL_compressed_texture_etc"><c
 	 * @param yoffset A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> specifying the y offset within the texture image.
 	 * @param zoffset A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> specifying the z offset within the texture image.
 	 */
-	fun texSubImage3D(depth: GLsizei,format: GLenum,height: GLsizei,level: GLint,offset: GLintptr,pixels: Uint8Array,srcdata: TypedArray,target: GLenum,type: GLenum,width: GLsizei,xoffset: GLint,yoffset: GLint,zoffset: GLint,): Unit // return type, 
+	fun texSubImage3D(depth: GLsizei, format: GLenum, height: GLsizei, level: GLint, offset: GLintptr, pixels: Uint8Array, srcdata: TypedArray, target: GLenum, type: GLenum, width: GLsizei, xoffset: GLint, yoffset: GLint, zoffset: GLint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.transformFeedbackVaryings()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> specifies values to record in <a href="/en-US/docs/Web/API/WebGLTransformFeedback"><code>WebGLTransformFeedback</code></a> buffers.</p>
@@ -667,7 +678,7 @@ In addition if the <a href="/en-US/docs/Web/API/WEBGL_compressed_texture_etc"><c
 	 * @param program A <a href="/en-US/docs/Web/API/WebGLProgram"><code>WebGLProgram</code></a>.
 	 * @param varyings An <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of string specifying the names of the varying variables to use.
 	 */
-	fun transformFeedbackVaryings(buffermode: GLenum,program: WebGLProgram,varyings: Array,): Unit // return type, 
+	fun transformFeedbackVaryings(buffermode: GLenum, program: WebGLProgram, varyings: Array<String>): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.uniform[1234][uif][v]()</code></strong> methods of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL API</a> specify values of uniform variables.</p>
@@ -678,7 +689,7 @@ In addition if the <a href="/en-US/docs/Web/API/WEBGL_compressed_texture_etc"><c
 	 * @param data_v0_v1_v2_v3 A new value to be used for the uniform variable. Possible types:
 	 * @param location A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify.
 	 */
-	fun uniform(data_v0_v1_v2_v3: Number,location: WebGLUniformLocation,): Unit // return type, 
+	fun uniform(data_v0_v1_v2_v3: Number, location: WebGLUniformLocation): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.uniformBlockBinding()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> assigns binding points for active uniform blocks.</p>
@@ -687,7 +698,7 @@ In addition if the <a href="/en-US/docs/Web/API/WEBGL_compressed_texture_etc"><c
 	 * @param uniformblockbinding A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the binding point to which to bind the uniform block.
 	 * @param uniformblockindex A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the index of the active uniform block within the program.
 	 */
-	fun uniformBlockBinding(program: WebGLProgram,uniformblockbinding: GLuint,uniformblockindex: GLuint,): Unit // return type, 
+	fun uniformBlockBinding(program: WebGLProgram, uniformblockbinding: GLuint, uniformblockindex: GLuint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.uniformMatrix[234]x[234]fv()</code></strong> methods of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> specify matrix values for uniform variables.</p>
@@ -699,7 +710,7 @@ In addition if the <a href="/en-US/docs/Web/API/WEBGL_compressed_texture_etc"><c
 	 * @param location A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify.
 	 * @param transpose A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLboolean"><code>GLboolean</code></a> specifying whether to transpose the matrix.
 	 */
-	fun uniformMatrix(data: Float32Array,location: WebGLUniformLocation,transpose: GLboolean,): Unit // return type, 
+	fun uniformMatrix(data: Float32Array, location: WebGLUniformLocation, transpose: GLboolean): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.vertexAttribDivisor()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> modifies the rate at which generic vertex attributes advance when rendering multiple instances of primitives with <a href="/en-US/docs/Web/API/WebGL2RenderingContext/drawArraysInstanced" title="gl.drawArraysInstanced()"><code>gl.drawArraysInstanced()</code></a> and <a href="/en-US/docs/Web/API/WebGL2RenderingContext/drawElementsInstanced" title="gl.drawElementsInstanced()"><code>gl.drawElementsInstanced()</code></a>.</p>
@@ -710,7 +721,7 @@ In addition if the <a href="/en-US/docs/Web/API/WEBGL_compressed_texture_etc"><c
 	 * @param divisor A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the number of instances that will pass between updates of the generic attribute.
 	 * @param index A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the index of the generic vertex attributes.
 	 */
-	fun vertexAttribDivisor(divisor: GLuint,index: GLuint,): Unit // return type, 
+	fun vertexAttribDivisor(divisor: GLuint, index: GLuint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.vertexAttribI4[u]i[v]()</code></strong> methods of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> specify integer values for generic vertex attributes.</p>
@@ -719,7 +730,7 @@ In addition if the <a href="/en-US/docs/Web/API/WEBGL_compressed_texture_etc"><c
 	 * @param v0_v1_v2_v3 An integer <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a> for the vertex attribute value.
 	 * @param value A <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array"><code>Uint32Array</code></a>/<a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array"><code>Int32Array</code></a> or sequences of <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a>/ <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> for integer vector vertex attribute values.
 	 */
-	fun vertexAttribI(index: GLuint,v0_v1_v2_v3: Number,value: GLuint,): Unit // return type, 
+	fun vertexAttribI(index: GLuint, v0_v1_v2_v3: Number, value: GLuint): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.vertexAttribIPointer()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> specifies integer data formats and locations of vertex attributes in a vertex attributes array.</p>
@@ -730,7 +741,7 @@ In addition if the <a href="/en-US/docs/Web/API/WEBGL_compressed_texture_etc"><c
 	 * @param stride A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLsizei"><code>GLsizei</code></a> specifying the offset in bytes between the beginning of consecutive vertex attributes.
 	 * @param type A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the data type of each component in the array. Must be one of: <code>gl.BYTE</code>, <code>gl.UNSIGNED_BYTE</code>, <code>gl.SHORT</code>, <code>gl.UNSIGNED_SHORT</code>, <code>gl.INT</code>, or <code>gl.UNSIGNED_INT</code>.
 	 */
-	fun vertexAttribIPointer(index: GLuint,offset: GLintptr,size: GLint,stride: GLsizei,type: GLenum,): Unit // return type, 
+	fun vertexAttribIPointer(index: GLuint, offset: GLintptr, size: GLint, stride: GLsizei, type: GLenum): Unit // return type, 
 	
 	/**
 	 * <p>The <strong><code>WebGL2RenderingContext.waitSync()</code></strong> method of the <a href="/en-US/docs/Web/API/WebGL_API">WebGL 2 API</a> returns immediately, but waits on the GL server until the given <a href="/en-US/docs/Web/API/WebGLSync"><code>WebGLSync</code></a> object is signaled.</p>
@@ -740,6 +751,6 @@ In addition if the <a href="/en-US/docs/Web/API/WEBGL_compressed_texture_etc"><c
 	 * @param sync A <a href="/en-US/docs/Web/API/WebGLSync"><code>WebGLSync</code></a> object on which to wait on.
 	 * @param timeout A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint64"><code>GLint64</code></a> specifying a timeout the server should wait before continuing. Must be <code>gl.TIMEOUT_IGNORED</code>.
 	 */
-	fun waitSync(flags: GLbitfield,sync: WebGLSync,timeout: GLint64,): Unit // return type, 
+	fun waitSync(flags: GLbitfield, sync: WebGLSync, timeout: GLint64): Unit // return type, 
 	
 }

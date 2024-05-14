@@ -14,6 +14,7 @@ plugins {
 }
 
 val javaVersion: String by properties
+val kotlinVersion: String by properties
 
 kotlin {
     js(IR) {
@@ -29,14 +30,19 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":seaofshadows-core"))
+                implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
             }
         }
         val jsMain by getting {
             dependencies {
-                implementation(project(":seaofshadows-core"))
+                implementation("org.jetbrains.kotlin:kotlin-stdlib-js:$kotlinVersion")
             }
         }
-        val jvmMain by getting
+        val jvmMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+            }
+        }
     }
 }
 

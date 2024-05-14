@@ -1,9 +1,8 @@
-package com.github.jdw.seaofshadows.subcommandos.mozillaexporters
+package com.github.jdw.seaofshadows.subcommandos.importers
 
 import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
 import com.github.jdw.seaofshadows.Glob
-import com.github.jdw.seaofshadows.subcommandos.Webapi.Companion.MOZILLA_WEBGL_CONSTANTS_URL
 import fuel.httpGet
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -31,7 +30,7 @@ class WebGL1Constants() {
 
         val response = coroutineScope {
             async {
-                MOZILLA_WEBGL_CONSTANTS_URL.httpGet()
+                Glob.MOZILLA_WEBGL_CONSTANTS_URL.httpGet()
             }
         }.await()
 

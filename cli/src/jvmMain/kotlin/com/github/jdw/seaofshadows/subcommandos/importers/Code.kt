@@ -1,13 +1,15 @@
-package com.github.jdw.seaofshadows.subcommandos.mozillaexporters
+package com.github.jdw.seaofshadows.subcommandos.importers
 
 import java.io.File
 
 class Code(val file: File) {
     private val lines = ArrayList<String>()
     private var dents = ""
+    private var changesSinceLastSave = true
 
     fun add(line: String) {
         lines.add("$dents$line\n")
+        changesSinceLastSave = true
     }
 
     fun indent() {
@@ -27,6 +29,10 @@ class Code(val file: File) {
     }
 
     fun save() {
-        file.writeText(toString())
+        if (changesSinceLastSave) {
+            file.writeText(toString())
+            changesSinceLastSave = false
+        }
+
     }
 }

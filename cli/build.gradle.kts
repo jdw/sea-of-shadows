@@ -34,10 +34,14 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$kotlinxSerializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinxSerializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:$kotlinxCoroutinesVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-html:0.11.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.11.0")
                 implementation("com.github.ajalt.clikt:clikt:$cliktVersion")
                 implementation("com.fleeksoft.ksoup:ksoup:0.1.2")
                 implementation("com.github.kittinunf.fuel:fuel-jvm:3.0.0-alpha1")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:$kotlinxCoroutinesVersion")
+                implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+
                 implementation("com.chrynan.uri:uri-core:0.4.0")
                 implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
             }

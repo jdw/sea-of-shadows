@@ -2,22 +2,12 @@ package com.github.jdw.seaofshadows
 
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.subcommands
-import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
-import com.github.ajalt.clikt.parameters.types.boolean
 import com.github.jdw.seaofshadows.subcommandos.Protobuf
 import com.github.jdw.seaofshadows.subcommandos.Settings
 import com.github.jdw.seaofshadows.subcommandos.Webapi
 import kotlinx.serialization.ExperimentalSerializationApi
-
-object Glob {
-    var verbose = false
-
-    fun debug(msg: String) {
-        if (verbose) println(msg)
-    }
-}
 
 class SeaOfShadows: CliktCommand(name="seaofshadows") {
     val verbose by option("-v", "--verbose", help="Verbose output (default: false).").flag()

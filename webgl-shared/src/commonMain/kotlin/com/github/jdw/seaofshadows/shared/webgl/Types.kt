@@ -17,6 +17,7 @@ typealias GLushort = UShort
 typealias GLuint = ULong
 typealias GLfloat = Double
 typealias GLclampf = Double
+typealias GLint64 = Long
 
 // The power preference settings are documented in the WebGLContextAttributes
 // section of the specification.
