@@ -1,29 +1,5 @@
 package com.github.jdw.seaofshadows.webgl.shared
 
-import com.github.jdw.seaofshadows.webgl.shared.ArrayBufferView
-import com.github.jdw.seaofshadows.webgl.shared.BufferDataSource
-import com.github.jdw.seaofshadows.webgl.shared.DOMString
-import com.github.jdw.seaofshadows.webgl.shared.Float32Array
-import com.github.jdw.seaofshadows.webgl.shared.GLbitfield
-import com.github.jdw.seaofshadows.webgl.shared.GLboolean
-import com.github.jdw.seaofshadows.webgl.shared.GLclampf
-import com.github.jdw.seaofshadows.webgl.shared.GLenum
-import com.github.jdw.seaofshadows.webgl.shared.GLfloat
-import com.github.jdw.seaofshadows.webgl.shared.GLint
-import com.github.jdw.seaofshadows.webgl.shared.GLintptr
-import com.github.jdw.seaofshadows.webgl.shared.GLsizei
-import com.github.jdw.seaofshadows.webgl.shared.GLsizeiptr
-import com.github.jdw.seaofshadows.webgl.shared.GLuint
-import com.github.jdw.seaofshadows.webgl.shared.HTMLCanvasElement
-import com.github.jdw.seaofshadows.webgl.shared.Int32Array
-import com.github.jdw.seaofshadows.webgl.shared.TexImageSource
-import com.github.jdw.seaofshadows.webgl.shared.WebGLBuffer
-import com.github.jdw.seaofshadows.webgl.shared.WebGLFramebuffer
-import com.github.jdw.seaofshadows.webgl.shared.WebGLProgram
-import com.github.jdw.seaofshadows.webgl.shared.WebGLRenderbuffer
-import com.github.jdw.seaofshadows.webgl.shared.WebGLShader
-import com.github.jdw.seaofshadows.webgl.shared.WebGLTexture
-import com.github.jdw.seaofshadows.webgl.shared.WebGLUniformLocation
 
 /**
  * hej
@@ -4495,14 +4471,14 @@ interface WebGLRenderingContextBase {
 	 *
 	 * Problems found during importing:
 	 * Parameter 'v' with type sequence<GLfloat> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform) official docs.
 	 *
 	 * @param location <p>A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify.</p>
+	 * @param v This parameter caused unspecified trouble!
 	 */
-	//public fun uniform1fv(location: WebGLUniformLocation);
+	//public fun uniform1fv(location: WebGLUniformLocation, v: List<GLfloat>);
 	/**
 	 * nullThe WebGLRenderingContext.uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
@@ -4534,14 +4510,14 @@ interface WebGLRenderingContextBase {
 	 *
 	 * Problems found during importing:
 	 * Parameter 'v' with type sequence<long> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform) official docs.
 	 *
 	 * @param location <p>A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify.</p>
+	 * @param v This parameter caused unspecified trouble!
 	 */
-	//public fun uniform1iv(location: WebGLUniformLocation);
+	//public fun uniform1iv(location: WebGLUniformLocation, v: List<Long>);
 	/**
 	 * nullThe WebGLRenderingContext.uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
@@ -4575,14 +4551,14 @@ interface WebGLRenderingContextBase {
 	 *
 	 * Problems found during importing:
 	 * Parameter 'v' with type sequence<GLfloat> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform) official docs.
 	 *
 	 * @param location <p>A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify.</p>
+	 * @param v This parameter caused unspecified trouble!
 	 */
-	//public fun uniform2fv(location: WebGLUniformLocation);
+	//public fun uniform2fv(location: WebGLUniformLocation, v: List<GLfloat>);
 	/**
 	 * nullThe WebGLRenderingContext.uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
@@ -4616,14 +4592,14 @@ interface WebGLRenderingContextBase {
 	 *
 	 * Problems found during importing:
 	 * Parameter 'v' with type sequence<long> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform) official docs.
 	 *
 	 * @param location <p>A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify.</p>
+	 * @param v This parameter caused unspecified trouble!
 	 */
-	//public fun uniform2iv(location: WebGLUniformLocation);
+	//public fun uniform2iv(location: WebGLUniformLocation, v: List<Long>);
 	/**
 	 * nullThe WebGLRenderingContext.uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
@@ -4659,14 +4635,14 @@ interface WebGLRenderingContextBase {
 	 *
 	 * Problems found during importing:
 	 * Parameter 'v' with type sequence<GLfloat> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform) official docs.
 	 *
 	 * @param location <p>A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify.</p>
+	 * @param v This parameter caused unspecified trouble!
 	 */
-	//public fun uniform3fv(location: WebGLUniformLocation);
+	//public fun uniform3fv(location: WebGLUniformLocation, v: List<GLfloat>);
 	/**
 	 * nullThe WebGLRenderingContext.uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
@@ -4702,14 +4678,14 @@ interface WebGLRenderingContextBase {
 	 *
 	 * Problems found during importing:
 	 * Parameter 'v' with type sequence<long> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform) official docs.
 	 *
 	 * @param location <p>A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify.</p>
+	 * @param v This parameter caused unspecified trouble!
 	 */
-	//public fun uniform3iv(location: WebGLUniformLocation);
+	//public fun uniform3iv(location: WebGLUniformLocation, v: List<Long>);
 	/**
 	 * nullThe WebGLRenderingContext.uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
@@ -4747,14 +4723,14 @@ interface WebGLRenderingContextBase {
 	 *
 	 * Problems found during importing:
 	 * Parameter 'v' with type sequence<GLfloat> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform) official docs.
 	 *
 	 * @param location <p>A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify.</p>
+	 * @param v This parameter caused unspecified trouble!
 	 */
-	//public fun uniform4fv(location: WebGLUniformLocation);
+	//public fun uniform4fv(location: WebGLUniformLocation, v: List<GLfloat>);
 	/**
 	 * nullThe WebGLRenderingContext.uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
@@ -4792,14 +4768,14 @@ interface WebGLRenderingContextBase {
 	 *
 	 * Problems found during importing:
 	 * Parameter 'v' with type sequence<long> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniform) official docs.
 	 *
 	 * @param location <p>A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify.</p>
+	 * @param v This parameter caused unspecified trouble!
 	 */
-	//public fun uniform4iv(location: WebGLUniformLocation);
+	//public fun uniform4iv(location: WebGLUniformLocation, v: List<Long>);
 	/**
 	 * nullThe WebGLRenderingContext.uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
 	 * See further:
@@ -4812,17 +4788,14 @@ interface WebGLRenderingContextBase {
 	public fun uniformMatrix2fv(location: WebGLUniformLocation, transpose: GLboolean, value: Float32Array);
 	/**
 	 * nullThe WebGLRenderingContext.uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
-	 *
-	 * Problems found during importing:
-	 * Problem when handling 'sequence<GLfloat> value'!
-	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniformMatrix) official docs.
 	 *
 	 * @param location <p>A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify. The location is obtained using <a href="/en-US/docs/Web/API/WebGLRenderingContext/getUniformLocation" title="getUniformLocation()"><code>getUniformLocation()</code></a>.</p>
 	 * @param transpose <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLboolean"><code>GLboolean</code></a> specifying whether to transpose the matrix. Must be <code>false</code>.</p>
+	 * @param value <p>A <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a> or sequence of <code>GLfloat</code> values. The values are assumed to be supplied in column major order.</p>
 	 */
-	//public fun uniformMatrix2fv(location: WebGLUniformLocation, transpose: GLboolean);
+	public fun uniformMatrix2fv(location: WebGLUniformLocation, transpose: GLboolean, value: List<GLfloat>);
 	/**
 	 * nullThe WebGLRenderingContext.uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
 	 * See further:
@@ -4835,17 +4808,14 @@ interface WebGLRenderingContextBase {
 	public fun uniformMatrix3fv(location: WebGLUniformLocation, transpose: GLboolean, value: Float32Array);
 	/**
 	 * nullThe WebGLRenderingContext.uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
-	 *
-	 * Problems found during importing:
-	 * Problem when handling 'sequence<GLfloat> value'!
-	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniformMatrix) official docs.
 	 *
 	 * @param location <p>A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify. The location is obtained using <a href="/en-US/docs/Web/API/WebGLRenderingContext/getUniformLocation" title="getUniformLocation()"><code>getUniformLocation()</code></a>.</p>
 	 * @param transpose <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLboolean"><code>GLboolean</code></a> specifying whether to transpose the matrix. Must be <code>false</code>.</p>
+	 * @param value <p>A <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a> or sequence of <code>GLfloat</code> values. The values are assumed to be supplied in column major order.</p>
 	 */
-	//public fun uniformMatrix3fv(location: WebGLUniformLocation, transpose: GLboolean);
+	public fun uniformMatrix3fv(location: WebGLUniformLocation, transpose: GLboolean, value: List<GLfloat>);
 	/**
 	 * nullThe WebGLRenderingContext.uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
 	 * See further:
@@ -4858,17 +4828,14 @@ interface WebGLRenderingContextBase {
 	public fun uniformMatrix4fv(location: WebGLUniformLocation, transpose: GLboolean, value: Float32Array);
 	/**
 	 * nullThe WebGLRenderingContext.uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
-	 *
-	 * Problems found during importing:
-	 * Problem when handling 'sequence<GLfloat> value'!
-	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniformMatrix) official docs.
 	 *
 	 * @param location <p>A <a href="/en-US/docs/Web/API/WebGLUniformLocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify. The location is obtained using <a href="/en-US/docs/Web/API/WebGLRenderingContext/getUniformLocation" title="getUniformLocation()"><code>getUniformLocation()</code></a>.</p>
 	 * @param transpose <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLboolean"><code>GLboolean</code></a> specifying whether to transpose the matrix. Must be <code>false</code>.</p>
+	 * @param value <p>A <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a> or sequence of <code>GLfloat</code> values. The values are assumed to be supplied in column major order.</p>
 	 */
-	//public fun uniformMatrix4fv(location: WebGLUniformLocation, transpose: GLboolean);
+	public fun uniformMatrix4fv(location: WebGLUniformLocation, transpose: GLboolean, value: List<GLfloat>);
 	/**
 	 * nullThe WebGLRenderingContext.useProgram() method of the WebGL API sets the specified WebGLProgram as part of the current rendering state.
 	 * See further:
@@ -4889,93 +4856,86 @@ interface WebGLRenderingContextBase {
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'x' with type GLfloat non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
 	 * @param x This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib1f(indx: GLuint, x: GLfloat);
+	//public fun vertexAttrib1f(index: GLuint, x: GLfloat);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'values' with type Float32Array non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
 	 * @param values This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib1fv(indx: GLuint, values: Float32Array);
+	//public fun vertexAttrib1fv(index: GLuint, values: Float32Array);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'values' with type sequence<GLfloat> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
+	 * @param values This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib1fv(indx: GLuint);
+	//public fun vertexAttrib1fv(index: GLuint, values: List<GLfloat>);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'x' with type GLfloat non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'y' with type GLfloat non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
 	 * @param x This parameter caused unspecified trouble!
 	 * @param y This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib2f(indx: GLuint, x: GLfloat, y: GLfloat);
+	//public fun vertexAttrib2f(index: GLuint, x: GLfloat, y: GLfloat);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'values' with type Float32Array non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
 	 * @param values This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib2fv(indx: GLuint, values: Float32Array);
+	//public fun vertexAttrib2fv(index: GLuint, values: Float32Array);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'values' with type sequence<GLfloat> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
+	 * @param values This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib2fv(indx: GLuint);
+	//public fun vertexAttrib2fv(index: GLuint, values: List<GLfloat>);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'x' with type GLfloat non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'y' with type GLfloat non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'z' with type GLfloat non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
@@ -4983,45 +4943,42 @@ interface WebGLRenderingContextBase {
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
 	 * @param x This parameter caused unspecified trouble!
 	 * @param y This parameter caused unspecified trouble!
 	 * @param z This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib3f(indx: GLuint, x: GLfloat, y: GLfloat, z: GLfloat);
+	//public fun vertexAttrib3f(index: GLuint, x: GLfloat, y: GLfloat, z: GLfloat);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'values' with type Float32Array non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
 	 * @param values This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib3fv(indx: GLuint, values: Float32Array);
+	//public fun vertexAttrib3fv(index: GLuint, values: Float32Array);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'values' with type sequence<GLfloat> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
+	 * @param values This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib3fv(indx: GLuint);
+	//public fun vertexAttrib3fv(index: GLuint, values: List<GLfloat>);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'x' with type GLfloat non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'y' with type GLfloat non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'z' with type GLfloat non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
@@ -5030,51 +4987,45 @@ interface WebGLRenderingContextBase {
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
 	 * @param x This parameter caused unspecified trouble!
 	 * @param y This parameter caused unspecified trouble!
 	 * @param z This parameter caused unspecified trouble!
 	 * @param w This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib4f(indx: GLuint, x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat);
+	//public fun vertexAttrib4f(index: GLuint, x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'values' with type Float32Array non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
 	 * @param values This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib4fv(indx: GLuint, values: Float32Array);
+	//public fun vertexAttrib4fv(index: GLuint, values: Float32Array);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
 	 * Parameter 'values' with type sequence<GLfloat> non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib'!
-	 * Problems adding parameter!
 	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the position of the vertex attribute to be modified.</p>
+	 * @param values This parameter caused unspecified trouble!
 	 */
-	//public fun vertexAttrib4fv(indx: GLuint);
+	//public fun vertexAttrib4fv(index: GLuint, values: List<GLfloat>);
 	/**
 	 * nullThe WebGLRenderingContext.vertexAttribPointer() method of the WebGL API binds the buffer currently bound to gl.ARRAY_BUFFER to a generic vertex attribute of the current vertex buffer object and specifies its layout.
-	 *
-	 * Problems found during importing:
-	 * Parameter 'indx' with type GLuint non-existent for 'https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttribPointer'!
-	 *
 	 * See further:
 	 * * At [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttribPointer) official docs.
 	 *
-	 * @param indx This parameter caused unspecified trouble!
+	 * @param index <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLuint"><code>GLuint</code></a> specifying the index of the vertex attribute that is to be modified.</p>
 	 * @param size <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLint"><code>GLint</code></a> specifying the number of components per vertex attribute. Must be 1, 2, 3, or 4.</p>
 	 * @param type <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLenum"><code>GLenum</code></a> specifying the data type of each component in the array. Possible values:</p>
 <ul>
@@ -5101,7 +5052,7 @@ interface WebGLRenderingContextBase {
 	 * @param stride <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLsizei"><code>GLsizei</code></a> specifying the offset in bytes between the beginning of consecutive vertex attributes. Cannot be negative or larger than 255. If stride is 0, the attribute is assumed to be tightly packed, that is, the attributes are not interleaved but each attribute is in a separate block, and the next vertex' attribute follows immediately after the current vertex.</p>
 	 * @param offset <p>A <a href="/en-US/docs/Web/API/WebGL_API/Types" title="GLintptr"><code>GLintptr</code></a> specifying an offset in bytes of the first component in the vertex attribute array. Must be a multiple of the byte length of <code>type</code>.</p>
 	 */
-	//public fun vertexAttribPointer(indx: GLuint, size: GLint, type: GLenum, normalized: GLboolean, stride: GLsizei, offset: GLintptr);
+	public fun vertexAttribPointer(index: GLuint, size: GLint, type: GLenum, normalized: GLboolean, stride: GLsizei, offset: GLintptr);
 	/**
 	 * nullThe WebGLRenderingContext.viewport() method of the WebGL API sets the viewport, which specifies the affine transformation of x and y from normalized device coordinates to window coordinates.
 	 * See further:

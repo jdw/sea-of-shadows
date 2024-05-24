@@ -11,6 +11,7 @@ import com.github.jdw.seaofshadows.subcommandos.webapi.types.Type
 import kotlin.reflect.KClass
 import kotlin.reflect.KParameter
 import kotlin.reflect.KVisibility
+import kotlin.reflect.full.createType
 
 typealias Kaka = List<String>
 
@@ -124,7 +125,7 @@ class InterfaceRowHandler {
                 Type
                     .builder()
                     .isMarkedNullable(returnTypeIsNullable)
-                    .name(Type.JSNAME_TO_KTNAME(returnTypeName))
+                    .name(Type.IDLNAME_TO_KTNAME(returnTypeName))
                     .build())
             .url(methodUrl)
             .documentation(Webapi.fetchMethodDocumentation(methodUrl, methodRaw.split("(").first()))
@@ -220,7 +221,7 @@ class InterfaceRowHandler {
 
         parametersRaw.split(", ").forEach { parameterPair ->
             val pieces = parameterPair.split(" ")
-            val parameterName = pieces[1]
+            val parameterName = Type.IDLNAME_TO_KTNAME(pieces[1])
             val parameterTypeRaw = pieces[0]
             val parameterType = parameterTypeRaw.removeSuffix("?")
             val documentation = try {
@@ -232,9 +233,9 @@ class InterfaceRowHandler {
                 }
 
             val parameter = Parameter.builder()
-                .type(Type.NAME_TO_TYPE[parameterType]!!)
+                .type(Nothing::class.createType())
                 .name(parameterName)
-                .typeName(parameterType)
+                .typeName(Type.IDLNAME_TO_KTNAME(parameterType))
                 .index(methodBuilder.nextParameterIndex())
                 .documentation(documentation)
                 .isOptional(false)

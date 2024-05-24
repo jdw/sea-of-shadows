@@ -1,6 +1,5 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
-import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.subcommandos.webapi.Code
 import org.jetbrains.kotlin.util.prefixIfNot
 import org.jetbrains.kotlin.util.suffixIfNot
@@ -308,12 +307,14 @@ class Interface(override val annotations: List<Annotation>,
             // Adding from each member method's parameters
             interfaze.members.forEach { member ->
                 val method = member as Method
-                method.myParameters.forEach { imports.add(Type.JSNAME_TO_KTNAME(it.typeName)) }
+                method.myParameters.forEach { imports.add(Type.IDLNAME_TO_KTNAME(it.typeName)) }
             }
 
             imports.sorted()
                 .filter { !it.contains("kotlin") }
+                .map { it.split("<").first() }
                 .forEach {
+                    if (true) return@forEach // No imports needed as we are in the same package... Doh!
                     if (it.startsWith("com")) code.add("import $it")
                     else code.add("import $packag3.$it")
                 }

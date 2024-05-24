@@ -85,7 +85,7 @@ class Type(
 
     companion object {
         val NAME_TO_TYPE = mutableMapOf<String, Type>()
-        fun JSNAME_TO_KTNAME(jsName: String): String {
+        fun IDLNAME_TO_KTNAME(jsName: String): String {
             val mapped = mapOf(
                 "boolean" to "Boolean",
                 "object" to "Any",
@@ -94,7 +94,9 @@ class Type(
                 "sequence<DOMString>" to "List<DOMString>",
                 "sequence<WebGLShader>" to "List<WebGLShader>",
                 "sequence<GLfloat>" to "List<GLfloat>",
-                "dictionary" to "class")
+                "sequence<long>" to "List<Long>",
+                "dictionary" to "class",
+                "indx" to "index")
 
             return mapped[jsName]
                 ?: jsName

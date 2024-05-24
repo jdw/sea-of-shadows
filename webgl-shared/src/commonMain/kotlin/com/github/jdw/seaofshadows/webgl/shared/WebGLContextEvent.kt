@@ -1,6 +1,5 @@
 package com.github.jdw.seaofshadows.webgl.shared
 
-import com.github.jdw.seaofshadows.webgl.shared.DOMString
 
 /**
  * hej
