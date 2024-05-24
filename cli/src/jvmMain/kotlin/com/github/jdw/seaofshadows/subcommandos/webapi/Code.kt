@@ -1,8 +1,8 @@
-package com.github.jdw.seaofshadows.subcommandos.importers
+package com.github.jdw.seaofshadows.subcommandos.webapi
 
 import java.io.File
 
-class Code(val file: File) {
+class Code() {
     private val lines = ArrayList<String>()
     private var dents = ""
     private var changesSinceLastSave = true
@@ -11,6 +11,11 @@ class Code(val file: File) {
         lines.add("$dents$line\n")
         changesSinceLastSave = true
     }
+
+    fun add(line: String, yes: Boolean) {
+        if (yes) add(line)
+    }
+
 
     fun indent() {
         dents += "\t"
@@ -28,7 +33,7 @@ class Code(val file: File) {
         return lines.joinToString(separator = "")
     }
 
-    fun save() {
+    fun save(file: File) {
         if (changesSinceLastSave) {
             file.writeText(toString())
             changesSinceLastSave = false

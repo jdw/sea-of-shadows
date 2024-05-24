@@ -18,6 +18,8 @@ class SeaOfShadows: CliktCommand(name="seaofshadows") {
 }
 
 @OptIn(ExperimentalSerializationApi::class)
-fun main(args: Array<String>) = SeaOfShadows()
+fun main(args: Array<String>)  {
+    SeaOfShadows()
     .subcommands(Webapi(), Protobuf(), Settings())
     .main(args)
+}

@@ -1,8 +1,3 @@
-//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.cliktVersion
-//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.javaVersion
-//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxCoroutinesVersion
-//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxSerializationVersion
-//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinVersion
 import java.net.URI
 
 plugins {
@@ -18,6 +13,9 @@ val cliktVersion: String by properties
 val kotlinVersion: String by properties
 val kotlinxCoroutinesVersion: String by properties
 val javaVersion: String by properties
+val kotlinxHtmlVersion: String by properties
+val ksoupVersion: String by properties
+val fuelVersion: String by properties
 
 kotlin {
     jvm() {
@@ -30,19 +28,20 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(project(":seaofshadows-core"))
+                implementation(project(":webgl-shared"))
 
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$kotlinxSerializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinxSerializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:$kotlinxCoroutinesVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-html:0.11.0")
-                implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.11.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-html:$kotlinxHtmlVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:$kotlinxHtmlVersion")
+                implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
                 implementation("com.github.ajalt.clikt:clikt:$cliktVersion")
-                implementation("com.fleeksoft.ksoup:ksoup:0.1.2")
-                implementation("com.github.kittinunf.fuel:fuel-jvm:3.0.0-alpha1")
+                implementation("com.fleeksoft.ksoup:ksoup:$ksoupVersion")
+                implementation("com.github.kittinunf.fuel:fuel-jvm:$fuelVersion")
                 implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-
-                implementation("com.chrynan.uri:uri-core:0.4.0")
+                implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
                 implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
             }
         }
@@ -78,4 +77,12 @@ java {
 
     sourceCompatibility = JavaVersion.toVersion(javaVersion)
     targetCompatibility = JavaVersion.toVersion(javaVersion)
+}
+
+tasks.forEach { task ->
+    if (task.name == "clean") {
+        task.doFirst {
+            delete(setOf("${project.projectDir}/output"))
+        }
+    }
 }
