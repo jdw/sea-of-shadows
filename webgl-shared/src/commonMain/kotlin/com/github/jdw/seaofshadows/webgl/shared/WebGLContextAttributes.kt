@@ -1,7 +1,7 @@
 package com.github.jdw.seaofshadows.webgl.shared
 
 /**
- * hej
+ * TODO
  */
 class WebGLContextAttributes {
 }

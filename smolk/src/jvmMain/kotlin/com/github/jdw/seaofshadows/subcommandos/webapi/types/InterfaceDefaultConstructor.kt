@@ -7,7 +7,7 @@ import kotlin.reflect.KTypeParameter
 import kotlin.reflect.KVisibility
 import kotlin.reflect.full.createType
 
-class DefaultInterfaceConstructor(override val name: String): KFunction<Interface> {
+class InterfaceDefaultConstructor(override val name: String): KFunction<Interface> {
     override val annotations: List<Annotation> = emptyList()
     override val isAbstract: Boolean = false
     override val isExternal: Boolean = false

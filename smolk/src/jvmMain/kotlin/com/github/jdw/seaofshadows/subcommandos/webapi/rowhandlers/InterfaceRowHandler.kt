@@ -1,16 +1,19 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.rowhandlers
 
 import com.github.jdw.seaofshadows.Glob
-import com.github.jdw.seaofshadows.subcommandos.Webapi
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Class
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Interface
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Method
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Parameter
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Property
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Type
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.build
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.fetchDocumentation
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.fetchMozillaDocumentationUrl
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.handleEndRow
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.handleOneRowMethodDeclarationWithParameters
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.handleOneRowMethodDeclarationWithoutMethodParameters
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.parseParametersRow
+import com.github.jdw.seaofshadows.utils.throws
 import kotlin.reflect.KClass
-import kotlin.reflect.KParameter
-import kotlin.reflect.full.createType
 
 typealias Kaka = List<String>
 
@@ -74,13 +77,13 @@ class InterfaceRowHandler {
 
     fun handleReadOnly(row: String, predefinedSupertypes: Map<String, KClass<out Any>>) {
         val pieces = row.trim().split(" ")
-        val builder = Property.builder().const(false)
+        val builder = Property.builder().apply { const = false }
         var typeHasBeenChecked = false
 
         for (idx in pieces.indices) {
             val block = pieces[idx]
             if ("readonly" == block) {
-                builder.mutable(false)
+                builder.mutable = false
                 continue
             }
             if ("attribute" == block) continue
@@ -89,10 +92,10 @@ class InterfaceRowHandler {
                 assert(Type.NAME_TO_TYPE.containsKey(block) || predefinedSupertypes.containsKey(block))
 
                 typeHasBeenChecked = true
-                builder.type(block)
+                builder.type = block
             }
 
-            builder.name(block.removeSuffix(";"))
+            builder.name = block.removeSuffix(";")
         }
 
         currentInterfaceBuilder!!.properties.add(builder.build())
@@ -111,36 +114,34 @@ class InterfaceRowHandler {
         val returnTypeName = returnTypeRaw.removeSuffix("?")
         val returnTypeIsNullable = returnTypeRaw.trim().endsWith("?")
         val methodRaw = pieces[1]
-        val methodUrl = Webapi.figureOutMethodDocumentationUrl(currentInterfaceBuilder!!.simpleName!!, methodRaw.split("(").first())
+        val methodName = methodRaw.split("(").first()
 
-        val methodBuilder = Method.builder()
-            .name(methodRaw.split("(").first())
-            .returnType(
-                Type
-                    .builder()
-                    .isMarkedNullable(returnTypeIsNullable)
-                    .name(Type.IDLNAME_TO_KTNAME(returnTypeName))
-                    .build())
-            .url(methodUrl)
-            .isSuspend(false)
-            .isOpen(false)
-            .isFinal(false)
-            .isAbstract(false)
-
-            Webapi.fetchMethodDocumentation(methodUrl, methodBuilder)
+        val builder = Method.builder()
+            .apply { parent = currentInterfaceBuilder }
+            .apply { name = methodName }
+            .apply { seeFurtherUrls.add(fetchMozillaDocumentationUrl()) }
+            .apply { this.returnType = Type.builder()
+                .apply { isMarkedNullable = returnTypeIsNullable }
+                .apply { name = Type.IDLPIECE_TO_KTPIECE(returnTypeName) }
+                .build() }
+            .apply { isSuspend = false }
+            .apply { isOpen = false }
+            .apply { isFinal = false }
+            .apply { isAbstract = false }
+            .apply { documentation = fetchDocumentation() }
 
 
         if (methodRaw.contains("();")) {
-            handleOneRowMethodDeclarationWithoutMethodParameters(methodBuilder);
-            currentInterfaceBuilder!!.members.add(methodBuilder.build())
+            builder.handleOneRowMethodDeclarationWithoutMethodParameters();
+            currentInterfaceBuilder!!.members.add(builder.build())
 
             return
         }
 
         if (pieces.last().trim().endsWith(");")) {
-            handleOneRowMethodDeclarationWithParameters(row, methodBuilder)
+            builder.handleOneRowMethodDeclarationWithParameters(row)
             currentInterfaceBuilder!!
-                .members.add(methodBuilder.build())
+                .members.add(builder.build())
 
             return
         }
@@ -148,112 +149,44 @@ class InterfaceRowHandler {
         if (pieces.last().trim().endsWith(",")) {
             val splitOnLeftParanthesis = row.removeSuffix(",").split("(")
 
-            if (splitOnLeftParanthesis.size != 2) throw IllegalStateException("Row '$row' resulted in size = ${splitOnLeftParanthesis.size}")
+            if (splitOnLeftParanthesis.size != 2) throws()
 
             val parametersRaw = splitOnLeftParanthesis.last()
-            parametersRawToParameters(parametersRaw, methodBuilder)
-            currentMethodBuilder = methodBuilder
+            builder.parseParametersRow(parametersRaw)
+            currentMethodBuilder = builder
 
             return
         }
-    }
-
-
-    private fun handleOneRowMethodDeclarationWithParameters(row: String, methodBuilder: Method.Builder) {
-        val splitOnLeftParantheses = row.split("(")
-        if (splitOnLeftParantheses.size != 2) throw IllegalStateException("Row '$row' yielded ${splitOnLeftParantheses.size} pieces!")
-        val parametersRaw = splitOnLeftParantheses.last().removeSuffix(");")
-
-        try {
-            parametersRawToParameters(parametersRaw, methodBuilder)
-        }
-        catch (e: Exception) {
-            methodBuilder.problem(e.message ?: "Problems adding parameter!")
-        }
-    }
-
-
-    private fun handleOneRowMethodDeclarationWithoutMethodParameters(methodBuilder: Method.Builder) {
-
     }
 
 
     fun handleOngoingMethod(rowRaw: String) {
         val row =
-            if (rowRaw.contains("//")) rowRaw.split("//").first().trim()
+            if (rowRaw.contains("//")) rowRaw.split("//").first().trim() //TODO Should be checked much sooner
             else rowRaw
 
         if (!(row.endsWith(");") || row.endsWith(","))) throw IllegalStateException("Faulty end of row in ongoing method context!")
 
         if (row.endsWith(");")) { // End of method declaration
-            handleEndOfOngoingMethod(row.removeSuffix(");"))
+            currentMethodBuilder!!.handleEndRow(row.removeSuffix(");"))
+            currentMethodBuilder = null
 
             return
         }
-
-        if (row.endsWith(",")) { // Method declaration continues with next row
-            return
-        }
     }
 
 
-    private fun handleEndOfOngoingMethod(row: String) {
-        val methodBuilder = currentMethodBuilder!!
-        try {
-            parametersRawToParameters(row, methodBuilder)
-        }
-        catch (e: Exception) {
-            methodBuilder.problem(e.message ?: "Problem when handling '$row'!")
-        }
-
-        currentInterfaceBuilder!!.members.add(methodBuilder.build())
-        currentMethodBuilder = null
-    }
-
-    private fun parametersRawToParameters(parametersRaw: String, methodBuilder: Method.Builder) {
-        assert(parametersRaw.contains("(") || parametersRaw.contains(");") || parametersRaw.endsWith(", "))
-
-        parametersRaw.split(", ").forEach { parameterPair ->
-            val pieces = parameterPair.split(" ")
-            val parameterName = Type.IDLNAME_TO_KTNAME(pieces[1])
-            val parameterTypeRaw = pieces[0]
-            val parameterType = parameterTypeRaw.removeSuffix("?")
-            val documentation = try {
-                    Webapi.fetchParameterDocumentation(parameterName, parameterType, methodBuilder.seeFurtherUrls)
-                }
-                catch (e: Exception) {
-                    "This parameter caused unspecified trouble while importing!"
-                }
-
-            val parameter = Parameter.builder()
-                .type(Nothing::class.createType())
-                .name(parameterName)
-                .typeName(Type.IDLNAME_TO_KTNAME(parameterType))
-                .index(methodBuilder.nextParameterIndex())
-                .documentation(documentation)
-                .isOptional(false)
-                .isVararg(false)
-                .kind(KParameter.Kind.VALUE) //TODO Might not be correct...
-                .build()
-
-            methodBuilder.parameter(parameter)
-        }
-    }
-
-
-    fun handleConst(row: String) {
+    fun handleConst(row: String) { //TODO Import comments from Mozilla
         val pieces = row.split(" ").filter { it.isNotEmpty() && it.isNotBlank() }
 
         assert(pieces.size == 5)
 
-        val property =
-            Property
-                .builder()
-                .mutable(false)
-                .const(true)
-                .type(pieces[1])
-                .name(pieces[2])
-                .defaultValue(pieces[4].removeSuffix(";"))
+        val property = Property.builder()
+                .apply { mutable = false }
+                .apply { const = true }
+                .apply { type = pieces[1] }
+                .apply { name = pieces[2] }
+                .apply { defaultValue = pieces[4].apply { removeSuffix(";") } }
                 .build()
 
         currentInterfaceBuilder!!.properties.add(property)

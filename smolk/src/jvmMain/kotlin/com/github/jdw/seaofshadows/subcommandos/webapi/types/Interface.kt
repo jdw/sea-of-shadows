@@ -36,17 +36,34 @@ class Interface(override val annotations: List<Annotation>,
                 val supertypesSimpleNames: List<String>,
                 val imports: List<KClass<out Any>> //TODO Remove?
 ): KClass<Any> {
+    class Builder {
+        val seeFurtherUrls: MutableSet<String> = mutableSetOf()
+        val annotations: MutableList<Annotation> = mutableListOf()
+        var members: MutableList<KCallable<*>> = mutableListOf()
+        var nestedClasses: MutableList<KClass<*>> = mutableListOf()
+        var qualifiedName: String? = null
+        var simpleName: String? = null
+        var supertypes: MutableList<KType> = mutableListOf()
+        var supertypeNames: MutableList<String> = mutableListOf()
+        var visibility: KVisibility? = null
+        var documentation: String? = null
+        var properties: MutableList<Property> = mutableListOf()
+        var imports: MutableList<KClass<out Any>> = mutableListOf()
+    }
+
+
     fun createType(
         arguments: List<KTypeProjection> = emptyList(),
         nullable: Boolean = false,
         annotations: List<Annotation> = emptyList()
     ): Type {
+        val parent = this
         return Type.builder()
-            .apply { arguments.forEach { this.argument(it) } }
-            .apply { annotations.forEach { this.annotation(it) } }
-            .isMarkedNullable(nullable)
-            .classifier(this)
-            .name(this.simpleName!!)
+            .apply { arguments.forEach { this.arguments.add(it) } }
+            .apply { annotations.forEach { this.annotations.add(it) } }
+            .apply { isMarkedNullable = nullable }
+            .apply { classifier = parent }
+            .apply { name = parent.simpleName!! }
             .build()
     }
 
@@ -91,7 +108,7 @@ class Interface(override val annotations: List<Annotation>,
         return value is Interface
     }
 
-
+    //TODO Move render functions to Interface.Render
     fun render(): Code {
         val code = Code()
         val interfaze = this
@@ -149,56 +166,6 @@ class Interface(override val annotations: List<Annotation>,
     }
 
 
-    class Builder {
-        val seeFurtherUrls: MutableSet<String> = mutableSetOf()
-        val annotations: MutableList<Annotation> = mutableListOf()
-        var members: MutableList<KCallable<*>> = mutableListOf()
-        var nestedClasses: MutableList<KClass<*>> = mutableListOf()
-        var qualifiedName: String? = null
-        var simpleName: String? = null
-        var supertypes: MutableList<KType> = mutableListOf()
-        var supertypeNames: MutableList<String> = mutableListOf()
-        var visibility: KVisibility? = null
-        var documentation: String? = null
-        var properties: MutableList<Property> = mutableListOf()
-        var imports: MutableList<KClass<out Any>> = mutableListOf()
-
-
-        fun build(): Interface {
-            assert(simpleName!!.isNotBlank() && simpleName!!.isNotEmpty())
-            assert(qualifiedName!!.isNotBlank() && qualifiedName!!.isNotEmpty())
-            assert(documentation!!.isNotBlank() && documentation!!.isNotEmpty())
-
-            return Interface(
-                annotations = annotations.toList(),
-                constructors = listOf(DefaultInterfaceConstructor(simpleName!!)),
-                isAbstract = false,
-                isCompanion = false,
-                isData = false,
-                isFinal = false,
-                isFun = false,
-                isInner = false,
-                isOpen = false,
-                isSealed = false,
-                isValue = false,
-                members = members.toList(),
-                nestedClasses = nestedClasses.toList(),
-                objectInstance = null,
-                qualifiedName = qualifiedName!!,
-                sealedSubclasses = emptyList(),
-                simpleName = simpleName!!,
-                supertypes = supertypes.toList(),
-                typeParameters = listOf(),
-                visibility = visibility,
-                documentation = documentation!!,
-                supertypesSimpleNames = supertypeNames.toList(),
-                properties = properties.toList(),
-                imports = imports.toList()
-            )
-        }
-    }
-
-
     companion object {
         fun builder(): Builder = Builder()
 
@@ -232,7 +199,7 @@ class Interface(override val annotations: List<Annotation>,
             // Adding from each member method's parameters
             interfaze.members.forEach { member ->
                 val method = member as Method
-                method.myParameters.forEach { imports.add(Type.IDLNAME_TO_KTNAME(it.typeName)) }
+                method.myParameters.forEach { imports.add(Type.IDLPIECE_TO_KTPIECE(it.typeName)) }
             }
 
             imports.sorted()

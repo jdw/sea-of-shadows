@@ -11,303 +11,303 @@ interface WebGLRenderingContextBase {
 	
 	
 	companion object {
-		val DEPTH_BUFFER_BIT: GLenum = 0x00000100UL
-		val STENCIL_BUFFER_BIT: GLenum = 0x00000400UL
-		val COLOR_BUFFER_BIT: GLenum = 0x00004000UL
-		val POINTS: GLenum = 0x0000UL
-		val LINES: GLenum = 0x0001UL
-		val LINE_LOOP: GLenum = 0x0002UL
-		val LINE_STRIP: GLenum = 0x0003UL
-		val TRIANGLES: GLenum = 0x0004UL
-		val TRIANGLE_STRIP: GLenum = 0x0005UL
-		val TRIANGLE_FAN: GLenum = 0x0006UL
-		val ZERO: GLenum = 0UL
-		val ONE: GLenum = 1UL
-		val SRC_COLOR: GLenum = 0x0300UL
-		val ONE_MINUS_SRC_COLOR: GLenum = 0x0301UL
-		val SRC_ALPHA: GLenum = 0x0302UL
-		val ONE_MINUS_SRC_ALPHA: GLenum = 0x0303UL
-		val DST_ALPHA: GLenum = 0x0304UL
-		val ONE_MINUS_DST_ALPHA: GLenum = 0x0305UL
-		val DST_COLOR: GLenum = 0x0306UL
-		val ONE_MINUS_DST_COLOR: GLenum = 0x0307UL
-		val SRC_ALPHA_SATURATE: GLenum = 0x0308UL
-		val FUNC_ADD: GLenum = 0x8006UL
-		val BLEND_EQUATION: GLenum = 0x8009UL
-		val BLEND_EQUATION_RGB: GLenum = 0x8009UL
-		val BLEND_EQUATION_ALPHA: GLenum = 0x883DUL
-		val FUNC_SUBTRACT: GLenum = 0x800AUL
-		val FUNC_REVERSE_SUBTRACT: GLenum = 0x800BUL
-		val BLEND_DST_RGB: GLenum = 0x80C8UL
-		val BLEND_SRC_RGB: GLenum = 0x80C9UL
-		val BLEND_DST_ALPHA: GLenum = 0x80CAUL
-		val BLEND_SRC_ALPHA: GLenum = 0x80CBUL
-		val CONSTANT_COLOR: GLenum = 0x8001UL
-		val ONE_MINUS_CONSTANT_COLOR: GLenum = 0x8002UL
-		val CONSTANT_ALPHA: GLenum = 0x8003UL
-		val ONE_MINUS_CONSTANT_ALPHA: GLenum = 0x8004UL
-		val BLEND_COLOR: GLenum = 0x8005UL
-		val ARRAY_BUFFER: GLenum = 0x8892UL
-		val ELEMENT_ARRAY_BUFFER: GLenum = 0x8893UL
-		val ARRAY_BUFFER_BINDING: GLenum = 0x8894UL
-		val ELEMENT_ARRAY_BUFFER_BINDING: GLenum = 0x8895UL
-		val STREAM_DRAW: GLenum = 0x88E0UL
-		val STATIC_DRAW: GLenum = 0x88E4UL
-		val DYNAMIC_DRAW: GLenum = 0x88E8UL
-		val BUFFER_SIZE: GLenum = 0x8764UL
-		val BUFFER_USAGE: GLenum = 0x8765UL
-		val CURRENT_VERTEX_ATTRIB: GLenum = 0x8626UL
-		val FRONT: GLenum = 0x0404UL
-		val BACK: GLenum = 0x0405UL
-		val FRONT_AND_BACK: GLenum = 0x0408UL
-		val CULL_FACE: GLenum = 0x0B44UL
-		val BLEND: GLenum = 0x0BE2UL
-		val DITHER: GLenum = 0x0BD0UL
-		val STENCIL_TEST: GLenum = 0x0B90UL
-		val DEPTH_TEST: GLenum = 0x0B71UL
-		val SCISSOR_TEST: GLenum = 0x0C11UL
-		val POLYGON_OFFSET_FILL: GLenum = 0x8037UL
-		val SAMPLE_ALPHA_TO_COVERAGE: GLenum = 0x809EUL
-		val SAMPLE_COVERAGE: GLenum = 0x80A0UL
-		val NO_ERROR: GLenum = 0UL
-		val INVALID_ENUM: GLenum = 0x0500UL
-		val INVALID_VALUE: GLenum = 0x0501UL
-		val INVALID_OPERATION: GLenum = 0x0502UL
-		val OUT_OF_MEMORY: GLenum = 0x0505UL
-		val CW: GLenum = 0x0900UL
-		val CCW: GLenum = 0x0901UL
-		val LINE_WIDTH: GLenum = 0x0B21UL
-		val ALIASED_POINT_SIZE_RANGE: GLenum = 0x846DUL
-		val ALIASED_LINE_WIDTH_RANGE: GLenum = 0x846EUL
-		val CULL_FACE_MODE: GLenum = 0x0B45UL
-		val FRONT_FACE: GLenum = 0x0B46UL
-		val DEPTH_RANGE: GLenum = 0x0B70UL
-		val DEPTH_WRITEMASK: GLenum = 0x0B72UL
-		val DEPTH_CLEAR_VALUE: GLenum = 0x0B73UL
-		val DEPTH_FUNC: GLenum = 0x0B74UL
-		val STENCIL_CLEAR_VALUE: GLenum = 0x0B91UL
-		val STENCIL_FUNC: GLenum = 0x0B92UL
-		val STENCIL_FAIL: GLenum = 0x0B94UL
-		val STENCIL_PASS_DEPTH_FAIL: GLenum = 0x0B95UL
-		val STENCIL_PASS_DEPTH_PASS: GLenum = 0x0B96UL
-		val STENCIL_REF: GLenum = 0x0B97UL
-		val STENCIL_VALUE_MASK: GLenum = 0x0B93UL
-		val STENCIL_WRITEMASK: GLenum = 0x0B98UL
-		val STENCIL_BACK_FUNC: GLenum = 0x8800UL
-		val STENCIL_BACK_FAIL: GLenum = 0x8801UL
-		val STENCIL_BACK_PASS_DEPTH_FAIL: GLenum = 0x8802UL
-		val STENCIL_BACK_PASS_DEPTH_PASS: GLenum = 0x8803UL
-		val STENCIL_BACK_REF: GLenum = 0x8CA3UL
-		val STENCIL_BACK_VALUE_MASK: GLenum = 0x8CA4UL
-		val STENCIL_BACK_WRITEMASK: GLenum = 0x8CA5UL
-		val VIEWPORT: GLenum = 0x0BA2UL
-		val SCISSOR_BOX: GLenum = 0x0C10UL
-		val COLOR_CLEAR_VALUE: GLenum = 0x0C22UL
-		val COLOR_WRITEMASK: GLenum = 0x0C23UL
-		val UNPACK_ALIGNMENT: GLenum = 0x0CF5UL
-		val PACK_ALIGNMENT: GLenum = 0x0D05UL
-		val MAX_TEXTURE_SIZE: GLenum = 0x0D33UL
-		val MAX_VIEWPORT_DIMS: GLenum = 0x0D3AUL
-		val SUBPIXEL_BITS: GLenum = 0x0D50UL
-		val RED_BITS: GLenum = 0x0D52UL
-		val GREEN_BITS: GLenum = 0x0D53UL
-		val BLUE_BITS: GLenum = 0x0D54UL
-		val ALPHA_BITS: GLenum = 0x0D55UL
-		val DEPTH_BITS: GLenum = 0x0D56UL
-		val STENCIL_BITS: GLenum = 0x0D57UL
-		val POLYGON_OFFSET_UNITS: GLenum = 0x2A00UL
-		val POLYGON_OFFSET_FACTOR: GLenum = 0x8038UL
-		val TEXTURE_BINDING_2D: GLenum = 0x8069UL
-		val SAMPLE_BUFFERS: GLenum = 0x80A8UL
-		val SAMPLES: GLenum = 0x80A9UL
-		val SAMPLE_COVERAGE_VALUE: GLenum = 0x80AAUL
-		val SAMPLE_COVERAGE_INVERT: GLenum = 0x80ABUL
-		val COMPRESSED_TEXTURE_FORMATS: GLenum = 0x86A3UL
-		val DONT_CARE: GLenum = 0x1100UL
-		val FASTEST: GLenum = 0x1101UL
-		val NICEST: GLenum = 0x1102UL
-		val GENERATE_MIPMAP_HINT: GLenum = 0x8192UL
-		val BYTE: GLenum = 0x1400UL
-		val UNSIGNED_BYTE: GLenum = 0x1401UL
-		val SHORT: GLenum = 0x1402UL
-		val UNSIGNED_SHORT: GLenum = 0x1403UL
-		val INT: GLenum = 0x1404UL
-		val UNSIGNED_INT: GLenum = 0x1405UL
-		val FLOAT: GLenum = 0x1406UL
-		val DEPTH_COMPONENT: GLenum = 0x1902UL
-		val ALPHA: GLenum = 0x1906UL
-		val RGB: GLenum = 0x1907UL
-		val RGBA: GLenum = 0x1908UL
-		val LUMINANCE: GLenum = 0x1909UL
-		val LUMINANCE_ALPHA: GLenum = 0x190AUL
-		val UNSIGNED_SHORT_4_4_4_4: GLenum = 0x8033UL
-		val UNSIGNED_SHORT_5_5_5_1: GLenum = 0x8034UL
-		val UNSIGNED_SHORT_5_6_5: GLenum = 0x8363UL
-		val FRAGMENT_SHADER: GLenum = 0x8B30UL
-		val VERTEX_SHADER: GLenum = 0x8B31UL
-		val MAX_VERTEX_ATTRIBS: GLenum = 0x8869UL
-		val MAX_VERTEX_UNIFORM_VECTORS: GLenum = 0x8DFBUL
-		val MAX_VARYING_VECTORS: GLenum = 0x8DFCUL
-		val MAX_COMBINED_TEXTURE_IMAGE_UNITS: GLenum = 0x8B4DUL
-		val MAX_VERTEX_TEXTURE_IMAGE_UNITS: GLenum = 0x8B4CUL
-		val MAX_TEXTURE_IMAGE_UNITS: GLenum = 0x8872UL
-		val MAX_FRAGMENT_UNIFORM_VECTORS: GLenum = 0x8DFDUL
-		val SHADER_TYPE: GLenum = 0x8B4FUL
-		val DELETE_STATUS: GLenum = 0x8B80UL
-		val LINK_STATUS: GLenum = 0x8B82UL
-		val VALIDATE_STATUS: GLenum = 0x8B83UL
-		val ATTACHED_SHADERS: GLenum = 0x8B85UL
-		val ACTIVE_UNIFORMS: GLenum = 0x8B86UL
-		val ACTIVE_ATTRIBUTES: GLenum = 0x8B89UL
-		val SHADING_LANGUAGE_VERSION: GLenum = 0x8B8CUL
-		val CURRENT_PROGRAM: GLenum = 0x8B8DUL
-		val NEVER: GLenum = 0x0200UL
-		val LESS: GLenum = 0x0201UL
-		val EQUAL: GLenum = 0x0202UL
-		val LEQUAL: GLenum = 0x0203UL
-		val GREATER: GLenum = 0x0204UL
-		val NOTEQUAL: GLenum = 0x0205UL
-		val GEQUAL: GLenum = 0x0206UL
-		val ALWAYS: GLenum = 0x0207UL
-		val KEEP: GLenum = 0x1E00UL
-		val REPLACE: GLenum = 0x1E01UL
-		val INCR: GLenum = 0x1E02UL
-		val DECR: GLenum = 0x1E03UL
-		val INVERT: GLenum = 0x150AUL
-		val INCR_WRAP: GLenum = 0x8507UL
-		val DECR_WRAP: GLenum = 0x8508UL
-		val VENDOR: GLenum = 0x1F00UL
-		val RENDERER: GLenum = 0x1F01UL
-		val VERSION: GLenum = 0x1F02UL
-		val NEAREST: GLenum = 0x2600UL
-		val LINEAR: GLenum = 0x2601UL
-		val NEAREST_MIPMAP_NEAREST: GLenum = 0x2700UL
-		val LINEAR_MIPMAP_NEAREST: GLenum = 0x2701UL
-		val NEAREST_MIPMAP_LINEAR: GLenum = 0x2702UL
-		val LINEAR_MIPMAP_LINEAR: GLenum = 0x2703UL
-		val TEXTURE_MAG_FILTER: GLenum = 0x2800UL
-		val TEXTURE_MIN_FILTER: GLenum = 0x2801UL
-		val TEXTURE_WRAP_S: GLenum = 0x2802UL
-		val TEXTURE_WRAP_T: GLenum = 0x2803UL
-		val TEXTURE_2D: GLenum = 0x0DE1UL
-		val TEXTURE: GLenum = 0x1702UL
-		val TEXTURE_CUBE_MAP: GLenum = 0x8513UL
-		val TEXTURE_BINDING_CUBE_MAP: GLenum = 0x8514UL
-		val TEXTURE_CUBE_MAP_POSITIVE_X: GLenum = 0x8515UL
-		val TEXTURE_CUBE_MAP_NEGATIVE_X: GLenum = 0x8516UL
-		val TEXTURE_CUBE_MAP_POSITIVE_Y: GLenum = 0x8517UL
-		val TEXTURE_CUBE_MAP_NEGATIVE_Y: GLenum = 0x8518UL
-		val TEXTURE_CUBE_MAP_POSITIVE_Z: GLenum = 0x8519UL
-		val TEXTURE_CUBE_MAP_NEGATIVE_Z: GLenum = 0x851AUL
-		val MAX_CUBE_MAP_TEXTURE_SIZE: GLenum = 0x851CUL
-		val TEXTURE0: GLenum = 0x84C0UL
-		val TEXTURE1: GLenum = 0x84C1UL
-		val TEXTURE2: GLenum = 0x84C2UL
-		val TEXTURE3: GLenum = 0x84C3UL
-		val TEXTURE4: GLenum = 0x84C4UL
-		val TEXTURE5: GLenum = 0x84C5UL
-		val TEXTURE6: GLenum = 0x84C6UL
-		val TEXTURE7: GLenum = 0x84C7UL
-		val TEXTURE8: GLenum = 0x84C8UL
-		val TEXTURE9: GLenum = 0x84C9UL
-		val TEXTURE10: GLenum = 0x84CAUL
-		val TEXTURE11: GLenum = 0x84CBUL
-		val TEXTURE12: GLenum = 0x84CCUL
-		val TEXTURE13: GLenum = 0x84CDUL
-		val TEXTURE14: GLenum = 0x84CEUL
-		val TEXTURE15: GLenum = 0x84CFUL
-		val TEXTURE16: GLenum = 0x84D0UL
-		val TEXTURE17: GLenum = 0x84D1UL
-		val TEXTURE18: GLenum = 0x84D2UL
-		val TEXTURE19: GLenum = 0x84D3UL
-		val TEXTURE20: GLenum = 0x84D4UL
-		val TEXTURE21: GLenum = 0x84D5UL
-		val TEXTURE22: GLenum = 0x84D6UL
-		val TEXTURE23: GLenum = 0x84D7UL
-		val TEXTURE24: GLenum = 0x84D8UL
-		val TEXTURE25: GLenum = 0x84D9UL
-		val TEXTURE26: GLenum = 0x84DAUL
-		val TEXTURE27: GLenum = 0x84DBUL
-		val TEXTURE28: GLenum = 0x84DCUL
-		val TEXTURE29: GLenum = 0x84DDUL
-		val TEXTURE30: GLenum = 0x84DEUL
-		val TEXTURE31: GLenum = 0x84DFUL
-		val ACTIVE_TEXTURE: GLenum = 0x84E0UL
-		val REPEAT: GLenum = 0x2901UL
-		val CLAMP_TO_EDGE: GLenum = 0x812FUL
-		val MIRRORED_REPEAT: GLenum = 0x8370UL
-		val FLOAT_VEC2: GLenum = 0x8B50UL
-		val FLOAT_VEC3: GLenum = 0x8B51UL
-		val FLOAT_VEC4: GLenum = 0x8B52UL
-		val INT_VEC2: GLenum = 0x8B53UL
-		val INT_VEC3: GLenum = 0x8B54UL
-		val INT_VEC4: GLenum = 0x8B55UL
-		val BOOL: GLenum = 0x8B56UL
-		val BOOL_VEC2: GLenum = 0x8B57UL
-		val BOOL_VEC3: GLenum = 0x8B58UL
-		val BOOL_VEC4: GLenum = 0x8B59UL
-		val FLOAT_MAT2: GLenum = 0x8B5AUL
-		val FLOAT_MAT3: GLenum = 0x8B5BUL
-		val FLOAT_MAT4: GLenum = 0x8B5CUL
-		val SAMPLER_2D: GLenum = 0x8B5EUL
-		val SAMPLER_CUBE: GLenum = 0x8B60UL
-		val VERTEX_ATTRIB_ARRAY_ENABLED: GLenum = 0x8622UL
-		val VERTEX_ATTRIB_ARRAY_SIZE: GLenum = 0x8623UL
-		val VERTEX_ATTRIB_ARRAY_STRIDE: GLenum = 0x8624UL
-		val VERTEX_ATTRIB_ARRAY_TYPE: GLenum = 0x8625UL
-		val VERTEX_ATTRIB_ARRAY_NORMALIZED: GLenum = 0x886AUL
-		val VERTEX_ATTRIB_ARRAY_POINTER: GLenum = 0x8645UL
-		val VERTEX_ATTRIB_ARRAY_BUFFER_BINDING: GLenum = 0x889FUL
-		val IMPLEMENTATION_COLOR_READ_TYPE: GLenum = 0x8B9AUL
-		val IMPLEMENTATION_COLOR_READ_FORMAT: GLenum = 0x8B9BUL
-		val COMPILE_STATUS: GLenum = 0x8B81UL
-		val LOW_FLOAT: GLenum = 0x8DF0UL
-		val MEDIUM_FLOAT: GLenum = 0x8DF1UL
-		val HIGH_FLOAT: GLenum = 0x8DF2UL
-		val LOW_INT: GLenum = 0x8DF3UL
-		val MEDIUM_INT: GLenum = 0x8DF4UL
-		val HIGH_INT: GLenum = 0x8DF5UL
-		val FRAMEBUFFER: GLenum = 0x8D40UL
-		val RENDERBUFFER: GLenum = 0x8D41UL
-		val RGBA4: GLenum = 0x8056UL
-		val RGB5_A1: GLenum = 0x8057UL
-		val RGB565: GLenum = 0x8D62UL
-		val DEPTH_COMPONENT16: GLenum = 0x81A5UL
-		val STENCIL_INDEX: GLenum = 0x1901UL
-		val STENCIL_INDEX8: GLenum = 0x8D48UL
-		val DEPTH_STENCIL: GLenum = 0x84F9UL
-		val RENDERBUFFER_WIDTH: GLenum = 0x8D42UL
-		val RENDERBUFFER_HEIGHT: GLenum = 0x8D43UL
-		val RENDERBUFFER_INTERNAL_FORMAT: GLenum = 0x8D44UL
-		val RENDERBUFFER_RED_SIZE: GLenum = 0x8D50UL
-		val RENDERBUFFER_GREEN_SIZE: GLenum = 0x8D51UL
-		val RENDERBUFFER_BLUE_SIZE: GLenum = 0x8D52UL
-		val RENDERBUFFER_ALPHA_SIZE: GLenum = 0x8D53UL
-		val RENDERBUFFER_DEPTH_SIZE: GLenum = 0x8D54UL
-		val RENDERBUFFER_STENCIL_SIZE: GLenum = 0x8D55UL
-		val FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE: GLenum = 0x8CD0UL
-		val FRAMEBUFFER_ATTACHMENT_OBJECT_NAME: GLenum = 0x8CD1UL
-		val FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL: GLenum = 0x8CD2UL
-		val FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE: GLenum = 0x8CD3UL
-		val COLOR_ATTACHMENT0: GLenum = 0x8CE0UL
-		val DEPTH_ATTACHMENT: GLenum = 0x8D00UL
-		val STENCIL_ATTACHMENT: GLenum = 0x8D20UL
-		val DEPTH_STENCIL_ATTACHMENT: GLenum = 0x821AUL
-		val NONE: GLenum = 0UL
-		val FRAMEBUFFER_COMPLETE: GLenum = 0x8CD5UL
-		val FRAMEBUFFER_INCOMPLETE_ATTACHMENT: GLenum = 0x8CD6UL
-		val FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT: GLenum = 0x8CD7UL
-		val FRAMEBUFFER_INCOMPLETE_DIMENSIONS: GLenum = 0x8CD9UL
-		val FRAMEBUFFER_UNSUPPORTED: GLenum = 0x8CDDUL
-		val FRAMEBUFFER_BINDING: GLenum = 0x8CA6UL
-		val RENDERBUFFER_BINDING: GLenum = 0x8CA7UL
-		val MAX_RENDERBUFFER_SIZE: GLenum = 0x84E8UL
-		val INVALID_FRAMEBUFFER_OPERATION: GLenum = 0x0506UL
-		val UNPACK_FLIP_Y_WEBGL: GLenum = 0x9240UL
-		val UNPACK_PREMULTIPLY_ALPHA_WEBGL: GLenum = 0x9241UL
-		val CONTEXT_LOST_WEBGL: GLenum = 0x9242UL
-		val UNPACK_COLORSPACE_CONVERSION_WEBGL: GLenum = 0x9243UL
-		val BROWSER_DEFAULT_WEBGL: GLenum = 0x9244UL
+		val DEPTH_BUFFER_BIT: GLenum = 0x00000100;UL
+		val STENCIL_BUFFER_BIT: GLenum = 0x00000400;UL
+		val COLOR_BUFFER_BIT: GLenum = 0x00004000;UL
+		val POINTS: GLenum = 0x0000;UL
+		val LINES: GLenum = 0x0001;UL
+		val LINE_LOOP: GLenum = 0x0002;UL
+		val LINE_STRIP: GLenum = 0x0003;UL
+		val TRIANGLES: GLenum = 0x0004;UL
+		val TRIANGLE_STRIP: GLenum = 0x0005;UL
+		val TRIANGLE_FAN: GLenum = 0x0006;UL
+		val ZERO: GLenum = 0;UL
+		val ONE: GLenum = 1;UL
+		val SRC_COLOR: GLenum = 0x0300;UL
+		val ONE_MINUS_SRC_COLOR: GLenum = 0x0301;UL
+		val SRC_ALPHA: GLenum = 0x0302;UL
+		val ONE_MINUS_SRC_ALPHA: GLenum = 0x0303;UL
+		val DST_ALPHA: GLenum = 0x0304;UL
+		val ONE_MINUS_DST_ALPHA: GLenum = 0x0305;UL
+		val DST_COLOR: GLenum = 0x0306;UL
+		val ONE_MINUS_DST_COLOR: GLenum = 0x0307;UL
+		val SRC_ALPHA_SATURATE: GLenum = 0x0308;UL
+		val FUNC_ADD: GLenum = 0x8006;UL
+		val BLEND_EQUATION: GLenum = 0x8009;UL
+		val BLEND_EQUATION_RGB: GLenum = 0x8009;UL
+		val BLEND_EQUATION_ALPHA: GLenum = 0x883D;UL
+		val FUNC_SUBTRACT: GLenum = 0x800A;UL
+		val FUNC_REVERSE_SUBTRACT: GLenum = 0x800B;UL
+		val BLEND_DST_RGB: GLenum = 0x80C8;UL
+		val BLEND_SRC_RGB: GLenum = 0x80C9;UL
+		val BLEND_DST_ALPHA: GLenum = 0x80CA;UL
+		val BLEND_SRC_ALPHA: GLenum = 0x80CB;UL
+		val CONSTANT_COLOR: GLenum = 0x8001;UL
+		val ONE_MINUS_CONSTANT_COLOR: GLenum = 0x8002;UL
+		val CONSTANT_ALPHA: GLenum = 0x8003;UL
+		val ONE_MINUS_CONSTANT_ALPHA: GLenum = 0x8004;UL
+		val BLEND_COLOR: GLenum = 0x8005;UL
+		val ARRAY_BUFFER: GLenum = 0x8892;UL
+		val ELEMENT_ARRAY_BUFFER: GLenum = 0x8893;UL
+		val ARRAY_BUFFER_BINDING: GLenum = 0x8894;UL
+		val ELEMENT_ARRAY_BUFFER_BINDING: GLenum = 0x8895;UL
+		val STREAM_DRAW: GLenum = 0x88E0;UL
+		val STATIC_DRAW: GLenum = 0x88E4;UL
+		val DYNAMIC_DRAW: GLenum = 0x88E8;UL
+		val BUFFER_SIZE: GLenum = 0x8764;UL
+		val BUFFER_USAGE: GLenum = 0x8765;UL
+		val CURRENT_VERTEX_ATTRIB: GLenum = 0x8626;UL
+		val FRONT: GLenum = 0x0404;UL
+		val BACK: GLenum = 0x0405;UL
+		val FRONT_AND_BACK: GLenum = 0x0408;UL
+		val CULL_FACE: GLenum = 0x0B44;UL
+		val BLEND: GLenum = 0x0BE2;UL
+		val DITHER: GLenum = 0x0BD0;UL
+		val STENCIL_TEST: GLenum = 0x0B90;UL
+		val DEPTH_TEST: GLenum = 0x0B71;UL
+		val SCISSOR_TEST: GLenum = 0x0C11;UL
+		val POLYGON_OFFSET_FILL: GLenum = 0x8037;UL
+		val SAMPLE_ALPHA_TO_COVERAGE: GLenum = 0x809E;UL
+		val SAMPLE_COVERAGE: GLenum = 0x80A0;UL
+		val NO_ERROR: GLenum = 0;UL
+		val INVALID_ENUM: GLenum = 0x0500;UL
+		val INVALID_VALUE: GLenum = 0x0501;UL
+		val INVALID_OPERATION: GLenum = 0x0502;UL
+		val OUT_OF_MEMORY: GLenum = 0x0505;UL
+		val CW: GLenum = 0x0900;UL
+		val CCW: GLenum = 0x0901;UL
+		val LINE_WIDTH: GLenum = 0x0B21;UL
+		val ALIASED_POINT_SIZE_RANGE: GLenum = 0x846D;UL
+		val ALIASED_LINE_WIDTH_RANGE: GLenum = 0x846E;UL
+		val CULL_FACE_MODE: GLenum = 0x0B45;UL
+		val FRONT_FACE: GLenum = 0x0B46;UL
+		val DEPTH_RANGE: GLenum = 0x0B70;UL
+		val DEPTH_WRITEMASK: GLenum = 0x0B72;UL
+		val DEPTH_CLEAR_VALUE: GLenum = 0x0B73;UL
+		val DEPTH_FUNC: GLenum = 0x0B74;UL
+		val STENCIL_CLEAR_VALUE: GLenum = 0x0B91;UL
+		val STENCIL_FUNC: GLenum = 0x0B92;UL
+		val STENCIL_FAIL: GLenum = 0x0B94;UL
+		val STENCIL_PASS_DEPTH_FAIL: GLenum = 0x0B95;UL
+		val STENCIL_PASS_DEPTH_PASS: GLenum = 0x0B96;UL
+		val STENCIL_REF: GLenum = 0x0B97;UL
+		val STENCIL_VALUE_MASK: GLenum = 0x0B93;UL
+		val STENCIL_WRITEMASK: GLenum = 0x0B98;UL
+		val STENCIL_BACK_FUNC: GLenum = 0x8800;UL
+		val STENCIL_BACK_FAIL: GLenum = 0x8801;UL
+		val STENCIL_BACK_PASS_DEPTH_FAIL: GLenum = 0x8802;UL
+		val STENCIL_BACK_PASS_DEPTH_PASS: GLenum = 0x8803;UL
+		val STENCIL_BACK_REF: GLenum = 0x8CA3;UL
+		val STENCIL_BACK_VALUE_MASK: GLenum = 0x8CA4;UL
+		val STENCIL_BACK_WRITEMASK: GLenum = 0x8CA5;UL
+		val VIEWPORT: GLenum = 0x0BA2;UL
+		val SCISSOR_BOX: GLenum = 0x0C10;UL
+		val COLOR_CLEAR_VALUE: GLenum = 0x0C22;UL
+		val COLOR_WRITEMASK: GLenum = 0x0C23;UL
+		val UNPACK_ALIGNMENT: GLenum = 0x0CF5;UL
+		val PACK_ALIGNMENT: GLenum = 0x0D05;UL
+		val MAX_TEXTURE_SIZE: GLenum = 0x0D33;UL
+		val MAX_VIEWPORT_DIMS: GLenum = 0x0D3A;UL
+		val SUBPIXEL_BITS: GLenum = 0x0D50;UL
+		val RED_BITS: GLenum = 0x0D52;UL
+		val GREEN_BITS: GLenum = 0x0D53;UL
+		val BLUE_BITS: GLenum = 0x0D54;UL
+		val ALPHA_BITS: GLenum = 0x0D55;UL
+		val DEPTH_BITS: GLenum = 0x0D56;UL
+		val STENCIL_BITS: GLenum = 0x0D57;UL
+		val POLYGON_OFFSET_UNITS: GLenum = 0x2A00;UL
+		val POLYGON_OFFSET_FACTOR: GLenum = 0x8038;UL
+		val TEXTURE_BINDING_2D: GLenum = 0x8069;UL
+		val SAMPLE_BUFFERS: GLenum = 0x80A8;UL
+		val SAMPLES: GLenum = 0x80A9;UL
+		val SAMPLE_COVERAGE_VALUE: GLenum = 0x80AA;UL
+		val SAMPLE_COVERAGE_INVERT: GLenum = 0x80AB;UL
+		val COMPRESSED_TEXTURE_FORMATS: GLenum = 0x86A3;UL
+		val DONT_CARE: GLenum = 0x1100;UL
+		val FASTEST: GLenum = 0x1101;UL
+		val NICEST: GLenum = 0x1102;UL
+		val GENERATE_MIPMAP_HINT: GLenum = 0x8192;UL
+		val BYTE: GLenum = 0x1400;UL
+		val UNSIGNED_BYTE: GLenum = 0x1401;UL
+		val SHORT: GLenum = 0x1402;UL
+		val UNSIGNED_SHORT: GLenum = 0x1403;UL
+		val INT: GLenum = 0x1404;UL
+		val UNSIGNED_INT: GLenum = 0x1405;UL
+		val FLOAT: GLenum = 0x1406;UL
+		val DEPTH_COMPONENT: GLenum = 0x1902;UL
+		val ALPHA: GLenum = 0x1906;UL
+		val RGB: GLenum = 0x1907;UL
+		val RGBA: GLenum = 0x1908;UL
+		val LUMINANCE: GLenum = 0x1909;UL
+		val LUMINANCE_ALPHA: GLenum = 0x190A;UL
+		val UNSIGNED_SHORT_4_4_4_4: GLenum = 0x8033;UL
+		val UNSIGNED_SHORT_5_5_5_1: GLenum = 0x8034;UL
+		val UNSIGNED_SHORT_5_6_5: GLenum = 0x8363;UL
+		val FRAGMENT_SHADER: GLenum = 0x8B30;UL
+		val VERTEX_SHADER: GLenum = 0x8B31;UL
+		val MAX_VERTEX_ATTRIBS: GLenum = 0x8869;UL
+		val MAX_VERTEX_UNIFORM_VECTORS: GLenum = 0x8DFB;UL
+		val MAX_VARYING_VECTORS: GLenum = 0x8DFC;UL
+		val MAX_COMBINED_TEXTURE_IMAGE_UNITS: GLenum = 0x8B4D;UL
+		val MAX_VERTEX_TEXTURE_IMAGE_UNITS: GLenum = 0x8B4C;UL
+		val MAX_TEXTURE_IMAGE_UNITS: GLenum = 0x8872;UL
+		val MAX_FRAGMENT_UNIFORM_VECTORS: GLenum = 0x8DFD;UL
+		val SHADER_TYPE: GLenum = 0x8B4F;UL
+		val DELETE_STATUS: GLenum = 0x8B80;UL
+		val LINK_STATUS: GLenum = 0x8B82;UL
+		val VALIDATE_STATUS: GLenum = 0x8B83;UL
+		val ATTACHED_SHADERS: GLenum = 0x8B85;UL
+		val ACTIVE_UNIFORMS: GLenum = 0x8B86;UL
+		val ACTIVE_ATTRIBUTES: GLenum = 0x8B89;UL
+		val SHADING_LANGUAGE_VERSION: GLenum = 0x8B8C;UL
+		val CURRENT_PROGRAM: GLenum = 0x8B8D;UL
+		val NEVER: GLenum = 0x0200;UL
+		val LESS: GLenum = 0x0201;UL
+		val EQUAL: GLenum = 0x0202;UL
+		val LEQUAL: GLenum = 0x0203;UL
+		val GREATER: GLenum = 0x0204;UL
+		val NOTEQUAL: GLenum = 0x0205;UL
+		val GEQUAL: GLenum = 0x0206;UL
+		val ALWAYS: GLenum = 0x0207;UL
+		val KEEP: GLenum = 0x1E00;UL
+		val REPLACE: GLenum = 0x1E01;UL
+		val INCR: GLenum = 0x1E02;UL
+		val DECR: GLenum = 0x1E03;UL
+		val INVERT: GLenum = 0x150A;UL
+		val INCR_WRAP: GLenum = 0x8507;UL
+		val DECR_WRAP: GLenum = 0x8508;UL
+		val VENDOR: GLenum = 0x1F00;UL
+		val RENDERER: GLenum = 0x1F01;UL
+		val VERSION: GLenum = 0x1F02;UL
+		val NEAREST: GLenum = 0x2600;UL
+		val LINEAR: GLenum = 0x2601;UL
+		val NEAREST_MIPMAP_NEAREST: GLenum = 0x2700;UL
+		val LINEAR_MIPMAP_NEAREST: GLenum = 0x2701;UL
+		val NEAREST_MIPMAP_LINEAR: GLenum = 0x2702;UL
+		val LINEAR_MIPMAP_LINEAR: GLenum = 0x2703;UL
+		val TEXTURE_MAG_FILTER: GLenum = 0x2800;UL
+		val TEXTURE_MIN_FILTER: GLenum = 0x2801;UL
+		val TEXTURE_WRAP_S: GLenum = 0x2802;UL
+		val TEXTURE_WRAP_T: GLenum = 0x2803;UL
+		val TEXTURE_2D: GLenum = 0x0DE1;UL
+		val TEXTURE: GLenum = 0x1702;UL
+		val TEXTURE_CUBE_MAP: GLenum = 0x8513;UL
+		val TEXTURE_BINDING_CUBE_MAP: GLenum = 0x8514;UL
+		val TEXTURE_CUBE_MAP_POSITIVE_X: GLenum = 0x8515;UL
+		val TEXTURE_CUBE_MAP_NEGATIVE_X: GLenum = 0x8516;UL
+		val TEXTURE_CUBE_MAP_POSITIVE_Y: GLenum = 0x8517;UL
+		val TEXTURE_CUBE_MAP_NEGATIVE_Y: GLenum = 0x8518;UL
+		val TEXTURE_CUBE_MAP_POSITIVE_Z: GLenum = 0x8519;UL
+		val TEXTURE_CUBE_MAP_NEGATIVE_Z: GLenum = 0x851A;UL
+		val MAX_CUBE_MAP_TEXTURE_SIZE: GLenum = 0x851C;UL
+		val TEXTURE0: GLenum = 0x84C0;UL
+		val TEXTURE1: GLenum = 0x84C1;UL
+		val TEXTURE2: GLenum = 0x84C2;UL
+		val TEXTURE3: GLenum = 0x84C3;UL
+		val TEXTURE4: GLenum = 0x84C4;UL
+		val TEXTURE5: GLenum = 0x84C5;UL
+		val TEXTURE6: GLenum = 0x84C6;UL
+		val TEXTURE7: GLenum = 0x84C7;UL
+		val TEXTURE8: GLenum = 0x84C8;UL
+		val TEXTURE9: GLenum = 0x84C9;UL
+		val TEXTURE10: GLenum = 0x84CA;UL
+		val TEXTURE11: GLenum = 0x84CB;UL
+		val TEXTURE12: GLenum = 0x84CC;UL
+		val TEXTURE13: GLenum = 0x84CD;UL
+		val TEXTURE14: GLenum = 0x84CE;UL
+		val TEXTURE15: GLenum = 0x84CF;UL
+		val TEXTURE16: GLenum = 0x84D0;UL
+		val TEXTURE17: GLenum = 0x84D1;UL
+		val TEXTURE18: GLenum = 0x84D2;UL
+		val TEXTURE19: GLenum = 0x84D3;UL
+		val TEXTURE20: GLenum = 0x84D4;UL
+		val TEXTURE21: GLenum = 0x84D5;UL
+		val TEXTURE22: GLenum = 0x84D6;UL
+		val TEXTURE23: GLenum = 0x84D7;UL
+		val TEXTURE24: GLenum = 0x84D8;UL
+		val TEXTURE25: GLenum = 0x84D9;UL
+		val TEXTURE26: GLenum = 0x84DA;UL
+		val TEXTURE27: GLenum = 0x84DB;UL
+		val TEXTURE28: GLenum = 0x84DC;UL
+		val TEXTURE29: GLenum = 0x84DD;UL
+		val TEXTURE30: GLenum = 0x84DE;UL
+		val TEXTURE31: GLenum = 0x84DF;UL
+		val ACTIVE_TEXTURE: GLenum = 0x84E0;UL
+		val REPEAT: GLenum = 0x2901;UL
+		val CLAMP_TO_EDGE: GLenum = 0x812F;UL
+		val MIRRORED_REPEAT: GLenum = 0x8370;UL
+		val FLOAT_VEC2: GLenum = 0x8B50;UL
+		val FLOAT_VEC3: GLenum = 0x8B51;UL
+		val FLOAT_VEC4: GLenum = 0x8B52;UL
+		val INT_VEC2: GLenum = 0x8B53;UL
+		val INT_VEC3: GLenum = 0x8B54;UL
+		val INT_VEC4: GLenum = 0x8B55;UL
+		val BOOL: GLenum = 0x8B56;UL
+		val BOOL_VEC2: GLenum = 0x8B57;UL
+		val BOOL_VEC3: GLenum = 0x8B58;UL
+		val BOOL_VEC4: GLenum = 0x8B59;UL
+		val FLOAT_MAT2: GLenum = 0x8B5A;UL
+		val FLOAT_MAT3: GLenum = 0x8B5B;UL
+		val FLOAT_MAT4: GLenum = 0x8B5C;UL
+		val SAMPLER_2D: GLenum = 0x8B5E;UL
+		val SAMPLER_CUBE: GLenum = 0x8B60;UL
+		val VERTEX_ATTRIB_ARRAY_ENABLED: GLenum = 0x8622;UL
+		val VERTEX_ATTRIB_ARRAY_SIZE: GLenum = 0x8623;UL
+		val VERTEX_ATTRIB_ARRAY_STRIDE: GLenum = 0x8624;UL
+		val VERTEX_ATTRIB_ARRAY_TYPE: GLenum = 0x8625;UL
+		val VERTEX_ATTRIB_ARRAY_NORMALIZED: GLenum = 0x886A;UL
+		val VERTEX_ATTRIB_ARRAY_POINTER: GLenum = 0x8645;UL
+		val VERTEX_ATTRIB_ARRAY_BUFFER_BINDING: GLenum = 0x889F;UL
+		val IMPLEMENTATION_COLOR_READ_TYPE: GLenum = 0x8B9A;UL
+		val IMPLEMENTATION_COLOR_READ_FORMAT: GLenum = 0x8B9B;UL
+		val COMPILE_STATUS: GLenum = 0x8B81;UL
+		val LOW_FLOAT: GLenum = 0x8DF0;UL
+		val MEDIUM_FLOAT: GLenum = 0x8DF1;UL
+		val HIGH_FLOAT: GLenum = 0x8DF2;UL
+		val LOW_INT: GLenum = 0x8DF3;UL
+		val MEDIUM_INT: GLenum = 0x8DF4;UL
+		val HIGH_INT: GLenum = 0x8DF5;UL
+		val FRAMEBUFFER: GLenum = 0x8D40;UL
+		val RENDERBUFFER: GLenum = 0x8D41;UL
+		val RGBA4: GLenum = 0x8056;UL
+		val RGB5_A1: GLenum = 0x8057;UL
+		val RGB565: GLenum = 0x8D62;UL
+		val DEPTH_COMPONENT16: GLenum = 0x81A5;UL
+		val STENCIL_INDEX: GLenum = 0x1901;UL
+		val STENCIL_INDEX8: GLenum = 0x8D48;UL
+		val DEPTH_STENCIL: GLenum = 0x84F9;UL
+		val RENDERBUFFER_WIDTH: GLenum = 0x8D42;UL
+		val RENDERBUFFER_HEIGHT: GLenum = 0x8D43;UL
+		val RENDERBUFFER_INTERNAL_FORMAT: GLenum = 0x8D44;UL
+		val RENDERBUFFER_RED_SIZE: GLenum = 0x8D50;UL
+		val RENDERBUFFER_GREEN_SIZE: GLenum = 0x8D51;UL
+		val RENDERBUFFER_BLUE_SIZE: GLenum = 0x8D52;UL
+		val RENDERBUFFER_ALPHA_SIZE: GLenum = 0x8D53;UL
+		val RENDERBUFFER_DEPTH_SIZE: GLenum = 0x8D54;UL
+		val RENDERBUFFER_STENCIL_SIZE: GLenum = 0x8D55;UL
+		val FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE: GLenum = 0x8CD0;UL
+		val FRAMEBUFFER_ATTACHMENT_OBJECT_NAME: GLenum = 0x8CD1;UL
+		val FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL: GLenum = 0x8CD2;UL
+		val FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE: GLenum = 0x8CD3;UL
+		val COLOR_ATTACHMENT0: GLenum = 0x8CE0;UL
+		val DEPTH_ATTACHMENT: GLenum = 0x8D00;UL
+		val STENCIL_ATTACHMENT: GLenum = 0x8D20;UL
+		val DEPTH_STENCIL_ATTACHMENT: GLenum = 0x821A;UL
+		val NONE: GLenum = 0;UL
+		val FRAMEBUFFER_COMPLETE: GLenum = 0x8CD5;UL
+		val FRAMEBUFFER_INCOMPLETE_ATTACHMENT: GLenum = 0x8CD6;UL
+		val FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT: GLenum = 0x8CD7;UL
+		val FRAMEBUFFER_INCOMPLETE_DIMENSIONS: GLenum = 0x8CD9;UL
+		val FRAMEBUFFER_UNSUPPORTED: GLenum = 0x8CDD;UL
+		val FRAMEBUFFER_BINDING: GLenum = 0x8CA6;UL
+		val RENDERBUFFER_BINDING: GLenum = 0x8CA7;UL
+		val MAX_RENDERBUFFER_SIZE: GLenum = 0x84E8;UL
+		val INVALID_FRAMEBUFFER_OPERATION: GLenum = 0x0506;UL
+		val UNPACK_FLIP_Y_WEBGL: GLenum = 0x9240;UL
+		val UNPACK_PREMULTIPLY_ALPHA_WEBGL: GLenum = 0x9241;UL
+		val CONTEXT_LOST_WEBGL: GLenum = 0x9242;UL
+		val UNPACK_COLORSPACE_CONVERSION_WEBGL: GLenum = 0x9243;UL
+		val BROWSER_DEFAULT_WEBGL: GLenum = 0x9244;UL
 	}
 	
 	/**
@@ -518,7 +518,7 @@ interface WebGLRenderingContextBase {
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/bufferData)
 	 *
 	 * @param target A [GLenum] specifying the binding point (target). Possible values: gl.ARRAY_BUFFER Buffer containing vertex attributes, such as vertex coordinates, texture coordinate data, or vertex color data. gl.ELEMENT_ARRAY_BUFFER Buffer used for element indices. When using a WebGL 2 context, the following values are available additionally: gl.COPY_READ_BUFFER Buffer for copying from one buffer object to another. gl.COPY_WRITE_BUFFER Buffer for copying from one buffer object to another. gl.TRANSFORM_FEEDBACK_BUFFER Buffer for transform feedback operations. gl.UNIFORM_BUFFER Buffer used for storing uniform blocks. gl.PIXEL_PACK_BUFFER Buffer used for pixel transfer operations. gl.PIXEL_UNPACK_BUFFER Buffer used for pixel transfer operations.
-	 * @param data This parameter caused unspecified trouble while importing!
+	 * @param data TODO: Importing this parameters documentation caused troube!
 	 * @param usage A [GLenum] specifying the intended usage pattern of the data store for optimization purposes. Possible values: gl.STATIC_DRAW The contents are intended to be specified once by the application, and used many times as the source for WebGL drawing and image specification commands. gl.DYNAMIC_DRAW The contents are intended to be respecified repeatedly by the application, and used many times as the source for WebGL drawing and image specification commands. gl.STREAM_DRAW The contents are intended to be specified once by the application, and used at most a few times as the source for WebGL drawing and image specification commands. When using a WebGL 2 context, the following values are available additionally: gl.STATIC_READ The contents are intended to be specified once by reading data from WebGL, and queried many times by the application. gl.DYNAMIC_READ The contents are intended to be respecified repeatedly by reading data from WebGL, and queried many times by the application. gl.STREAM_READ The contents are intended to be specified once by reading data from WebGL, and queried at most a few times by the application gl.STATIC_COPY The contents are intended to be specified once by reading data from WebGL, and used many times as the source for WebGL drawing and image specification commands. gl.DYNAMIC_COPY The contents are intended to be respecified repeatedly by reading data from WebGL, and used many times as the source for WebGL drawing and image specification commands. gl.STREAM_COPY The contents are intended to be specified once by reading data from WebGL, and used at most a few times as the source for WebGL drawing and image specification commands.
 	 */
 	fun bufferData(target: GLenum, data: BufferDataSource, usage: GLenum)
@@ -531,8 +531,8 @@ interface WebGLRenderingContextBase {
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/bufferSubData)
 	 *
 	 * @param target A [GLenum] specifying the binding point (target). Possible values: gl.ARRAY_BUFFER Buffer containing vertex attributes, such as vertex coordinates, texture coordinate data, or vertex color data. gl.ELEMENT_ARRAY_BUFFER Buffer used for element indices. When using a WebGL 2 context, the following values are available additionally: gl.COPY_READ_BUFFER Buffer for copying from one buffer object to another. gl.COPY_WRITE_BUFFER Buffer for copying from one buffer object to another. gl.TRANSFORM_FEEDBACK_BUFFER Buffer for transform feedback operations. gl.UNIFORM_BUFFER Buffer used for storing uniform blocks. gl.PIXEL_PACK_BUFFER Buffer used for pixel transfer operations. gl.PIXEL_UNPACK_BUFFER Buffer used for pixel transfer operations.
-	 * @param offset This parameter caused unspecified trouble while importing!
-	 * @param data This parameter caused unspecified trouble while importing!
+	 * @param offset TODO: Importing this parameters documentation caused troube!
+	 * @param data TODO: Importing this parameters documentation caused troube!
 	 */
 	fun bufferSubData(target: GLenum, offset: GLintptr, data: BufferDataSource)
 	
@@ -629,7 +629,7 @@ interface WebGLRenderingContextBase {
 	 * @param target A [GLenum] specifying the binding point (target) of the active texture. Possible values for compressedTexImage2D: gl.TEXTURE_2D: A two-dimensional texture. gl.TEXTURE_CUBE_MAP_POSITIVE_X: Positive X face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_X: Negative X face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_POSITIVE_Y: Positive Y face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_Y: Negative Y face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_POSITIVE_Z: Positive Z face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_Z: Negative Z face for a cube-mapped texture. Possible values for compressedTexImage3D: gl.TEXTURE_2D_ARRAY gl.TEXTURE_3D
 	 * @param level A [GLint] specifying the level of detail. Level 0 is the base image level and level n is the n-th mipmap reduction level.
 	 * @param internalformat A [GLenum] specifying the compressed image format. Compressed image formats must be enabled by WebGL extensions before using this method. All values are possible for compressedTexImage2D. See compressed texture formats for which are valid for compressedTexImage3D. Possible values: When using the WEBGL_compressed_texture_s3tc extension: ext.COMPRESSED_RGB_S3TC_DXT1_EXT ext.COMPRESSED_RGBA_S3TC_DXT1_EXT ext.COMPRESSED_RGBA_S3TC_DXT3_EXT ext.COMPRESSED_RGBA_S3TC_DXT5_EXT When using the WEBGL_compressed_texture_s3tc_srgb extension: ext.COMPRESSED_SRGB_S3TC_DXT1_EXT ext.COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT ext.COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT ext.COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT When using the WEBGL_compressed_texture_etc extension: ext.COMPRESSED_R11_EAC ext.COMPRESSED_SIGNED_R11_EAC ext.COMPRESSED_RG11_EAC ext.COMPRESSED_SIGNED_RG11_EAC ext.COMPRESSED_RGB8_ETC2 ext.COMPRESSED_RGBA8_ETC2_EAC ext.COMPRESSED_SRGB8_ETC2 ext.COMPRESSED_SRGB8_ALPHA8_ETC2_EAC ext.COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2 ext.COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2 When using the WEBGL_compressed_texture_pvrtc extension: ext.COMPRESSED_RGB_PVRTC_4BPPV1_IMG ext.COMPRESSED_RGBA_PVRTC_4BPPV1_IMG ext.COMPRESSED_RGB_PVRTC_2BPPV1_IMG ext.COMPRESSED_RGBA_PVRTC_2BPPV1_IMG When using the WEBGL_compressed_texture_etc1 extension: ext.COMPRESSED_RGB_ETC1_WEBGL When using the WEBGL_compressed_texture_astc extension: ext.COMPRESSED_RGBA_ASTC_4x4_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_4x4_KHR ext.COMPRESSED_RGBA_ASTC_5x4_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_5x4_KHR ext.COMPRESSED_RGBA_ASTC_5x5_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_5x5_KHR ext.COMPRESSED_RGBA_ASTC_6x5_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_6x5_KHR ext.COMPRESSED_RGBA_ASTC_6x6_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_6x6_KHR ext.COMPRESSED_RGBA_ASTC_8x5_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR ext.COMPRESSED_RGBA_ASTC_8x6_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_8x6_KHR ext.COMPRESSED_RGBA_ASTC_8x8_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR ext.COMPRESSED_RGBA_ASTC_10x5_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_10x5_KHR ext.COMPRESSED_RGBA_ASTC_10x6_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_10x6_KHR ext.COMPRESSED_RGBA_ASTC_10x10_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_10x10_KHR ext.COMPRESSED_RGBA_ASTC_12x10_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR ext.COMPRESSED_RGBA_ASTC_12x12_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR When using the EXT_texture_compression_bptc extension: ext.COMPRESSED_RGBA_BPTC_UNORM_EXT ext.COMPRESSED_SRGB_ALPHA_BPTC_UNORM_EXT ext.COMPRESSED_RGB_BPTC_SIGNED_FLOAT_EXT ext.COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_EXT When using the EXT_texture_compression_rgtc extension: ext.COMPRESSED_RED_RGTC1_EXT ext.COMPRESSED_SIGNED_RED_RGTC1_EXT ext.COMPRESSED_RED_GREEN_RGTC2_EXT ext.COMPRESSED_SIGNED_RED_GREEN_RGTC2_EXT
-	 * @param data This parameter caused unspecified trouble while importing!
+	 * @param data TODO: Importing this parameters documentation caused troube!
 	 */
 	fun compressedTexImage2D(target: GLenum, level: GLint, internalformat: GLenum, data: ArrayBufferView)
 	
@@ -642,7 +642,7 @@ interface WebGLRenderingContextBase {
 	 *
 	 * @param target A [GLenum] specifying the binding point (target) of the active compressed texture. Possible values: gl.TEXTURE_2D: A two-dimensional texture. gl.TEXTURE_CUBE_MAP_POSITIVE_X: Positive X face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_X: Negative X face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_POSITIVE_Y: Positive Y face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_Y: Negative Y face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_POSITIVE_Z: Positive Z face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_Z: Negative Z face for a cube-mapped texture.
 	 * @param level A [GLint] specifying the level of detail. Level 0 is the base image level and level n is the n-th mipmap reduction level.
-	 * @param data This parameter caused unspecified trouble while importing!
+	 * @param data TODO: Importing this parameters documentation caused troube!
 	 */
 	fun compressedTexSubImage2D(target: GLenum, level: GLint, data: ArrayBufferView)
 	
@@ -671,8 +671,8 @@ interface WebGLRenderingContextBase {
 	 * @param level A [GLint] specifying the level of detail. Level 0 is the base image level and level n is the n-th mipmap reduction level.
 	 * @param xoffset A [GLint] specifying the horizontal offset within the texture image.
 	 * @param yoffset A [GLint] specifying the vertical offset within the texture image.
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
 	 * @param width A [GLsizei] specifying the width of the texture.
 	 * @param height A [GLsizei] specifying the height of the texture.
 	 */
@@ -869,7 +869,7 @@ interface WebGLRenderingContextBase {
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/disable)
 	 *
-	 * @param cap This parameter caused unspecified trouble while importing!
+	 * @param cap TODO: Importing this parameters documentation caused troube!
 	 */
 	fun disable(cap: GLenum)
 	
@@ -1379,8 +1379,8 @@ interface WebGLRenderingContextBase {
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/readPixels)
 	 *
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
 	 * @param width A [GLsizei] specifying the width of the rectangle.
 	 * @param height A [GLsizei] specifying the height of the rectangle.
 	 * @param format A [GLenum] specifying the format of the pixel data. Possible values: gl.ALPHA Discards the red, green and blue components and reads the alpha component. gl.RGB Discards the alpha components and reads the red, green and blue components. gl.RGBA Red, green, blue and alpha components are read from the color buffer. WebGL2 adds gl.RED gl.RG gl.RED_INTEGER gl.RG_INTEGER gl.RGB_INTEGER gl.RGBA_INTEGER
@@ -1422,8 +1422,8 @@ interface WebGLRenderingContextBase {
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/scissor)
 	 *
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
 	 * @param width A non-negative [GLsizei] specifying the width of the scissor box. Default value: width of the canvas.
 	 * @param height A non-negative [GLsizei] specifying the height of the scissor box. Default value: height of the canvas.
 	 */
@@ -1545,13 +1545,13 @@ interface WebGLRenderingContextBase {
 	 * @param internalformat A [GLenum] specifying the color components in the texture. Possible values in both WebGL1 and WebGL2 Format Type Channels Bytes per pixel RGBA UNSIGNED_BYTE 4 4 RGB UNSIGNED_BYTE 3 3 RGBA UNSIGNED_SHORT_4_4_4_4 4 2 RGBA UNSIGNED_SHORT_5_5_5_1 4 2 RGB UNSIGNED_SHORT_5_6_5 3 2 LUMINANCE_ALPHA UNSIGNED_BYTE 2 2 LUMINANCE UNSIGNED_BYTE 1 1 ALPHA UNSIGNED_BYTE 1 1 Other possible values in WebGL2 for the versions of texImage2D that take a [TypedArray] or a [DataView], or a [GLint]ptr offset Sized Format Base Format R bits G bits B bits A bits Shared bits Color renderable Texture filterable R8 RED 8 ● ● R8_SNORM RED s8 ● RG8 RG 8 8 ● ● RG8_SNORM RG s8 s8 ● RGB8 RGB 8 8 8 ● ● RGB8_SNORM RGB s8 s8 s8 ● RGB565 RGB 5 6 5 ● ● RGBA4 RGBA 4 4 4 4 ● ● RGB5_A1 RGBA 5 5 5 1 ● ● RGBA8 RGBA 8 8 8 8 ● ● RGBA8_SNORM RGBA s8 s8 s8 s8 ● RGB10_A2 RGBA 10 10 10 2 ● ● RGB10_A2UI RGBA ui10 ui10 ui10 ui2 ● SRGB8 RGB 8 8 8 ● SRGB8_ALPHA8 RGBA 8 8 8 8 ● ● R16F RED f16 ● RG16F RG f16 f16 ● RGB16F RGB f16 f16 f16 ● RGBA16F RGBA f16 f16 f16 f16 ● R32F RED f32 RG32F RG f32 f32 RGB32F RGB f32 f32 f32 RGBA32F RGBA f32 f32 f32 f32 R11F_G11F_B10F RGB f11 f11 f10 ● RGB9_E5 RGB 9 9 9 5 ● R8I RED i8 ● R8UI RED ui8 ● R16I RED i16 ● R16UI RED ui16 ● R32I RED i32 ● R32UI RED ui32 ● RG8I RG i8 i8 ● RG8UI RG ui8 ui8 ● RG16I RG i16 i16 ● RG16UI RG ui16 ui16 ● RG32I RG i32 i32 ● RG32UI RG ui32 ui32 ● RGB8I RGB i8 i8 i8 RGB8UI RGB ui8 ui8 ui8 RGB16I RGB i16 i16 i16 RGB16UI RGB ui16 ui16 ui16 RGB32I RGB i32 i32 i32 RGB32UI RGB ui32 ui32 ui32 RGBA8I RGBA i8 i8 i8 i8 ● RGBA8UI RGBA ui8 ui8 ui8 ui8 ● RGBA16I RGBA i16 i16 i16 i16 ● RGBA16UI RGBA ui16 ui16 ui16 ui16 ● RGBA32I RGBA i32 i32 i32 i32 ● RGBA32UI RGBA ui32 ui32 ui32 ui32 ● Possible values in WebGL2 for the versions of texImage2D that take a texture an HTMLImageElement, [HTMLCanvasElement], HTMLVideoElement, ImageBitmap, or ImageData gl.ALPHA: Discards the red, green and blue components and reads the alpha component. gl.RGB: Discards the alpha components and reads the red, green and blue components. gl.RGBA: Red, green, blue and alpha components are read from the color buffer. gl.LUMINANCE: Each color component is a luminance component, alpha is 1.0. gl.LUMINANCE_ALPHA: Each component is a luminance/alpha component. When using the WEBGL_depth_texture extension: gl.DEPTH_COMPONENT gl.DEPTH_STENCIL When using the EXT_sRGB extension: ext.SRGB_EXT ext.SRGB_ALPHA_EXT When using a WebGL 2 context, the following values are available additionally: gl.R8 gl.R16F gl.R32F gl.R8UI gl.RG8 gl.RG16F gl.RG32F gl.RG8UI gl.RG16UI gl.RG32UI gl.RGB8 gl.SRGB8 gl.RGB565 gl.R11F_G11F_B10F gl.RGB9_E5 gl.RGB16F gl.RGB32F gl.RGB8UI gl.RGBA8 gl.SRGB8_ALPHA8 gl.RGB5_A1 gl.RGB10_A2 gl.RGBA4 gl.RGBA16F gl.RGBA32F gl.RGBA8UI
 	 * @param format A [GLenum] specifying the format of the texel data. In WebGL 1, this must be the same as internalformat (see above). in WebGL 2, the combinations are listed in this table.
 	 * @param type A [GLenum] specifying the data type of the texel data. Possible values: gl.UNSIGNED_BYTE: 8 bits per channel for gl.RGBA gl.UNSIGNED_SHORT_5_6_5: 5 red bits, 6 green bits, 5 blue bits. gl.UNSIGNED_SHORT_4_4_4_4: 4 red bits, 4 green bits, 4 blue bits, 4 alpha bits. gl.UNSIGNED_SHORT_5_5_5_1: 5 red bits, 5 green bits, 5 blue bits, 1 alpha bit. When using the WEBGL_depth_texture extension: gl.UNSIGNED_SHORT gl.UNSIGNED_INT ext.UNSIGNED_INT_24_8_WEBGL (constant provided by the extension) When using the OES_texture_float extension: gl.FLOAT When using the OES_texture_half_float extension: ext.HALF_FLOAT_OES (constant provided by the extension) When using a WebGL 2 context, the following values are available additionally: gl.BYTE gl.UNSIGNED_SHORT gl.SHORT gl.UNSIGNED_INT gl.INT gl.HALF_FLOAT gl.FLOAT gl.UNSIGNED_INT_2_10_10_10_REV gl.UNSIGNED_INT_10F_11F_11F_REV gl.UNSIGNED_INT_5_9_9_9_REV gl.UNSIGNED_INT_24_8 gl.FLOAT_32_UNSIGNED_INT_24_8_REV (pixels must be null)
-	 * @param source This parameter caused unspecified trouble while importing!
+	 * @param source TODO: Importing this parameters documentation caused troube!
 	 */
 	fun texImage2D(target: GLenum, level: GLint, internalformat: GLenum, format: GLenum, type: GLenum, source: TexImageSource)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].texParameter[fi]() methods of the WebGL API set texture parameters.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/texParameter)
@@ -1564,7 +1564,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * The [WebGLRenderingContext].texParameter[fi]() methods of the WebGL API set texture parameters.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/texParameter)
@@ -1605,313 +1605,313 @@ interface WebGLRenderingContextBase {
 	 * @param yoffset A [GLint] specifying the lower left texel y coordinate of a width-wide by height-wide rectangular subregion of the texture array.
 	 * @param format A [GLenum] specifying the format of the texel data. Possible values: gl.ALPHA: Discards the red, green and blue components and reads the alpha component. gl.RGB: Discards the alpha components and reads the red, green and blue components. gl.RGBA: Red, green, blue and alpha components are read from the color buffer. gl.LUMINANCE: Each color component is a luminance component, alpha is 1.0. gl.LUMINANCE_ALPHA: Each component is a luminance/alpha component. When using the EXT_sRGB extension: ext.SRGB_EXT ext.SRGB_ALPHA_EXT When using a WebGL 2 context, the following values are available additionally: gl.RED gl.RG gl.RED_INTEGER gl.RG_INTEGER gl.RGB_INTEGER gl.RGBA_INTEGER
 	 * @param type A [GLenum] specifying the data type of the texel data. Possible values: gl.UNSIGNED_BYTE: 8 bits per channel for gl.RGBA gl.UNSIGNED_SHORT_5_6_5: 5 red bits, 6 green bits, 5 blue bits. gl.UNSIGNED_SHORT_4_4_4_4: 4 red bits, 4 green bits, 4 blue bits, 4 alpha bits. gl.UNSIGNED_SHORT_5_5_5_1: 5 red bits, 5 green bits, 5 blue bits, 1 alpha bit. When using the OES_texture_float extension: gl.FLOAT When using the OES_texture_half_float extension: gl.HALF_FLOAT_OES When using a WebGL 2 context, the following values are available additionally: gl.BYTE gl.UNSIGNED_SHORT gl.SHORT gl.UNSIGNED_INT gl.INT gl.HALF_FLOAT gl.FLOAT gl.UNSIGNED_INT_2_10_10_10_REV gl.UNSIGNED_INT_10F_11F_11F_REV gl.UNSIGNED_INT_5_9_9_9_REV gl.UNSIGNED_INT_24_8 gl.FLOAT_32_UNSIGNED_INT_24_8_REV (pixels must be null)
-	 * @param source This parameter caused unspecified trouble while importing!
+	 * @param source TODO: Importing this parameters documentation caused troube!
 	 */
 	fun texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: TexImageSource)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform1f(location: WebGLUniformLocation, v0: GLfloat)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform1fv(location: WebGLUniformLocation, value: Float32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform1fv(location: WebGLUniformLocation, value: List<GLfloat>)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform1i(location: WebGLUniformLocation, v0: GLint)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform1iv(location: WebGLUniformLocation, value: Int32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform1iv(location: WebGLUniformLocation, value: List<Long>)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform2f(location: WebGLUniformLocation, v0: GLfloat, v1: GLfloat)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform2fv(location: WebGLUniformLocation, value: Float32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform2fv(location: WebGLUniformLocation, value: List<GLfloat>)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform2i(location: WebGLUniformLocation, v0: GLint, v1: GLint)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform2iv(location: WebGLUniformLocation, value: Int32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform2iv(location: WebGLUniformLocation, value: List<Long>)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
-	 * @param v2 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v2 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform3f(location: WebGLUniformLocation, v0: GLfloat, v1: GLfloat, v2: GLfloat)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform3fv(location: WebGLUniformLocation, value: Float32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform3fv(location: WebGLUniformLocation, value: List<GLfloat>)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
-	 * @param v2 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v2 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform3i(location: WebGLUniformLocation, v0: GLint, v1: GLint, v2: GLint)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform3iv(location: WebGLUniformLocation, value: Int32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform3iv(location: WebGLUniformLocation, value: List<Long>)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
-	 * @param v2 This parameter caused unspecified trouble while importing!
-	 * @param v3 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v2 TODO: Importing this parameters documentation caused troube!
+	 * @param v3 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform4f(location: WebGLUniformLocation, v0: GLfloat, v1: GLfloat, v2: GLfloat, v3: GLfloat)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform4fv(location: WebGLUniformLocation, value: Float32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform4fv(location: WebGLUniformLocation, value: List<GLfloat>)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
-	 * @param v2 This parameter caused unspecified trouble while importing!
-	 * @param v3 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v2 TODO: Importing this parameters documentation caused troube!
+	 * @param v3 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform4i(location: WebGLUniformLocation, v0: GLint, v1: GLint, v2: GLint, v3: GLint)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform4iv(location: WebGLUniformLocation, value: Int32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value This parameter caused unspecified trouble while importing!
+	 * @param value TODO: Importing this parameters documentation caused troube!
 	 */
 	fun uniform4iv(location: WebGLUniformLocation, value: List<Long>)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -1924,7 +1924,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -1937,7 +1937,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -1950,7 +1950,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -1963,7 +1963,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -1976,7 +1976,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -2011,151 +2011,151 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param v0 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib1f(index: GLuint, v0: GLfloat)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values This parameter caused unspecified trouble while importing!
+	 * @param values TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib1fv(index: GLuint, values: Float32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values This parameter caused unspecified trouble while importing!
+	 * @param values TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib1fv(index: GLuint, values: List<GLfloat>)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib2f(index: GLuint, v0: GLfloat, v1: GLfloat)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values This parameter caused unspecified trouble while importing!
+	 * @param values TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib2fv(index: GLuint, values: Float32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values This parameter caused unspecified trouble while importing!
+	 * @param values TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib2fv(index: GLuint, values: List<GLfloat>)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
-	 * @param v2 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v2 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib3f(index: GLuint, v0: GLfloat, v1: GLfloat, v2: GLfloat)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values This parameter caused unspecified trouble while importing!
+	 * @param values TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib3fv(index: GLuint, values: Float32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values This parameter caused unspecified trouble while importing!
+	 * @param values TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib3fv(index: GLuint, values: List<GLfloat>)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
-	 * @param v2 This parameter caused unspecified trouble while importing!
-	 * @param v3 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v2 TODO: Importing this parameters documentation caused troube!
+	 * @param v3 TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib4f(index: GLuint, v0: GLfloat, v1: GLfloat, v2: GLfloat, v3: GLfloat)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values This parameter caused unspecified trouble while importing!
+	 * @param values TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib4fv(index: GLuint, values: Float32Array)
 	
 	
 	/**
-	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
+	 * 
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values This parameter caused unspecified trouble while importing!
+	 * @param values TODO: Importing this parameters documentation caused troube!
 	 */
 	fun vertexAttrib4fv(index: GLuint, values: List<GLfloat>)
 	
@@ -2182,8 +2182,8 @@ interface WebGLRenderingContextBase {
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/viewport)
 	 *
-	 * @param v0 This parameter caused unspecified trouble while importing!
-	 * @param v1 This parameter caused unspecified trouble while importing!
+	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v1 TODO: Importing this parameters documentation caused troube!
 	 * @param width A non-negative [GLsizei] specifying the width of the viewport. Default value: width of the canvas.
 	 * @param height A non-negative [GLsizei] specifying the height of the viewport. Default value: height of the canvas.
 	 */

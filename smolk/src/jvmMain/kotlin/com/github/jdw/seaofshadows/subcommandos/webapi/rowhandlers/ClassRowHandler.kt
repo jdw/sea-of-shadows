@@ -3,6 +3,7 @@ package com.github.jdw.seaofshadows.subcommandos.webapi.rowhandlers
 import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Class
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Property
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.build
 import kotlin.reflect.KVisibility
 
 class ClassRowHandler {
@@ -17,26 +18,25 @@ class ClassRowHandler {
         val pieces = row.split(" ")
 
         currentClassBuilder = Class.builder()
-            .simpleName(pieces[1])
-            .qualifiedName("$packag3.${pieces[1]}")
-            .documentation("hej")
-            .isAbstract(false)
-            .isFinal(false)
-            .isInner(false)
-            .isData(false)
-            .isOpen(false)
-            .isSealed(false)
-            .isValue(false)
-            .isCompanion(false)
-            .isFun(false) // I'm NOT having fun!
-            .visibility(KVisibility.PUBLIC)
+            .apply { simpleName = pieces[1] }
+            .apply { qualifiedName= packag3.apply { pieces[1] } }
+            .apply { documentation = "TODO" }
+            .apply { isAbstract = false }
+            .apply { isFinal = false }
+            .apply { isInner = false }
+            .apply { isData = false }
+            .apply { isOpen = false }
+            .apply { isSealed = false }
+            .apply { isValue = false }
+            .apply { isCompanion = false }
+            .apply { isFun = false } // I'm NOT having fun!
 
         if (":" == pieces[2]) { // We have inheritance
             (2..< pieces.size).forEach { idx ->
                 val supertypeSimpleName = pieces[idx]
 
                 if (Glob.isValidKotlinIdentifier(supertypeSimpleName)) {
-                    currentClassBuilder!!.supertypeSimpleName(supertypeSimpleName)
+                    currentClassBuilder!!.supertyesSimpleNames.add(supertypeSimpleName)
                 }
             }
         }
@@ -45,26 +45,22 @@ class ClassRowHandler {
 
     fun handleClassProperty(row: String) {
         val pieces = row.split(" ")
+        val builder = Property.builder()
+            .apply { type = pieces[0] }
+            .apply { name = pieces[1] }
+            .apply { const = false }
 
         if (pieces.size == 4) {
-            currentClassBuilder!!.property(
-                Property.builder()
-                    .type(pieces[0])
-                    .name(pieces[1])
-                    .defaultValue(pieces[3])
-                    .const(false)
-                    .mutable(false)
-                    .build())
+            builder
+                .apply { defaultValue = pieces[3] }
+                .apply { mutable = false }
         }
         else if (pieces.size == 2) {
-            val property = Property.builder()
-                .type(pieces[0])
-                .name(pieces[1])
-                .const(false)
-                .mutable(true)
+            builder
+                .apply { mutable = true }
                 .build()
-
-            currentClassBuilder!!.property(property)
         }
+
+        currentClassBuilder!!.properties.add(builder.build())
     }
 }

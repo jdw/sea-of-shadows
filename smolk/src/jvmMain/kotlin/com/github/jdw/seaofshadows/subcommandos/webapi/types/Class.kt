@@ -32,6 +32,33 @@ class Class(override val annotations: List<Annotation>,
             val properties: List<Property>,
             val supertypesSimpleNames: List<String>
 ): KClass<Class> {
+    class Builder {
+        val annotations: MutableList<Annotation> = mutableListOf()
+        var constructors: MutableList<KFunction<Class>> = mutableListOf()
+        var isAbstract: Boolean? = null
+        var isCompanion: Boolean? = null
+        var isData: Boolean? = null
+        var isFinal: Boolean? = null
+        var isFun: Boolean? = null
+        var isInner: Boolean? = null
+        var isOpen: Boolean? = null
+        var isSealed: Boolean? = null
+        var isValue: Boolean? = null
+        var members: MutableList<KCallable<*>> = mutableListOf()
+        var nestedClasses: MutableList<KClass<*>> = mutableListOf()
+        var objectInstance: Class? = null
+        var qualifiedName: String? = null
+        var sealedSubclasses: MutableList<KClass<out Class>> = mutableListOf()
+        var simpleName: String? = null
+        var supertypes: MutableList<KType> = mutableListOf()
+        var typeParameters: MutableList<KTypeParameter> = mutableListOf()
+        var visibility: KVisibility? = null
+        var documentation: String? = null
+        val properties: MutableList<Property> = mutableListOf()
+        val supertyesSimpleNames: MutableList<String> = mutableListOf()
+    }
+
+
     override fun equals(other: Any?): Boolean {
         if (other !is Class) return false
 
@@ -105,217 +132,7 @@ class Class(override val annotations: List<Annotation>,
         return code
     }
 
-    class Builder {
-        private val annotations: MutableList<Annotation> = mutableListOf()
-        private var constructors: MutableList<KFunction<Class>> = mutableListOf()
-        private var isAbstract: Boolean? = null
-        private var isCompanion: Boolean? = null
-        private var isData: Boolean? = null
-        private var isFinal: Boolean? = null
-        private var isFun: Boolean? = null
-        private var isInner: Boolean? = null
-        private var isOpen: Boolean? = null
-        private var isSealed: Boolean? = null
-        private var isValue: Boolean? = null
-        private var members: MutableList<KCallable<*>> = mutableListOf()
-        private var nestedClasses: MutableList<KClass<*>> = mutableListOf()
-        private var objectInstance: Class? = null
-        private var qualifiedName: String? = null
-        private var sealedSubclasses: MutableList<KClass<out Class>> = mutableListOf()
-        private var simpleName: String? = null
-        private var supertypes: MutableList<KType> = mutableListOf()
-        private var typeParameters: MutableList<KTypeParameter> = mutableListOf()
-        private var visibility: KVisibility? = null
-        private var documentation: String? = null
-        private val properties: MutableList<Property> = mutableListOf()
-        private val supertyesSimpleNames: MutableList<String> = mutableListOf()
 
-        fun build(): Class {
-            assert(simpleName!!.isNotBlank() && simpleName!!.isNotEmpty())
-            assert(qualifiedName!!.isNotBlank() && qualifiedName!!.isNotEmpty())
-            assert(documentation!!.isNotBlank() && documentation!!.isNotEmpty())
-
-            return Class(
-                annotations = annotations.toList(),
-                constructors = constructors.toList(),
-                isAbstract = isAbstract!!,
-                isCompanion = isCompanion!!,
-                isData = isData!!,
-                isFinal = isFinal!!,
-                isFun = isFun!!,
-                isInner = isInner!!,
-                isOpen = isOpen!!,
-                isSealed = isSealed!!,
-                isValue = isValue!!,
-                members = members.toList(),
-                nestedClasses = nestedClasses.toList(),
-                objectInstance = null,
-                qualifiedName = qualifiedName!!,
-                sealedSubclasses = sealedSubclasses.toList(),
-                simpleName = simpleName!!,
-                supertypes = supertypes.toList(),
-                typeParameters = typeParameters.toList(),
-                visibility = visibility!!,
-                documentation = documentation!!,
-                properties = properties.toList(),
-                supertypesSimpleNames = supertyesSimpleNames.toList()
-            )
-        }
-
-
-        fun supertypeSimpleName(value: String): Builder {
-            supertyesSimpleNames.add(value)
-
-            return this
-        }
-
-
-        fun property(value: Property): Builder {
-            properties.add(value)
-
-            return this
-        }
-
-
-        fun annotation(value: Annotation): Builder {
-            annotations.add(value)
-
-            return this
-        }
-
-
-        fun constructor(value: KFunction<Class>): Builder {
-            constructors.add(value)
-
-            return this
-        }
-
-
-        fun isAbstract(value: Boolean): Builder {
-            isAbstract = value
-
-            return this
-        }
-
-
-        fun isCompanion(value: Boolean): Builder {
-            isCompanion = value
-
-            return this
-        }
-
-
-        fun isData(value: Boolean): Builder {
-            isData = value
-
-            return this
-        }
-
-
-        fun isFinal(value: Boolean): Builder {
-            isFinal = value
-
-            return this
-        }
-
-
-        fun isFun(value: Boolean): Builder {
-            isFun = value
-
-            return this
-        }
-
-
-        fun isInner(value: Boolean): Builder {
-            isInner = value
-
-            return this
-        }
-
-
-        fun isOpen(value: Boolean): Builder {
-            isOpen = value
-
-            return this
-        }
-
-
-        fun isSealed(value: Boolean): Builder {
-            isSealed = value
-
-            return this
-        }
-
-
-        fun isValue(value: Boolean): Builder {
-            isValue = value
-
-            return this
-        }
-
-
-        fun member(value: KCallable<*>): Builder {
-            members.add(value)
-
-            return this
-        }
-
-
-        fun nestedClass(value: KClass<*>): Builder {
-            nestedClasses.add(value)
-
-            return this
-        }
-
-
-        fun qualifiedName(value: String): Builder {
-            qualifiedName = value
-
-            return this
-        }
-
-
-        fun sealedSubclasse(value: KClass<out Class>): Builder {
-            sealedSubclasses.add(value)
-
-            return this
-        }
-
-
-        fun simpleName(value: String): Builder {
-            simpleName = value
-
-            return this
-        }
-
-
-        fun supertype(value: KType): Builder {
-            supertypes.add(value)
-
-            return this
-        }
-
-
-        fun typeParameter(value: KTypeParameter): Builder {
-            typeParameters.add(value)
-
-            return this
-        }
-
-
-        fun visibility(value: KVisibility): Builder {
-            visibility = value
-
-            return this
-        }
-
-
-        fun documentation(value: String): Builder {
-            documentation = value
-
-            return this
-        }
-    }
 
     companion object {
         fun builder(): Builder = Builder()

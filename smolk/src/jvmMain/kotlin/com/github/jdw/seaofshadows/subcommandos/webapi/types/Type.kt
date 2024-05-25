@@ -11,81 +11,21 @@ class Type(
     override val isMarkedNullable: Boolean,
     val name: String
 ) : KType {
-    class Builder() {
-        private val annotations: MutableList<Annotation> = mutableListOf()
-        private val arguments: MutableList<KTypeProjection> = mutableListOf()
-        private var classifier: KClassifier? = null
-        private var isMarkedNullable: Boolean? = null
-        private var name: String? = null
-        private var ktype: KType? = null
-
-        fun build(): Type {
-            assert(name!!
-                .isNotBlank() && name!!.isNotEmpty())
-
-            return Type(
-                annotations.toList(),
-                arguments.toList(),
-                classifier,
-                isMarkedNullable!!,
-                name!!)
-        }
-
-
-        fun copyFromKType(value: KType): Builder {
-            with(value) {
-                annotations.forEach { annotation(it) }
-                arguments.forEach { argument(it) }
-                classifier?.let {  classifier(it) }
-                isMarkedNullable(isMarkedNullable)
-            }
-
-            with(name!!) {
-                NAME_TO_TYPE[this] = Type.ktypeToType(this, value)
-            }
-
-            return this
-        }
-
-
-        fun annotation(value: Annotation): Builder {
-            annotations.add(value)
-
-            return this
-        }
-
-
-        fun argument(value: KTypeProjection): Builder {
-            arguments.add(value)
-
-            return this
-        }
-
-
-        fun name(value: String): Builder {
-            name = value
-
-            return this
-        }
-
-
-        fun classifier(value: KClassifier): Builder {
-            classifier = value
-
-            return this
-        }
-
-
-        fun isMarkedNullable(value: Boolean): Builder {
-            isMarkedNullable = value
-
-            return this
-        }
+    class Builder {
+        val annotations: MutableList<Annotation> = mutableListOf()
+        val arguments: MutableList<KTypeProjection> = mutableListOf()
+        var classifier: KClassifier? = null
+        var isMarkedNullable: Boolean? = null
+        var name: String? = null
+        var ktype: KType? = null
     }
 
     companion object {
+        fun builder(): Builder = Builder()
         val NAME_TO_TYPE = mutableMapOf<String, Type>()
-        fun IDLNAME_TO_KTNAME(jsName: String): String {
+
+
+        fun IDLPIECE_TO_KTPIECE(jsName: String): String {
             val mapped = mapOf(
                 "boolean" to "Boolean",
                 "object" to "Any",
@@ -108,20 +48,16 @@ class Type(
         }
 
 
-        fun builder(): Builder = Builder()
-
-
         fun ktypeToType(name: String, other: KType): Type {
-            val typeBuilder = Type
-                .Builder()
-                .isMarkedNullable(other.isMarkedNullable)
-                .name(name)
+            val builder = Builder()
+                .apply { isMarkedNullable = other.isMarkedNullable }
+                .apply{ this.name = name }
 
-            other.classifier?.let { typeBuilder.classifier(other.classifier!!) }
-            other.arguments.forEach { typeBuilder.argument(it) }
-            other.annotations.forEach { typeBuilder.annotation(it) }
+            other.classifier?.let { builder.classifier = other.classifier }
+            other.arguments.forEach { builder.arguments.add(it) }
+            other.annotations.forEach { builder.annotations.add(it) }
 
-            return typeBuilder.build()
+            return builder.build()
         }
     }
 }

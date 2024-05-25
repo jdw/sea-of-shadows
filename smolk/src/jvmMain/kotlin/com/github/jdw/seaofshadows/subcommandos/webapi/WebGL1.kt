@@ -5,6 +5,7 @@ import com.github.jdw.seaofshadows.core.dom.Canvas
 import com.github.jdw.seaofshadows.subcommandos.webapi.rowhandlers.ClassRowHandler
 import com.github.jdw.seaofshadows.subcommandos.webapi.rowhandlers.InterfaceRowHandler
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Type
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.build
 import com.github.jdw.seaofshadows.webgl.shared.ArrayBuffer
 import com.github.jdw.seaofshadows.webgl.shared.ArrayBufferView
 import com.github.jdw.seaofshadows.webgl.shared.BufferDataSource

@@ -17,6 +17,6 @@ fun throws(vararg faults: Pair<String, Any>): Nothing {
         message += "$name = $value, "
     }
 
-    throw Exception("\uD83E\uDEE1 :: ${message.removeSuffix(", ")}")
+    throw Exception("\uD83E\uDEE1 ${message.removeSuffix(", ")}")
 }
 

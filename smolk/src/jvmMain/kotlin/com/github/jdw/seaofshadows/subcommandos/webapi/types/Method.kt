@@ -21,24 +21,46 @@ class Method(
     val myParameters: List<Parameter>,
     val problems: List<String>
 ): KCallable<Any> {
+    class Builder {
+        var parent: Interface.Builder? = null
+        val seeFurtherUrls: MutableSet<String> = mutableSetOf()
+        var documentation: String? = null
+        var annotations: MutableList<Annotation> = mutableListOf()
+        var isAbstract: Boolean? = null
+        var isFinal: Boolean? = null
+        var isOpen: Boolean? = null
+        var isSuspend: Boolean? = null
+        var name: String? = null
+        var parameters: MutableList<Parameter> = mutableListOf()
+        var returnType: KType? = null
+        var typeParameters: MutableList<KTypeParameter> = mutableListOf()
+        var visibility: KVisibility? = null
+        val problems: MutableList<String> = mutableListOf()
+    }
+
+
     override val parameters: List<KParameter>
         get() {
             return myParameters
         }
 
+
     override fun call(vararg args: Any?): Any {
         TODO("Not yet implemented")
     }
 
+
     override fun callBy(args: Map<KParameter, Any?>): Any {
         TODO("Not yet implemented")
     }
+
 
     override fun equals(other: Any?): Boolean {
         if (other !is Method) return false;
 
         return this.hashCode() == other.hashCode();
     }
+
 
     override fun hashCode(): Int {
         var result = seeFurtherUrls.hashCode()
@@ -57,131 +79,6 @@ class Method(
         return result
     }
 
-    class Builder {
-        val seeFurtherUrls: MutableSet<String> = mutableSetOf()
-        private var documentation: String? = null
-        private var annotations: MutableList<Annotation> = mutableListOf()
-        private var isAbstract: Boolean? = null
-        private var isFinal: Boolean? = null
-        private var isOpen: Boolean? = null
-        private var isSuspend: Boolean? = null
-        private var name: String? = null
-        private var parameters: MutableList<Parameter> = mutableListOf()
-        private var returnType: KType? = null
-        private var typeParameters: MutableList<KTypeParameter> = mutableListOf()
-        private var visibility: KVisibility? = null
-        private val problems: MutableList<String> = mutableListOf()
-
-        fun build(): Method {
-            assert(name!!.isNotBlank() && name!!.isNotEmpty())
-            assert(seeFurtherUrls.isNotEmpty())
-            seeFurtherUrls.forEach { url -> assert(url.isNotBlank() && url.isNotEmpty()) }
-            assert(documentation!!.isNotBlank() && documentation!!.isNotEmpty())
-
-            return Method(
-                seeFurtherUrls = seeFurtherUrls.toSet(),
-                documentation = documentation!!,
-                annotations = annotations.toList(),
-                isAbstract = isAbstract!!,
-                isFinal = isFinal!!,
-                isOpen = isOpen!!,
-                isSuspend = isSuspend!!,
-                name = name!!,
-                myParameters = parameters.toList(),
-                returnType = returnType!!,
-                typeParameters = typeParameters.toList(),
-                visibility = visibility,
-                problems = problems.toList()
-            )
-        }
-
-
-        fun nextParameterIndex(): Int = parameters.size
-
-
-        fun problem(value: String): Builder {
-            problems.add(value)
-
-            return this
-        }
-
-
-        fun url(value: String): Builder {
-            seeFurtherUrls.add(value)
-
-            return this
-        }
-
-
-        fun documentation(value: String): Builder {
-            documentation += value
-
-            return this
-        }
-
-
-        fun annotation(value: Annotation): Builder {
-            annotations.add(value)
-
-            return this
-        }
-
-
-        fun isAbstract(value: Boolean): Builder {
-            isAbstract = value
-            return this
-        }
-
-
-        fun isFinal(value: Boolean): Builder {
-            isFinal = value
-            return this
-        }
-
-
-        fun isOpen(value: Boolean): Builder {
-            isOpen = value
-            return this
-        }
-
-
-        fun isSuspend(value: Boolean): Builder {
-            isSuspend = value
-            return this
-        }
-
-
-        fun name(value: String): Builder {
-            name = value
-            return this
-        }
-
-
-        fun parameter(value: Parameter): Builder {
-            parameters.add(value)
-
-            return this
-        }
-
-
-        fun returnType(value: KType): Builder {
-            returnType = value
-            return this
-        }
-
-
-        fun typeParameter(value: KTypeParameter): Builder { //TODO What is this?
-            typeParameters.add(value)
-
-            return this
-        }
-
-
-        fun visibility(value: KVisibility): Builder {
-            visibility = value
-            return this
-        }
-    }
 
     companion object {
         fun builder(): Builder = Builder()

@@ -14,11 +14,26 @@ class Parameter(
     val documentation: String,
     val typeName: String
 ): KParameter {
+    class Builder {
+        var parent: Method.Builder? = null
+        var name: String? = null
+        var index: Int? = null
+        var annotations: MutableList<Annotation> = mutableListOf()
+        var isOptional: Boolean? = null
+        var isVararg: Boolean? = null
+        var kind: KParameter.Kind? = null
+        var type: KType? = null
+        var documentation: String? = null
+        var typeName: String? = null
+    }
+
+
     override fun equals(other: Any?): Boolean {
         if (other !is Parameter) return false
 
         return this.hashCode() == other.hashCode()
     }
+
 
     override fun hashCode(): Int {
         var result: Int = documentation.hashCode()
@@ -31,88 +46,6 @@ class Parameter(
         result = 31 * result + type.hashCode()
 
         return result
-    }
-
-    class Builder {
-        private var name: String? = null
-        private var index: Int? = null
-        private var annotations: MutableList<Annotation> = mutableListOf()
-        private var isOptional: Boolean? = null
-        private var isVararg: Boolean? = null
-        private var kind: KParameter.Kind? = null
-        private var type: KType? = null
-        private var documentation: String? = null
-        private var typeName: String? = null
-
-
-        fun build(): Parameter {
-            assert(name!!
-                .isNotBlank() && name!!.isNotEmpty())
-            assert(typeName!!
-                .isNotBlank() && typeName!!.isNotEmpty())
-
-            return Parameter(
-                annotations = annotations.toList(),
-                index = index!!,
-                isOptional = isOptional!!,
-                isVararg = isVararg!!,
-                kind = kind!!,
-                name = name!!,
-                type = type!!,
-                documentation = documentation!!,
-                typeName = typeName!!)
-        }
-
-
-        fun documentation(value: String): Builder {
-            documentation = value
-
-            return this
-        }
-
-
-        fun typeName(value: String): Builder {
-            typeName = value
-
-            return this
-        }
-
-
-        fun type(value: KType): Builder {
-            type = value
-            return this
-        }
-
-        fun kind(value: KParameter.Kind): Builder {
-            kind = value
-            return this
-        }
-
-        fun isVararg(value: Boolean): Builder {
-            isVararg = value
-            return this
-        }
-
-        fun isOptional(value: Boolean): Builder {
-            isOptional = value
-            return this
-        }
-
-        fun name(value: String): Builder {
-            this.name = value
-            return this
-        }
-
-        fun annotate(value: Annotation): Builder {
-            annotations.add(value)
-
-            return this
-        }
-
-        fun index(value: Int): Builder {
-            this.index = value
-            return this
-        }
     }
 
 
