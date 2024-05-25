@@ -1,5 +1,6 @@
 package com.github.jdw.seaofshadows
 
+import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
 import com.github.jdw.seaofshadows.utils.echt
 import fuel.HttpResponse
@@ -49,8 +50,20 @@ object Glob {
     }
 
 
+    fun fetchDocument(httpUrl: String): Document {
+        assert(httpUrl.startsWith("https://"))
+
+        if (urlToDocuments.containsKey(httpUrl)) return urlToDocuments[httpUrl]!!
+
+        val ret = Ksoup.parse(fetchCache(httpUrl))
+        urlToDocuments[httpUrl] = ret
+
+        return ret
+    }
+
+
     fun fetchCache(httpUrl: String): String {
-        //if (urlToDocuments.containsKey(httpUrl)) return urlToDocuments[httpUrl]!!
+        assert(httpUrl.startsWith("https://"))
 
         val path =
             if (httpUrl.endsWith(".html") || httpUrl.endsWith(".idl")) Path("$CACHE_BASE_PATH/${httpUrl.replace("https://", "").replace("http://","")}")

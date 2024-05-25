@@ -40,7 +40,7 @@ fun Method.Builder.fetchMozillaDocumentationUrl(): String {
     val baseUrl = "${Glob.MOZILLA_API_BASE_URL}/${parent!!.simpleName}".replace("WebGLRenderingContextBase", "WebGLRenderingContext")
     val methodUri: MutableSet<String> = mutableSetOf() //TODO Put on parent to only fetch once
 
-    with(Ksoup.parse(Glob.fetchCache(baseUrl))) {
+    with(Glob.fetchDocument(baseUrl)) {
         runBlocking {
             getElementsByTag("summary").asFlow().collect { summary ->
                 if (summary.html() == "Instance methods") {
@@ -60,7 +60,7 @@ fun Method.Builder.fetchMozillaDocumentationUrl(): String {
         methodUri.forEach { href ->
             if (href.contains(namePart)) {
                 val url =  "${Glob.MOZILLA_BASE_URL}${href}"
-                Glob.fetchCache(url)
+                Glob.fetchDocument(url)
 
                 return url
             }
@@ -78,7 +78,7 @@ fun Method.Builder.fetchDocumentation(): String {
         seeFurtherUrls.asFlow()
             .filter { it.contains(Glob.MOZILLA_API_BASE_URL) && it.contains(name!!)}
             .collect {
-                with(Ksoup.parse(Glob.fetchCache(it))) {
+                with(Glob.fetchDocument(it)) {
                     ret = getElementById("content")!!
                             .getElementsByClass("section-content").first()!!
                             .getElementsByTag("p")

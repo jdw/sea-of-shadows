@@ -1,11 +1,8 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
-import com.fleeksoft.ksoup.Ksoup
 import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.utils.echt
 import com.github.jdw.seaofshadows.utils.throws
-import kotlin.reflect.KParameter
-import kotlin.reflect.full.createType
 
 
 fun Parameter.Builder.build(): Parameter {
@@ -38,8 +35,7 @@ fun Parameter.Builder.fetchDocumentation(urls: Set<String>): String {
         .forEach { url ->
             assert(url.isNotBlank() && url.isNotEmpty())
 
-            val doc = Ksoup.parse(Glob.fetchCache(url))
-            val dt = doc.getElementById(name!!.lowercase())
+            val dt = Glob.fetchDocument(url).getElementById(name!!.lowercase())
                 ?: throws(
                     "name" to name!!,
                     "type" to typeName!!,
