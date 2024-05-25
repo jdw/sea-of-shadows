@@ -1,7 +1,11 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
+import com.github.jdw.seaofshadows.utils.echt
+import com.github.jdw.seaofshadows.utils.throws
+
 
 class PropertyBuilder {
+    val urls: MutableSet<String> = mutableSetOf()
     var mutable: Boolean? = null
     var name: String? = null
     var type: String? = null
@@ -16,8 +20,10 @@ class PropertyBuilder {
             if (null == defaultValue) throw IllegalStateException("A property can not be 'const' and not have a default value set!")
         }
 
+        (urls.isEmpty() && const!!).echt { throws() }
 
         return Property(
+            urls = urls.toSet(),
             type = type!!,
             name = name!!,
             mutable = mutable!!,

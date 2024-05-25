@@ -213,7 +213,7 @@ class Interface(override val annotations: List<Annotation>,
                 }
                 code.add(" *")
                 code.add(" * See further documentation:")
-                method.seeFurtherUrls.forEach { url ->
+                method.urls.forEach { url ->
                     val withinBrackets =
                         if (url.contains("mozilla")) "Mozilla's"
                         else if (url.contains("khronos")) "Khronos Group's"

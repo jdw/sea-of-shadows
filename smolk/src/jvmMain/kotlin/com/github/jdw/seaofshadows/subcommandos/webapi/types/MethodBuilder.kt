@@ -14,8 +14,7 @@ import kotlin.reflect.full.createType
 
 class MethodBuilder {
     var parent: InterfaceBuilder? = null
-    val seeFurtherUrls: MutableSet<String> = mutableSetOf()
-    var documentation: String? = null
+    val urls: MutableSet<String> = mutableSetOf()
     var annotations: MutableList<Annotation> = mutableListOf()
     var isAbstract: Boolean? = null
     var isFinal: Boolean? = null
@@ -31,13 +30,11 @@ class MethodBuilder {
 
     fun build(): Method {
         assert(name!!.isNotBlank() && name!!.isNotEmpty())
-        assert(seeFurtherUrls.isNotEmpty())
-        seeFurtherUrls.forEach { url -> assert(url.isNotBlank() && url.isNotEmpty()) }
-        assert(documentation!!.isNotBlank() && documentation!!.isNotEmpty())
+        assert(urls.isNotEmpty())
+        urls.forEach { url -> assert(url.isNotBlank() && url.isNotEmpty()) }
 
         return Method(
-            seeFurtherUrls = seeFurtherUrls.toSet(),
-            documentation = documentation!!,
+            urls = urls.toSet(),
             annotations = annotations.toList(),
             isAbstract = isAbstract!!,
             isFinal = isFinal!!,
@@ -74,26 +71,6 @@ class MethodBuilder {
     }
 
 
-    fun fetchDocumentation(): String {
-        var ret = ""
-
-        runBlocking {
-            seeFurtherUrls.asFlow()
-                .filter { it.contains(Glob.MOZILLA_API_BASE_URL) && it.contains(name!!) }
-                .collect {
-                    with(Glob.fetchDocument(it)) {
-                        ret = getElementById("content")!!
-                            .getElementsByClass("section-content").first()!!
-                            .getElementsByTag("p")
-                            .text()
-                    }
-                }
-        }
-
-        return ret
-    }
-
-
     fun handleOneRowMethodDeclarationWithParameters(row: String) {
         val splitOnLeftParantheses = row.split("(")
         if (splitOnLeftParantheses.size != 2) throw IllegalStateException("Row '$row' yielded ${splitOnLeftParantheses.size} pieces!")
@@ -121,17 +98,10 @@ class MethodBuilder {
 
             val parameter = Parameter.builder()
                 .apply { parent = builder }
+                .apply { urls.add(parent!!.urls.filter { it.contains(Glob.MOZILLA_API_BASE_URL) }.first()) }
                 .apply { type = Nothing::class.createType() }
                 .apply { name = parameterName }
                 .apply { typeName = Type.IDLPIECE_TO_KTPIECE(parameterType) }
-                .apply {
-                    documentation =
-                        try {
-                            fetchDocumentation(builder.seeFurtherUrls)
-                        } catch (e: Exception) {
-                            "TODO: Importing this parameters documentation caused troube!"
-                        }
-                }
                 .apply { index = parent!!.nextParameterIndex() }
                 .apply { isOptional = false }
                 .apply { isVararg = false }

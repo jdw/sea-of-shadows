@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.runBlocking
 
 open class BaseBuilder {
-    val seeFurtherUrls: MutableSet<String> = mutableSetOf()
+    val urls: MutableSet<String> = mutableSetOf()
     var simpleName: String? = null
-    fun getMozillaUrl(): String = seeFurtherUrls.filter { it.contains(Glob.MOZILLA_API_BASE_URL) }.first()
+    fun getMozillaUrl(): String = urls.filter { it.contains(Glob.MOZILLA_API_BASE_URL) }.first()
     val methodUris: MutableSet<String> = mutableSetOf()
         get() {
             if (field.isNotEmpty()) return field

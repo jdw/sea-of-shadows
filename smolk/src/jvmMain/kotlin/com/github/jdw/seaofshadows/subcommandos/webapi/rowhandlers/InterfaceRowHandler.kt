@@ -28,7 +28,7 @@ class InterfaceRowHandler {
             .apply { simpleName = name }
             .apply { qualifiedName = "$packag3.$name" }
             .apply { documentation = "TODO" }
-            .apply { seeFurtherUrls.add("${Glob.MOZILLA_API_BASE_URL}/${simpleName!!.replace("WebGLRenderingContextBase", "WebGLRenderingContext")}") }
+            .apply { urls.add("${Glob.MOZILLA_API_BASE_URL}/${simpleName!!.replace("WebGLRenderingContextBase", "WebGLRenderingContext")}") }
         currentInterfaceBuilder = builder
 
         var weHaveInheritance = -1
@@ -114,7 +114,7 @@ class InterfaceRowHandler {
         val builder = Method.builder()
             .apply { parent = currentInterfaceBuilder }
             .apply { name = methodName }
-            .apply { seeFurtherUrls.add(fetchMozillaDocumentationUrl()) }
+            .apply { urls.add(fetchMozillaDocumentationUrl()) }
             .apply { this.returnType = Type.builder()
                 .apply { isMarkedNullable = returnTypeIsNullable }
                 .apply { name = Type.IDLPIECE_TO_KTPIECE(returnTypeName) }
@@ -123,8 +123,6 @@ class InterfaceRowHandler {
             .apply { isOpen = false }
             .apply { isFinal = false }
             .apply { isAbstract = false }
-            .apply { documentation = fetchDocumentation() }
-
 
         if (methodRaw.contains("();")) {
             builder.handleOneRowMethodDeclarationWithoutMethodParameters();
@@ -171,7 +169,7 @@ class InterfaceRowHandler {
     }
 
 
-    fun handleConst(row: String) { //TODO Import comments from Mozilla
+    fun handleConst(row: String) {
         val pieces = row.split(" ").filter { it.isNotEmpty() && it.isNotBlank() }
 
         assert(pieces.size == 5)
@@ -182,6 +180,7 @@ class InterfaceRowHandler {
                 .apply { type = pieces[1] }
                 .apply { name = pieces[2] }
                 .apply { defaultValue = pieces[4].removeSuffix(";") }
+                .apply { urls.add("https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Constants") }
                 .build()
 
         currentInterfaceBuilder!!.properties.add(property)

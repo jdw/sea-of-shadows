@@ -1,5 +1,7 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
+import com.github.jdw.seaofshadows.Glob
+import com.github.jdw.seaofshadows.utils.throws
 import kotlin.reflect.KCallable
 import kotlin.reflect.KParameter
 import kotlin.reflect.KType
@@ -7,8 +9,7 @@ import kotlin.reflect.KTypeParameter
 import kotlin.reflect.KVisibility
 
 class Method(
-    val seeFurtherUrls: Set<String>,
-    val documentation: String,
+    val urls: Set<String>,
     override val annotations: List<Annotation>,
     override val isAbstract: Boolean,
     override val isFinal: Boolean,
@@ -21,6 +22,25 @@ class Method(
     val myParameters: List<Parameter>,
     val problems: List<String>
 ): KCallable<Any> {
+    var documentation: String = ""
+        get() {
+            if ("" != field) return field
+
+            val url = urls
+                .filter { it.contains(Glob.MOZILLA_API_BASE_URL) }
+                .apply { if (size != 1 ) throws() }
+                .first()
+
+            with(Glob.fetchDocument(url)) {
+                field = getElementById("content")!!
+                    .getElementsByClass("section-content").first()!!
+                    .getElementsByTag("p")
+                    .text()
+            }
+
+            return field
+        }
+
     override val parameters: List<KParameter>
         get() {
             return myParameters
@@ -45,7 +65,7 @@ class Method(
 
 
     override fun hashCode(): Int {
-        var result = seeFurtherUrls.hashCode()
+        var result = urls.hashCode()
         result = 31 * result + documentation.hashCode()
         result = 31 * result + annotations.hashCode()
         result = 31 * result + isAbstract.hashCode()

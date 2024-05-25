@@ -518,7 +518,7 @@ interface WebGLRenderingContextBase {
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/bufferData)
 	 *
 	 * @param target A [GLenum] specifying the binding point (target). Possible values: gl.ARRAY_BUFFER Buffer containing vertex attributes, such as vertex coordinates, texture coordinate data, or vertex color data. gl.ELEMENT_ARRAY_BUFFER Buffer used for element indices. When using a WebGL 2 context, the following values are available additionally: gl.COPY_READ_BUFFER Buffer for copying from one buffer object to another. gl.COPY_WRITE_BUFFER Buffer for copying from one buffer object to another. gl.TRANSFORM_FEEDBACK_BUFFER Buffer for transform feedback operations. gl.UNIFORM_BUFFER Buffer used for storing uniform blocks. gl.PIXEL_PACK_BUFFER Buffer used for pixel transfer operations. gl.PIXEL_UNPACK_BUFFER Buffer used for pixel transfer operations.
-	 * @param data TODO: Importing this parameters documentation caused troube!
+	 * @param data TODO: This parameters documentation import caused unspecified trouble!
 	 * @param usage A [GLenum] specifying the intended usage pattern of the data store for optimization purposes. Possible values: gl.STATIC_DRAW The contents are intended to be specified once by the application, and used many times as the source for WebGL drawing and image specification commands. gl.DYNAMIC_DRAW The contents are intended to be respecified repeatedly by the application, and used many times as the source for WebGL drawing and image specification commands. gl.STREAM_DRAW The contents are intended to be specified once by the application, and used at most a few times as the source for WebGL drawing and image specification commands. When using a WebGL 2 context, the following values are available additionally: gl.STATIC_READ The contents are intended to be specified once by reading data from WebGL, and queried many times by the application. gl.DYNAMIC_READ The contents are intended to be respecified repeatedly by reading data from WebGL, and queried many times by the application. gl.STREAM_READ The contents are intended to be specified once by reading data from WebGL, and queried at most a few times by the application gl.STATIC_COPY The contents are intended to be specified once by reading data from WebGL, and used many times as the source for WebGL drawing and image specification commands. gl.DYNAMIC_COPY The contents are intended to be respecified repeatedly by reading data from WebGL, and used many times as the source for WebGL drawing and image specification commands. gl.STREAM_COPY The contents are intended to be specified once by reading data from WebGL, and used at most a few times as the source for WebGL drawing and image specification commands.
 	 */
 	fun bufferData(target: GLenum, data: BufferDataSource, usage: GLenum)
@@ -531,8 +531,8 @@ interface WebGLRenderingContextBase {
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/bufferSubData)
 	 *
 	 * @param target A [GLenum] specifying the binding point (target). Possible values: gl.ARRAY_BUFFER Buffer containing vertex attributes, such as vertex coordinates, texture coordinate data, or vertex color data. gl.ELEMENT_ARRAY_BUFFER Buffer used for element indices. When using a WebGL 2 context, the following values are available additionally: gl.COPY_READ_BUFFER Buffer for copying from one buffer object to another. gl.COPY_WRITE_BUFFER Buffer for copying from one buffer object to another. gl.TRANSFORM_FEEDBACK_BUFFER Buffer for transform feedback operations. gl.UNIFORM_BUFFER Buffer used for storing uniform blocks. gl.PIXEL_PACK_BUFFER Buffer used for pixel transfer operations. gl.PIXEL_UNPACK_BUFFER Buffer used for pixel transfer operations.
-	 * @param offset TODO: Importing this parameters documentation caused troube!
-	 * @param data TODO: Importing this parameters documentation caused troube!
+	 * @param offset TODO: This parameters documentation import caused unspecified trouble!
+	 * @param data TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun bufferSubData(target: GLenum, offset: GLintptr, data: BufferDataSource)
 	
@@ -629,7 +629,7 @@ interface WebGLRenderingContextBase {
 	 * @param target A [GLenum] specifying the binding point (target) of the active texture. Possible values for compressedTexImage2D: gl.TEXTURE_2D: A two-dimensional texture. gl.TEXTURE_CUBE_MAP_POSITIVE_X: Positive X face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_X: Negative X face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_POSITIVE_Y: Positive Y face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_Y: Negative Y face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_POSITIVE_Z: Positive Z face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_Z: Negative Z face for a cube-mapped texture. Possible values for compressedTexImage3D: gl.TEXTURE_2D_ARRAY gl.TEXTURE_3D
 	 * @param level A [GLint] specifying the level of detail. Level 0 is the base image level and level n is the n-th mipmap reduction level.
 	 * @param internalformat A [GLenum] specifying the compressed image format. Compressed image formats must be enabled by WebGL extensions before using this method. All values are possible for compressedTexImage2D. See compressed texture formats for which are valid for compressedTexImage3D. Possible values: When using the WEBGL_compressed_texture_s3tc extension: ext.COMPRESSED_RGB_S3TC_DXT1_EXT ext.COMPRESSED_RGBA_S3TC_DXT1_EXT ext.COMPRESSED_RGBA_S3TC_DXT3_EXT ext.COMPRESSED_RGBA_S3TC_DXT5_EXT When using the WEBGL_compressed_texture_s3tc_srgb extension: ext.COMPRESSED_SRGB_S3TC_DXT1_EXT ext.COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT ext.COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT ext.COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT When using the WEBGL_compressed_texture_etc extension: ext.COMPRESSED_R11_EAC ext.COMPRESSED_SIGNED_R11_EAC ext.COMPRESSED_RG11_EAC ext.COMPRESSED_SIGNED_RG11_EAC ext.COMPRESSED_RGB8_ETC2 ext.COMPRESSED_RGBA8_ETC2_EAC ext.COMPRESSED_SRGB8_ETC2 ext.COMPRESSED_SRGB8_ALPHA8_ETC2_EAC ext.COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2 ext.COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2 When using the WEBGL_compressed_texture_pvrtc extension: ext.COMPRESSED_RGB_PVRTC_4BPPV1_IMG ext.COMPRESSED_RGBA_PVRTC_4BPPV1_IMG ext.COMPRESSED_RGB_PVRTC_2BPPV1_IMG ext.COMPRESSED_RGBA_PVRTC_2BPPV1_IMG When using the WEBGL_compressed_texture_etc1 extension: ext.COMPRESSED_RGB_ETC1_WEBGL When using the WEBGL_compressed_texture_astc extension: ext.COMPRESSED_RGBA_ASTC_4x4_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_4x4_KHR ext.COMPRESSED_RGBA_ASTC_5x4_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_5x4_KHR ext.COMPRESSED_RGBA_ASTC_5x5_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_5x5_KHR ext.COMPRESSED_RGBA_ASTC_6x5_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_6x5_KHR ext.COMPRESSED_RGBA_ASTC_6x6_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_6x6_KHR ext.COMPRESSED_RGBA_ASTC_8x5_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR ext.COMPRESSED_RGBA_ASTC_8x6_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_8x6_KHR ext.COMPRESSED_RGBA_ASTC_8x8_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR ext.COMPRESSED_RGBA_ASTC_10x5_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_10x5_KHR ext.COMPRESSED_RGBA_ASTC_10x6_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_10x6_KHR ext.COMPRESSED_RGBA_ASTC_10x10_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_10x10_KHR ext.COMPRESSED_RGBA_ASTC_12x10_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR ext.COMPRESSED_RGBA_ASTC_12x12_KHR ext.COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR When using the EXT_texture_compression_bptc extension: ext.COMPRESSED_RGBA_BPTC_UNORM_EXT ext.COMPRESSED_SRGB_ALPHA_BPTC_UNORM_EXT ext.COMPRESSED_RGB_BPTC_SIGNED_FLOAT_EXT ext.COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_EXT When using the EXT_texture_compression_rgtc extension: ext.COMPRESSED_RED_RGTC1_EXT ext.COMPRESSED_SIGNED_RED_RGTC1_EXT ext.COMPRESSED_RED_GREEN_RGTC2_EXT ext.COMPRESSED_SIGNED_RED_GREEN_RGTC2_EXT
-	 * @param data TODO: Importing this parameters documentation caused troube!
+	 * @param data TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun compressedTexImage2D(target: GLenum, level: GLint, internalformat: GLenum, data: ArrayBufferView)
 	
@@ -642,7 +642,7 @@ interface WebGLRenderingContextBase {
 	 *
 	 * @param target A [GLenum] specifying the binding point (target) of the active compressed texture. Possible values: gl.TEXTURE_2D: A two-dimensional texture. gl.TEXTURE_CUBE_MAP_POSITIVE_X: Positive X face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_X: Negative X face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_POSITIVE_Y: Positive Y face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_Y: Negative Y face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_POSITIVE_Z: Positive Z face for a cube-mapped texture. gl.TEXTURE_CUBE_MAP_NEGATIVE_Z: Negative Z face for a cube-mapped texture.
 	 * @param level A [GLint] specifying the level of detail. Level 0 is the base image level and level n is the n-th mipmap reduction level.
-	 * @param data TODO: Importing this parameters documentation caused troube!
+	 * @param data TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun compressedTexSubImage2D(target: GLenum, level: GLint, data: ArrayBufferView)
 	
@@ -671,8 +671,8 @@ interface WebGLRenderingContextBase {
 	 * @param level A [GLint] specifying the level of detail. Level 0 is the base image level and level n is the n-th mipmap reduction level.
 	 * @param xoffset A [GLint] specifying the horizontal offset within the texture image.
 	 * @param yoffset A [GLint] specifying the vertical offset within the texture image.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
 	 * @param width A [GLsizei] specifying the width of the texture.
 	 * @param height A [GLsizei] specifying the height of the texture.
 	 */
@@ -869,7 +869,7 @@ interface WebGLRenderingContextBase {
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/disable)
 	 *
-	 * @param cap TODO: Importing this parameters documentation caused troube!
+	 * @param cap TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun disable(cap: GLenum)
 	
@@ -1379,8 +1379,8 @@ interface WebGLRenderingContextBase {
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/readPixels)
 	 *
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
 	 * @param width A [GLsizei] specifying the width of the rectangle.
 	 * @param height A [GLsizei] specifying the height of the rectangle.
 	 * @param format A [GLenum] specifying the format of the pixel data. Possible values: gl.ALPHA Discards the red, green and blue components and reads the alpha component. gl.RGB Discards the alpha components and reads the red, green and blue components. gl.RGBA Red, green, blue and alpha components are read from the color buffer. WebGL2 adds gl.RED gl.RG gl.RED_INTEGER gl.RG_INTEGER gl.RGB_INTEGER gl.RGBA_INTEGER
@@ -1422,8 +1422,8 @@ interface WebGLRenderingContextBase {
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/scissor)
 	 *
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
 	 * @param width A non-negative [GLsizei] specifying the width of the scissor box. Default value: width of the canvas.
 	 * @param height A non-negative [GLsizei] specifying the height of the scissor box. Default value: height of the canvas.
 	 */
@@ -1545,13 +1545,13 @@ interface WebGLRenderingContextBase {
 	 * @param internalformat A [GLenum] specifying the color components in the texture. Possible values in both WebGL1 and WebGL2 Format Type Channels Bytes per pixel RGBA UNSIGNED_BYTE 4 4 RGB UNSIGNED_BYTE 3 3 RGBA UNSIGNED_SHORT_4_4_4_4 4 2 RGBA UNSIGNED_SHORT_5_5_5_1 4 2 RGB UNSIGNED_SHORT_5_6_5 3 2 LUMINANCE_ALPHA UNSIGNED_BYTE 2 2 LUMINANCE UNSIGNED_BYTE 1 1 ALPHA UNSIGNED_BYTE 1 1 Other possible values in WebGL2 for the versions of texImage2D that take a [TypedArray] or a [DataView], or a [GLint]ptr offset Sized Format Base Format R bits G bits B bits A bits Shared bits Color renderable Texture filterable R8 RED 8 ● ● R8_SNORM RED s8 ● RG8 RG 8 8 ● ● RG8_SNORM RG s8 s8 ● RGB8 RGB 8 8 8 ● ● RGB8_SNORM RGB s8 s8 s8 ● RGB565 RGB 5 6 5 ● ● RGBA4 RGBA 4 4 4 4 ● ● RGB5_A1 RGBA 5 5 5 1 ● ● RGBA8 RGBA 8 8 8 8 ● ● RGBA8_SNORM RGBA s8 s8 s8 s8 ● RGB10_A2 RGBA 10 10 10 2 ● ● RGB10_A2UI RGBA ui10 ui10 ui10 ui2 ● SRGB8 RGB 8 8 8 ● SRGB8_ALPHA8 RGBA 8 8 8 8 ● ● R16F RED f16 ● RG16F RG f16 f16 ● RGB16F RGB f16 f16 f16 ● RGBA16F RGBA f16 f16 f16 f16 ● R32F RED f32 RG32F RG f32 f32 RGB32F RGB f32 f32 f32 RGBA32F RGBA f32 f32 f32 f32 R11F_G11F_B10F RGB f11 f11 f10 ● RGB9_E5 RGB 9 9 9 5 ● R8I RED i8 ● R8UI RED ui8 ● R16I RED i16 ● R16UI RED ui16 ● R32I RED i32 ● R32UI RED ui32 ● RG8I RG i8 i8 ● RG8UI RG ui8 ui8 ● RG16I RG i16 i16 ● RG16UI RG ui16 ui16 ● RG32I RG i32 i32 ● RG32UI RG ui32 ui32 ● RGB8I RGB i8 i8 i8 RGB8UI RGB ui8 ui8 ui8 RGB16I RGB i16 i16 i16 RGB16UI RGB ui16 ui16 ui16 RGB32I RGB i32 i32 i32 RGB32UI RGB ui32 ui32 ui32 RGBA8I RGBA i8 i8 i8 i8 ● RGBA8UI RGBA ui8 ui8 ui8 ui8 ● RGBA16I RGBA i16 i16 i16 i16 ● RGBA16UI RGBA ui16 ui16 ui16 ui16 ● RGBA32I RGBA i32 i32 i32 i32 ● RGBA32UI RGBA ui32 ui32 ui32 ui32 ● Possible values in WebGL2 for the versions of texImage2D that take a texture an HTMLImageElement, [HTMLCanvasElement], HTMLVideoElement, ImageBitmap, or ImageData gl.ALPHA: Discards the red, green and blue components and reads the alpha component. gl.RGB: Discards the alpha components and reads the red, green and blue components. gl.RGBA: Red, green, blue and alpha components are read from the color buffer. gl.LUMINANCE: Each color component is a luminance component, alpha is 1.0. gl.LUMINANCE_ALPHA: Each component is a luminance/alpha component. When using the WEBGL_depth_texture extension: gl.DEPTH_COMPONENT gl.DEPTH_STENCIL When using the EXT_sRGB extension: ext.SRGB_EXT ext.SRGB_ALPHA_EXT When using a WebGL 2 context, the following values are available additionally: gl.R8 gl.R16F gl.R32F gl.R8UI gl.RG8 gl.RG16F gl.RG32F gl.RG8UI gl.RG16UI gl.RG32UI gl.RGB8 gl.SRGB8 gl.RGB565 gl.R11F_G11F_B10F gl.RGB9_E5 gl.RGB16F gl.RGB32F gl.RGB8UI gl.RGBA8 gl.SRGB8_ALPHA8 gl.RGB5_A1 gl.RGB10_A2 gl.RGBA4 gl.RGBA16F gl.RGBA32F gl.RGBA8UI
 	 * @param format A [GLenum] specifying the format of the texel data. In WebGL 1, this must be the same as internalformat (see above). in WebGL 2, the combinations are listed in this table.
 	 * @param type A [GLenum] specifying the data type of the texel data. Possible values: gl.UNSIGNED_BYTE: 8 bits per channel for gl.RGBA gl.UNSIGNED_SHORT_5_6_5: 5 red bits, 6 green bits, 5 blue bits. gl.UNSIGNED_SHORT_4_4_4_4: 4 red bits, 4 green bits, 4 blue bits, 4 alpha bits. gl.UNSIGNED_SHORT_5_5_5_1: 5 red bits, 5 green bits, 5 blue bits, 1 alpha bit. When using the WEBGL_depth_texture extension: gl.UNSIGNED_SHORT gl.UNSIGNED_INT ext.UNSIGNED_INT_24_8_WEBGL (constant provided by the extension) When using the OES_texture_float extension: gl.FLOAT When using the OES_texture_half_float extension: ext.HALF_FLOAT_OES (constant provided by the extension) When using a WebGL 2 context, the following values are available additionally: gl.BYTE gl.UNSIGNED_SHORT gl.SHORT gl.UNSIGNED_INT gl.INT gl.HALF_FLOAT gl.FLOAT gl.UNSIGNED_INT_2_10_10_10_REV gl.UNSIGNED_INT_10F_11F_11F_REV gl.UNSIGNED_INT_5_9_9_9_REV gl.UNSIGNED_INT_24_8 gl.FLOAT_32_UNSIGNED_INT_24_8_REV (pixels must be null)
-	 * @param source TODO: Importing this parameters documentation caused troube!
+	 * @param source TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun texImage2D(target: GLenum, level: GLint, internalformat: GLenum, format: GLenum, type: GLenum, source: TexImageSource)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].texParameter[fi]() methods of the WebGL API set texture parameters.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/texParameter)
@@ -1564,7 +1564,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].texParameter[fi]() methods of the WebGL API set texture parameters.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/texParameter)
@@ -1605,313 +1605,313 @@ interface WebGLRenderingContextBase {
 	 * @param yoffset A [GLint] specifying the lower left texel y coordinate of a width-wide by height-wide rectangular subregion of the texture array.
 	 * @param format A [GLenum] specifying the format of the texel data. Possible values: gl.ALPHA: Discards the red, green and blue components and reads the alpha component. gl.RGB: Discards the alpha components and reads the red, green and blue components. gl.RGBA: Red, green, blue and alpha components are read from the color buffer. gl.LUMINANCE: Each color component is a luminance component, alpha is 1.0. gl.LUMINANCE_ALPHA: Each component is a luminance/alpha component. When using the EXT_sRGB extension: ext.SRGB_EXT ext.SRGB_ALPHA_EXT When using a WebGL 2 context, the following values are available additionally: gl.RED gl.RG gl.RED_INTEGER gl.RG_INTEGER gl.RGB_INTEGER gl.RGBA_INTEGER
 	 * @param type A [GLenum] specifying the data type of the texel data. Possible values: gl.UNSIGNED_BYTE: 8 bits per channel for gl.RGBA gl.UNSIGNED_SHORT_5_6_5: 5 red bits, 6 green bits, 5 blue bits. gl.UNSIGNED_SHORT_4_4_4_4: 4 red bits, 4 green bits, 4 blue bits, 4 alpha bits. gl.UNSIGNED_SHORT_5_5_5_1: 5 red bits, 5 green bits, 5 blue bits, 1 alpha bit. When using the OES_texture_float extension: gl.FLOAT When using the OES_texture_half_float extension: gl.HALF_FLOAT_OES When using a WebGL 2 context, the following values are available additionally: gl.BYTE gl.UNSIGNED_SHORT gl.SHORT gl.UNSIGNED_INT gl.INT gl.HALF_FLOAT gl.FLOAT gl.UNSIGNED_INT_2_10_10_10_REV gl.UNSIGNED_INT_10F_11F_11F_REV gl.UNSIGNED_INT_5_9_9_9_REV gl.UNSIGNED_INT_24_8 gl.FLOAT_32_UNSIGNED_INT_24_8_REV (pixels must be null)
-	 * @param source TODO: Importing this parameters documentation caused troube!
+	 * @param source TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: TexImageSource)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform1f(location: WebGLUniformLocation, v0: GLfloat)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform1fv(location: WebGLUniformLocation, value: Float32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform1fv(location: WebGLUniformLocation, value: List<GLfloat>)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform1i(location: WebGLUniformLocation, v0: GLint)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform1iv(location: WebGLUniformLocation, value: Int32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform1iv(location: WebGLUniformLocation, value: List<Long>)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform2f(location: WebGLUniformLocation, v0: GLfloat, v1: GLfloat)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform2fv(location: WebGLUniformLocation, value: Float32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform2fv(location: WebGLUniformLocation, value: List<GLfloat>)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform2i(location: WebGLUniformLocation, v0: GLint, v1: GLint)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform2iv(location: WebGLUniformLocation, value: Int32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform2iv(location: WebGLUniformLocation, value: List<Long>)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
-	 * @param v2 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v2 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform3f(location: WebGLUniformLocation, v0: GLfloat, v1: GLfloat, v2: GLfloat)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform3fv(location: WebGLUniformLocation, value: Float32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform3fv(location: WebGLUniformLocation, value: List<GLfloat>)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
-	 * @param v2 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v2 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform3i(location: WebGLUniformLocation, v0: GLint, v1: GLint, v2: GLint)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform3iv(location: WebGLUniformLocation, value: Int32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform3iv(location: WebGLUniformLocation, value: List<Long>)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
-	 * @param v2 TODO: Importing this parameters documentation caused troube!
-	 * @param v3 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v2 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v3 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform4f(location: WebGLUniformLocation, v0: GLfloat, v1: GLfloat, v2: GLfloat, v3: GLfloat)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform4fv(location: WebGLUniformLocation, value: Float32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform4fv(location: WebGLUniformLocation, value: List<GLfloat>)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
-	 * @param v2 TODO: Importing this parameters documentation caused troube!
-	 * @param v3 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v2 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v3 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform4i(location: WebGLUniformLocation, v0: GLint, v1: GLint, v2: GLint, v3: GLint)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform4iv(location: WebGLUniformLocation, value: Int32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniform[1234][fi][v]() methods of the WebGL API specify values of uniform variables. All active uniform variables defined in a program object are initialized to 0 when the program object is linked successfully. They retain the values assigned to them by a call to this method until the next successful link operation occurs on the program object, when they are once again initialized to 0. Note: Many of the functions described here have expanded WebGL 2 interfaces, which can be found under WebGL2RenderingContext.uniform[1234][uif][v]().
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniform)
 	 *
 	 * @param location A [WebGLUniformLocation] object containing the location of the uniform attribute to modify.
-	 * @param value TODO: Importing this parameters documentation caused troube!
+	 * @param value TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun uniform4iv(location: WebGLUniformLocation, value: List<Long>)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -1924,7 +1924,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -1937,7 +1937,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -1950,7 +1950,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -1963,7 +1963,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -1976,7 +1976,7 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].uniformMatrix[234]fv() methods of the WebGL API specify matrix values for uniform variables. The three versions of this method (uniformMatrix2fv(), uniformMatrix3fv(), and uniformMatrix4fv()) take as the input value 2-component, 3-component, and 4-component square matrices, respectively. They are expected to have 4, 9 or 16 floats.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/uniformMatrix)
@@ -2011,151 +2011,151 @@ interface WebGLRenderingContextBase {
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib1f(index: GLuint, v0: GLfloat)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values TODO: Importing this parameters documentation caused troube!
+	 * @param values TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib1fv(index: GLuint, values: Float32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values TODO: Importing this parameters documentation caused troube!
+	 * @param values TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib1fv(index: GLuint, values: List<GLfloat>)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib2f(index: GLuint, v0: GLfloat, v1: GLfloat)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values TODO: Importing this parameters documentation caused troube!
+	 * @param values TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib2fv(index: GLuint, values: Float32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values TODO: Importing this parameters documentation caused troube!
+	 * @param values TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib2fv(index: GLuint, values: List<GLfloat>)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
-	 * @param v2 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v2 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib3f(index: GLuint, v0: GLfloat, v1: GLfloat, v2: GLfloat)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values TODO: Importing this parameters documentation caused troube!
+	 * @param values TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib3fv(index: GLuint, values: Float32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values TODO: Importing this parameters documentation caused troube!
+	 * @param values TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib3fv(index: GLuint, values: List<GLfloat>)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
-	 * @param v2 TODO: Importing this parameters documentation caused troube!
-	 * @param v3 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v2 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v3 TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib4f(index: GLuint, v0: GLfloat, v1: GLfloat, v2: GLfloat, v3: GLfloat)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values TODO: Importing this parameters documentation caused troube!
+	 * @param values TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib4fv(index: GLuint, values: Float32Array)
 	
 	
 	/**
-	 * 
+	 * The [WebGLRenderingContext].vertexAttrib[1234]f[v]() methods of the WebGL API specify constant values for generic vertex attributes.
 	 *
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/vertexAttrib)
 	 *
 	 * @param index A [GLuint] specifying the position of the vertex attribute to be modified.
-	 * @param values TODO: Importing this parameters documentation caused troube!
+	 * @param values TODO: This parameters documentation import caused unspecified trouble!
 	 */
 	fun vertexAttrib4fv(index: GLuint, values: List<GLfloat>)
 	
@@ -2182,8 +2182,8 @@ interface WebGLRenderingContextBase {
 	 * See further documentation:
 	 * * [Mozilla's](https://developer.mozilla.org/en-US/docs/Web/API/[WebGLRenderingContext]/viewport)
 	 *
-	 * @param v0 TODO: Importing this parameters documentation caused troube!
-	 * @param v1 TODO: Importing this parameters documentation caused troube!
+	 * @param v0 TODO: This parameters documentation import caused unspecified trouble!
+	 * @param v1 TODO: This parameters documentation import caused unspecified trouble!
 	 * @param width A non-negative [GLsizei] specifying the width of the viewport. Default value: width of the canvas.
 	 * @param height A non-negative [GLsizei] specifying the height of the viewport. Default value: height of the canvas.
 	 */
