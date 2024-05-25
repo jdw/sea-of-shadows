@@ -1,7 +1,7 @@
 package com.github.jdw.seaofshadows
 
-import com.fleeksoft.ksoup.Ksoup
-import com.fleeksoft.ksoup.nodes.Element
+import com.fleeksoft.ksoup.nodes.Document
+import com.github.jdw.seaofshadows.utils.echt
 import fuel.HttpResponse
 import fuel.httpGet
 import kotlinx.coroutines.runBlocking
@@ -21,14 +21,15 @@ object Glob {
     val WEBGL2_VERSION: String by loadProperties("gradle.properties")
     val KHRONOS_WEBGL1_IDL = loadProperties("gradle.properties").getProperty("KHRONOS_WEBGL1_IDL").replace("{WEBGL1_VERSION}", WEBGL1_VERSION)
     val KHRONOS_WEBGL2_IDL = loadProperties("gradle.properties").getProperty("KHRONOS_WEBGL2_IDL").replace("{WEBGL2_VERSION}", WEBGL2_VERSION)
+    val CACHE_BASE_PATH: String by loadProperties("gradle.properties")
 
     var verbose = false
+    private val urlToDocuments: MutableMap<String, Document> = mutableMapOf()
 
-    fun debug(msg: String) {
-        if (verbose) println(msg)
-    }
+    fun debug(msg: String) = verbose.echt { println(msg) }
 
-    fun isValidKotlinIdentifier(name: String): Boolean {
+
+    fun isValidKotlinIdentifier(name: String): Boolean { //TODO Move to General.kt
         val keywords = listOf(
             "abstract", "as", "break", "by", "catch", "class", "continue", "const",
             "constructor", "crossinline", "data", "do", "else", "enum", "extends", "external",
@@ -47,12 +48,13 @@ object Glob {
         return !keywords.contains(name) // Check against reserved keywords (uppercase for case-insensitivity)
     }
 
+
     fun fetchCache(httpUrl: String): String {
-        val cacheBasePath = "cache"
+        //if (urlToDocuments.containsKey(httpUrl)) return urlToDocuments[httpUrl]!!
 
         val path =
-            if (httpUrl.endsWith(".html") || httpUrl.endsWith(".idl")) Path("$cacheBasePath/${httpUrl.replace("https://", "").replace("http://","")}")
-            else Path("$cacheBasePath/${httpUrl.replace("https://", "").replace("http://","")}.html")
+            if (httpUrl.endsWith(".html") || httpUrl.endsWith(".idl")) Path("$CACHE_BASE_PATH/${httpUrl.replace("https://", "").replace("http://","")}")
+            else Path("$CACHE_BASE_PATH/${httpUrl.replace("https://", "").replace("http://","")}.html")
 
         return if (!path.exists()) {
             path.createParentDirectories()

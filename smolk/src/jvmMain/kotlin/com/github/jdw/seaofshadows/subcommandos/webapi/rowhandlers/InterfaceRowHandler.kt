@@ -186,7 +186,7 @@ class InterfaceRowHandler {
                 .apply { const = true }
                 .apply { type = pieces[1] }
                 .apply { name = pieces[2] }
-                .apply { defaultValue = pieces[4].apply { removeSuffix(";") } }
+                .apply { defaultValue = pieces[4].removeSuffix(";") }
                 .build()
 
         currentInterfaceBuilder!!.properties.add(property)
