@@ -107,7 +107,7 @@ class WebGL1(val path: File) {
                     "void", "object?", "WebGLShader?", "WebGLShaderPrecisionFormat?", "Float32Array", "sequence<GLfloat>",
                     "GLboolean" -> {
                         if (irh.isHandlingMethod()) irh.handleOngoingMethod(rowTrimmed) // Multiline method definition
-                        else irh.handleMethod(rowTrimmed, crh.classes.toMap(), javascriptTypes.toMap()) // First piece is a return type of a new method
+                        else irh.handleMethod(rowTrimmed) // First piece is a return type of a new method
                     }
                     else -> throw Exception("Unhandled first word '$firstPiece'!")
                 }

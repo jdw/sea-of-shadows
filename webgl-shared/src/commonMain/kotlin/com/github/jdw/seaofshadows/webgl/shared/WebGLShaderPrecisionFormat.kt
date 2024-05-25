@@ -2,7 +2,7 @@ package com.github.jdw.seaofshadows.webgl.shared
 
 
 /**
- * hej
+ * SiC
  */
 interface WebGLShaderPrecisionFormat {
 	val rangeMin: GLint

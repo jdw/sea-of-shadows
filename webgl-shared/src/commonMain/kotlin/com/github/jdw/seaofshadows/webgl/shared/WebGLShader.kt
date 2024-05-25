@@ -2,6 +2,6 @@ package com.github.jdw.seaofshadows.webgl.shared
 
 
 /**
- * hej
+ * SiC
  */
 interface WebGLShader: WebGLObject

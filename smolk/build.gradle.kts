@@ -27,6 +27,7 @@ kotlin {
     sourceSets {
         val jvmMain by getting {
             dependencies {
+                implementation(project(":shared"))
                 implementation(project(":seaofshadows-core"))
                 implementation(project(":webgl-shared"))
 

@@ -2,7 +2,7 @@ package com.github.jdw.seaofshadows.webgl.shared
 
 
 /**
- * hej
+ * SiC
  */
 interface WebGLContextEvent: Event {
 	val statusMessage: DOMString

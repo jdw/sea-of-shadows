@@ -18,6 +18,7 @@ pluginManagement {
     }
 }
 
+include(":shared")
 include(":core")
 include(":webgl-shared")
 include(":webgl1-server-side")

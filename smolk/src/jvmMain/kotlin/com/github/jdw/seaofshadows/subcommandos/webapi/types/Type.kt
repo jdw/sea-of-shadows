@@ -96,7 +96,12 @@ class Type(
                 "sequence<GLfloat>" to "List<GLfloat>",
                 "sequence<long>" to "List<Long>",
                 "dictionary" to "class",
-                "indx" to "index")
+                "indx" to "index",
+                "v" to "value",
+                "x" to "v0",
+                "y" to "v1",
+                "z" to "v2",
+                "w" to "v3")
 
             return mapped[jsName]
                 ?: jsName

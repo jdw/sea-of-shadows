@@ -5,6 +5,7 @@ import com.fleeksoft.ksoup.nodes.Element
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.arguments.argument
 import com.github.ajalt.clikt.parameters.arguments.validate
+import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
 import com.github.ajalt.clikt.parameters.types.file
@@ -12,12 +13,15 @@ import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.subcommandos.webapi.WebGL1
 import com.github.jdw.seaofshadows.subcommandos.webapi.WebGL2
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Method
+import com.github.jdw.seaofshadows.utils.doch
+import com.github.jdw.seaofshadows.utils.echt
+import com.github.jdw.seaofshadows.utils.throws
 import kotlinx.coroutines.runBlocking
 import java.io.File
 import kotlin.system.exitProcess
 
 
-class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from ${Glob.MOZILLA_API_BASE_URL} to local Kotlin files and classes.") {
+class Webapi(): CliktCommand(help="Import Khronos and Mozilla WebAPI documentation from ${Glob.MOZILLA_API_BASE_URL} to local Kotlin files and classes.") {
     val supportedApis: Set<String> = setOf("WebGL1", "WebGL2")
     val api by argument(help = "The APIs listed at the aforementioned site but without spaces and kept capitalization. ${supportedApis.supportedValues('<' to '>', '|')}.")
         .validate {
@@ -26,17 +30,10 @@ class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from ${Gl
             }
         }
     val path by option("-p", "--path", help = "The path to write generated Kotlin files to.").file(canBeDir = true, mustExist = true).required()
-
+    val delete by option("-d", "--delete", help = "Delete the already imported files in the path.").flag()
 
     override fun run() {
-//        val files = path.list()!!
-//        for (idx in files.indices) {
-//            val fileName = files[idx]
-//            val file = File("${path.path}/$fileName")
-//            val contains = file.readLines().any { it.contains("//PROTECT_FROM_AUTODELETE") }
-//
-//            if (!contains) file.delete()
-//        }
+        handleDeletion()
 
         runBlocking {
             when (api) {
@@ -53,9 +50,23 @@ class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from ${Gl
     }
 
 
+    private fun handleDeletion() {
+        delete.echt {
+            val files = path.list()!!.forEach { fileName: String ->
+                with(File("${path.path}/$fileName")) {
+                    readLines()
+                        .any { it.contains("//PROTECT_FROM_AUTODELETE") }
+                        .echt { delete() }
+                        .doch { Glob.debug("Did not delete '${this.name}'...") }
+                }
+            }
+        }
+    }
+
+
     companion object {
-        fun figureOutMethodDocumentationUrl(nameRaw: String): String {
-            val baseUrl = "${Glob.MOZILLA_API_BASE_URL}/WebGLRenderingContext"
+        fun figureOutMethodDocumentationUrl(interfaze: String, nameRaw: String): String {
+            val baseUrl = "${Glob.MOZILLA_API_BASE_URL}/$interfaze".replace("WebGLRenderingContextBase", "WebGLRenderingContext")
             val doc = Ksoup.parse(Glob.fetchCache(baseUrl))
 
             var listOfMethods: Element? = null
@@ -81,46 +92,49 @@ class Webapi(): CliktCommand(help="Export Mozilla WebAPI documentation from ${Gl
                 }
             }
 
-            throw IllegalStateException("Could not find documentation URL for '$nameRaw'!")
+            throw IllegalStateException("Could not find documentation URL for '$interfaze/$nameRaw'!")
         }
 
 
-        fun fetchMethodDocumentation(mozillaUrl: String, methodName: String): String {
-            val doc = Ksoup.parse(Glob.fetchCache(mozillaUrl))
-
-            val ret = doc.getElementById("content")!!
-                .getElementsByClass("section-content").first()!!
-                .getElementsByTag("p")
-                .text()
-
-            return ret
-        }
+        fun fetchMethodDocumentation(mozillaUrl: String, methodBuilder: Method.Builder) {
+            with(Ksoup.parse(Glob.fetchCache(mozillaUrl))) {
+                methodBuilder.documentation(
+                    getElementById("content")!!
+                        .getElementsByClass("section-content").first()!!
+                        .getElementsByTag("p")
+                        .text()) } }
 
 
-        fun fetchParameterDocumentation(parameterName: String, parameterType: String, url: String): String {
-            assert(url.isNotBlank() && url.isNotEmpty())
-            assert(parameterName.isNotEmpty())
-            assert(parameterName.isNotBlank())
+        fun fetchParameterDocumentation(parameterName: String, parameterType: String, urls: Set<String>): String {
+            urls
+                .filter { it.contains(Glob.MOZILLA_BASE_URL) }
+                .apply { isEmpty().echt { throws() } }
+                .apply { if (this.size != 1) throws() }
+                .forEach { url ->
+                    assert(url.isNotBlank() && url.isNotEmpty())
+                    assert(parameterName.isNotEmpty())
+                    assert(parameterName.isNotBlank())
 
+                    val doc = Ksoup.parse(Glob.fetchCache(url))
+                    val dt = doc.getElementById(parameterName.lowercase())
+                        ?: throws(
+                            "parameterName" to parameterName,
+                            "parameterType" to parameterType,
+                            "url" to url
+                        ) //throw NullPointerException("Parameter '$parameterName' with type '$parameterType' non-existent for '$url'!")
 
-            val doc = Ksoup.parse(Glob.fetchCache(url))
-            val dt = doc.getElementById(parameterName.lowercase())
-                ?: throw NullPointerException("Parameter '$parameterName' with type ${parameterType} non-existent for '${url}'!")
+                    val dd = dt.nextElementSibling()!!
 
-            val dd = dt
-                .nextElementSibling()!!
+                    assert(dd.tagName() == "dd")
 
-            assert(dd.tagName() == "dd")
+                    return dd.text()
+                }
 
-            return dd.html()
-        }
-    }
+            throws() } }
 }
 
 fun Set<String>.supportedValues(edges: Pair<Char, Char>, separator: Char = ','): String {
-    if (this.isEmpty()) {
-        return ""
-    }
+    if (this.isEmpty()) return ""
 
     var ret = "${edges.first}"
     this.forEach {

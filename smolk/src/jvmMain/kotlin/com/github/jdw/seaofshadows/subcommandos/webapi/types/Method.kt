@@ -7,7 +7,7 @@ import kotlin.reflect.KTypeParameter
 import kotlin.reflect.KVisibility
 
 class Method(
-    val url: String,
+    val seeFurtherUrls: Set<String>,
     val documentation: String,
     override val annotations: List<Annotation>,
     override val isAbstract: Boolean,
@@ -41,7 +41,7 @@ class Method(
     }
 
     override fun hashCode(): Int {
-        var result = url.hashCode()
+        var result = seeFurtherUrls.hashCode()
         result = 31 * result + documentation.hashCode()
         result = 31 * result + annotations.hashCode()
         result = 31 * result + isAbstract.hashCode()
@@ -58,7 +58,7 @@ class Method(
     }
 
     class Builder {
-        var url: String? = null
+        val seeFurtherUrls: MutableSet<String> = mutableSetOf()
         private var documentation: String? = null
         private var annotations: MutableList<Annotation> = mutableListOf()
         private var isAbstract: Boolean? = null
@@ -74,11 +74,12 @@ class Method(
 
         fun build(): Method {
             assert(name!!.isNotBlank() && name!!.isNotEmpty())
-            assert(url!!.isNotBlank() && url!!.isNotEmpty())
+            assert(seeFurtherUrls.isNotEmpty())
+            seeFurtherUrls.forEach { url -> assert(url.isNotBlank() && url.isNotEmpty()) }
             assert(documentation!!.isNotBlank() && documentation!!.isNotEmpty())
 
             return Method(
-                url = url!!,
+                seeFurtherUrls = seeFurtherUrls.toSet(),
                 documentation = documentation!!,
                 annotations = annotations.toList(),
                 isAbstract = isAbstract!!,
@@ -89,7 +90,7 @@ class Method(
                 myParameters = parameters.toList(),
                 returnType = returnType!!,
                 typeParameters = typeParameters.toList(),
-                visibility = visibility!!,
+                visibility = visibility,
                 problems = problems.toList()
             )
         }
@@ -106,7 +107,7 @@ class Method(
 
 
         fun url(value: String): Builder {
-            url = value
+            seeFurtherUrls.add(value)
 
             return this
         }

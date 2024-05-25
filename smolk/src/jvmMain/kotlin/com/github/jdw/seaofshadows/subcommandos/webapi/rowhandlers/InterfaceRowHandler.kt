@@ -10,7 +10,6 @@ import com.github.jdw.seaofshadows.subcommandos.webapi.types.Property
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Type
 import kotlin.reflect.KClass
 import kotlin.reflect.KParameter
-import kotlin.reflect.KVisibility
 import kotlin.reflect.full.createType
 
 typealias Kaka = List<String>
@@ -29,34 +28,33 @@ class InterfaceRowHandler {
             if (pieces[1] == "mixin") pieces[2]
             else pieces[1]
         val builder = Interface.builder()
-            .simpleName(name)
-            .qualifiedName("$packag3.$name")
-            .documentation("hej")
-            .visibility(KVisibility.PUBLIC)
+            .apply { simpleName = name }
+            .apply { qualifiedName = "$packag3.$name" }
+            .apply { documentation = "SiC" }
         currentInterfaceBuilder = builder
 
-        var weHaveSuperTypes = -1
+        var weHaveInheritance = -1
         for (idx in pieces.indices) {
             if (pieces[idx].equals(":")) {
-                weHaveSuperTypes = idx
+                weHaveInheritance = idx
                 break
             }
         }
 
-        if (-1 != weHaveSuperTypes)
-            (weHaveSuperTypes..< pieces.size)
+        if (-1 != weHaveInheritance)
+            (weHaveInheritance..< pieces.size)
                 .filter { Glob.isValidKotlinIdentifier(pieces[it]) }
                 .forEach { // Maintain same order as in IDL file
                     val supertypeName = pieces[it].replace(",", "")
 
                     if (interfaces.containsKey(supertypeName)) {
                         val interfaze = interfaces[supertypeName]!!
-                        builder.supertypeSimpleName(interfaze.simpleName!!)
+                        builder.supertypeNames.add(interfaze.simpleName!!)
                     }
                     else if (predefinedSupertypes.containsKey(supertypeName)) {
                         val clazz = predefinedSupertypes[supertypeName]!!
-                        builder.import(clazz)
-                        builder.supertypeSimpleName(clazz.simpleName!!)
+                        builder.apply { imports.add(clazz) }
+                            .apply { supertypeNames.add(clazz.simpleName!!) }
                     }
                     else {
                         throw Exception("Supertype '$supertypeName' unknown!")
@@ -97,16 +95,14 @@ class InterfaceRowHandler {
             builder.name(block.removeSuffix(";"))
         }
 
-        currentInterfaceBuilder!!.property(builder.build())
+        currentInterfaceBuilder!!.properties.add(builder.build())
     }
 
 
     fun isActive() = currentInterfaceBuilder != null
 
 
-    fun handleMethod(row: String,
-                     classes: Map<String, Class>,
-                     javascriptTypes: Map<String, KClass<*>>) {
+    fun handleMethod(row: String) {
         val pieces = row.split(" ").toMutableList()
 
         if ("[WebGLHandlesContextLoss]" == pieces[0]) pieces.removeFirst()
@@ -115,11 +111,9 @@ class InterfaceRowHandler {
         val returnTypeName = returnTypeRaw.removeSuffix("?")
         val returnTypeIsNullable = returnTypeRaw.trim().endsWith("?")
         val methodRaw = pieces[1]
+        val methodUrl = Webapi.figureOutMethodDocumentationUrl(currentInterfaceBuilder!!.simpleName!!, methodRaw.split("(").first())
 
-        val methodUrl = Webapi.figureOutMethodDocumentationUrl(methodRaw.split("(").first())
-
-        val methodBuilder = Method
-            .builder()
+        val methodBuilder = Method.builder()
             .name(methodRaw.split("(").first())
             .returnType(
                 Type
@@ -128,16 +122,17 @@ class InterfaceRowHandler {
                     .name(Type.IDLNAME_TO_KTNAME(returnTypeName))
                     .build())
             .url(methodUrl)
-            .documentation(Webapi.fetchMethodDocumentation(methodUrl, methodRaw.split("(").first()))
-            .visibility(KVisibility.PUBLIC)
             .isSuspend(false)
             .isOpen(false)
             .isFinal(false)
             .isAbstract(false)
 
+            Webapi.fetchMethodDocumentation(methodUrl, methodBuilder)
+
+
         if (methodRaw.contains("();")) {
             handleOneRowMethodDeclarationWithoutMethodParameters(methodBuilder);
-            currentInterfaceBuilder!!.member(methodBuilder.build())
+            currentInterfaceBuilder!!.members.add(methodBuilder.build())
 
             return
         }
@@ -145,7 +140,7 @@ class InterfaceRowHandler {
         if (pieces.last().trim().endsWith(");")) {
             handleOneRowMethodDeclarationWithParameters(row, methodBuilder)
             currentInterfaceBuilder!!
-                .member(methodBuilder.build())
+                .members.add(methodBuilder.build())
 
             return
         }
@@ -211,8 +206,7 @@ class InterfaceRowHandler {
             methodBuilder.problem(e.message ?: "Problem when handling '$row'!")
         }
 
-        currentInterfaceBuilder!!
-            .member(methodBuilder.build())
+        currentInterfaceBuilder!!.members.add(methodBuilder.build())
         currentMethodBuilder = null
     }
 
@@ -225,11 +219,10 @@ class InterfaceRowHandler {
             val parameterTypeRaw = pieces[0]
             val parameterType = parameterTypeRaw.removeSuffix("?")
             val documentation = try {
-                    Webapi.fetchParameterDocumentation(parameterName, parameterType, methodBuilder.url!!)
+                    Webapi.fetchParameterDocumentation(parameterName, parameterType, methodBuilder.seeFurtherUrls)
                 }
                 catch (e: Exception) {
-                    methodBuilder.problem(e.message ?: parameterName)
-                    "This parameter caused unspecified trouble!"
+                    "This parameter caused unspecified trouble while importing!"
                 }
 
             val parameter = Parameter.builder()
@@ -263,6 +256,6 @@ class InterfaceRowHandler {
                 .defaultValue(pieces[4].removeSuffix(";"))
                 .build()
 
-        currentInterfaceBuilder!!.property(property)
+        currentInterfaceBuilder!!.properties.add(property)
     }
 }

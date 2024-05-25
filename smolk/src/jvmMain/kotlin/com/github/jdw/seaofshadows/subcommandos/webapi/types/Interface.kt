@@ -92,131 +92,6 @@ class Interface(override val annotations: List<Annotation>,
     }
 
 
-    class Builder {
-        private val annotations: MutableList<Annotation> = mutableListOf()
-        private var members: MutableList<KCallable<*>> = mutableListOf()
-        private var nestedClasses: MutableList<KClass<*>> = mutableListOf()
-        private var qualifiedName: String? = null
-        private var simpleName: String? = null
-        private var supertypes: MutableList<KType> = mutableListOf()
-        private var supertypeNames: MutableList<String> = mutableListOf()
-        private var visibility: KVisibility? = null
-        private var documentation: String? = null
-        private var properties: MutableList<Property> = mutableListOf()
-        private var imports: MutableList<KClass<out Any>> = mutableListOf()
-
-
-        fun build(): Interface {
-            assert(simpleName!!.isNotBlank() && simpleName!!.isNotEmpty())
-            assert(qualifiedName!!.isNotBlank() && qualifiedName!!.isNotEmpty())
-            assert(documentation!!.isNotBlank() && documentation!!.isNotEmpty())
-
-            return Interface(
-                annotations = annotations.toList(),
-                constructors = listOf(DefaultInterfaceConstructor(simpleName!!)),
-                isAbstract = false,
-                isCompanion = false,
-                isData = false,
-                isFinal = false,
-                isFun = false,
-                isInner = false,
-                isOpen = false,
-                isSealed = false,
-                isValue = false,
-                members = members.toList(),
-                nestedClasses = nestedClasses.toList(),
-                objectInstance = null,
-                qualifiedName = qualifiedName!!,
-                sealedSubclasses = emptyList(),
-                simpleName = simpleName!!,
-                supertypes = supertypes.toList(),
-                typeParameters = listOf(),
-                visibility = visibility!!,
-                documentation = documentation!!,
-                supertypesSimpleNames = supertypeNames.toList(),
-                properties = properties.toList(),
-                imports = imports.toList()
-            )
-        }
-
-
-        fun import(value: KClass<out Any>): Builder {
-            imports.add(value)
-
-            return this
-        }
-
-
-        fun property(value: Property): Builder {
-            properties.add(value)
-
-            return this
-        }
-
-
-        fun supertypeSimpleName(value: String): Builder {
-            supertypeNames.add(value)
-
-            return this
-        }
-
-
-        fun annotation(value: Annotation): Builder {
-            annotations.add(value)
-
-            return this
-        }
-
-
-        fun member(value: KCallable<*>): Builder {
-            members.add(value)
-
-            return this
-        }
-
-
-        fun nestedClass(value: KClass<*>): Builder {
-            nestedClasses.add(value)
-
-            return this
-        }
-
-
-        fun qualifiedName(value: String): Builder {
-            qualifiedName = value
-
-            return this
-        }
-
-
-        fun simpleName(value: String): Builder {
-            simpleName = value
-
-            return this
-        }
-
-
-        fun supertype(value: KType): Builder {
-            supertypes.add(value)
-
-            return this
-        }
-
-
-        fun visibility(value: KVisibility): Builder {
-            visibility = value
-
-            return this
-        }
-
-
-        fun documentation(value: String): Builder {
-            documentation = value
-
-            return this
-        }
-    }
-
     fun render(): Code {
         val code = Code()
         val interfaze = this
@@ -271,6 +146,56 @@ class Interface(override val annotations: List<Annotation>,
         code.add("}")
 
         return code
+    }
+
+
+    class Builder {
+        val seeFurtherUrls: MutableSet<String> = mutableSetOf()
+        val annotations: MutableList<Annotation> = mutableListOf()
+        var members: MutableList<KCallable<*>> = mutableListOf()
+        var nestedClasses: MutableList<KClass<*>> = mutableListOf()
+        var qualifiedName: String? = null
+        var simpleName: String? = null
+        var supertypes: MutableList<KType> = mutableListOf()
+        var supertypeNames: MutableList<String> = mutableListOf()
+        var visibility: KVisibility? = null
+        var documentation: String? = null
+        var properties: MutableList<Property> = mutableListOf()
+        var imports: MutableList<KClass<out Any>> = mutableListOf()
+
+
+        fun build(): Interface {
+            assert(simpleName!!.isNotBlank() && simpleName!!.isNotEmpty())
+            assert(qualifiedName!!.isNotBlank() && qualifiedName!!.isNotEmpty())
+            assert(documentation!!.isNotBlank() && documentation!!.isNotEmpty())
+
+            return Interface(
+                annotations = annotations.toList(),
+                constructors = listOf(DefaultInterfaceConstructor(simpleName!!)),
+                isAbstract = false,
+                isCompanion = false,
+                isData = false,
+                isFinal = false,
+                isFun = false,
+                isInner = false,
+                isOpen = false,
+                isSealed = false,
+                isValue = false,
+                members = members.toList(),
+                nestedClasses = nestedClasses.toList(),
+                objectInstance = null,
+                qualifiedName = qualifiedName!!,
+                sealedSubclasses = emptyList(),
+                simpleName = simpleName!!,
+                supertypes = supertypes.toList(),
+                typeParameters = listOf(),
+                visibility = visibility,
+                documentation = documentation!!,
+                supertypesSimpleNames = supertypeNames.toList(),
+                properties = properties.toList(),
+                imports = imports.toList()
+            )
+        }
     }
 
 
@@ -329,15 +254,21 @@ class Interface(override val annotations: List<Annotation>,
                 val method: Method = member
 
                 code.add("/**")
-                method.documentation.split("\n").forEach { code.add(" * $it") }
+                code.add(" * ${method.documentation.removePrefix("null")}")
                 if (method.problems.isNotEmpty()) {
                     code.add(" *")
                     code.add(" * Problems found during importing:")
                     method.problems.forEach { code.add(" * $it") }
-                    code.add(" *")
                 }
-                code.add(" * See further:")
-                code.add(" * * At [Mozilla's](${method.url}) official docs.")
+                code.add(" *")
+                code.add(" * See further documentation:")
+                method.seeFurtherUrls.forEach { url ->
+                    val withinBrackets =
+                        if (url.contains("mozilla")) "Mozilla's"
+                        else if (url.contains("khronos")) "Khronos Group's"
+                        else url
+                    code.add(" * * [$withinBrackets](${url})")
+                }
                 code.add(" *")
                 method.parameters.sortedBy { it.index }.forEach { kparameter ->
                     val parameter = kparameter as Parameter
@@ -350,9 +281,11 @@ class Interface(override val annotations: List<Annotation>,
                 method.myParameters.sortedBy { it.index }.forEach { it ->
                     methodSignatureRow += "${it.name}: ${it.typeName}, "
                 }
-                methodSignatureRow = methodSignatureRow.removeSuffix(", ").suffixIfNot(");").trim()
+                methodSignatureRow = methodSignatureRow.removeSuffix(", ").suffixIfNot(")").trim()
                 if (method.problems.isNotEmpty()) methodSignatureRow = methodSignatureRow.prefixIfNot("//")
                 code.add(methodSignatureRow)
+                code.add("")
+                code.add("")
             }
         }
     }
