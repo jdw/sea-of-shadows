@@ -57,30 +57,10 @@ class MethodBuilder {
 
 
     fun fetchMozillaDocumentationUrl(): String {
-        val baseUrl = "${Glob.MOZILLA_API_BASE_URL}/${parent!!.simpleName}".replace(
-            "WebGLRenderingContextBase",
-            "WebGLRenderingContext"
-        )
-        val methodUri: MutableSet<String> = mutableSetOf() //TODO Put on parent to only fetch once
-
-        with(Glob.fetchDocument(baseUrl)) {
-            runBlocking {
-                getElementsByTag("summary").asFlow().collect { summary ->
-                    if (summary.html() == "Instance methods") {
-                        summary.parent()!!.getElementsByTag("ol")[0]
-                            .getElementsByTag("li").asFlow().collect { li ->
-                                methodUri.add(li.getElementsByTag("a")[0].attribute("href")!!.value)
-                            }
-
-                    }
-                }
-            }
-        }
-
         name!!.indices.forEach { idx ->
             val namePart = name!!.substring(0..name!!.length - 1 - idx)
 
-            methodUri.forEach { href ->
+            parent!!.methodUri.forEach { href ->
                 if (href.contains(namePart)) {
                     val url = "${Glob.MOZILLA_BASE_URL}${href}"
                     Glob.fetchDocument(url)
