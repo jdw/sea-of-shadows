@@ -27,7 +27,8 @@ class InterfaceRowHandler {
         val builder = Interface.builder()
             .apply { simpleName = name }
             .apply { qualifiedName = "$packag3.$name" }
-            .apply { documentation = "SiC" }
+            .apply { documentation = "TODO" }
+            .apply { seeFurtherUrls.add("${Glob.MOZILLA_API_BASE_URL}/${simpleName!!.replace("WebGLRenderingContextBase", "WebGLRenderingContext")}") }
         currentInterfaceBuilder = builder
 
         var weHaveInheritance = -1

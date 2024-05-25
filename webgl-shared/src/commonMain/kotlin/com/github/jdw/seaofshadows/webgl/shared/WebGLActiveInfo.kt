@@ -2,7 +2,7 @@ package com.github.jdw.seaofshadows.webgl.shared
 
 
 /**
- * SiC
+ * TODO
  */
 interface WebGLActiveInfo {
 	val size: GLint

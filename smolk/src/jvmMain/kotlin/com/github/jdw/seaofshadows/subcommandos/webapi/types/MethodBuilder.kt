@@ -60,7 +60,7 @@ class MethodBuilder {
         name!!.indices.forEach { idx ->
             val namePart = name!!.substring(0..name!!.length - 1 - idx)
 
-            parent!!.methodUri.forEach { href ->
+            parent!!.methodUris.forEach { href ->
                 if (href.contains(namePart)) {
                     val url = "${Glob.MOZILLA_BASE_URL}${href}"
                     Glob.fetchDocument(url)
