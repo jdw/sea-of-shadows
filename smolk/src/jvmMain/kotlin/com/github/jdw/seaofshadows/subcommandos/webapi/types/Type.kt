@@ -11,17 +11,8 @@ class Type(
     override val isMarkedNullable: Boolean,
     val name: String
 ) : KType {
-    class Builder {
-        val annotations: MutableList<Annotation> = mutableListOf()
-        val arguments: MutableList<KTypeProjection> = mutableListOf()
-        var classifier: KClassifier? = null
-        var isMarkedNullable: Boolean? = null
-        var name: String? = null
-        var ktype: KType? = null
-    }
-
     companion object {
-        fun builder(): Builder = Builder()
+        fun builder(): TypeBuilder = TypeBuilder()
         val NAME_TO_TYPE = mutableMapOf<String, Type>()
 
 
@@ -49,7 +40,7 @@ class Type(
 
 
         fun ktypeToType(name: String, other: KType): Type {
-            val builder = Builder()
+            val builder = builder()
                 .apply { isMarkedNullable = other.isMarkedNullable }
                 .apply{ this.name = name }
 

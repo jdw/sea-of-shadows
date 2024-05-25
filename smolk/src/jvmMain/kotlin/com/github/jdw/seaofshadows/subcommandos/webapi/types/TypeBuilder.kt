@@ -1,16 +1,25 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Type.Builder
+import kotlin.reflect.KClassifier
+import kotlin.reflect.KType
+import kotlin.reflect.KTypeProjection
 
 
-fun Builder.build(): Type {
-    assert(name!!
-        .isNotBlank() && name!!.isNotEmpty())
+class TypeBuilder {
+    val annotations: MutableList<Annotation> = mutableListOf()
+    val arguments: MutableList<KTypeProjection> = mutableListOf()
+    var classifier: KClassifier? = null
+    var isMarkedNullable: Boolean? = null
+    var name: String? = null
+    var ktype: KType? = null
 
-    return Type(
-        annotations.toList(),
-        arguments.toList(),
-        classifier,
-        isMarkedNullable!!,
-        name!!)
+    fun build(): Type {
+        return Type(
+            annotations.toList(),
+            arguments.toList(),
+            classifier,
+            isMarkedNullable!!,
+            name!!
+        )
+    }
 }

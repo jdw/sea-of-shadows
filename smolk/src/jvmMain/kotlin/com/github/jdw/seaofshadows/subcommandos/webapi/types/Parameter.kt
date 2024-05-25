@@ -14,20 +14,6 @@ class Parameter(
     val documentation: String,
     val typeName: String
 ): KParameter {
-    class Builder {
-        var parent: Method.Builder? = null
-        var name: String? = null
-        var index: Int? = null
-        var annotations: MutableList<Annotation> = mutableListOf()
-        var isOptional: Boolean? = null
-        var isVararg: Boolean? = null
-        var kind: KParameter.Kind? = null
-        var type: KType? = null
-        var documentation: String? = null
-        var typeName: String? = null
-    }
-
-
     override fun equals(other: Any?): Boolean {
         if (other !is Parameter) return false
 
@@ -50,6 +36,6 @@ class Parameter(
 
 
     companion object {
-        fun builder(): Builder = Builder()
+        fun builder(): ParameterBuilder = ParameterBuilder()
     }
 }

@@ -1,33 +1,65 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
-fun Class.Builder.build(): Class {
-    assert(simpleName!!.isNotBlank() && simpleName!!.isNotEmpty())
-    assert(qualifiedName!!.isNotBlank() && qualifiedName!!.isNotEmpty())
-    assert(documentation!!.isNotBlank() && documentation!!.isNotEmpty())
+import kotlin.reflect.KCallable
+import kotlin.reflect.KClass
+import kotlin.reflect.KFunction
+import kotlin.reflect.KType
+import kotlin.reflect.KTypeParameter
+import kotlin.reflect.KVisibility
 
-    return Class(
-        annotations = annotations.toList(),
-        constructors = constructors.toList(),
-        isAbstract = isAbstract!!,
-        isCompanion = isCompanion!!,
-        isData = isData!!,
-        isFinal = isFinal!!,
-        isFun = isFun!!,
-        isInner = isInner!!,
-        isOpen = isOpen!!,
-        isSealed = isSealed!!,
-        isValue = isValue!!,
-        members = members.toList(),
-        nestedClasses = nestedClasses.toList(),
-        objectInstance = null,
-        qualifiedName = qualifiedName!!,
-        sealedSubclasses = sealedSubclasses.toList(),
-        simpleName = simpleName!!,
-        supertypes = supertypes.toList(),
-        typeParameters = typeParameters.toList(),
-        visibility = visibility,
-        documentation = documentation!!,
-        properties = properties.toList(),
-        supertypesSimpleNames = supertyesSimpleNames.toList()
-    )
+class ClassBuilder: BaseBuilder() {
+    val annotations: MutableList<Annotation> = mutableListOf()
+    var constructors: MutableList<KFunction<Class>> = mutableListOf()
+    var isAbstract: Boolean? = null
+    var isCompanion: Boolean? = null
+    var isData: Boolean? = null
+    var isFinal: Boolean? = null
+    var isFun: Boolean? = null
+    var isInner: Boolean? = null
+    var isOpen: Boolean? = null
+    var isSealed: Boolean? = null
+    var isValue: Boolean? = null
+    var members: MutableList<KCallable<*>> = mutableListOf()
+    var nestedClasses: MutableList<KClass<*>> = mutableListOf()
+    var objectInstance: Class? = null
+    var qualifiedName: String? = null
+    var sealedSubclasses: MutableList<KClass<out Class>> = mutableListOf()
+    var supertypes: MutableList<KType> = mutableListOf()
+    var typeParameters: MutableList<KTypeParameter> = mutableListOf()
+    var visibility: KVisibility? = null
+    var documentation: String? = null
+    val properties: MutableList<Property> = mutableListOf()
+    val supertyesSimpleNames: MutableList<String> = mutableListOf()
+
+    fun build(): Class {
+        assert(simpleName!!.isNotBlank() && simpleName!!.isNotEmpty())
+        assert(qualifiedName!!.isNotBlank() && qualifiedName!!.isNotEmpty())
+        assert(documentation!!.isNotBlank() && documentation!!.isNotEmpty())
+
+        return Class(
+            annotations = annotations.toList(),
+            constructors = constructors.toList(),
+            isAbstract = isAbstract!!,
+            isCompanion = isCompanion!!,
+            isData = isData!!,
+            isFinal = isFinal!!,
+            isFun = isFun!!,
+            isInner = isInner!!,
+            isOpen = isOpen!!,
+            isSealed = isSealed!!,
+            isValue = isValue!!,
+            members = members.toList(),
+            nestedClasses = nestedClasses.toList(),
+            objectInstance = null,
+            qualifiedName = qualifiedName!!,
+            sealedSubclasses = sealedSubclasses.toList(),
+            simpleName = simpleName!!,
+            supertypes = supertypes.toList(),
+            typeParameters = typeParameters.toList(),
+            visibility = visibility,
+            documentation = documentation!!,
+            properties = properties.toList(),
+            supertypesSimpleNames = supertyesSimpleNames.toList()
+        )
+    }
 }

@@ -2,25 +2,19 @@ package com.github.jdw.seaofshadows.subcommandos.webapi.rowhandlers
 
 import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Interface
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.InterfaceBuilder
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Method
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.MethodBuilder
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Property
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Type
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.build
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.fetchDocumentation
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.fetchMozillaDocumentationUrl
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.handleEndRow
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.handleOneRowMethodDeclarationWithParameters
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.handleOneRowMethodDeclarationWithoutMethodParameters
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.parseParametersRow
 import com.github.jdw.seaofshadows.utils.throws
 import kotlin.reflect.KClass
 
-typealias Kaka = List<String>
 
 class InterfaceRowHandler {
-    var currentInterfaceBuilder: Interface.Builder? = null
+    var currentInterfaceBuilder: InterfaceBuilder? = null
     val interfaces = mutableMapOf<String, Interface>()
-    var currentMethodBuilder: Method.Builder? = null
+    var currentMethodBuilder: MethodBuilder? = null
 
 
     fun isHandlingMethod() = currentMethodBuilder != null

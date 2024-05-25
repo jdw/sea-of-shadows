@@ -36,22 +36,6 @@ class Interface(override val annotations: List<Annotation>,
                 val supertypesSimpleNames: List<String>,
                 val imports: List<KClass<out Any>> //TODO Remove?
 ): KClass<Any> {
-    class Builder {
-        val seeFurtherUrls: MutableSet<String> = mutableSetOf()
-        val annotations: MutableList<Annotation> = mutableListOf()
-        var members: MutableList<KCallable<*>> = mutableListOf()
-        var nestedClasses: MutableList<KClass<*>> = mutableListOf()
-        var qualifiedName: String? = null
-        var simpleName: String? = null
-        var supertypes: MutableList<KType> = mutableListOf()
-        var supertypeNames: MutableList<String> = mutableListOf()
-        var visibility: KVisibility? = null
-        var documentation: String? = null
-        var properties: MutableList<Property> = mutableListOf()
-        var imports: MutableList<KClass<out Any>> = mutableListOf()
-    }
-
-
     fun createType(
         arguments: List<KTypeProjection> = emptyList(),
         nullable: Boolean = false,
@@ -167,7 +151,7 @@ class Interface(override val annotations: List<Annotation>,
 
 
     companion object {
-        fun builder(): Builder = Builder()
+        fun builder(): InterfaceBuilder = InterfaceBuilder()
 
 
         private fun renderConstants(consts: List<Property>, code: Code) {

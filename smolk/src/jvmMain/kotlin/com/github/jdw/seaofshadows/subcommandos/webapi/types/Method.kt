@@ -21,24 +21,6 @@ class Method(
     val myParameters: List<Parameter>,
     val problems: List<String>
 ): KCallable<Any> {
-    class Builder {
-        var parent: Interface.Builder? = null
-        val seeFurtherUrls: MutableSet<String> = mutableSetOf()
-        var documentation: String? = null
-        var annotations: MutableList<Annotation> = mutableListOf()
-        var isAbstract: Boolean? = null
-        var isFinal: Boolean? = null
-        var isOpen: Boolean? = null
-        var isSuspend: Boolean? = null
-        var name: String? = null
-        var parameters: MutableList<Parameter> = mutableListOf()
-        var returnType: KType? = null
-        var typeParameters: MutableList<KTypeParameter> = mutableListOf()
-        var visibility: KVisibility? = null
-        val problems: MutableList<String> = mutableListOf()
-    }
-
-
     override val parameters: List<KParameter>
         get() {
             return myParameters
@@ -81,6 +63,6 @@ class Method(
 
 
     companion object {
-        fun builder(): Builder = Builder()
+        fun builder(): MethodBuilder = MethodBuilder()
     }
 }

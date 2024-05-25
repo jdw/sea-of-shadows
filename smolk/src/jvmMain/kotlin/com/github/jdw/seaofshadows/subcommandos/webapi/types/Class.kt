@@ -32,33 +32,6 @@ class Class(override val annotations: List<Annotation>,
             val properties: List<Property>,
             val supertypesSimpleNames: List<String>
 ): KClass<Class> {
-    class Builder {
-        val annotations: MutableList<Annotation> = mutableListOf()
-        var constructors: MutableList<KFunction<Class>> = mutableListOf()
-        var isAbstract: Boolean? = null
-        var isCompanion: Boolean? = null
-        var isData: Boolean? = null
-        var isFinal: Boolean? = null
-        var isFun: Boolean? = null
-        var isInner: Boolean? = null
-        var isOpen: Boolean? = null
-        var isSealed: Boolean? = null
-        var isValue: Boolean? = null
-        var members: MutableList<KCallable<*>> = mutableListOf()
-        var nestedClasses: MutableList<KClass<*>> = mutableListOf()
-        var objectInstance: Class? = null
-        var qualifiedName: String? = null
-        var sealedSubclasses: MutableList<KClass<out Class>> = mutableListOf()
-        var simpleName: String? = null
-        var supertypes: MutableList<KType> = mutableListOf()
-        var typeParameters: MutableList<KTypeParameter> = mutableListOf()
-        var visibility: KVisibility? = null
-        var documentation: String? = null
-        val properties: MutableList<Property> = mutableListOf()
-        val supertyesSimpleNames: MutableList<String> = mutableListOf()
-    }
-
-
     override fun equals(other: Any?): Boolean {
         if (other !is Class) return false
 
@@ -133,8 +106,7 @@ class Class(override val annotations: List<Annotation>,
     }
 
 
-
     companion object {
-        fun builder(): Builder = Builder()
+        fun builder(): ClassBuilder = ClassBuilder()
     }
 }

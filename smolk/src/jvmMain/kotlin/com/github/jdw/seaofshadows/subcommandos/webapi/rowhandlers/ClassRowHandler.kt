@@ -2,12 +2,11 @@ package com.github.jdw.seaofshadows.subcommandos.webapi.rowhandlers
 
 import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Class
+import com.github.jdw.seaofshadows.subcommandos.webapi.types.ClassBuilder
 import com.github.jdw.seaofshadows.subcommandos.webapi.types.Property
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.build
-import kotlin.reflect.KVisibility
 
 class ClassRowHandler {
-    var currentClassBuilder: Class.Builder? = null
+    var currentClassBuilder: ClassBuilder? = null
     val classes = mutableMapOf<String, Class>()
 
 
