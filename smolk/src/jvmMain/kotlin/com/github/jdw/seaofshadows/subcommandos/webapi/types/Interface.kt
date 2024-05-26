@@ -1,6 +1,8 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
 import com.github.jdw.seaofshadows.subcommandos.webapi.Code
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.jetbrains.kotlin.util.prefixIfNot
 import org.jetbrains.kotlin.util.suffixIfNot
 import kotlin.reflect.KCallable
@@ -94,6 +96,19 @@ class Interface(override val annotations: List<Annotation>,
 
     //TODO Move render functions to Interface.Render
     fun render(): Code {
+        runBlocking {
+            launch { documentation }
+            properties.forEach { launch { it.documentation } }
+            members.forEach {
+                val method = it as Method
+                launch { method.documentation }
+                it.parameters.forEach { p ->
+                    val parameter = p as Parameter
+                    launch { parameter.documentation }
+                }
+            }
+        }
+
         val code = Code()
         val interfaze = this
         val packag3 = interfaze.qualifiedName!!
@@ -118,7 +133,7 @@ class Interface(override val annotations: List<Annotation>,
             firstRow = firstRow.removeSuffix(", ")
         }
 
-        if (interfaze.properties.isEmpty()) {
+        if (interfaze.properties.isEmpty() && members.isEmpty()) {
             code.add(firstRow)
 
             return code
@@ -142,7 +157,7 @@ class Interface(override val annotations: List<Annotation>,
         renderConstants(consts, code)
 
         // Render methods
-        renderMethods(this, code)
+        renderMembers(this, code)
         code.undent()
         code.add("}")
 
@@ -197,7 +212,7 @@ class Interface(override val annotations: List<Annotation>,
         }
 
 
-        private fun renderMethods(interfaze: Interface, code: Code) {
+        private fun renderMembers(interfaze: Interface, code: Code) {
             code.add("")
 
             interfaze.members.forEach { member -> // Maintain same order as in the IDL
