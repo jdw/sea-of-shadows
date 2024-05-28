@@ -2,6 +2,9 @@ kotlin {
     jvm() {
         withJava()
     }
+    js {
+        nodejs()
+    }
 
     applyDefaultHierarchyTemplate()
 

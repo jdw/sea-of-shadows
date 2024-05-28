@@ -26,9 +26,36 @@ object Glob {
 
     var verbose = false
     private val urlToDocuments: MutableMap<String, Document> = mutableMapOf()
-
     fun debug(msg: String) = verbose.echt { println(msg) }
 
+
+    fun translateIDLPieceToKotlinPiece(idlName: String): String {
+        val mapped = mapOf(
+            "boolean" to "Boolean",
+            "object" to "Any",
+            "void" to "Unit",
+            "any" to "Any",
+            "sequence<DOMString>" to "List<DOMString>",
+            "sequence<WebGLShader>" to "List<WebGLShader>",
+            "sequence<GLfloat>" to "List<GLfloat>",
+            "sequence<long>" to "List<Long>",
+            "dictionary" to "class",
+            "indx" to "index",
+            "v" to "value",
+            "values" to "value",
+            "WebGLContextAttributes?" to "Map<String, Any>?")
+
+        return mapped[idlName]
+            ?: idlName
+    }
+
+    val keywordsToBeBracketedInKdoc = mutableSetOf("ArrayBuffer", "ArrayBufferView", "BufferDataSource", "DataView",
+        "GLenum", "GLboolean", "GLbitfield", "GLbyte", "GLshort", "GLint", "GLsizei",
+        "GLintptr", "GLsizeiptr", "GLubyte", "GLushort", "GLuint", "GLfloat", "GLclampf", "DOMString",
+        "Event", "EventInit", "Float32Array", "HTMLCanvasElement", "Int32Array", "SequenceDomString", "SequenceWebGLShader",
+        "SharedArrayBuffer", "TexImageSource", "TypedArray", "WebGLActiveInfo", "WebGLBuffer", "WebGLContextAttributes", "WebGLContextEvent",
+        "WebGLContextEventInit", "WebGLFramebuffer", "WebGLObject", "WebGLProgram", "WebGLRenderbuffer", "WebGLRenderingContext",
+        "WebGLRenderingContextBase", "WebGLShader", "WebGLShaderPrecisionFormat", "WebGLTexture", "WebGLUniformLocation", "createProgram")
 
     fun isValidKotlinIdentifier(name: String): Boolean { //TODO Move to General.kt
         val keywords = listOf(

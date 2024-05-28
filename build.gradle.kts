@@ -1,8 +1,8 @@
 buildscript {
     repositories {
+        mavenCentral()
         mavenLocal()
         gradlePluginPortal()
-        mavenCentral()
         google()
     }
 }
@@ -26,8 +26,8 @@ allprojects {
     group = GROUP
 
     repositories {
-        mavenLocal()
         mavenCentral()
+        mavenLocal()
         google()
         gradlePluginPortal()
     }

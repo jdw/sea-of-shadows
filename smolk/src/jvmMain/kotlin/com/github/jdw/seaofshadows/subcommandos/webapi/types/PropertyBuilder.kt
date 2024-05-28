@@ -1,5 +1,6 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
+import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.utils.echt
 import com.github.jdw.seaofshadows.utils.throws
 
@@ -21,6 +22,8 @@ class PropertyBuilder {
         }
 
         (urls.isEmpty() && const!!).echt { throws() }
+
+        Glob.keywordsToBeBracketedInKdoc.add(name!!)
 
         return Property(
             urls = urls.toSet(),

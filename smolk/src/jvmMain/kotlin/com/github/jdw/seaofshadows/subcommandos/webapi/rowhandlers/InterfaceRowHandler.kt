@@ -27,8 +27,7 @@ class InterfaceRowHandler {
         val builder = Interface.builder()
             .apply { simpleName = name }
             .apply { qualifiedName = "$packag3.$name" }
-            .apply { documentation = "TODO" }
-            .apply { urls.add("${Glob.MOZILLA_API_BASE_URL}/${simpleName!!.replace("WebGLRenderingContextBase", "WebGLRenderingContext")}") }
+            .apply { urls["Mozilla"] = "${Glob.MOZILLA_API_BASE_URL}/${simpleName!!.replace("WebGLRenderingContextBase", "WebGLRenderingContext")}" }
         currentInterfaceBuilder = builder
 
         var weHaveInheritance = -1
@@ -64,7 +63,6 @@ class InterfaceRowHandler {
     fun handleEndOfInterface(): Interface {
         val interfaze = currentInterfaceBuilder!!.build()
         interfaces[interfaze.simpleName!!] = interfaze
-        currentInterfaceBuilder = null
 
         return interfaze
     }
@@ -114,10 +112,10 @@ class InterfaceRowHandler {
         val builder = Method.builder()
             .apply { parent = currentInterfaceBuilder }
             .apply { name = methodName }
-            .apply { urls.add(fetchMozillaDocumentationUrl()) }
+            .apply { urls["Mozilla"] = fetchMozillaDocumentationUrl() }
             .apply { this.returnType = Type.builder()
                 .apply { isMarkedNullable = returnTypeIsNullable }
-                .apply { name = Type.IDLPIECE_TO_KTPIECE(returnTypeName) }
+                .apply { name = Glob.translateIDLPieceToKotlinPiece(returnTypeName) }
                 .build() }
             .apply { isSuspend = false }
             .apply { isOpen = false }
@@ -165,6 +163,9 @@ class InterfaceRowHandler {
             currentMethodBuilder = null
 
             return
+        }
+        else if (row.endsWith(",")) {
+            currentMethodBuilder!!.handleMiddleRow(row)
         }
     }
 

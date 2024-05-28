@@ -11,10 +11,10 @@ pluginManagement {
     }
 
     repositories {
-        gradlePluginPortal()
-        google()
         mavenCentral()
         mavenLocal()
+        gradlePluginPortal()
+        google()
     }
 }
 
@@ -24,7 +24,6 @@ include(":webgl-shared")
 include(":webgl1-server-side")
 include(":webgl1-terminal")
 include(":smolk")
-
 
 val NAME: String by settings
 

@@ -1,10 +1,9 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
 import com.github.jdw.seaofshadows.Glob
+import com.github.jdw.seaofshadows.getKhronosGroupUrlFromSpecifications
+import com.github.jdw.seaofshadows.htmlToMarkdown
 import com.github.jdw.seaofshadows.utils.throws
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.runBlocking
 import kotlin.reflect.KParameter
 import kotlin.reflect.KType
 import kotlin.reflect.KTypeParameter
@@ -14,7 +13,7 @@ import kotlin.reflect.full.createType
 
 class MethodBuilder {
     var parent: InterfaceBuilder? = null
-    val urls: MutableSet<String> = mutableSetOf()
+    val urls: MutableMap<String, String> = mutableMapOf()
     var annotations: MutableList<Annotation> = mutableListOf()
     var isAbstract: Boolean? = null
     var isFinal: Boolean? = null
@@ -27,25 +26,65 @@ class MethodBuilder {
     var visibility: KVisibility? = null
     val problems: MutableList<String> = mutableListOf()
 
+    fun getDocumentation(): String {
+        val url = urls["Mozilla"]!!
+
+        with(Glob.fetchDocument(url)) {
+            urls["Khronos Group"] = this.getKhronosGroupUrlFromSpecifications()
+            return getElementById("content")!!
+                .getElementsByClass("section-content").first()!!
+                .getElementsByTag("p")
+                .html()
+                .htmlToMarkdown()
+                .replace("\r\r", " -- ")
+                .trim()
+        }
+    }
 
     fun build(): Method {
         assert(name!!.isNotBlank() && name!!.isNotEmpty())
         assert(urls.isNotEmpty())
-        urls.forEach { url -> assert(url.isNotBlank() && url.isNotEmpty()) }
+        Glob.keywordsToBeBracketedInKdoc.add(name!!)
+
+        urls.forEach { (title, url) ->
+            assert(url.isNotBlank() && url.isNotEmpty())
+            assert(title.isNotBlank() && title.isNotEmpty())
+        }
+
+        var doc = ""
+        getDocumentation().split("\n").forEach { row ->
+            if (!row.contains("]: https://")) {
+                doc += row
+                return@forEach
+            }
+
+            val (title, url) = row.split("]: ")
+
+            urls[title] = url
+        }
+
+        assert(doc.isNotBlank() && doc.isNotEmpty())
+
+//        if (name!! == "compressedTexImage2D") {
+//            println("compressedTexImage2D documentation:")
+//            println(doc)
+//            println()
+//        }
 
         return Method(
-            urls = urls.toSet(),
+            urls = urls.toMap(),
             annotations = annotations.toList(),
             isAbstract = isAbstract!!,
             isFinal = isFinal!!,
             isOpen = isOpen!!,
             isSuspend = isSuspend!!,
             name = name!!,
-            myParameters = parameters.toList(),
+            parameters = parameters.toList(),
             returnType = returnType!!,
             typeParameters = typeParameters.toList(),
             visibility = visibility,
-            problems = problems.toList()
+            problems = problems.toList(),
+            documentation = doc
         )
     }
 
@@ -89,23 +128,29 @@ class MethodBuilder {
     }
 
 
+    fun handleMiddleRow(row: String) {
+        parseParametersRow(row)
+    }
+
+
     fun parseParametersRow(row: String) {
         row.split(", ").forEach { parameterPair ->
             val pieces = parameterPair.split(" ")
-            val parameterName = Type.IDLPIECE_TO_KTPIECE(pieces[1])
-            val parameterType = pieces[0].removeSuffix("?")
+            val parameterName = Glob.translateIDLPieceToKotlinPiece(pieces[1].trim().removeSuffix(","))
+            val parameterType = pieces[0].trim().removeSuffix("?")
             val builder = this
 
             val parameter = Parameter.builder()
                 .apply { parent = builder }
-                .apply { urls.add(parent!!.urls.filter { it.contains(Glob.MOZILLA_API_BASE_URL) }.first()) }
+                .apply { urls.add(parent!!.urls.values.filter { it.contains(Glob.MOZILLA_API_BASE_URL) }.first()) }
                 .apply { type = Nothing::class.createType() }
                 .apply { name = parameterName }
-                .apply { typeName = Type.IDLPIECE_TO_KTPIECE(parameterType) }
+                .apply { typeName = Glob.translateIDLPieceToKotlinPiece(parameterType) }
                 .apply { index = parent!!.nextParameterIndex() }
                 .apply { isOptional = false }
                 .apply { isVararg = false }
                 .apply { kind = KParameter.Kind.VALUE } //TODO Might not be correct...
+                .apply { nullable = pieces[0].trim().endsWith("?") }
                 .build()
 
             parameters.add(parameter)

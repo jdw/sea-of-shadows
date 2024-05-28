@@ -28,9 +28,10 @@ class Class(override val annotations: List<Annotation>,
             override val supertypes: List<KType>,
             override val typeParameters: List<KTypeParameter>,
             override val visibility: KVisibility?,
-            val documentation: String,
             val properties: List<Property>,
-            val supertypesSimpleNames: List<String>
+            val supertypesSimpleNames: List<String>,
+            val urls: Map<String, String>,
+            val documentation: String
 ): KClass<Class> {
     override fun equals(other: Any?): Boolean {
         if (other !is Class) return false

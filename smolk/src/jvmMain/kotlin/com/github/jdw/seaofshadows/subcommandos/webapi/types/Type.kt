@@ -16,29 +16,6 @@ class Type(
         val NAME_TO_TYPE = mutableMapOf<String, Type>()
 
 
-        fun IDLPIECE_TO_KTPIECE(jsName: String): String {
-            val mapped = mapOf(
-                "boolean" to "Boolean",
-                "object" to "Any",
-                "void" to "Nothing",
-                "any" to "Any",
-                "sequence<DOMString>" to "List<DOMString>",
-                "sequence<WebGLShader>" to "List<WebGLShader>",
-                "sequence<GLfloat>" to "List<GLfloat>",
-                "sequence<long>" to "List<Long>",
-                "dictionary" to "class",
-                "indx" to "index",
-                "v" to "value",
-                "x" to "v0",
-                "y" to "v1",
-                "z" to "v2",
-                "w" to "v3")
-
-            return mapped[jsName]
-                ?: jsName
-        }
-
-
         fun ktypeToType(name: String, other: KType): Type {
             val builder = builder()
                 .apply { isMarkedNullable = other.isMarkedNullable }

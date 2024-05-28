@@ -19,7 +19,6 @@ class ClassRowHandler {
         currentClassBuilder = Class.builder()
             .apply { simpleName = pieces[1] }
             .apply { qualifiedName= packag3.apply { pieces[1] } }
-            .apply { documentation = "TODO" }
             .apply { isAbstract = false }
             .apply { isFinal = false }
             .apply { isInner = false }
@@ -28,6 +27,7 @@ class ClassRowHandler {
             .apply { isSealed = false }
             .apply { isValue = false }
             .apply { isCompanion = false }
+            .apply { urls["Mozilla"] = "${Glob.MOZILLA_API_BASE_URL}/${simpleName!!}" }
             .apply { isFun = false } // I'm NOT having fun!
 
         if (":" == pieces[2]) { // We have inheritance

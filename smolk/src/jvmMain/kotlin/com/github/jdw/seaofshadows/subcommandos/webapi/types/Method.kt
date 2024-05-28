@@ -1,7 +1,5 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
-import com.github.jdw.seaofshadows.Glob
-import com.github.jdw.seaofshadows.utils.throws
 import kotlin.reflect.KCallable
 import kotlin.reflect.KParameter
 import kotlin.reflect.KType
@@ -9,7 +7,7 @@ import kotlin.reflect.KTypeParameter
 import kotlin.reflect.KVisibility
 
 class Method(
-    val urls: Set<String>,
+    val urls: Map<String, String>,
     override val annotations: List<Annotation>,
     override val isAbstract: Boolean,
     override val isFinal: Boolean,
@@ -19,34 +17,11 @@ class Method(
     override val returnType: KType,
     override val typeParameters: List<KTypeParameter>,
     override val visibility: KVisibility?,
-    val myParameters: List<Parameter>,
-    val problems: List<String>
-): KCallable<Any> {
-    var documentation: String = ""
-        get() {
-            if ("" != field) return field
-
-            val url = urls
-                .filter { it.contains(Glob.MOZILLA_API_BASE_URL) }
-                .apply { if (size != 1 ) throws() }
-                .first()
-
-            with(Glob.fetchDocument(url)) {
-                field = getElementById("content")!!
-                    .getElementsByClass("section-content").first()!!
-                    .getElementsByTag("p")
-                    .text()
-            }
-
-            return field
-        }
-
+    //val myParameters: List<Parameter>,
+    val problems: List<String>,
+    val documentation: String,
     override val parameters: List<KParameter>
-        get() {
-            return myParameters
-        }
-
-
+): KCallable<Any> {
     override fun call(vararg args: Any?): Any {
         TODO("Not yet implemented")
     }

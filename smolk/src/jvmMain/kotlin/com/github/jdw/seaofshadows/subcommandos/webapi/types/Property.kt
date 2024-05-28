@@ -1,6 +1,7 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
 import com.github.jdw.seaofshadows.Glob
+import com.github.jdw.seaofshadows.htmlToMarkdown
 import com.github.jdw.seaofshadows.utils.throws
 
 class Property(
@@ -21,16 +22,20 @@ class Property(
                 .first()
 
             with(Glob.fetchDocument(url)) {
-                getElementsByTag("class").forEach { //TODO flow single
+                getElementsByTag("code").forEach { //TODO flow single
                     if (it.text() == name) {
-                        field = it.parent()!!
+                        val td = it.parent()!!
                             .siblingElements()
                             .last()!!
-                            .text()
+
+                        field =
+                            if ("" == td.text()) ""
+                            else td.html().replace("<code>", "[").replace("</code>", "]")
                     }
                 }
             }
 
+            field = field.htmlToMarkdown()
             return field
         }
 

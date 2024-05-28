@@ -1,5 +1,6 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
+import com.github.jdw.seaofshadows.Glob
 import kotlin.reflect.KCallable
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
@@ -27,14 +28,16 @@ class ClassBuilder: BaseBuilder() {
     var supertypes: MutableList<KType> = mutableListOf()
     var typeParameters: MutableList<KTypeParameter> = mutableListOf()
     var visibility: KVisibility? = null
-    var documentation: String? = null
     val properties: MutableList<Property> = mutableListOf()
     val supertyesSimpleNames: MutableList<String> = mutableListOf()
 
     fun build(): Class {
         assert(simpleName!!.isNotBlank() && simpleName!!.isNotEmpty())
         assert(qualifiedName!!.isNotBlank() && qualifiedName!!.isNotEmpty())
-        assert(documentation!!.isNotBlank() && documentation!!.isNotEmpty())
+        val documentation = getDocumentation()
+        assert(documentation.isNotBlank() && documentation.isNotEmpty())
+
+        Glob.keywordsToBeBracketedInKdoc.add(simpleName!!)
 
         return Class(
             annotations = annotations.toList(),
@@ -57,9 +60,10 @@ class ClassBuilder: BaseBuilder() {
             supertypes = supertypes.toList(),
             typeParameters = typeParameters.toList(),
             visibility = visibility,
-            documentation = documentation!!,
             properties = properties.toList(),
-            supertypesSimpleNames = supertyesSimpleNames.toList()
+            supertypesSimpleNames = supertyesSimpleNames.toList(),
+            urls =  urls.toMap(),
+            documentation = documentation
         )
     }
 }

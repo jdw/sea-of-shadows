@@ -1,50 +1,41 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
+import com.github.jdw.seaofshadows.Glob
+import com.github.jdw.seaofshadows.applyKeywords
+import com.github.jdw.seaofshadows.formatAfterMaxWidth
 import com.github.jdw.seaofshadows.subcommandos.webapi.Code
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.jetbrains.kotlin.util.prefixIfNot
 import org.jetbrains.kotlin.util.suffixIfNot
 
-fun Interface.actuallyRender(): Code {
-    runBlocking {
-        launch { documentation }
-        properties.forEach { launch { it.documentation } }
-        members.forEach {
-            val method = it as Method
-            launch { method.documentation }
-            it.parameters.forEach { p ->
-                val parameter = p as Parameter
-                launch { parameter.documentation }
-            }
-        }
-    }
 
+fun Interface.actuallyRender(): Code {
     val code = Code()
-    val interfaze = this
-    val packag3 = interfaze.qualifiedName!!
-        .removeSuffix(".${interfaze.simpleName}")
+
+    val packag3 = qualifiedName!!.removeSuffix(".${simpleName}")
 
     code.add("package $packag3")
     code.add("")
-    renderImports(interfaze, code, packag3)
+    renderImports(this, code, packag3)
     code.add("")
     code.add("/**")
-    code.add(" * ${interfaze.documentation}")
+    documentation.applyKeywords().formatAfterMaxWidth().forEach { code.add(" * $it") }
+    code.add(" *")
+    code.add(" * See further documentation:")
+    urls.forEach { (title, url) -> code.add(" * * [$title]($url)") }
     code.add(" */")
 
-    var firstRow = " interface ${interfaze.simpleName}"
-    interfaze.visibility?.name?.lowercase().let { firstRow.prefixIfNot(it.orEmpty()) }
+    var firstRow = " interface ${simpleName}"
+    visibility?.name?.lowercase().let { firstRow.prefixIfNot(it.orEmpty()) }
     firstRow = firstRow.trim()
 
-    if (interfaze.supertypesSimpleNames.isNotEmpty()) {
+    if (supertypesSimpleNames.isNotEmpty()) {
         firstRow += ": "
 
-        interfaze.supertypesSimpleNames.forEach { firstRow += "$it, " }
+        supertypesSimpleNames.forEach { firstRow += "$it, " }
         firstRow = firstRow.removeSuffix(", ")
     }
 
-    if (interfaze.properties.isEmpty() && members.isEmpty()) {
+    if (properties.isEmpty() && members.isEmpty()) {
         code.add(firstRow)
 
         return code
@@ -54,7 +45,7 @@ fun Interface.actuallyRender(): Code {
     code.add(firstRow)
     code.indent()
 
-    interfaze.properties
+    properties
         .filter { !it.const }
         .forEach {
             val valOrVar =
@@ -64,7 +55,7 @@ fun Interface.actuallyRender(): Code {
         }
 
     // Render constants
-    val consts = interfaze.properties.filter { it.const }
+    val consts = properties.filter { it.const }
     renderConstants(consts, code)
 
     // Render methods
@@ -82,11 +73,24 @@ private fun renderConstants(consts: List<Property>, code: Code) {
         code.add("")
         code.add("companion object {")
         code.indent()
-        //TODO Add documentaton from Mozilla's constants page
+
+        var first = true
         consts.forEach {
             var propertyString = "val ${it.name}: ${it.type} = ${it.defaultValue}"
 
             if ("GLenum" == it.type) propertyString += "UL"
+            if ("" != it.documentation) {
+                if (!first) {
+                    code.add("")
+                    code.add("")
+                }
+                else {
+                    first = false
+                }
+                code.add("/**")
+                code.add("* ${it.documentation}")
+                code.add(" */")
+            }
             code.add(propertyString)
         }
 
@@ -105,7 +109,10 @@ private fun renderImports(interfaze: Interface, code: Code, packag3: String) {
     // Adding from each member method's parameters
     interfaze.members.forEach { member ->
         val method = member as Method
-        method.myParameters.forEach { imports.add(Type.IDLPIECE_TO_KTPIECE(it.typeName)) }
+        method.parameters.forEach { kparameter ->
+            val parameter = kparameter as Parameter
+            imports.add(Glob.translateIDLPieceToKotlinPiece(parameter.typeName))
+        }
     }
 
     imports.sorted()
@@ -127,7 +134,7 @@ private fun renderMembers(interfaze: Interface, code: Code) {
         val method: Method = member
 
         code.add("/**")
-        code.add(" * ${method.documentation.removePrefix("null")}")
+        method.documentation.applyKeywords().formatAfterMaxWidth().forEach { code.add(" * $it") }
         if (method.problems.isNotEmpty()) {
             code.add(" *")
             code.add(" * Problems found during importing:")
@@ -135,29 +142,74 @@ private fun renderMembers(interfaze: Interface, code: Code) {
         }
         code.add(" *")
         code.add(" * See further documentation:")
-        method.urls.forEach { url ->
-            val withinBrackets =
-                if (url.contains("mozilla")) "Mozilla's"
-                else if (url.contains("khronos")) "Khronos Group's"
-                else url
-            code.add(" * * [$withinBrackets](${url})")
-        }
-        code.add(" *")
-        method.parameters.sortedBy { it.index }.forEach { kparameter ->
-            val parameter = kparameter as Parameter
-            code.add(" * @param ${parameter.name} ${parameter.documentation}")
-        }
+        method.urls.forEach { (title, url) -> code.add(" * * [$title]($url)") }
+        if (method.parameters.isNotEmpty()) code.add(" *")
+        renderParameters(method, code)
         code.add(" */")
 
         var methodSignatureRow = method.visibility?.name?.lowercase() ?: ""
         methodSignatureRow += " fun ${method.name}("
-        method.myParameters.sortedBy { it.index }.forEach { it ->
-            methodSignatureRow += "${it.name}: ${it.typeName}, "
+        method.parameters.sortedBy { it.index }.forEach { kparameter ->
+            val parameter = kparameter as Parameter
+            methodSignatureRow += "${parameter.name}: ${parameter.typeName}"
+            if (parameter.nullable) methodSignatureRow += "?" //TODO Only apply when it makes sense
+            methodSignatureRow += ", "
         }
         methodSignatureRow = methodSignatureRow.removeSuffix(", ").suffixIfNot(")").trim()
+        val returnType = method.returnType as Type
+        if ("Unit" != returnType.name) methodSignatureRow += ": ${returnType.name}"
+        if (returnType.isMarkedNullable) methodSignatureRow += "?"
         if (method.problems.isNotEmpty()) methodSignatureRow = methodSignatureRow.prefixIfNot("//")
         code.add(methodSignatureRow)
         code.add("")
         code.add("")
     }
 }
+
+
+private fun renderParameters(method: Method, code: Code) {
+    //TODO getTexParameter
+
+    val log = method.name == "compressedTexImage2D"
+
+    method.parameters
+        .sortedBy { it.index }
+        .forEach { kparameter ->
+            val parameter = kparameter as Parameter
+
+            val docs = parameter.documentation
+                .applyKeywords()
+                .split("\n")
+
+            if (docs[0].contains(" Possible values:")) {
+                code.add(" * @param ${parameter.name} ${docs[0].replace(" Possible values:", "")}")
+                code.add(" * Possible values:")
+            } else {
+                code.add(" * @param ${parameter.name} ${docs[0]}")
+            }
+
+            (1..<docs.size).forEach { idx ->
+                    val doc = docs[idx]
+
+                    doc.formatAfterMaxWidth().forEach {
+                        if (it.isNotEmpty() && it.isNotBlank()) {
+                            if (it.endsWith(" extension:")) {
+                                code.add(" * ${it.removePrefix("  *  ")}")
+                                code.add(" *")
+                            }
+                            else if (it.startsWith("ext.")) {
+                                code.add(" *   *  $it")
+                            }
+                            else if (it.contains("R ext.")) {
+                                val its = it.split("R ext.")
+                                code.add(" * ${its[0]}R")
+                                code.add(" *   *  ext.${its[1]}")
+                            }
+                            else {
+                                code.add(" * $it")
+                            }
+                        }
+                    }
+                }
+        }
+    }

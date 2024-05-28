@@ -1,5 +1,6 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi
 
+import com.github.jdw.seaofshadows.Glob
 import java.io.File
 
 class Code() {
@@ -7,8 +8,7 @@ class Code() {
     private var dents = ""
     private var changesSinceLastSave = true
 
-    fun add(lineRaw: String) {
-        val line = if (isOngoingKdoc(lineRaw)) replaceBracketsToKeywords(lineRaw) else lineRaw
+    fun add(line: String) {
         lines.add("$dents$line\n")
         changesSinceLastSave = true
     }
@@ -44,20 +44,4 @@ class Code() {
 
 
     private fun isOngoingKdoc(lineRaw: String) = lineRaw.startsWith(" *")
-
-
-    private fun replaceBracketsToKeywords(lineRaw: String): String {
-        var ret = lineRaw
-
-        setOf("ArrayBuffer", "ArrayBufferView", "BufferDataSource", "DataView",
-            "GLenum", "GLboolean", "GLbitfield", "GLbyte", "GLshort", "GLint", "GLsizei",
-            "GLintptr", "GLsizeiptr", "GLubyte", "GLushort", "GLuint", "GLfloat", "GLclampf", "DOMString",
-            "Event", "EventInit", "Float32Array", "HTMLCanvasElement", "Int32Array", "SequenceDomString", "SequenceWebGLShader",
-            "SharedArrayBuffer", "TexImageSource", "TypedArray", "WebGLActiveInfo", "WebGLBuffer", "WebGLContextAttributes", "WebGLContextEvent",
-            "WebGLContextEventInit", "WebGLFramebuffer", "WebGLObject", "WebGLProgram", "WebGLRenderbuffer", "WebGLRenderingContext",
-            "WebGLRenderingContextBase", "WebGLShader", "WebGLShaderPrecisionFormat", "WebGLTexture", "WebGLUniformLocation")
-            .forEach { ret = ret.replace(it, "[$it]") }
-
-        return ret
-    }
 }

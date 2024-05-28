@@ -2,6 +2,7 @@ import java.net.URI
 
 plugins {
     id("application")
+    id("groovy")
 }
 
 repositories {
@@ -20,6 +21,9 @@ val fuelVersion: String by properties
 kotlin {
     jvm() {
         withJava()
+    }
+    js {
+        nodejs()
     }
 
     applyDefaultHierarchyTemplate()
@@ -44,10 +48,28 @@ kotlin {
                 implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
                 implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
                 implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+                implementation("com.overzealous:remark:1.1.0")
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+                implementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+                //implementation(kotlin("test-junit"))
+                implementation("org.junit.jupiter:junit-jupiter:5.10.2")
+                implementation("org.junit.platform:junit-platform-launcher:1.10.2")
+                implementation("org.spockframework:spock-core:2.4-M4-groovy-2.5")
+                implementation("org.codehaus.groovy:groovy-all:3.0.21")
+//                implementation("io.kotest:kotest-bom:5.9.0")
+//                implementation("io.kotest:kotest-framework-api")
+//                implementation("io.kotest:kotest-runner-junit5")
+//                implementation("io.kotest:kotest-assertions-core")
+//                implementation("io.mockk:mockk:1.13.5")
             }
         }
     }
 }
+
 
 application {
     mainClass.set("com.github.jdw.seaofshadows.Main")
@@ -69,6 +91,14 @@ tasks.withType<Jar> {
     from({
         configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
     })
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+
+    testLogging {
+        events("started", "passed", "skipped", "failed")
+    }
 }
 
 java {

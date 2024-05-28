@@ -1,10 +1,6 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
 import com.github.jdw.seaofshadows.subcommandos.webapi.Code
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import org.jetbrains.kotlin.util.prefixIfNot
-import org.jetbrains.kotlin.util.suffixIfNot
 import kotlin.reflect.KCallable
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
@@ -33,10 +29,11 @@ class Interface(override val annotations: List<Annotation>,
                 override val supertypes: List<KType>,
                 override val typeParameters: List<KTypeParameter>,
                 override val visibility: KVisibility?,
-                val documentation: String,
                 val properties: List<Property>,
                 val supertypesSimpleNames: List<String>,
-                val imports: List<KClass<out Any>> //TODO Remove?
+                val imports: List<KClass<out Any>>,
+                val urls: Map<String, String>,
+                val documentation: String
 ): KClass<Any> {
     fun createType(
         arguments: List<KTypeProjection> = emptyList(),

@@ -1,6 +1,6 @@
 package com.github.jdw.seaofshadows.utils
 
-internal class GeneralException(message: String = ""): Exception("\uD83E\uDEE1$message")
+internal class GeneralException(message: String = ""): Exception("\uD83E\uDEE1  $message")
 
 
 /**

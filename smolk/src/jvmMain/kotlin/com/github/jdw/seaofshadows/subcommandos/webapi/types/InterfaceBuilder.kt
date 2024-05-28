@@ -1,5 +1,7 @@
 package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
+import com.github.jdw.seaofshadows.Glob
+import com.github.jdw.seaofshadows.applyKeywords
 import kotlin.reflect.KCallable
 import kotlin.reflect.KClass
 import kotlin.reflect.KType
@@ -14,14 +16,28 @@ class InterfaceBuilder: BaseBuilder() {
     var supertypes: MutableList<KType> = mutableListOf()
     var supertypeNames: MutableList<String> = mutableListOf()
     var visibility: KVisibility? = null
-    var documentation: String? = null
     var properties: MutableList<Property> = mutableListOf()
     var imports: MutableList<KClass<out Any>> = mutableListOf()
 
     fun build(): Interface {
         assert(simpleName!!.isNotBlank() && simpleName!!.isNotEmpty())
         assert(qualifiedName!!.isNotBlank() && qualifiedName!!.isNotEmpty())
-        assert(documentation!!.isNotBlank() && documentation!!.isNotEmpty())
+        Glob.keywordsToBeBracketedInKdoc.add(simpleName!!)
+
+        var doc = ""
+        getDocumentation().split("\n").forEach { row ->
+            if (!row.contains("]: https://")) {
+                doc += row
+                return@forEach
+            }
+
+            val (title, url) = row.split("]: ")
+
+            urls[title.replace("[", "")] = url
+        }
+
+        doc = doc.trim()
+        assert(doc.isNotBlank() && doc.isNotEmpty())
 
         return Interface(
             annotations = annotations.toList(),
@@ -44,10 +60,11 @@ class InterfaceBuilder: BaseBuilder() {
             supertypes = supertypes.toList(),
             typeParameters = listOf(),
             visibility = visibility,
-            documentation = documentation!!,
             supertypesSimpleNames = supertypeNames.toList(),
             properties = properties.toList(),
-            imports = imports.toList()
+            imports = imports.toList(),
+            urls = urls.toMap(),
+            documentation = doc
         )
     }
 }

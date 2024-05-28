@@ -24,7 +24,6 @@ class WebGL1(val path: File) {
     private val crh = ClassRowHandler()
 
     private val packag3 = "${Glob.GROUP}.webgl.shared"
-    private val codes = mutableMapOf<String, Code>()
     private val javascriptTypes = mutableMapOf(
         "boolean" to Boolean::class,
         "object" to Any::class,
@@ -64,7 +63,7 @@ class WebGL1(val path: File) {
         for (idx in rows.indices) {
             Glob.debug("${rowCnt++}: ${rows[idx]}")
 
-            val rowTrimmed = rows[idx].trim()
+            val rowTrimmed = rows[idx].trim() //TODO remove everything that is a comment
 
             if ("" == rowTrimmed) continue
 
@@ -119,40 +118,30 @@ class WebGL1(val path: File) {
     }
 
 
-    fun handleEndOfClassScope() {
-        val clazz = crh.currentClassBuilder!!.build()
-        crh.currentClassBuilder = null
+    private fun handleEndOfClassScope() {
+        val skips = setOf("WebGLContextAttributes", "WebGLContextEventInit")
+        if (!skips.contains(crh.currentClassBuilder!!.simpleName)) {
+            val clazz = crh.currentClassBuilder!!.build()
 
-        val code = clazz.render()
+            val code = clazz.render()
 
-        code.save(File("${path.path}/${clazz.simpleName}.kt"))
-    }
-
-
-    fun handleEndOfInterface() {
-        val interfaze = irh.handleEndOfInterface()
-        val type = interfaze.createType()
-        val code = interfaze.render()
-        code.save(File("${path.path}/${interfaze.simpleName}.kt"))
-
-        Type.NAME_TO_TYPE[interfaze.simpleName!!] = type
-    }
-
-
-    fun save() {
-        runBlocking {
-            codes.entries.forEach {
-                val code = it.value
-                val filename = it.key
-
-                launch {
-                    Glob.debug("Saving $filename...")
-                    code.save(File("${path.path}/${filename}"))
-                }
-            }
+            code.save(File("${path.path}/${clazz.simpleName}.kt"))
         }
+        crh.currentClassBuilder = null
     }
 
+
+    private fun handleEndOfInterface() {
+        val skips: Set<String> = setOf("WebGLRenderingContext")
+        if (!skips.contains(irh.currentInterfaceBuilder!!.simpleName)) {
+            val interfaze = irh.handleEndOfInterface()
+            val code = interfaze.render()
+            val type = interfaze.createType()
+            Type.NAME_TO_TYPE[interfaze.simpleName!!] = type
+            code.save(File("${path.path}/${interfaze.simpleName}.kt"))
+        }
+        irh.currentInterfaceBuilder = null
+    }
 
     private fun noop() {}
 }
