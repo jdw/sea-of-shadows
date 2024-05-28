@@ -142,7 +142,6 @@ class MethodBuilder {
 
             val parameter = Parameter.builder()
                 .apply { parent = builder }
-                .apply { urls.add(parent!!.urls.values.filter { it.contains(Glob.MOZILLA_API_BASE_URL) }.first()) }
                 .apply { type = Nothing::class.createType() }
                 .apply { name = parameterName }
                 .apply { typeName = Glob.translateIDLPieceToKotlinPiece(parameterType) }

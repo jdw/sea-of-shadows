@@ -26,8 +26,8 @@ allprojects {
     group = GROUP
 
     repositories {
-        mavenCentral()
         mavenLocal()
+        mavenCentral()
         google()
         gradlePluginPortal()
     }

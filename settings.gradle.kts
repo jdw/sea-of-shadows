@@ -23,6 +23,7 @@ include(":core")
 include(":webgl-shared")
 include(":webgl1-server-side")
 include(":webgl1-terminal")
+include(":canvas2d-shared")
 include(":smolk")
 
 val NAME: String by settings
