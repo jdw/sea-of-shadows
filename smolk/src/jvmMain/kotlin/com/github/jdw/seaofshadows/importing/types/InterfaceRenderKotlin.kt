@@ -4,7 +4,7 @@ import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.applyKeywords
 import com.github.jdw.seaofshadows.enumClassName
 import com.github.jdw.seaofshadows.formatAfterMaxWidth
-import com.github.jdw.seaofshadows.subcommandos.rosetta.Code
+import com.github.jdw.seaofshadows.importing.Code
 import com.github.jdw.seaofshadows.utils.echt
 import com.github.jdw.seaofshadows.variableNameToEnumMemberName
 import org.jetbrains.kotlin.util.prefixIfNot

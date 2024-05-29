@@ -1,4 +1,4 @@
-package com.github.jdw.seaofshadows.subcommandos.rosetta
+package com.github.jdw.seaofshadows.importing
 
 import java.io.File
 

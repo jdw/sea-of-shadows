@@ -1,6 +1,6 @@
 package com.github.jdw.seaofshadows.importing.types
 
-import com.github.jdw.seaofshadows.subcommandos.rosetta.Code
+import com.github.jdw.seaofshadows.importing.Code
 
 fun Class.renderKotlin(): Code {
     val clazz = this
