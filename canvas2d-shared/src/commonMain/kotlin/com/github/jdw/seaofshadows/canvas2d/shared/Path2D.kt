@@ -26,8 +26,10 @@ interface Path2D {
 	 * See further documentation:
 	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Path2D/addPath)
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-path2d-addpath-dev)
+	 *
+	 * @param path A [Path2D] path to add.
 	 */
-	fun addPath()
+	fun addPath(path: Number)
 	
 	
 }

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+message QuadraticCurveToResponse {
+	uint64 parent = 1;
+	<TODO: parameter.typeName = Number> cpx = 2;
+	<TODO: parameter.typeName = Number> cpy = 3;
+	int32 x = 4;
+	int32 y = 5;
+	string result = 6;
+}

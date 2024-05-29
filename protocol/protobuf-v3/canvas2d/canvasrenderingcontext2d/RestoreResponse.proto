@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+message RestoreResponse {
+	uint64 parent = 1;
+	string result = 2;
+}

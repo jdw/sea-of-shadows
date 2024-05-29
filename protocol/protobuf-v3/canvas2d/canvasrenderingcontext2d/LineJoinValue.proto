@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+enum LineJoinValue {
+	/**
+	 * Fills an additional triangular area between the common endpoint of connected segments, and the separate outside rectangular corners of each segment.
+	 */
+	BEVEL = 0;
+	
+	/**
+	 * Connected segments are joined by extending their outside edges to connect at a single point, with the effect of filling an additional lozenge-shaped area. This setting is affected by the miterLimit property. Default value.
+	 */
+	MITER = 1;
+	
+	/**
+	 * Rounds off the corners of a shape by filling an additional sector of disc centered at the common endpoint of connected segments. The radius for these rounded corners is equal to the line width.
+	 */
+	ROUND = 2;
+}

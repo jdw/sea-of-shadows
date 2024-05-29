@@ -90,6 +90,7 @@ fun String.formatAfterFirstKeywordMatch(keywords: List<String>): String {
             "$keyword()`",
             "$keyword)",
             "($keyword",
+            "(<$keyword>)",
             "`$keyword()`" -> "[$keyword]"
             "$keyword,",
             "`$keyword()`,",
@@ -225,6 +226,7 @@ fun String.variableNameToEnumMemberName(): String {
     }
 }
 
+
 fun String.enumClassName(): String {
     var ret = ""
     this.forEachIndexed { idx, char ->
@@ -234,4 +236,32 @@ fun String.enumClassName(): String {
     }
 
     return "${ret}Value"
+}
+
+
+fun String.capitalizeFirstLetter(): String {
+    if ("" == this) return this
+    if (this.length == 1) return this.uppercase()
+
+    return "${this[0].uppercase()}${this.substring(1, this.length)}"
+}
+
+
+fun String.toProtobufFieldName(): String {
+    if ("" == this) return this
+
+    var ret = ""
+    this.forEachIndexed { idx, char ->
+        if (0 == idx) {
+            ret += char.lowercase()
+        }
+        else {
+            ret += if ("$char" != char.lowercase()) { // We have found new camel hump
+                "_${char.lowercase()}"
+            }
+            else "$char"
+        }
+    }
+
+    return ret.replace("-", "_")
 }

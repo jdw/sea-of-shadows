@@ -95,7 +95,7 @@ class ParameterBuilder {
         )
     }
 
-    var builderBlockForCanvas2d: () -> Parameter = {
+    val builderBlockForCanvas2d: () -> Parameter = {
         val parameterName = name!!.lowercase()
         val documentation = try {
             Glob
@@ -105,7 +105,6 @@ class ParameterBuilder {
                 .text()
         }
         catch (e: Exception) {
-            println("${parent!!.name} -- $parameterName -- FAILED!!!")
             "TODO: Something failed while importing documentation for this parameter!"
         }
 
@@ -122,5 +121,7 @@ class ParameterBuilder {
             nullable = nullable!!
         )
     }
-    fun build(): Parameter = builderBlock.invoke()
+
+
+    fun build(): Parameter { return builderBlock.invoke() }
 }

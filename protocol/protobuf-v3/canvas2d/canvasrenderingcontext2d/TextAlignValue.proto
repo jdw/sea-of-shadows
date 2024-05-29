@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+enum TextAlignValue {
+	/**
+	 * The text is centered.
+	 */
+	CENTER = 0;
+	
+	/**
+	 * The text is aligned at the normal end of the line (right-aligned for left-to-right locales, left-aligned for right-to-left locales).
+	 */
+	END = 1;
+	
+	/**
+	 * The text is left-aligned.
+	 */
+	LEFT = 2;
+	
+	/**
+	 * The text is right-aligned.
+	 */
+	RIGHT = 3;
+	
+	/**
+	 * The text is aligned at the normal start of the line (left-aligned for left-to-right locales, right-aligned for right-to-left locales).
+	 */
+	START = 4;
+}

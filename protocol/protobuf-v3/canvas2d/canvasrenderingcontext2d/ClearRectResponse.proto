@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+message ClearRectResponse {
+	uint64 parent = 1;
+	int32 x = 2;
+	int32 y = 3;
+	int32 width = 4;
+	int32 height = 5;
+	string result = 6;
+}

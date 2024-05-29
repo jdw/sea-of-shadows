@@ -30,8 +30,10 @@ interface CanvasPattern {
 	 * See further documentation:
 	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasPattern/setTransform)
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-canvaspattern-settransform-dev)
+	 *
+	 * @param matrix A DOMMatrix to use as the pattern's transformation matrix.
 	 */
-	fun setTransform()
+	fun setTransform(matrix: Number)
 	
 	
 }

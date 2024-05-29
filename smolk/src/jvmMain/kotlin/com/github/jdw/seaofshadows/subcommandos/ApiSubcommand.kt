@@ -8,16 +8,15 @@ import com.github.ajalt.clikt.parameters.types.file
 import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.utils.doch
 import com.github.jdw.seaofshadows.utils.echt
+import org.intellij.lang.annotations.Language
 import java.io.File
 
-abstract class ApiSubcommand(help: String, defaultPath: File): CliktCommand(help = help) {
+abstract class ApiSubcommand(help: String, defaultPath: File, supportedLanguages: Set<String> = setOf("kotlin"), defaultLanguage: String = "kotlin"): CliktCommand(help = help) {
     val path by option("-p", "--path", help = "The path to write generated source code files to. Default value is '${defaultPath.toPath()}'.")
         .file(canBeDir = true, mustExist = true)
         .default(defaultPath)
-    private val supportedLanguages: Set<String> = setOf("kotlin")
     val language by option("-l", "--language", help = "The language to render code to. Supported values are ${supportedLanguages.supportedValues('<' to '>', '|')}")
-        .default("kotlin")
-
+        .default(defaultLanguage)
     private val delete by option("-d", "--delete", help = "Delete the already imported files in the path.").flag()
 
     fun handleDeletion() {

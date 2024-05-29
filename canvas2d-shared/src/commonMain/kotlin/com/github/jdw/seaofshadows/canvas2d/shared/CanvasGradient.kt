@@ -34,8 +34,11 @@ interface CanvasGradient {
 	 * See further documentation:
 	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasGradient/addColorStop)
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-canvasgradient-addcolorstop-dev)
+	 *
+	 * @param offset A number between 0 and 1, inclusive, representing the position of the color stop. 0 represents the start of the gradient and 1 represents the end.
+	 * @param color A CSS <color> value representing the color of the stop.
 	 */
-	fun addColorStop()
+	fun addColorStop(offset: Number, color: Number)
 	
 	
 }

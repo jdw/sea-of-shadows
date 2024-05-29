@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+message FillTextResponse {
+	uint64 parent = 1;
+	<TODO: parameter.typeName = Number> text = 2;
+	int32 x = 3;
+	int32 y = 4;
+	string result = 5;
+}

@@ -35,8 +35,10 @@ interface ImageBitmapRenderingContext {
 	 * See further documentation:
 	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/ImageBitmapRenderingContext/transferFromImageBitmap)
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-imagebitmaprenderingcontext-transferfromimagebitmap-dev)
+	 *
+	 * @param bitmap An ImageBitmap object to transfer.
 	 */
-	fun transferFromImageBitmap()
+	fun transferFromImageBitmap(bitmap: Number)
 	
 	
 }

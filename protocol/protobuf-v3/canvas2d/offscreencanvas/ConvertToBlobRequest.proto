@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.offscreencanvas;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+message ConvertToBlobRequest {
+	uint64 parent = 1;
+}

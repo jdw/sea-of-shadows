@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+enum FontVariantCapsValue {
+	/**
+	 * Enables display of petite capitals for both upper and lowercase letters (OpenType features: c2pc, pcap).
+	 */
+	ALL_PETITE_CAPS = 0;
+	
+	/**
+	 * Enables display of small capitals for both upper and lowercase letters (OpenType features: c2sc, smcp).
+	 */
+	ALL_SMALL_CAPS = 1;
+	
+	/**
+	 * Deactivates of the use of alternate glyphs.
+	 */
+	NORMAL = 2;
+	
+	/**
+	 * Enables display of petite capitals (OpenType feature: pcap).
+	 */
+	PETITE_CAPS = 3;
+	
+	/**
+	 * Enables display of small capitals (OpenType feature: smcp). Small-caps glyphs typically use the form of uppercase letters but are reduced to the size of lowercase letters.
+	 */
+	SMALL_CAPS = 4;
+	
+	/**
+	 * Enables display of titling capitals (OpenType feature: titl). Uppercase letter glyphs are often designed for use with lowercase letters. When used in all uppercase titling sequences they can appear too strong. Titling capitals are designed specifically for this situation.
+	 */
+	TITLING_CAPS = 5;
+	
+	/**
+	 * Enables display of mixture of small capitals for uppercase letters with normal lowercase letters (OpenType feature: unic).
+	 */
+	UNICASE = 6;
+}

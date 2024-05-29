@@ -105,11 +105,11 @@ private fun renderNonConstantProperties(properties: List<Property>, code: Code) 
             if (null != property.defaultValue) {
                 defaultValueStr =
                     if (property.allowedValues.containsKey(property.defaultValue!!)) {
-                        " = ${property.name.enumClassName()}.${property.defaultValue.variableNameToEnumMemberName()}"
-                    } else " = ${property.defaultValue}"
+                        "// = ${property.name.enumClassName()}.${property.defaultValue.variableNameToEnumMemberName()}"
+                    } else "// = ${property.defaultValue}"
             }
 
-            code.add("$valOrVar ${property.name}: ${property.type}$defaultValueStr")
+            code.add("$valOrVar ${property.name}: ${property.type}${defaultValueStr}")
         }
 }
 

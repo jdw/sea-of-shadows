@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+message ArcResponse {
+	uint64 parent = 1;
+	int32 x = 2;
+	int32 y = 3;
+	<TODO: parameter.typeName = Number> radius = 4;
+	<TODO: parameter.typeName = Number> start_angle = 5;
+	<TODO: parameter.typeName = Number> end_angle = 6;
+	string result = 7;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+enum FontKerningValue {
+	/**
+	 * The browser determines whether font kerning should be used or not. For example, some browsers will disable kerning on small fonts, since applying it could harm the readability of text.
+	 */
+	AUTO = 0;
+	
+	/**
+	 * Font kerning information stored in the font is disabled.
+	 */
+	NONE = 1;
+	
+	/**
+	 * Font kerning information stored in the font must be applied.
+	 */
+	NORMAL = 2;
+}

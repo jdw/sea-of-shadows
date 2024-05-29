@@ -1,0 +1,137 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+enum GlobalCompositeOperationValue {
+	/**
+	 * Preserves the luma of the bottom layer, while adopting the hue and chroma of the top layer.
+	 */
+	COLOR = 0;
+	
+	/**
+	 * Divides the inverted bottom layer by the top layer, and then inverts the result.
+	 */
+	COLOR_BURN = 1;
+	
+	/**
+	 * Divides the bottom layer by the inverted top layer.
+	 */
+	COLOR_DODGE = 2;
+	
+	/**
+	 * Only the new shape is shown.
+	 */
+	COPY = 3;
+	
+	/**
+	 * Retains the darkest pixels of both layers.
+	 */
+	DARKEN = 4;
+	
+	/**
+	 * The existing canvas is only kept where it overlaps the new shape. The new shape is drawn behind the canvas content.
+	 */
+	DESTINATION_ATOP = 5;
+	
+	/**
+	 * The existing canvas content is kept where both the new shape and existing canvas content overlap. Everything else is made transparent.
+	 */
+	DESTINATION_IN = 6;
+	
+	/**
+	 * The existing content is kept where it doesn't overlap the new shape.
+	 */
+	DESTINATION_OUT = 7;
+	
+	/**
+	 * New shapes are drawn behind the existing canvas content.
+	 */
+	DESTINATION_OVER = 8;
+	
+	/**
+	 * Subtracts the bottom layer from the top layer — or the other way round — to always get a positive value.
+	 */
+	DIFFERENCE = 9;
+	
+	/**
+	 * Like difference, but with lower contrast.
+	 */
+	EXCLUSION = 10;
+	
+	/**
+	 * Like overlay, a combination of multiply and screen — but instead with the top layer and bottom layer swapped.
+	 */
+	HARD_LIGHT = 11;
+	
+	/**
+	 * Preserves the luma and chroma of the bottom layer, while adopting the hue of the top layer.
+	 */
+	HUE = 12;
+	
+	/**
+	 * Retains the lightest pixels of both layers.
+	 */
+	LIGHTEN = 13;
+	
+	/**
+	 * Where both shapes overlap, the color is determined by adding color values.
+	 */
+	LIGHTER = 14;
+	
+	/**
+	 * Preserves the hue and chroma of the bottom layer, while adopting the luma of the top layer.
+	 */
+	LUMINOSITY = 15;
+	
+	/**
+	 * The pixels of the top layer are multiplied with the corresponding pixels of the bottom layer. A darker picture is the result.
+	 */
+	MULTIPLY = 16;
+	
+	/**
+	 * A combination of multiply and screen. Dark parts on the base layer become darker, and light parts become lighter.
+	 */
+	OVERLAY = 17;
+	
+	/**
+	 * Preserves the luma and hue of the bottom layer, while adopting the chroma of the top layer.
+	 */
+	SATURATION = 18;
+	
+	/**
+	 * The pixels are inverted, multiplied, and inverted again. A lighter picture is the result (opposite of multiply)
+	 */
+	SCREEN = 19;
+	
+	/**
+	 * A softer version of hard-light. Pure black or white does not result in pure black or white.
+	 */
+	SOFT_LIGHT = 20;
+	
+	/**
+	 * The new shape is only drawn where it overlaps the existing canvas content.
+	 */
+	SOURCE_ATOP = 21;
+	
+	/**
+	 * The new shape is drawn only where both the new shape and the destination canvas overlap. Everything else is made transparent.
+	 */
+	SOURCE_IN = 22;
+	
+	/**
+	 * The new shape is drawn where it doesn't overlap the existing canvas content.
+	 */
+	SOURCE_OUT = 23;
+	
+	/**
+	 * This is the default setting and draws new shapes on top of the existing canvas content.
+	 */
+	SOURCE_OVER = 24;
+	
+	/**
+	 * Shapes are made transparent where both overlap and drawn normal everywhere else.
+	 */
+	XOR = 25;
+}

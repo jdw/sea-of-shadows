@@ -11,15 +11,19 @@ import com.github.jdw.seaofshadows.importing.types.Property
 import com.github.jdw.seaofshadows.importing.types.PropertyBuilder
 import com.github.jdw.seaofshadows.importing.types.Type
 import com.github.jdw.seaofshadows.utils.noop
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlin.reflect.KParameter
 import kotlin.reflect.full.createType
 
-class Canvas2dImporter {
-    var renderBlock: (Interface) -> Unit = { interfaze ->
-        Glob.error("Can not render interface '${interfaze.simpleName}' because no proper render function is set.")
-    }
+private val defaultRenderBlock = { interfaze: Interface ->
+    Glob.error("Can not render interface '${interfaze.simpleName}' because no proper render function is set.")
+}
+
+class Canvas2dImporter(var renderBlock: (Interface) -> Unit = defaultRenderBlock) {
     fun run() = runBlocking {
         val packag3 = "${Glob.GROUP}.canvas2d.shared"
 
@@ -195,6 +199,7 @@ class Canvas2dImporter {
                 .first()!!
                 .text()
 
+            val jobs: MutableList<Deferred<Unit>> = mutableListOf()
             if (!text.contains("()")) { // Building method with parameters
                 """\(.*\)"""
                     .toRegex()
@@ -205,7 +210,7 @@ class Canvas2dImporter {
                     .removePrefix("(")
                     .split(", ")
                     .forEach { name ->
-                        launch {
+                        val job = async {
                             val parameterBuilder = Parameter.builder()
                                 .apply { this.name = name }
                                 .apply { parent = builder }
@@ -219,12 +224,15 @@ class Canvas2dImporter {
 
                             buildParameter(parameterBuilder)
                         }
+                        jobs.add(job)
                     }
 
             }
             else if (text.contains("()")) {
                 noop()
             }
+
+            jobs.awaitAll()
 
             builder.parent!!.members.add(builder.build())
         }

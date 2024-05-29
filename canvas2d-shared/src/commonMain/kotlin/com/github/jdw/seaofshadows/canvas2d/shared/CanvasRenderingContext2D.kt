@@ -273,7 +273,7 @@ interface CanvasRenderingContext2D {
 		SQUARE
 	}
 	var lineCap: String
-	var lineDashOffset: Number = 0.0
+	var lineDashOffset: Number// = 0.0
 	enum class LineJoinValue {
 		/**
 		 * Fills an additional triangular area between the common endpoint of connected segments, and the separate outside rectangular corners of each segment.
@@ -292,13 +292,13 @@ interface CanvasRenderingContext2D {
 		 */
 		ROUND
 	}
-	var lineJoin: String = LineJoinValue.MITER
-	var lineWidth: Number = 1.0
+	var lineJoin: String// = LineJoinValue.MITER
+	var lineWidth: Number// = 1.0
 	var miterLimit: String
-	var shadowBlur: Number = 0
+	var shadowBlur: Number// = 0
 	var shadowColor: String
-	var shadowOffsetX: Number = 0
-	var shadowOffsetY: Number = 0
+	var shadowOffsetX: Number// = 0
+	var shadowOffsetY: Number// = 0
 	enum class StrokeStyleValue {
 		/**
 		 * A string parsed as CSS <color> value.
@@ -414,34 +414,6 @@ interface CanvasRenderingContext2D {
 	var wordSpacing: String
 	
 	/**
-	 *  The [CanvasRenderingContext2D].[arc] method of the Canvas 2D API adds a
-	 * circular [arc] to the current sub-path.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-arc-dev)
-	 */
-	fun arc()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[arcTo] method of the Canvas 2D API adds a
-	 * circular [arc] to the current sub-path, using the given control points and
-	 * radius. The [arc] is automatically connected to the path's latest point with a
-	 * straight line if necessary, for example if the starting point and control points
-	 * are in a line. This method is commonly used for making rounded corners. Note:
-	 * You may get unexpected results when using a relatively large radius: the arc's
-	 * connecting line will go in whatever [direction] it must to meet the specified
-	 * radius.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arcTo)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-arcto-dev)
-	 */
-	fun arcTo()
-	
-	
-	/**
 	 *  The [CanvasRenderingContext2D].[beginPath] method of the Canvas 2D API starts a
 	 * new path by emptying the list of sub-paths. Call this method when you want to
 	 * create a new path. Note: To create a new sub-path, i.e., one matching the
@@ -452,34 +424,6 @@ interface CanvasRenderingContext2D {
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-beginpath-dev)
 	 */
 	fun beginPath()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[bezierCurveTo] method of the Canvas 2D API adds
-	 * a cubic Bézier curve to the current sub-path. It requires three points: the
-	 * first two are control points and the third one is the end point. The starting
-	 * point is the latest point in the current path, which can be changed using
-	 * [moveTo] before creating the Bézier curve.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-beziercurveto-dev)
-	 */
-	fun bezierCurveTo()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[clearRect] method of the Canvas 2D API erases
-	 * the pixels in a rectangular area by setting them to transparent black. Note: Be
-	 * aware that [clearRect] may cause unintended side effects if you're not using
-	 * paths properly. Make sure to call [beginPath] before starting to draw new items
-	 * after calling [clearRect].
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-clearrect-dev)
-	 */
-	fun clearRect()
 	
 	
 	/**
@@ -519,123 +463,6 @@ interface CanvasRenderingContext2D {
 	
 	
 	/**
-	 *  The [CanvasRenderingContext2D].[createConicGradient] method of the Canvas 2D
-	 * API creates a gradient around a point with given coordinates. This method
-	 * returns a conic `CanvasGradient`. To be applied to a shape, the gradient must
-	 * first be assigned to the [fillStyle] or [strokeStyle] properties. Note: Gradient
-	 * coordinates are global, i.e., relative to the current coordinate space. When
-	 * applied to a shape, the coordinates are NOT relative to the shape's coordinates.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createConicGradient)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createconicgradient-dev)
-	 */
-	fun createConicGradient()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[createImageData] method of the Canvas 2D API
-	 * creates a new, blank [ImageData] object with the specified dimensions. All of
-	 * the pixels in the new object are transparent black.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createImageData)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createimagedata-dev)
-	 */
-	fun createImageData()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[createLinearGradient] method of the Canvas 2D
-	 * API creates a gradient along the line connecting two given coordinates. ![The
-	 * gradient transitions colors along the gradient line, starting at point x0, y0
-	 * and going to x1, y1, even if those points extend the gradient line beyond the
-	 * edges of the element on which the gradient is drawn.][The gradient transitions
-	 * colors along the gradient line_ starting at point x0_ y0 and going to x1_ y1_
-	 * even if those points extend the gradient line beyond the edges of the element on
-	 * which the gradient is drawn.] This method returns a linear `CanvasGradient`. To
-	 * be applied to a shape, the gradient must first be assigned to the [fillStyle] or
-	 * [strokeStyle] properties. Note: Gradient coordinates are global, i.e., relative
-	 * to the current coordinate space. When applied to a shape, the coordinates are
-	 * NOT relative to the shape's coordinates.[The gradient transitions colors along
-	 * the gradient line_ starting at point x0_ y0 and going to x1_ y1_ even if those
-	 * points extend the gradient line beyond the edges of the element on which the
-	 * gradient is drawn.]:
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createLinearGradient)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createlineargradient-dev)
-	 */
-	fun createLinearGradient()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[createPattern] method of the Canvas 2D API
-	 * creates a pattern using the specified image and repetition. This method returns
-	 * a `CanvasPattern`. This method doesn't draw anything to the [canvas] directly.
-	 * The pattern it creates must be assigned to the
-	 * [CanvasRenderingContext2D].[fillStyle] or
-	 * [CanvasRenderingContext2D].[strokeStyle] properties, after which it is applied
-	 * to any subsequent drawing.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createPattern)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createpattern-dev)
-	 */
-	fun createPattern()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[createRadialGradient] method of the Canvas 2D
-	 * API creates a radial gradient using the size and coordinates of two circles.
-	 * This method returns a `CanvasGradient`. To be applied to a shape, the gradient
-	 * must first be assigned to the [fillStyle] or [strokeStyle] properties. Note:
-	 * Gradient coordinates are global, i.e., relative to the current coordinate space.
-	 * When applied to a shape, the coordinates are NOT relative to the shape's
-	 * coordinates.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createRadialGradient)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createradialgradient-dev)
-	 */
-	fun createRadialGradient()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[drawFocusIfNeeded] method of the Canvas 2D API
-	 * draws a focus ring around the current or given path, if the specified element is
-	 * focused.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-drawfocusifneeded-dev)
-	 */
-	fun drawFocusIfNeeded()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[drawImage] method of the Canvas 2D API provides
-	 * different ways to draw an image onto the [canvas].
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-drawimage-dev)
-	 */
-	fun drawImage()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[ellipse] method of the Canvas 2D API adds an
-	 * elliptical [arc] to the current sub-path.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/ellipse)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-ellipse-dev)
-	 */
-	fun ellipse()
-	
-	
-	/**
 	 *  The [CanvasRenderingContext2D].[fill] method of the Canvas 2D API fills the
 	 * current or given path with the current [fillStyle].
 	 *
@@ -644,38 +471,6 @@ interface CanvasRenderingContext2D {
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-fill-dev)
 	 */
 	fun fill()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[fillRect] method of the Canvas 2D API draws a
-	 * rectangle that is filled according to the current [fillStyle]. This method draws
-	 * directly to the [canvas] without modifying the current path, so any subsequent
-	 * [fill] or [stroke] calls will have no effect on it.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-fillrect-dev)
-	 */
-	fun fillRect()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D] method [fillText], part of the Canvas 2D API,
-	 * draws a text string at the specified coordinates, filling the string's
-	 * characters with the current [fillStyle]. An optional parameter allows specifying
-	 * a maximum [width] for the rendered text, which the user agent will achieve by
-	 * condensing the text or by using a lower [font] size. This method draws directly
-	 * to the [canvas] without modifying the current path, so any subsequent [fill] or
-	 * [stroke] calls will have no effect on it. The text is rendered using the [font]
-	 * and text layout configuration as defined by the [font], [textAlign],
-	 * [textBaseline], and [direction] properties. Note: To draw the outlines of the
-	 * characters in a string, call the context's [strokeText] method.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillText)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-filltext-dev)
-	 */
-	fun fillText()
 	
 	
 	/**
@@ -689,24 +484,6 @@ interface CanvasRenderingContext2D {
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#2dcontext:dom-context-2d-canvas-getcontextattributes-2)
 	 */
 	fun getContextAttributes()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D] method [getImageData] of the Canvas 2D API
-	 * returns an [ImageData] object representing the underlying pixel [data] for a
-	 * specified portion of the [canvas]. This method is not affected by the canvas's
-	 * transformation matrix. If the specified rectangle extends outside the bounds of
-	 * the [canvas] the pixels outside the [canvas] are transparent black in the
-	 * returned [ImageData] object. Note: Image [data] can be painted onto a [canvas]
-	 * using the [putImageData] method. You can find more information about
-	 * [getImageData] and general manipulation of [canvas] contents in Pixel
-	 * manipulation with [canvas].
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getImageData)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-getimagedata-dev)
-	 */
-	fun getImageData()
 	
 	
 	/**
@@ -750,110 +527,6 @@ interface CanvasRenderingContext2D {
 	
 	
 	/**
-	 *  The [CanvasRenderingContext2D].[isPointInPath] method of the Canvas 2D API
-	 * reports whether or not the specified point is contained in the current path.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInPath)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-ispointinpath-dev)
-	 */
-	fun isPointInPath()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[isPointInStroke] method of the Canvas 2D API
-	 * reports whether or not the specified point is inside the area contained by the
-	 * stroking of a path.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInStroke)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-ispointinstroke-dev)
-	 */
-	fun isPointInStroke()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D] method [lineTo], part of the Canvas 2D API, adds
-	 * a straight line to the current sub-path by connecting the sub-path's last point
-	 * to the specified `(x, y)` coordinates. Like other methods that modify the
-	 * current path, this method does not directly render anything. To draw the path
-	 * onto a [canvas] you can use the [fill] or [stroke] methods.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineTo)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-lineto-dev)
-	 */
-	fun lineTo()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[measureText] method returns a [TextMetrics]
-	 * object that contains information about the measured text (such as its [width]
-	 * for example).
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/measureText)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-measuretext-dev)
-	 */
-	fun measureText()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[moveTo] method of the Canvas 2D API begins a
-	 * new sub-path at the point specified by the given `(x, y)` coordinates.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/moveTo)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-moveto-dev)
-	 */
-	fun moveTo()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[putImageData] method of the Canvas 2D API
-	 * paints [data] from the given [ImageData] object onto the [canvas]. If a dirty
-	 * rectangle is provided, only the pixels from that rectangle are painted. This
-	 * method is not affected by the [canvas] transformation matrix. Note: Image [data]
-	 * can be retrieved from a [canvas] using the [getImageData] method. You can find
-	 * more information about [putImageData] and general manipulation of [canvas]
-	 * contents in the article Pixel manipulation with [canvas].
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-putimagedata-dev)
-	 */
-	fun putImageData()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[quadraticCurveTo] method of the Canvas 2D API
-	 * adds a quadratic Bézier curve to the current sub-path. It requires two points:
-	 * the first one is a control point and the second one is the end point. The
-	 * starting point is the latest point in the current path, which can be changed
-	 * using [moveTo] before creating the quadratic Bézier curve.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/quadraticCurveTo)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-quadraticcurveto-dev)
-	 */
-	fun quadraticCurveTo()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[rect] method of the Canvas 2D API adds a
-	 * rectangle to the current path. Like other methods that modify the current path,
-	 * this method does not directly render anything. To draw the rectangle onto a
-	 * [canvas] you can use the [fill] or [stroke] methods. Note: To both create and
-	 * render a rectangle in one step, use the [fillRect] or [strokeRect] methods.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rect)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-rect-dev)
-	 */
-	fun rect()
-	
-	
-	/**
 	 *  The [CanvasRenderingContext2D].[reset] method of the Canvas 2D API resets the
 	 * rendering context to its default state, allowing it to be reused for drawing
 	 * something else without having to explicitly [reset] all the properties.
@@ -894,32 +567,6 @@ interface CanvasRenderingContext2D {
 	
 	
 	/**
-	 *  The [CanvasRenderingContext2D].[rotate] method of the Canvas 2D API adds a
-	 * rotation to the transformation matrix.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-rotate-dev)
-	 */
-	fun rotate()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[roundRect] method of the Canvas 2D API adds a
-	 * rounded rectangle to the current path. The radii of the corners can be specified
-	 * in much the same way as the CSS `border-radius` property. Like other methods
-	 * that modify the current path, this method does not directly render anything. To
-	 * draw the rounded rectangle onto a [canvas] you can use the [fill] or [stroke]
-	 * methods.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/roundRect)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-roundrect)
-	 */
-	fun roundRect()
-	
-	
-	/**
 	 *  The [CanvasRenderingContext2D].[save] method of the Canvas 2D API saves the
 	 * entire state of the [canvas] by pushing the current state onto a stack.
 	 *
@@ -928,22 +575,6 @@ interface CanvasRenderingContext2D {
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-save-dev)
 	 */
 	fun save()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[scale] method of the Canvas 2D API adds a
-	 * scaling transformation to the [canvas] units horizontally and/or vertically. By
-	 * default, one unit on the [canvas] is exactly one pixel. A scaling transformation
-	 * modifies this behavior. For instance, a scaling factor of 0.5 results in a unit
-	 * size of 0.5 pixels; shapes are thus drawn at half the normal size. Similarly, a
-	 * scaling factor of 2.0 increases the unit size so that one unit becomes two
-	 * pixels; shapes are thus drawn at twice the normal size.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scale)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-scale-dev)
-	 */
-	fun scale()
 	
 	
 	/**
@@ -958,35 +589,6 @@ interface CanvasRenderingContext2D {
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-scrollpathintoview-dev)
 	 */
 	fun scrollPathIntoView()
-	
-	
-	/**
-	 *  The [setLineDash] method of the Canvas 2D API's [CanvasRenderingContext2D]
-	 * interface sets the line dash pattern used when stroking lines. It uses an array
-	 * of values that specify alternating lengths of lines and gaps which describe the
-	 * pattern. Note: To return to using solid lines, set the line dash list to an
-	 * empty array.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-setlinedash-dev)
-	 */
-	fun setLineDash()
-	
-	
-	/**
-	 *  The [CanvasRenderingContext2D].[setTransform] method of the Canvas 2D API
-	 * resets (overrides) the current transformation to the identity matrix, and then
-	 * invokes a transformation described by the arguments of this method. This lets
-	 * you [scale] [rotate] [translate] (move), and skew the context. Note: See also
-	 * the [transform] method; instead of overriding the current [transform] matrix, it
-	 * multiplies it with a given one.
-	 *
-	 * See further documentation:
-	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform)
-	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-settransform-dev)
-	 */
-	fun setTransform()
 	
 	
 	/**
@@ -1006,6 +608,526 @@ interface CanvasRenderingContext2D {
 	
 	
 	/**
+	 *  The [CanvasRenderingContext2D].[arc] method of the Canvas 2D API adds a
+	 * circular [arc] to the current sub-path.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-arc-dev)
+	 *
+	 * @param x The horizontal coordinate of the arc's center.
+	 * @param y The vertical coordinate of the arc's center.
+	 * @param radius The arc's radius. Must be positive.
+	 * @param startAngle The angle at which the [arc] starts in radians, measured from the positive x-axis.
+	 * @param endAngle The angle at which the [arc] ends in radians, measured from the positive x-axis.
+	 */
+	fun arc(x: Number, y: Number, radius: Number, startAngle: Number, endAngle: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[arcTo] method of the Canvas 2D API adds a
+	 * circular [arc] to the current sub-path, using the given control points and
+	 * radius. The [arc] is automatically connected to the path's latest point with a
+	 * straight line if necessary, for example if the starting point and control points
+	 * are in a line. This method is commonly used for making rounded corners. Note:
+	 * You may get unexpected results when using a relatively large radius: the arc's
+	 * connecting line will go in whatever [direction] it must to meet the specified
+	 * radius.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arcTo)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-arcto-dev)
+	 *
+	 * @param x1 The x-axis coordinate of the first control point.
+	 * @param y1 The y-axis coordinate of the first control point.
+	 * @param x2 The x-axis coordinate of the second control point.
+	 * @param y2 The y-axis coordinate of the second control point.
+	 * @param radius The arc's radius. Must be non-negative.
+	 */
+	fun arcTo(x1: Number, y1: Number, x2: Number, y2: Number, radius: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[bezierCurveTo] method of the Canvas 2D API adds
+	 * a cubic Bézier curve to the current sub-path. It requires three points: the
+	 * first two are control points and the third one is the end point. The starting
+	 * point is the latest point in the current path, which can be changed using
+	 * [moveTo] before creating the Bézier curve.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-beziercurveto-dev)
+	 *
+	 * @param cp1x The x-axis coordinate of the first control point.
+	 * @param cp1y The y-axis coordinate of the first control point.
+	 * @param cp2x The x-axis coordinate of the second control point.
+	 * @param cp2y The y-axis coordinate of the second control point.
+	 * @param x The x-axis coordinate of the end point.
+	 * @param y The y-axis coordinate of the end point.
+	 */
+	fun bezierCurveTo(cp1x: Number, cp1y: Number, cp2x: Number, cp2y: Number, x: Number, y: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[clearRect] method of the Canvas 2D API erases
+	 * the pixels in a rectangular area by setting them to transparent black. Note: Be
+	 * aware that [clearRect] may cause unintended side effects if you're not using
+	 * paths properly. Make sure to call [beginPath] before starting to draw new items
+	 * after calling [clearRect].
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-clearrect-dev)
+	 *
+	 * @param x The x-axis coordinate of the rectangle's starting point.
+	 * @param y The y-axis coordinate of the rectangle's starting point.
+	 * @param width The rectangle's [width]. Positive values are to the right, and negative to the left.
+	 * @param height The rectangle's [height]. Positive values are down, and negative are up.
+	 */
+	fun clearRect(x: Number, y: Number, width: Number, height: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[createConicGradient] method of the Canvas 2D
+	 * API creates a gradient around a point with given coordinates. This method
+	 * returns a conic `CanvasGradient`. To be applied to a shape, the gradient must
+	 * first be assigned to the [fillStyle] or [strokeStyle] properties. Note: Gradient
+	 * coordinates are global, i.e., relative to the current coordinate space. When
+	 * applied to a shape, the coordinates are NOT relative to the shape's coordinates.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createConicGradient)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createconicgradient-dev)
+	 *
+	 * @param startAngle The angle at which to begin the gradient, in radians. The angle starts from a line going horizontally right from the center, and proceeds clockwise.
+	 * @param x The x-axis coordinate of the center of the gradient.
+	 * @param y The y-axis coordinate of the center of the gradient.
+	 */
+	fun createConicGradient(startAngle: Number, x: Number, y: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[createImageData] method of the Canvas 2D API
+	 * creates a new, blank [ImageData] object with the specified dimensions. All of
+	 * the pixels in the new object are transparent black.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createImageData)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createimagedata-dev)
+	 *
+	 * @param width The [width] to give the new [ImageData] object. A negative value flips the rectangle around the vertical axis.
+	 * @param height The [height] to give the new [ImageData] object. A negative value flips the rectangle around the horizontal axis.
+	 */
+	fun createImageData(width: Number, height: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[createLinearGradient] method of the Canvas 2D
+	 * API creates a gradient along the line connecting two given coordinates. ![The
+	 * gradient transitions colors along the gradient line, starting at point x0, y0
+	 * and going to x1, y1, even if those points extend the gradient line beyond the
+	 * edges of the element on which the gradient is drawn.][The gradient transitions
+	 * colors along the gradient line_ starting at point x0_ y0 and going to x1_ y1_
+	 * even if those points extend the gradient line beyond the edges of the element on
+	 * which the gradient is drawn.] This method returns a linear `CanvasGradient`. To
+	 * be applied to a shape, the gradient must first be assigned to the [fillStyle] or
+	 * [strokeStyle] properties. Note: Gradient coordinates are global, i.e., relative
+	 * to the current coordinate space. When applied to a shape, the coordinates are
+	 * NOT relative to the shape's coordinates.[The gradient transitions colors along
+	 * the gradient line_ starting at point x0_ y0 and going to x1_ y1_ even if those
+	 * points extend the gradient line beyond the edges of the element on which the
+	 * gradient is drawn.]:
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createLinearGradient)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createlineargradient-dev)
+	 *
+	 * @param x0 The x-axis coordinate of the start point.
+	 * @param y0 The y-axis coordinate of the start point.
+	 * @param x1 The x-axis coordinate of the end point.
+	 * @param y1 The y-axis coordinate of the end point.
+	 */
+	fun createLinearGradient(x0: Number, y0: Number, x1: Number, y1: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[createPattern] method of the Canvas 2D API
+	 * creates a pattern using the specified image and repetition. This method returns
+	 * a `CanvasPattern`. This method doesn't draw anything to the [canvas] directly.
+	 * The pattern it creates must be assigned to the
+	 * [CanvasRenderingContext2D].[fillStyle] or
+	 * [CanvasRenderingContext2D].[strokeStyle] properties, after which it is applied
+	 * to any subsequent drawing.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createPattern)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createpattern-dev)
+	 *
+	 * @param image An image to be used as the pattern's image. It can be any of the following: HTMLImageElement (<img>) SVGImageElement (<image>) HTMLVideoElement (<video>, by using the capture of the video) [HTMLCanvasElement] [canvas] [ImageBitmap] [OffscreenCanvas] VideoFrame
+	 * @param repetition A string indicating how to repeat the pattern's image. Possible values are: "repeat" (both directions) "repeat-x" (horizontal only) "repeat-y" (vertical only) "no-repeat" (neither [direction] If repetition is specified as an empty string ("") or null (but not undefined), a value of "repeat" will be used.
+	 */
+	fun createPattern(image: Number, repetition: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[createRadialGradient] method of the Canvas 2D
+	 * API creates a radial gradient using the size and coordinates of two circles.
+	 * This method returns a `CanvasGradient`. To be applied to a shape, the gradient
+	 * must first be assigned to the [fillStyle] or [strokeStyle] properties. Note:
+	 * Gradient coordinates are global, i.e., relative to the current coordinate space.
+	 * When applied to a shape, the coordinates are NOT relative to the shape's
+	 * coordinates.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createRadialGradient)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createradialgradient-dev)
+	 *
+	 * @param x0 The x-axis coordinate of the start circle.
+	 * @param y0 The y-axis coordinate of the start circle.
+	 * @param r0 The radius of the start circle. Must be non-negative and finite.
+	 * @param x1 The x-axis coordinate of the end circle.
+	 * @param y1 The y-axis coordinate of the end circle.
+	 * @param r1 The radius of the end circle. Must be non-negative and finite.
+	 */
+	fun createRadialGradient(x0: Number, y0: Number, r0: Number, x1: Number, y1: Number, r1: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[drawFocusIfNeeded] method of the Canvas 2D API
+	 * draws a focus ring around the current or given path, if the specified element is
+	 * focused.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-drawfocusifneeded-dev)
+	 *
+	 * @param element The element to check whether it is focused or not.
+	 */
+	fun drawFocusIfNeeded(element: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[drawImage] method of the Canvas 2D API provides
+	 * different ways to draw an image onto the [canvas].
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-drawimage-dev)
+	 *
+	 * @param image An element to draw into the context. The specification permits any [canvas] image source, specifically, an HTMLImageElement, an SVGImageElement, an HTMLVideoElement, an [HTMLCanvasElement] an [ImageBitmap] an [OffscreenCanvas] or a VideoFrame.
+	 * @param dx The x-axis coordinate in the destination [canvas] at which to place the top-left corner of the source image.
+	 * @param dy The y-axis coordinate in the destination [canvas] at which to place the top-left corner of the source image.
+	 */
+	fun drawImage(image: Number, dx: Number, dy: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[ellipse] method of the Canvas 2D API adds an
+	 * elliptical [arc] to the current sub-path.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/ellipse)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-ellipse-dev)
+	 *
+	 * @param x The x-axis (horizontal) coordinate of the ellipse's center.
+	 * @param y The y-axis (vertical) coordinate of the ellipse's center.
+	 * @param radiusX The ellipse's major-axis radius. Must be non-negative.
+	 * @param radiusY The ellipse's minor-axis radius. Must be non-negative.
+	 * @param rotation The rotation of the [ellipse] expressed in radians.
+	 * @param startAngle The eccentric angle at which the [ellipse] starts, measured clockwise from the positive x-axis and expressed in radians.
+	 * @param endAngle The eccentric angle at which the [ellipse] ends, measured clockwise from the positive x-axis and expressed in radians.
+	 */
+	fun ellipse(x: Number, y: Number, radiusX: Number, radiusY: Number, rotation: Number, startAngle: Number, endAngle: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[fillRect] method of the Canvas 2D API draws a
+	 * rectangle that is filled according to the current [fillStyle]. This method draws
+	 * directly to the [canvas] without modifying the current path, so any subsequent
+	 * [fill] or [stroke] calls will have no effect on it.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-fillrect-dev)
+	 *
+	 * @param x The x-axis coordinate of the rectangle's starting point.
+	 * @param y The y-axis coordinate of the rectangle's starting point.
+	 * @param width The rectangle's [width]. Positive values are to the right, and negative to the left.
+	 * @param height The rectangle's [height]. Positive values are down, and negative are up.
+	 */
+	fun fillRect(x: Number, y: Number, width: Number, height: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D] method [fillText], part of the Canvas 2D API,
+	 * draws a text string at the specified coordinates, filling the string's
+	 * characters with the current [fillStyle]. An optional parameter allows specifying
+	 * a maximum [width] for the rendered text, which the user agent will achieve by
+	 * condensing the text or by using a lower [font] size. This method draws directly
+	 * to the [canvas] without modifying the current path, so any subsequent [fill] or
+	 * [stroke] calls will have no effect on it. The text is rendered using the [font]
+	 * and text layout configuration as defined by the [font], [textAlign],
+	 * [textBaseline], and [direction] properties. Note: To draw the outlines of the
+	 * characters in a string, call the context's [strokeText] method.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillText)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-filltext-dev)
+	 *
+	 * @param text A string specifying the text string to render into the context. The text is rendered using the settings specified by [font] [textAlign] [textBaseline] and [direction].
+	 * @param x The x-axis coordinate of the point at which to begin drawing the text, in pixels.
+	 * @param y The y-axis coordinate of the baseline on which to begin drawing the text, in pixels.
+	 */
+	fun fillText(text: Number, x: Number, y: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D] method [getImageData] of the Canvas 2D API
+	 * returns an [ImageData] object representing the underlying pixel [data] for a
+	 * specified portion of the [canvas]. This method is not affected by the canvas's
+	 * transformation matrix. If the specified rectangle extends outside the bounds of
+	 * the [canvas] the pixels outside the [canvas] are transparent black in the
+	 * returned [ImageData] object. Note: Image [data] can be painted onto a [canvas]
+	 * using the [putImageData] method. You can find more information about
+	 * [getImageData] and general manipulation of [canvas] contents in Pixel
+	 * manipulation with [canvas].
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getImageData)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-getimagedata-dev)
+	 *
+	 * @param sx The x-axis coordinate of the top-left corner of the rectangle from which the [ImageData] will be extracted.
+	 * @param sy The y-axis coordinate of the top-left corner of the rectangle from which the [ImageData] will be extracted.
+	 * @param sw The [width] of the rectangle from which the [ImageData] will be extracted. Positive values are to the right, and negative to the left.
+	 * @param sh The [height] of the rectangle from which the [ImageData] will be extracted. Positive values are down, and negative are up.
+	 */
+	fun getImageData(sx: Number, sy: Number, sw: Number, sh: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[isPointInPath] method of the Canvas 2D API
+	 * reports whether or not the specified point is contained in the current path.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInPath)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-ispointinpath-dev)
+	 *
+	 * @param x The x-axis coordinate of the point to check, unaffected by the current transformation of the context.
+	 * @param y The y-axis coordinate of the point to check, unaffected by the current transformation of the context.
+	 */
+	fun isPointInPath(x: Number, y: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[isPointInStroke] method of the Canvas 2D API
+	 * reports whether or not the specified point is inside the area contained by the
+	 * stroking of a path.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/isPointInStroke)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-ispointinstroke-dev)
+	 *
+	 * @param x The x-axis coordinate of the point to check.
+	 * @param y The y-axis coordinate of the point to check.
+	 */
+	fun isPointInStroke(x: Number, y: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D] method [lineTo], part of the Canvas 2D API, adds
+	 * a straight line to the current sub-path by connecting the sub-path's last point
+	 * to the specified `(x, y)` coordinates. Like other methods that modify the
+	 * current path, this method does not directly render anything. To draw the path
+	 * onto a [canvas] you can use the [fill] or [stroke] methods.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineTo)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-lineto-dev)
+	 *
+	 * @param x The x-axis coordinate of the line's end point.
+	 * @param y The y-axis coordinate of the line's end point.
+	 */
+	fun lineTo(x: Number, y: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[measureText] method returns a [TextMetrics]
+	 * object that contains information about the measured text (such as its [width]
+	 * for example).
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/measureText)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-measuretext-dev)
+	 *
+	 * @param text The text string to measure.
+	 */
+	fun measureText(text: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[moveTo] method of the Canvas 2D API begins a
+	 * new sub-path at the point specified by the given `(x, y)` coordinates.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/moveTo)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-moveto-dev)
+	 *
+	 * @param x The x-axis (horizontal) coordinate of the point.
+	 * @param y The y-axis (vertical) coordinate of the point.
+	 */
+	fun moveTo(x: Number, y: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[putImageData] method of the Canvas 2D API
+	 * paints [data] from the given [ImageData] object onto the [canvas]. If a dirty
+	 * rectangle is provided, only the pixels from that rectangle are painted. This
+	 * method is not affected by the [canvas] transformation matrix. Note: Image [data]
+	 * can be retrieved from a [canvas] using the [getImageData] method. You can find
+	 * more information about [putImageData] and general manipulation of [canvas]
+	 * contents in the article Pixel manipulation with [canvas].
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-putimagedata-dev)
+	 *
+	 * @param imageData An [ImageData] object containing the array of pixel values.
+	 * @param dx Horizontal position (x coordinate) at which to place the image [data] in the destination [canvas].
+	 * @param dy Vertical position (y coordinate) at which to place the image [data] in the destination [canvas].
+	 */
+	fun putImageData(imageData: Number, dx: Number, dy: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[quadraticCurveTo] method of the Canvas 2D API
+	 * adds a quadratic Bézier curve to the current sub-path. It requires two points:
+	 * the first one is a control point and the second one is the end point. The
+	 * starting point is the latest point in the current path, which can be changed
+	 * using [moveTo] before creating the quadratic Bézier curve.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/quadraticCurveTo)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-quadraticcurveto-dev)
+	 *
+	 * @param cpx The x-axis coordinate of the control point.
+	 * @param cpy The y-axis coordinate of the control point.
+	 * @param x The x-axis coordinate of the end point.
+	 * @param y The y-axis coordinate of the end point.
+	 */
+	fun quadraticCurveTo(cpx: Number, cpy: Number, x: Number, y: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[rect] method of the Canvas 2D API adds a
+	 * rectangle to the current path. Like other methods that modify the current path,
+	 * this method does not directly render anything. To draw the rectangle onto a
+	 * [canvas] you can use the [fill] or [stroke] methods. Note: To both create and
+	 * render a rectangle in one step, use the [fillRect] or [strokeRect] methods.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rect)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-rect-dev)
+	 *
+	 * @param x The x-axis coordinate of the rectangle's starting point.
+	 * @param y The y-axis coordinate of the rectangle's starting point.
+	 * @param width The rectangle's [width]. Positive values are to the right, and negative to the left.
+	 * @param height The rectangle's [height]. Positive values are down, and negative are up.
+	 */
+	fun rect(x: Number, y: Number, width: Number, height: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[rotate] method of the Canvas 2D API adds a
+	 * rotation to the transformation matrix.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-rotate-dev)
+	 *
+	 * @param angle The rotation angle, clockwise in radians. You can use degree * Math.PI / 180 to calculate a radian from a degree.
+	 */
+	fun rotate(angle: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[roundRect] method of the Canvas 2D API adds a
+	 * rounded rectangle to the current path. The radii of the corners can be specified
+	 * in much the same way as the CSS `border-radius` property. Like other methods
+	 * that modify the current path, this method does not directly render anything. To
+	 * draw the rounded rectangle onto a [canvas] you can use the [fill] or [stroke]
+	 * methods.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/roundRect)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-roundrect)
+	 *
+	 * @param x The x-axis coordinate of the rectangle's starting point, in pixels.
+	 * @param y The y-axis coordinate of the rectangle's starting point, in pixels.
+	 * @param width The rectangle's [width]. Positive values are to the right, and negative to the left.
+	 * @param height The rectangle's [height]. Positive values are down, and negative are up.
+	 * @param radii A number or list specifying the radii of the circular [arc] to be used for the corners of the rectangle. The number and order of the radii function in the same way as the border-radius CSS property when [width] and [height] are positive: all-corners [all-corners] [top-left-and-bottom-right, top-right-and-bottom-left] [top-left, top-right-and-bottom-left, bottom-right] [top-left, top-right, bottom-right, bottom-left] If [width] is negative the rounded rectangle is flipped horizontally, so the radius values that normally apply to the left corners are used on the right and vice versa. Similarly, when [height] is negative, the rounded [rect] is flipped vertically. The specified radii may be scaled (reduced) if any of the edges are shorter than the combined radius of the vertices on either end. The radii parameter can also be a DOMPoint or DOMPointReadOnly instance, or an object containing the same properties ({x: 0, y: 0}), or a list of such objects, or a list mixing numbers and such objects.
+	 */
+	fun roundRect(x: Number, y: Number, width: Number, height: Number, radii: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[scale] method of the Canvas 2D API adds a
+	 * scaling transformation to the [canvas] units horizontally and/or vertically. By
+	 * default, one unit on the [canvas] is exactly one pixel. A scaling transformation
+	 * modifies this behavior. For instance, a scaling factor of 0.5 results in a unit
+	 * size of 0.5 pixels; shapes are thus drawn at half the normal size. Similarly, a
+	 * scaling factor of 2.0 increases the unit size so that one unit becomes two
+	 * pixels; shapes are thus drawn at twice the normal size.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scale)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-scale-dev)
+	 *
+	 * @param x Scaling factor in the horizontal [direction]. A negative value flips pixels across the vertical axis. A value of 1 results in no horizontal scaling.
+	 * @param y Scaling factor in the vertical [direction]. A negative value flips pixels across the horizontal axis. A value of 1 results in no vertical scaling.
+	 */
+	fun scale(x: Number, y: Number)
+	
+	
+	/**
+	 *  The [setLineDash] method of the Canvas 2D API's [CanvasRenderingContext2D]
+	 * interface sets the line dash pattern used when stroking lines. It uses an array
+	 * of values that specify alternating lengths of lines and gaps which describe the
+	 * pattern. Note: To return to using solid lines, set the line dash list to an
+	 * empty array.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-setlinedash-dev)
+	 *
+	 * @param segments An Array of numbers that specify distances to alternately draw a line and a gap (in coordinate space units). If the number of elements in the array is odd, the elements of the array get copied and concatenated. For example, [5, 15, 25] will become [5, 15, 25, 5, 15, 25]. If the array is empty, the line dash list is cleared and line strokes return to being solid.
+	 */
+	fun setLineDash(segments: Number)
+	
+	
+	/**
+	 *  The [CanvasRenderingContext2D].[setTransform] method of the Canvas 2D API
+	 * resets (overrides) the current transformation to the identity matrix, and then
+	 * invokes a transformation described by the arguments of this method. This lets
+	 * you [scale] [rotate] [translate] (move), and skew the context. Note: See also
+	 * the [transform] method; instead of overriding the current [transform] matrix, it
+	 * multiplies it with a given one.
+	 *
+	 * See further documentation:
+	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform)
+	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-settransform-dev)
+	 *
+	 * @param a The cell in the first row and first column of the matrix.
+	 * @param b The cell in the second row and first column of the matrix.
+	 * @param c The cell in the first row and second column of the matrix.
+	 * @param d The cell in the second row and second column of the matrix.
+	 * @param e The cell in the first row and third column of the matrix.
+	 * @param f The cell in the second row and third column of the matrix.
+	 */
+	fun setTransform(a: Number, b: Number, c: Number, d: Number, e: Number, f: Number)
+	
+	
+	/**
 	 *  The [CanvasRenderingContext2D].[strokeRect] method of the Canvas 2D API draws a
 	 * rectangle that is stroked (outlined) according to the current [strokeStyle] and
 	 * other context settings. This method draws directly to the [canvas] without
@@ -1015,8 +1137,13 @@ interface CanvasRenderingContext2D {
 	 * See further documentation:
 	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeRect)
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-strokerect-dev)
+	 *
+	 * @param x The x-axis coordinate of the rectangle's starting point.
+	 * @param y The y-axis coordinate of the rectangle's starting point.
+	 * @param width The rectangle's [width]. Positive values are to the right, and negative to the left.
+	 * @param height The rectangle's [height]. Positive values are down, and negative are up.
 	 */
-	fun strokeRect()
+	fun strokeRect(x: Number, y: Number, width: Number, height: Number)
 	
 	
 	/**
@@ -1032,8 +1159,12 @@ interface CanvasRenderingContext2D {
 	 * See further documentation:
 	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/strokeText)
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-stroketext-dev)
+	 *
+	 * @param text A string specifying the text string to render into the context. The text is rendered using the settings specified by [font] [textAlign] [textBaseline] and [direction].
+	 * @param x The x-axis coordinate of the point at which to begin drawing the text.
+	 * @param y The y-axis coordinate of the point at which to begin drawing the text.
 	 */
-	fun strokeText()
+	fun strokeText(text: Number, x: Number, y: Number)
 	
 	
 	/**
@@ -1046,8 +1177,15 @@ interface CanvasRenderingContext2D {
 	 * See further documentation:
 	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/transform)
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-transform-dev)
+	 *
+	 * @param a The cell in the first row and first column of the matrix.
+	 * @param b The cell in the second row and first column of the matrix.
+	 * @param c The cell in the first row and second column of the matrix.
+	 * @param d The cell in the second row and second column of the matrix.
+	 * @param e The cell in the first row and third column of the matrix.
+	 * @param f The cell in the second row and third column of the matrix.
 	 */
-	fun transform()
+	fun transform(a: Number, b: Number, c: Number, d: Number, e: Number, f: Number)
 	
 	
 	/**
@@ -1057,8 +1195,11 @@ interface CanvasRenderingContext2D {
 	 * See further documentation:
 	 * * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/translate)
 	 * * [Khronos Group](https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-translate-dev)
+	 *
+	 * @param x Distance to move in the horizontal [direction]. Positive values are to the right, and negative to the left.
+	 * @param y Distance to move in the vertical [direction]. Positive values are down, and negative are up.
 	 */
-	fun translate()
+	fun translate(x: Number, y: Number)
 	
 	
 }

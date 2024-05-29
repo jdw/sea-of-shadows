@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+message CreateRadialGradientRequest {
+	uint64 parent = 1;
+	<TODO: parameter.typeName = Number> x0 = 2;
+	<TODO: parameter.typeName = Number> y0 = 3;
+	<TODO: parameter.typeName = Number> r0 = 4;
+	<TODO: parameter.typeName = Number> x1 = 5;
+	<TODO: parameter.typeName = Number> y1 = 6;
+	<TODO: parameter.typeName = Number> r1 = 7;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+message ImageData {
+	uint64 parent = 1;
+	string color_space = 2;
+	string data = 3;
+	string height = 4;
+	string width = 5;
+}

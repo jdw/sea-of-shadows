@@ -4,7 +4,7 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
-import com.github.jdw.seaofshadows.subcommandos.Protobuf
+import com.github.jdw.seaofshadows.subcommandos.Protocol
 import com.github.jdw.seaofshadows.subcommandos.Settings
 import com.github.jdw.seaofshadows.subcommandos.Rosetta
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -17,9 +17,9 @@ class SeaOfShadows: CliktCommand(name="seaofshadows") {
     }
 }
 
-@OptIn(ExperimentalSerializationApi::class)
+
 fun main(args: Array<String>)  {
     SeaOfShadows()
-    .subcommands(Rosetta(), Protobuf(), Settings())
+    .subcommands(Rosetta(), Protocol(), Settings())
     .main(args)
 }

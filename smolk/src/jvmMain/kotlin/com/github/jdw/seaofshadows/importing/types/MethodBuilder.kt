@@ -65,12 +65,6 @@ class MethodBuilder {
 
         assert(doc.isNotBlank() && doc.isNotEmpty())
 
-//        if (name!! == "compressedTexImage2D") {
-//            println("compressedTexImage2D documentation:")
-//            println(doc)
-//            println()
-//        }
-
         return Method(
             urls = urls.toMap(),
             annotations = annotations.toList(),

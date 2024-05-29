@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.path2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+message AddPathResponse {
+	uint64 parent = 1;
+	<TODO: parameter.typeName = Number> path = 2;
+	string result = 3;
+}

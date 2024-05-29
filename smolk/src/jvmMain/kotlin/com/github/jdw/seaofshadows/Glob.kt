@@ -15,6 +15,7 @@ import kotlin.io.path.writeText
 
 object Glob {
     val GROUP: String by loadProperties("gradle.properties")
+    val VERSION: String by loadProperties("gradle.properties")
     val MOZILLA_BASE_URL: String by loadProperties("gradle.properties")
     val MOZILLA_API_BASE_URL: String by loadProperties("gradle.properties")
     val MOZILLA_WEBGL_CONSTANTS_URL: String by loadProperties("gradle.properties")
@@ -25,6 +26,7 @@ object Glob {
     val KHRONOS_WEBGL2_IDL = loadProperties("gradle.properties").getProperty("KHRONOS_WEBGL2_IDL").replace("{WEBGL2_VERSION}", WEBGL2_VERSION)
     val CACHE_BASE_PATH: String by loadProperties("gradle.properties")
     val MOZILLA_CANVAS2D_BASE_URL: String by loadProperties("gradle.properties")
+    val DEFAULT_PROTOBUFV3_PATH: String by loadProperties("gradle.properties")
 
     var verbose = false
     private val urlToDocuments: MutableMap<String, Document> = mutableMapOf()
@@ -118,4 +120,7 @@ object Glob {
 
 
     fun error(message: String) = println("⁉\uFE0F  $message")
+
+
+    fun error(message: String, filename: String, lineNumber: Int) = println("⁉\uFE0F  ($filename:$lineNumber): $message")
 }
