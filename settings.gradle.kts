@@ -9,7 +9,7 @@ pluginManagement {
         id("org.jetbrains.kotlin.multiplatform") version kotlinVersion
         id("org.jetbrains.kotlin.plugin.serialization") version kotlinVersion
         id("maven-publish")
-        id("com.google.protobuf") version protobufGradlePluginVersion
+        id("com.google.protobuf") version  protobufGradlePluginVersion
     }
 
     repositories {

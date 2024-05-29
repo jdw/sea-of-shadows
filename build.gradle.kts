@@ -13,7 +13,6 @@ plugins {
     id("org.jetbrains.kotlin.multiplatform") apply false
     id("maven-publish")
     id("org.jetbrains.kotlin.plugin.serialization")
-    id("com.google.protobuf")
 }
 
 val VERSION: String by properties
