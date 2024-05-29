@@ -33,9 +33,9 @@ class Webapi(): CliktCommand(help="Import Khronos and Mozilla WebAPI documentati
 
         runBlocking {
             when (api) {
-                "WebGL1" -> WebGL1(path).apply { run() }.apply { save() }
+                "WebGL1" -> WebGL1(path).apply { run() }
                 "WebGL2" -> {
-                    WebGL1(path).apply { run() }.apply { save() }
+                    WebGL1(path).apply { run() }
                     WebGL2().run(path)
                 }
                 else -> throw Exception("Unsupported API = '$api'!")
