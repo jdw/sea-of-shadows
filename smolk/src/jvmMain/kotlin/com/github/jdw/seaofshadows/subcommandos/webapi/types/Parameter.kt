@@ -12,7 +12,6 @@ class Parameter(
     override val name: String?,
     override val type: KType,
     val typeName: String,
-    val urls: Set<String>,
     val documentation: String,
     val nullable: Boolean
 ): KParameter {

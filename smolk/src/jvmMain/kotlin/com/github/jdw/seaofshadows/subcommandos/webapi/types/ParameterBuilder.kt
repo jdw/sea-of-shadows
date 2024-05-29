@@ -2,7 +2,6 @@ package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
 import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.htmlToMarkdown
-import com.github.jdw.seaofshadows.utils.throws
 import kotlin.reflect.KParameter
 import kotlin.reflect.KType
 
@@ -17,16 +16,12 @@ class ParameterBuilder {
     var kind: KParameter.Kind? = null
     var type: KType? = null
     var typeName: String? = null
-    var urls: MutableSet<String> = mutableSetOf()
     var nullable: Boolean? = null
-
-    fun build(): Parameter {
+    var builderBlock: () -> Parameter = {
         var documentation = ""
 
-        val url = urls
-            .filter { it.contains(Glob.MOZILLA_API_BASE_URL) }
-            .apply { if (this.size != 1) throws() }
-            .first()
+        val url = parent!!
+            .urls["Mozilla"]!!
 
         assert(url.isNotBlank() && url.isNotEmpty())
         with(Glob.fetchDocument(url)) {
@@ -86,7 +81,7 @@ class ParameterBuilder {
                 .isNotBlank() && typeName!!.isNotEmpty()
         )
 
-        return Parameter(
+        Parameter(
             annotations = annotations.toList(),
             index = index!!,
             isOptional = isOptional!!,
@@ -95,9 +90,37 @@ class ParameterBuilder {
             name = name!!,
             type = type!!,
             typeName = typeName!!,
-            urls = urls.toSet(),
             documentation = documentation,
             nullable = nullable!!
         )
     }
+
+    var builderBlockForCanvas2d: () -> Parameter = {
+        val parameterName = name!!.lowercase()
+        val documentation = try {
+            Glob
+                .fetchDocument(parent!!.urls["Mozilla"]!!)
+                .getElementById(parameterName)!!
+                .nextElementSibling()!!
+                .text()
+        }
+        catch (e: Exception) {
+            println("${parent!!.name} -- $parameterName -- FAILED!!!")
+            "TODO: Something failed while importing documentation for this parameter!"
+        }
+
+        Parameter(
+            annotations = annotations.toList(),
+            index = index!!,
+            isOptional = isOptional!!,
+            isVararg = isVararg!!,
+            kind = kind!!,
+            name = name!!,
+            type = type!!,
+            typeName = typeName!!,
+            documentation = documentation,
+            nullable = nullable!!
+        )
+    }
+    fun build(): Parameter = builderBlock.invoke()
 }

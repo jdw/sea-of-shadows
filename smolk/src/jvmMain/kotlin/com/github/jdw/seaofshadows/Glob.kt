@@ -23,6 +23,7 @@ object Glob {
     val KHRONOS_WEBGL1_IDL = loadProperties("gradle.properties").getProperty("KHRONOS_WEBGL1_IDL").replace("{WEBGL1_VERSION}", WEBGL1_VERSION)
     val KHRONOS_WEBGL2_IDL = loadProperties("gradle.properties").getProperty("KHRONOS_WEBGL2_IDL").replace("{WEBGL2_VERSION}", WEBGL2_VERSION)
     val CACHE_BASE_PATH: String by loadProperties("gradle.properties")
+    val MOZILLA_CANVAS2D_BASE_URL: String by loadProperties("gradle.properties")
 
     var verbose = false
     private val urlToDocuments: MutableMap<String, Document> = mutableMapOf()

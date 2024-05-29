@@ -8,6 +8,7 @@ import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
 import com.github.ajalt.clikt.parameters.types.file
 import com.github.jdw.seaofshadows.Glob
+import com.github.jdw.seaofshadows.subcommandos.webapi.Canvas2d
 import com.github.jdw.seaofshadows.subcommandos.webapi.WebGL1
 import com.github.jdw.seaofshadows.subcommandos.webapi.WebGL2
 import com.github.jdw.seaofshadows.utils.doch
@@ -18,7 +19,7 @@ import kotlin.system.exitProcess
 
 
 class Webapi(): CliktCommand(help="Import Khronos and Mozilla WebAPI documentation from ${Glob.MOZILLA_API_BASE_URL} to local Kotlin files and classes.") {
-    private val supportedApis: Set<String> = setOf("WebGL1", "WebGL2")
+    private val supportedApis: Set<String> = setOf("WebGL1", "WebGL2", "Canvas2d")
     private val api by argument(help = "The APIs listed at the aforementioned site but without spaces and kept capitalization. ${supportedApis.supportedValues('<' to '>', '|')}.")
         .validate {
             require(supportedApis.contains(it)) {
@@ -38,6 +39,7 @@ class Webapi(): CliktCommand(help="Import Khronos and Mozilla WebAPI documentati
                     WebGL1(path).apply { run() }
                     WebGL2().run(path)
                 }
+                "Canvas2d" -> Canvas2d(path).run()
                 else -> throw Exception("Unsupported API = '$api'!")
             }
         }

@@ -10,35 +10,10 @@ class Property(
     val mutable: Boolean,
     val defaultValue: String?,
     val const: Boolean,
-    val urls: Set<String>
+    val urls: Map<String, String>,
+    val documentation: String,
+    val allowedValues: Map<String, String>
 ) {
-    var documentation: String = ""
-        get() {
-            if (!const) return "TODO: This property is most properly not documented!"
-            if ("" != field) return field
-            val url = urls
-                .filter { it.contains(Glob.MOZILLA_API_BASE_URL) && it.contains("Constants") }
-                .apply { if (size != 1) throws() }
-                .first()
-
-            with(Glob.fetchDocument(url)) {
-                getElementsByTag("code").forEach { //TODO flow single
-                    if (it.text() == name) {
-                        val td = it.parent()!!
-                            .siblingElements()
-                            .last()!!
-
-                        field =
-                            if ("" == td.text()) ""
-                            else td.html().replace("<code>", "[").replace("</code>", "]")
-                    }
-                }
-            }
-
-            field = field.htmlToMarkdown()
-            return field
-        }
-
     companion object {
         fun builder(): PropertyBuilder = PropertyBuilder()
     }

@@ -181,7 +181,7 @@ class InterfaceRowHandler {
                 .apply { type = pieces[1] }
                 .apply { name = pieces[2] }
                 .apply { defaultValue = pieces[4].removeSuffix(";") }
-                .apply { urls.add("https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Constants") }
+                .apply { urls["Mozilla"] = "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Constants" }
                 .build()
 
         currentInterfaceBuilder!!.properties.add(property)

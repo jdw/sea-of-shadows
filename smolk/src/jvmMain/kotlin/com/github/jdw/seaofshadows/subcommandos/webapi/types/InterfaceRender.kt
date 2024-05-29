@@ -2,8 +2,12 @@ package com.github.jdw.seaofshadows.subcommandos.webapi.types
 
 import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.applyKeywords
+import com.github.jdw.seaofshadows.enumClassName
 import com.github.jdw.seaofshadows.formatAfterMaxWidth
 import com.github.jdw.seaofshadows.subcommandos.webapi.Code
+import com.github.jdw.seaofshadows.utils.echt
+import com.github.jdw.seaofshadows.variableNameToEnumMemberName
+import org.jetbrains.kotlin.gradle.utils.property
 import org.jetbrains.kotlin.util.prefixIfNot
 import org.jetbrains.kotlin.util.suffixIfNot
 
@@ -18,7 +22,11 @@ fun Interface.actuallyRender(): Code {
     renderImports(this, code, packag3)
     code.add("")
     code.add("/**")
-    documentation.applyKeywords().formatAfterMaxWidth().forEach { code.add(" * $it") }
+    documentation
+        .applyKeywords()
+        .replace("[`OffscreenCanvasRenderingContext2D`][OffscreenCanvasRenderingContext2D]", "[OffscreenCanvasRenderingContext2D]")
+        .replace("[`OffscreenCanvas`][OffscreenCanvas]", "[OffscreenCanvas]")
+        .formatAfterMaxWidth().forEach { code.add(" * $it") }
     code.add(" *")
     code.add(" * See further documentation:")
     urls.forEach { (title, url) -> code.add(" * * [$title]($url)") }
@@ -45,14 +53,7 @@ fun Interface.actuallyRender(): Code {
     code.add(firstRow)
     code.indent()
 
-    properties
-        .filter { !it.const }
-        .forEach {
-            val valOrVar =
-                if (it.mutable) "var"
-                else "val"
-            code.add("$valOrVar ${it.name}: ${it.type}")
-        }
+    renderNonConstantProperties(properties, code)
 
     // Render constants
     val consts = properties.filter { it.const }
@@ -64,6 +65,54 @@ fun Interface.actuallyRender(): Code {
     code.add("}")
 
     return code
+}
+
+
+private fun renderNonConstantProperties(properties: List<Property>, code: Code) {
+    properties
+        .filter { !it.const }
+        .forEach { property ->
+            property.allowedValues.isNotEmpty().echt {
+                code.add("enum class ${property.name.enumClassName()} {")
+                code.indent()
+                property
+                    .allowedValues
+                    .entries
+                    .sortedBy { it.key }
+                    .forEachIndexed { idx, (allowedValue, dox) -> // Keep alphanumerical
+                        if ("" != dox) {
+                            code.add("/**")
+                            code.add(" * $dox")
+                            code.add(" */")
+                            val lastMember = idx == property.allowedValues.size - 1
+                            val comma = if (lastMember) ""
+                                else ","
+                            code.add("${allowedValue.variableNameToEnumMemberName()}$comma")
+                            if (!lastMember) {
+                                code.add("")
+                                code.add("")
+                            }
+                        }
+                    }
+                code.undent()
+                code.add("}")
+            }
+
+            val valOrVar =
+                if (property.mutable) "var"
+                else "val"
+
+            var defaultValueStr = ""
+            if (null != property.defaultValue) {
+                defaultValueStr =
+                    if (property.allowedValues.containsKey(property.defaultValue!!)) {
+                        " = ${property.name.enumClassName()}.${property.defaultValue.variableNameToEnumMemberName()}"
+                    } else " = ${property.defaultValue}"
+            }
+            println("--- $defaultValueStr")
+            println("--- ${property.defaultValue}")
+            code.add("$valOrVar ${property.name}: ${property.type}$defaultValueStr")
+        }
 }
 
 
@@ -157,8 +206,11 @@ private fun renderMembers(interfaze: Interface, code: Code) {
         }
         methodSignatureRow = methodSignatureRow.removeSuffix(", ").suffixIfNot(")").trim()
         val returnType = method.returnType as Type
-        if ("Unit" != returnType.name) methodSignatureRow += ": ${returnType.name}"
-        if (returnType.isMarkedNullable) methodSignatureRow += "?"
+        if ("Unit" != returnType.name) {
+            methodSignatureRow += ": ${returnType.name}"
+            if (returnType.isMarkedNullable) methodSignatureRow += "?"
+        }
+
         if (method.problems.isNotEmpty()) methodSignatureRow = methodSignatureRow.prefixIfNot("//")
         code.add(methodSignatureRow)
         code.add("")

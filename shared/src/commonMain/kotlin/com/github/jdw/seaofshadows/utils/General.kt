@@ -41,3 +41,4 @@ fun throws(vararg faults: Pair<String, Any>): Nothing {
     throw GeneralException(message.removeSuffix(", "))
 }
 
+fun noop() {}

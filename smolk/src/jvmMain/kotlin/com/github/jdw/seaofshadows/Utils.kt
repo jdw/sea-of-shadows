@@ -59,8 +59,10 @@ fun String.formatAfterFirstKeywordMatch(keywords: List<String>): String {
     val that = this.removeSuffix("\n")
 
     keywords.forEach { keyword ->
-        if (that == "[enableVertexAttribArray],")
-            return this
+        if (that == "[enableVertexAttribArray],") return this
+        else if (that == "[fillText],") return this
+        else if (that == "[lineTo],") return this
+        else if (that == "[strokeText],") return this
 
         var newPiece = when (that) {
             keyword,
@@ -94,8 +96,12 @@ fun String.formatAfterFirstKeywordMatch(keywords: List<String>): String {
             "[$keyword()],",
             "(`$keyword()`,",
             "[$keyword],",
+            "$keyword],",
+            "$keyword`,",
             "`$keyword`," -> "[$keyword],"
             "`$keyword`)",
+            "$keyword`)",
+            "$keyword])",
             "`$keyword()`)" -> "[$keyword])"
             "$keyword][gl" -> "[$keyword][gl"
             "$keyword\nBuffer" -> "[$keyword] Buffer"
@@ -111,7 +117,7 @@ fun String.formatAfterFirstKeywordMatch(keywords: List<String>): String {
 
     }
 
-    throws("'$this' failed matching any of $keywords")
+    throws("'$that' failed matching any of $keywords")
 }
 
 
@@ -196,4 +202,36 @@ fun String.formatAfterMaxWidth(maxWidth: Int = 81): List<String> {
 
     return if (ret.last() == "") ret.subList(0, ret.size - 1).toList() // Remove the trailing empty row
         else ret.toList()
+}
+
+
+fun String.variableNameToEnumMemberName(): String {
+    if ("" == this) return ""
+
+    return if (this.contains("-")) {
+        this.replace("-", "_").uppercase()
+    }
+    else if (this.contains("_")) {
+        this.uppercase()
+    }
+    else { // Handling camel cased
+        var ret = ""
+        this.forEach { char ->
+            ret +=
+                if ("$char" == "$char".uppercase()) "_$char"
+                else "$char".uppercase()
+        }
+        ret
+    }
+}
+
+fun String.enumClassName(): String {
+    var ret = ""
+    this.forEachIndexed { idx, char ->
+        ret +=
+            if (idx == 0) "$char".uppercase()
+            else "$char"
+    }
+
+    return "${ret}Value"
 }
