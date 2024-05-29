@@ -5,7 +5,7 @@ package com.github.jdw.seaofshadows.canvas2d;
 // Generated with Sea of Shadows version 0.0.6-SNAPSHOT
 
 message ImageBitmap {
-	uint64 parent = 1;
+	uint64 id = 1;
 	int32 height = 2;
 	int32 width = 3;
 }

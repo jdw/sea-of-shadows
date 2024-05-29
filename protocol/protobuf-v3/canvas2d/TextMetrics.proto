@@ -5,7 +5,7 @@ package com.github.jdw.seaofshadows.canvas2d;
 // Generated with Sea of Shadows version 0.0.6-SNAPSHOT
 
 message TextMetrics {
-	uint64 parent = 1;
+	uint64 id = 1;
 	double actual_bounding_box_ascent = 2;
 	double actual_bounding_box_descent = 3;
 	double actual_bounding_box_left = 4;

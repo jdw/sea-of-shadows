@@ -5,5 +5,5 @@ package com.github.jdw.seaofshadows.canvas2d;
 // Generated with Sea of Shadows version 0.0.6-SNAPSHOT
 
 message CanvasPattern {
-	uint64 parent = 1;
+	uint64 id = 1;
 }

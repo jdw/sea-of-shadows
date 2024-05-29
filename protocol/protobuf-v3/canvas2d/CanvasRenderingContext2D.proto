@@ -17,8 +17,8 @@ import "canvasrenderingcontext2d/TextBaselineValue.proto";
 import "canvasrenderingcontext2d/TextRenderingValue.proto";
 
 message CanvasRenderingContext2D {
-	uint64 parent = 1;
-	null canvas = 2;
+	uint64 id = 1;
+	HTMLCanvasElement canvas = 2;
 	DirectionValue direction = 3;
 	string fill_style = 4;
 	string filter = 5;

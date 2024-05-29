@@ -54,12 +54,11 @@ private fun Interface.renderBase(): List<Code> {
 
     code.add("message $name {")
     code.indent()
-    code.add("uint64 parent = 1;")
+    code.add("uint64 id = 1;")
     properties.sortedBy { it.name }.forEachIndexed { idx, property ->
         val allowedValuesName = "${property.name.capitalizeFirstLetter()}Value"
         property.renderAllowedValues(allowedValuesName, File("${simpleName.lowercase()}/$allowedValuesName.proto"), qualifiedName).forEach { ret.add(it) }
         var type = kotlinTypeToProtobufType(property.type)
-            ?: parameterNameToType(property.name)
         if (property.allowedValues.isNotEmpty()) type = "${property.name.capitalizeFirstLetter()}Value"
         val name = property.name.toProtobufFieldName()
         val pidx = idx + 2
@@ -110,6 +109,7 @@ private fun kotlinTypeToProtobufType(kotlinType: String): String? {
         "UInt" -> "uint32"
         "Boolean" -> "bool"
         "ByteString" -> "bytes"
+        "HTMLCanvasElement" -> "HTMLCanvasElement"
         else -> null
     }
 }
@@ -141,7 +141,7 @@ private fun Interface.renderMembers(): List<Code> {
         code.indent()
         code.add("uint64 parent = 1;")
 
-        method.parameters.forEach { kparameter ->
+        method.parameters.sortedBy { it.index }.forEach { kparameter ->
             val parameter = kparameter as Parameter
             val type = kotlinTypeToProtobufType(parameter.typeName)
                 ?: parameterNameToType(parameter.name!!)
