@@ -19,8 +19,8 @@ import kotlin.system.exitProcess
 
 
 class Webapi(): CliktCommand(help="Import Khronos and Mozilla WebAPI documentation from ${Glob.MOZILLA_API_BASE_URL} to local Kotlin files and classes.") {
-    private val supportedApis: Set<String> = setOf("WebGL1", "WebGL2", "Canvas2d")
-    private val api by argument(help = "The APIs listed at the aforementioned site but without spaces and kept capitalization. ${supportedApis.supportedValues('<' to '>', '|')}.")
+    private val supportedApis: Set<String> = setOf("webgl1", "webgl2", "canvas2d")
+    private val api by argument(help = "The APIs listed at the aforementioned site. ${supportedApis.supportedValues('<' to '>', '|')}.")
         .validate {
             require(supportedApis.contains(it)) {
                 "The API argument must be any of ${supportedApis.supportedValues('<' to '>', '|')}."
