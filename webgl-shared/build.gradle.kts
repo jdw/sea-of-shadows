@@ -1,7 +1,3 @@
-//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.javaVersion
-//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinVersion
-//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxCoroutinesVersion
-//import com.github.jdw.seaofshadows.SeaOfShadowsProject.Dependencies.kotlinxSerializationVersion
 
 buildscript {
     repositories {
@@ -18,6 +14,7 @@ val kotlinVersion: String by properties
 
 kotlin {
     js(IR) {
+        nodejs()
         binaries.library()
     }
     jvm() {
