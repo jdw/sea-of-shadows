@@ -18,7 +18,7 @@ import java.io.File
 import kotlin.system.exitProcess
 
 
-class Webapi(): CliktCommand(help="Import Khronos and Mozilla WebAPI documentation from ${Glob.MOZILLA_API_BASE_URL} to local Kotlin files and classes.") {
+class Webapi(): CliktCommand(help="Import Khronos Group and Mozilla WebAPI documentation from ${Glob.KHRONOS_BASE_URL} or ${Glob.MOZILLA_API_BASE_URL} to local files.") {
     private val supportedApis: Set<String> = setOf("webgl1", "webgl2", "canvas2d")
     private val api by argument(help = "The APIs listed at the aforementioned site. ${supportedApis.supportedValues('<' to '>', '|')}.")
         .validate {

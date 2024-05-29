@@ -20,6 +20,7 @@ object Glob {
     val MOZILLA_WEBGL_CONSTANTS_URL: String by loadProperties("gradle.properties")
     val WEBGL1_VERSION: String by loadProperties("gradle.properties")
     val WEBGL2_VERSION: String by loadProperties("gradle.properties")
+    val KHRONOS_BASE_URL: String by loadProperties("gradle.properties")
     val KHRONOS_WEBGL1_IDL = loadProperties("gradle.properties").getProperty("KHRONOS_WEBGL1_IDL").replace("{WEBGL1_VERSION}", WEBGL1_VERSION)
     val KHRONOS_WEBGL2_IDL = loadProperties("gradle.properties").getProperty("KHRONOS_WEBGL2_IDL").replace("{WEBGL2_VERSION}", WEBGL2_VERSION)
     val CACHE_BASE_PATH: String by loadProperties("gradle.properties")
