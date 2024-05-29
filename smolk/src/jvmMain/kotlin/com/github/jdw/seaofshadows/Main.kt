@@ -6,9 +6,8 @@ import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.jdw.seaofshadows.subcommandos.Protobuf
 import com.github.jdw.seaofshadows.subcommandos.Settings
-import com.github.jdw.seaofshadows.subcommandos.Webapi
+import com.github.jdw.seaofshadows.subcommandos.Rosetta
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlin.system.exitProcess
 
 class SeaOfShadows: CliktCommand(name="seaofshadows") {
     val verbose by option("-v", "--verbose", help="Verbose output (default: false).").flag()
@@ -21,6 +20,6 @@ class SeaOfShadows: CliktCommand(name="seaofshadows") {
 @OptIn(ExperimentalSerializationApi::class)
 fun main(args: Array<String>)  {
     SeaOfShadows()
-    .subcommands(Webapi(), Protobuf(), Settings())
+    .subcommands(Rosetta(), Protobuf(), Settings())
     .main(args)
 }

@@ -1,4 +1,4 @@
-package com.github.jdw.seaofshadows.subcommandos.webapi.types
+package com.github.jdw.seaofshadows.importing.types
 
 import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.htmlToMarkdown

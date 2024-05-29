@@ -1,24 +1,25 @@
-package com.github.jdw.seaofshadows.subcommandos.webapi
+package com.github.jdw.seaofshadows.subcommandos.rosetta
 
-import com.github.ajalt.mordant.rendering.TextColors.Companion.rgb
 import com.github.jdw.seaofshadows.Glob
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Interface
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.InterfaceBuilder
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Method
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.MethodBuilder
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Parameter
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.ParameterBuilder
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Property
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.PropertyBuilder
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Type
+import com.github.jdw.seaofshadows.importing.types.Interface
+import com.github.jdw.seaofshadows.importing.types.InterfaceBuilder
+import com.github.jdw.seaofshadows.importing.types.Method
+import com.github.jdw.seaofshadows.importing.types.MethodBuilder
+import com.github.jdw.seaofshadows.importing.types.Parameter
+import com.github.jdw.seaofshadows.importing.types.ParameterBuilder
+import com.github.jdw.seaofshadows.importing.types.Property
+import com.github.jdw.seaofshadows.importing.types.PropertyBuilder
+import com.github.jdw.seaofshadows.importing.types.Type
+import com.github.jdw.seaofshadows.importing.types.renderKotlin
 import com.github.jdw.seaofshadows.utils.noop
+import com.github.jdw.seaofshadows.utils.throws
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.io.File
 import kotlin.reflect.KParameter
 import kotlin.reflect.full.createType
 
-class Canvas2d(val path: File) {
+class Canvas2d(val path: File, val language: String) {
     fun run() = runBlocking {
         val packag3 = "${Glob.GROUP}.canvas2d.shared"
 
@@ -42,8 +43,15 @@ class Canvas2d(val path: File) {
                                 buildInterface(builder)
 
                                 val interfaze = builder.build()
-                                val code = interfaze.render()
-                                code.save(File("${path.path}/${interfaze.simpleName}.kt"))
+                                var filename = ""
+                                val code = when (language) {
+                                    "kotlin" -> {
+                                        filename = "${interfaze.simpleName}.kt"
+                                        interfaze.renderKotlin()
+                                    }
+                                    else -> throws()
+                                }
+                                code.save(File("${path.path}/$filename"))
                             }
                         }
                 }

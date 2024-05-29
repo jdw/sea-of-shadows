@@ -1,6 +1,5 @@
-package com.github.jdw.seaofshadows.subcommandos.webapi
+package com.github.jdw.seaofshadows.subcommandos.rosetta
 
-import com.github.jdw.seaofshadows.Glob
 import java.io.File
 
 class Code() {

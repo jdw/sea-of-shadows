@@ -1,12 +1,12 @@
-package com.github.jdw.seaofshadows.subcommandos.webapi.rowhandlers
+package com.github.jdw.seaofshadows.subcommandos.rosetta.rowhandlers
 
 import com.github.jdw.seaofshadows.Glob
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Interface
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.InterfaceBuilder
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Method
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.MethodBuilder
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Property
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Type
+import com.github.jdw.seaofshadows.importing.types.Interface
+import com.github.jdw.seaofshadows.importing.types.InterfaceBuilder
+import com.github.jdw.seaofshadows.importing.types.Method
+import com.github.jdw.seaofshadows.importing.types.MethodBuilder
+import com.github.jdw.seaofshadows.importing.types.Property
+import com.github.jdw.seaofshadows.importing.types.Type
 import com.github.jdw.seaofshadows.utils.throws
 import kotlin.reflect.KClass
 

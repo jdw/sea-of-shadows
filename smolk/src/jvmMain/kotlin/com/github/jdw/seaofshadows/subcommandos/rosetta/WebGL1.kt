@@ -1,10 +1,12 @@
-package com.github.jdw.seaofshadows.subcommandos.webapi
+package com.github.jdw.seaofshadows.subcommandos.rosetta
 
 import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.core.dom.Canvas
-import com.github.jdw.seaofshadows.subcommandos.webapi.rowhandlers.ClassRowHandler
-import com.github.jdw.seaofshadows.subcommandos.webapi.rowhandlers.InterfaceRowHandler
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Type
+import com.github.jdw.seaofshadows.subcommandos.rosetta.rowhandlers.ClassRowHandler
+import com.github.jdw.seaofshadows.subcommandos.rosetta.rowhandlers.InterfaceRowHandler
+import com.github.jdw.seaofshadows.importing.types.Type
+import com.github.jdw.seaofshadows.importing.types.renderKotlin
+import com.github.jdw.seaofshadows.utils.throws
 import com.github.jdw.seaofshadows.webgl.shared.ArrayBuffer
 import com.github.jdw.seaofshadows.webgl.shared.ArrayBufferView
 import com.github.jdw.seaofshadows.webgl.shared.BufferDataSource
@@ -13,13 +15,11 @@ import com.github.jdw.seaofshadows.webgl.shared.Event
 import com.github.jdw.seaofshadows.webgl.shared.Float32Array
 import com.github.jdw.seaofshadows.webgl.shared.Int32Array
 import com.github.jdw.seaofshadows.webgl.shared.TexImageSource
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.io.File
 import kotlin.reflect.full.createType
 
 
-class WebGL1(val path: File) {
+class WebGL1(val path: File, val language: String) {
     private val irh = InterfaceRowHandler()
     private val crh = ClassRowHandler()
 
@@ -122,10 +122,16 @@ class WebGL1(val path: File) {
         val skips = setOf("WebGLContextAttributes", "WebGLContextEventInit")
         if (!skips.contains(crh.currentClassBuilder!!.simpleName)) {
             val clazz = crh.currentClassBuilder!!.build()
+            var filename = ""
+            val code = when (language) {
+                "kotlin" -> {
+                    filename = "${clazz.simpleName}.kt"
+                    clazz.renderKotlin()
+                }
+                else -> throws()
+            }
 
-            val code = clazz.render()
-
-            code.save(File("${path.path}/${clazz.simpleName}.kt"))
+            code.save(File("${path.path}/${filename}"))
         }
         crh.currentClassBuilder = null
     }
@@ -135,10 +141,17 @@ class WebGL1(val path: File) {
         val skips: Set<String> = setOf("WebGLRenderingContext")
         if (!skips.contains(irh.currentInterfaceBuilder!!.simpleName)) {
             val interfaze = irh.handleEndOfInterface()
-            val code = interfaze.render()
-            val type = interfaze.createType()
+            var filename = ""
+            val code = when (language) {
+                "kotlin" -> {
+                    filename = "${interfaze.simpleName}.kt"
+                    interfaze.renderKotlin()
+                }
+                else -> throws()
+            }
+            val type = interfaze.createType() //TODO Remove
             Type.NAME_TO_TYPE[interfaze.simpleName!!] = type
-            code.save(File("${path.path}/${interfaze.simpleName}.kt"))
+            code.save(File("${path.path}/${filename}"))
         }
         irh.currentInterfaceBuilder = null
     }

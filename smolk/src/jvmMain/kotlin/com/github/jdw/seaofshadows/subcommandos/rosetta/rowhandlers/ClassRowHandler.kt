@@ -1,9 +1,9 @@
-package com.github.jdw.seaofshadows.subcommandos.webapi.rowhandlers
+package com.github.jdw.seaofshadows.subcommandos.rosetta.rowhandlers
 
 import com.github.jdw.seaofshadows.Glob
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Class
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.ClassBuilder
-import com.github.jdw.seaofshadows.subcommandos.webapi.types.Property
+import com.github.jdw.seaofshadows.importing.types.Class
+import com.github.jdw.seaofshadows.importing.types.ClassBuilder
+import com.github.jdw.seaofshadows.importing.types.Property
 
 class ClassRowHandler {
     var currentClassBuilder: ClassBuilder? = null

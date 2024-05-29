@@ -1,18 +1,17 @@
-package com.github.jdw.seaofshadows.subcommandos.webapi.types
+package com.github.jdw.seaofshadows.importing.types
 
 import com.github.jdw.seaofshadows.Glob
 import com.github.jdw.seaofshadows.applyKeywords
 import com.github.jdw.seaofshadows.enumClassName
 import com.github.jdw.seaofshadows.formatAfterMaxWidth
-import com.github.jdw.seaofshadows.subcommandos.webapi.Code
+import com.github.jdw.seaofshadows.subcommandos.rosetta.Code
 import com.github.jdw.seaofshadows.utils.echt
 import com.github.jdw.seaofshadows.variableNameToEnumMemberName
-import org.jetbrains.kotlin.gradle.utils.property
 import org.jetbrains.kotlin.util.prefixIfNot
 import org.jetbrains.kotlin.util.suffixIfNot
 
 
-fun Interface.actuallyRender(): Code {
+fun Interface.renderKotlin(): Code {
     val code = Code()
 
     val packag3 = qualifiedName!!.removeSuffix(".${simpleName}")
@@ -109,8 +108,7 @@ private fun renderNonConstantProperties(properties: List<Property>, code: Code) 
                         " = ${property.name.enumClassName()}.${property.defaultValue.variableNameToEnumMemberName()}"
                     } else " = ${property.defaultValue}"
             }
-            println("--- $defaultValueStr")
-            println("--- ${property.defaultValue}")
+
             code.add("$valOrVar ${property.name}: ${property.type}$defaultValueStr")
         }
 }

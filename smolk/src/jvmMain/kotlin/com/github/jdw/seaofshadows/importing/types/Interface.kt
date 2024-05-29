@@ -1,6 +1,5 @@
-package com.github.jdw.seaofshadows.subcommandos.webapi.types
+package com.github.jdw.seaofshadows.importing.types
 
-import com.github.jdw.seaofshadows.subcommandos.webapi.Code
 import kotlin.reflect.KCallable
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
@@ -89,11 +88,6 @@ class Interface(override val annotations: List<Annotation>,
 
     override fun isInstance(value: Any?): Boolean {
         return value is Interface
-    }
-
-
-    fun render(): Code {
-        return actuallyRender()
     }
 
 

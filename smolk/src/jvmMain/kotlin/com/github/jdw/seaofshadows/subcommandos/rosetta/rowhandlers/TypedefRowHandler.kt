@@ -1,7 +1,7 @@
-package com.github.jdw.seaofshadows.subcommandos.webapi.rowhandlers
+package com.github.jdw.seaofshadows.subcommandos.rosetta.rowhandlers
 
 import com.github.jdw.seaofshadows.Glob
-import com.github.jdw.seaofshadows.subcommandos.webapi.Code
+import com.github.jdw.seaofshadows.subcommandos.rosetta.Code
 
 //TODO Remove... This is done manually
 class TypedefRowHandler {
