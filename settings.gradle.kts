@@ -2,14 +2,15 @@ pluginManagement {
     plugins {
         val foojayResolverConventionVersion: String by settings
         val kotlinVersion: String by settings
-        val protobufGradlePluginVersion: String by settings
 
         id("java")
         id("org.gradle.toolchains.foojay-resolver-convention") version foojayResolverConventionVersion
         id("org.jetbrains.kotlin.multiplatform") version kotlinVersion
         id("org.jetbrains.kotlin.plugin.serialization") version kotlinVersion
         id("maven-publish")
-        id("com.google.protobuf") version  protobufGradlePluginVersion
+        id("protokt.multiplatform-conventions")
+        id("com.toasttab.protokt") version "1.0.0-beta.2"
+        id("protokt.multiplatform-conventions")
     }
 
     repositories {

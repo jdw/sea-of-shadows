@@ -5,6 +5,7 @@ import com.github.jdw.seaofshadows.capitalizeFirstLetter
 import com.github.jdw.seaofshadows.importing.Code
 import com.github.jdw.seaofshadows.toProtobufFieldName
 import kotlinx.coroutines.flow.flow
+import org.jetbrains.kotlin.util.prefixIfNot
 import java.io.File
 
 
@@ -13,7 +14,9 @@ private fun protobufv3BaseCodeObject(file: File, packageRaw: String): Code {
     code.file = file
 
     val packag3 = if (packageRaw.contains("canvas2d")) {
-            if (file.path.contains("/")) "${Glob.GROUP}.canvas2d.${file.path.split("/").first()}".lowercase()
+            val parentName = file.path.split("/").first()
+            val ownName = file.path.split("/").last().split(".").first()
+            if (file.path.contains("/")) "${Glob.GROUP}.canvas2d.$parentName.$ownName".lowercase()
             else "${Glob.GROUP}.canvas2d"
         }
         else "TODO"
@@ -43,12 +46,14 @@ private fun Interface.renderBase(): List<Code> {
     val name = simpleName!!.capitalizeFirstLetter()
     val code = protobufv3BaseCodeObject(File("$name.proto"), qualifiedName!!)
 
+    if ("CanvasRenderingContext2D" == simpleName) code.add("""import "HTMLCanvasElement.proto";""")
     properties.forEach { property ->
         val allowedValuesName = "${property.name.capitalizeFirstLetter()}Value"
         val path = simpleName.lowercase()
         if (property.allowedValues.isNotEmpty()) {
-            code.add("""import "$path/$allowedValuesName.proto";""")
+            code.add("""import "$path/${allowedValuesName.lowercase()}/$allowedValuesName.proto";""")
         }
+
     }
     code.addBlankLineIfLastLineIsNotBlank()
 
@@ -57,9 +62,11 @@ private fun Interface.renderBase(): List<Code> {
     code.add("uint64 id = 1;")
     properties.sortedBy { it.name }.forEachIndexed { idx, property ->
         val allowedValuesName = "${property.name.capitalizeFirstLetter()}Value"
-        property.renderAllowedValues(allowedValuesName, File("${simpleName.lowercase()}/$allowedValuesName.proto"), qualifiedName).forEach { ret.add(it) }
+        property.renderAllowedValues(allowedValuesName, File("${simpleName.lowercase()}/${allowedValuesName.lowercase()}/$allowedValuesName.proto"), qualifiedName).forEach { ret.add(it) }
         var type = kotlinTypeToProtobufType(property.type)
-        if (property.allowedValues.isNotEmpty()) type = "${property.name.capitalizeFirstLetter()}Value"
+        //if (type!!.endsWith("Value")) type = type.prefixIfNot("${simpleName.lowercase()}.${type.lowercase()}.$type")
+
+        if (property.allowedValues.isNotEmpty()) type = "${simpleName.lowercase()}.${property.name.lowercase()}value.${property.name.capitalizeFirstLetter()}Value"
         val name = property.name.toProtobufFieldName()
         val pidx = idx + 2
         code.add("$type $name = $pidx;")
@@ -76,6 +83,7 @@ fun Property.renderAllowedValues(name: String, file: File, qualifiedName: String
     if (allowedValues.isEmpty()) return emptyList()
 
     val code = protobufv3BaseCodeObject(file, qualifiedName)
+
     code.add("enum $name {")
     code.indent()
     allowedValues

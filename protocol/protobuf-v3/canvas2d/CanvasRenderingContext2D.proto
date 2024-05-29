@@ -4,45 +4,46 @@ package com.github.jdw.seaofshadows.canvas2d;
 
 // Generated with Sea of Shadows version 0.0.6-SNAPSHOT
 
-import "canvasrenderingcontext2d/DirectionValue.proto";
-import "canvasrenderingcontext2d/FontKerningValue.proto";
-import "canvasrenderingcontext2d/FontVariantCapsValue.proto";
-import "canvasrenderingcontext2d/GlobalCompositeOperationValue.proto";
-import "canvasrenderingcontext2d/ImageSmoothingQualityValue.proto";
-import "canvasrenderingcontext2d/LineCapValue.proto";
-import "canvasrenderingcontext2d/LineJoinValue.proto";
-import "canvasrenderingcontext2d/StrokeStyleValue.proto";
-import "canvasrenderingcontext2d/TextAlignValue.proto";
-import "canvasrenderingcontext2d/TextBaselineValue.proto";
-import "canvasrenderingcontext2d/TextRenderingValue.proto";
+import "HTMLCanvasElement.proto";
+import "canvasrenderingcontext2d/directionvalue/DirectionValue.proto";
+import "canvasrenderingcontext2d/fontkerningvalue/FontKerningValue.proto";
+import "canvasrenderingcontext2d/fontvariantcapsvalue/FontVariantCapsValue.proto";
+import "canvasrenderingcontext2d/globalcompositeoperationvalue/GlobalCompositeOperationValue.proto";
+import "canvasrenderingcontext2d/imagesmoothingqualityvalue/ImageSmoothingQualityValue.proto";
+import "canvasrenderingcontext2d/linecapvalue/LineCapValue.proto";
+import "canvasrenderingcontext2d/linejoinvalue/LineJoinValue.proto";
+import "canvasrenderingcontext2d/strokestylevalue/StrokeStyleValue.proto";
+import "canvasrenderingcontext2d/textalignvalue/TextAlignValue.proto";
+import "canvasrenderingcontext2d/textbaselinevalue/TextBaselineValue.proto";
+import "canvasrenderingcontext2d/textrenderingvalue/TextRenderingValue.proto";
 
 message CanvasRenderingContext2D {
 	uint64 id = 1;
 	HTMLCanvasElement canvas = 2;
-	DirectionValue direction = 3;
+	canvasrenderingcontext2d.directionvalue.DirectionValue direction = 3;
 	string fill_style = 4;
 	string filter = 5;
 	string font = 6;
-	FontKerningValue font_kerning = 7;
+	canvasrenderingcontext2d.fontkerningvalue.FontKerningValue font_kerning = 7;
 	string font_stretch = 8;
-	FontVariantCapsValue font_variant_caps = 9;
+	canvasrenderingcontext2d.fontvariantcapsvalue.FontVariantCapsValue font_variant_caps = 9;
 	double global_alpha = 10;
-	GlobalCompositeOperationValue global_composite_operation = 11;
+	canvasrenderingcontext2d.globalcompositeoperationvalue.GlobalCompositeOperationValue global_composite_operation = 11;
 	bool image_smoothing_enabled = 12;
-	ImageSmoothingQualityValue image_smoothing_quality = 13;
+	canvasrenderingcontext2d.imagesmoothingqualityvalue.ImageSmoothingQualityValue image_smoothing_quality = 13;
 	string letter_spacing = 14;
-	LineCapValue line_cap = 15;
+	canvasrenderingcontext2d.linecapvalue.LineCapValue line_cap = 15;
 	double line_dash_offset = 16;
-	LineJoinValue line_join = 17;
+	canvasrenderingcontext2d.linejoinvalue.LineJoinValue line_join = 17;
 	double line_width = 18;
 	double miter_limit = 19;
 	double shadow_blur = 20;
 	string shadow_color = 21;
 	double shadow_offset_x = 22;
 	double shadow_offset_y = 23;
-	StrokeStyleValue stroke_style = 24;
-	TextAlignValue text_align = 25;
-	TextBaselineValue text_baseline = 26;
-	TextRenderingValue text_rendering = 27;
+	canvasrenderingcontext2d.strokestylevalue.StrokeStyleValue stroke_style = 24;
+	canvasrenderingcontext2d.textalignvalue.TextAlignValue text_align = 25;
+	canvasrenderingcontext2d.textbaselinevalue.TextBaselineValue text_baseline = 26;
+	canvasrenderingcontext2d.textrenderingvalue.TextRenderingValue text_rendering = 27;
 	string word_spacing = 28;
 }

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d.arctoresponse;
 
 // Generated with Sea of Shadows version 0.0.6-SNAPSHOT
 

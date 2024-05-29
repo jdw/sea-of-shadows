@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.github.jdw.seaofshadows.canvas2d.path2d;
+package com.github.jdw.seaofshadows.canvas2d.path2d.addpathresponse;
 
 // Generated with Sea of Shadows version 0.0.6-SNAPSHOT
 

@@ -1,3 +1,6 @@
+import com.google.protobuf.gradle.protobuf
+import protokt.v1.gradle.protokt
+
 buildscript {
     repositories {
         mavenLocal()
@@ -5,11 +8,13 @@ buildscript {
 }
 
 plugins {
-
+    id("com.toasttab.protokt")
+    //id("protokt.multiplatform-conventions")
 }
 
 val javaVersion: String by properties
 val kotlinVersion: String by properties
+
 
 kotlin {
     js(IR) {
@@ -37,6 +42,7 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+                implementation("com.google.protobuf:protobuf-javalite:4.27.0")
             }
         }
     }
@@ -49,4 +55,10 @@ java {
 
     sourceCompatibility = JavaVersion.toVersion(javaVersion)
     targetCompatibility = JavaVersion.toVersion(javaVersion)
+}
+
+dependencies {
+    //protobuf(libs.protobuf.java)
+    protobuf(files("../protocol/protobuf-v3/canvas2d"))
+
 }

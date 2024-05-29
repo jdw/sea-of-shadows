@@ -190,7 +190,8 @@ class Canvas2dImporter(var renderBlock: (Interface) -> Unit = defaultRenderBlock
                                 .getElementsByTag("dt")
                                 .forEach { dt ->
                                     val dox = dt.nextElementSibling()!!.text()
-                                    allowedValues[dt.id()] = dox
+                                    val value = dt.getElementsByTag("code").text().replace("\"", "")
+                                    allowedValues[value] = dox
                                 }
                         }
                         else if ("imageSmoothingQuality" == name) {
@@ -200,7 +201,8 @@ class Canvas2dImporter(var renderBlock: (Interface) -> Unit = defaultRenderBlock
                                 .getElementsByTag("dt")
                                 .forEach { dt ->
                                     val dox = dt.nextElementSibling()!!.text()
-                                    allowedValues[dt.id()] = dox
+                                    val value = dt.getElementsByTag("code").text().replace("\"", "")
+                                    allowedValues[value] = dox
                                 }
                         }
                         else if ("direction" == name) {
@@ -210,7 +212,8 @@ class Canvas2dImporter(var renderBlock: (Interface) -> Unit = defaultRenderBlock
                                 .getElementsByTag("dt")
                                 .forEach { dt ->
                                     val dox = dt.nextElementSibling()!!.text()
-                                    allowedValues[dt.id()] = dox
+                                    val value = dt.getElementsByTag("code").text().replace("\"", "")
+                                    allowedValues[value] = dox
                                 }
                         }
                         else if ("lineJoin" == name) {
@@ -220,7 +223,8 @@ class Canvas2dImporter(var renderBlock: (Interface) -> Unit = defaultRenderBlock
                                 .getElementsByTag("dt")
                                 .forEach { dt ->
                                     val dox = dt.nextElementSibling()!!.text()
-                                    allowedValues[dt.id()] = dox
+                                    val value = dt.getElementsByTag("code").text().replace("\"", "")
+                                    allowedValues[value] = dox
                                 }
                         }
                         else if ("width" == name && builder.parent!!.simpleName == "TextMetrics") {
