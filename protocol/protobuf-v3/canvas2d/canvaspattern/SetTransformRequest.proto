@@ -6,5 +6,5 @@ package com.github.jdw.seaofshadows.canvas2d.canvaspattern;
 
 message SetTransformRequest {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> matrix = 2;
+	string matrix = 2;
 }

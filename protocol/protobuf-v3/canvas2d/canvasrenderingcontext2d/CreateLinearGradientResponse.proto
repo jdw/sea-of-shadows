@@ -6,9 +6,9 @@ package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
 
 message CreateLinearGradientResponse {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> x0 = 2;
-	<TODO: parameter.typeName = Number> y0 = 3;
-	<TODO: parameter.typeName = Number> x1 = 4;
-	<TODO: parameter.typeName = Number> y1 = 5;
+	string x0 = 2;
+	string y0 = 3;
+	string x1 = 4;
+	string y1 = 5;
 	string result = 6;
 }

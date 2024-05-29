@@ -16,17 +16,17 @@ package com.github.jdw.seaofshadows.canvas2d.shared
  * * [CanvasRenderingContext2D.measureText](https://developer.mozilla.org/en-US/docs/Web/API/en-US/docs/Web/API/CanvasRenderingContext2D/measureText)
  */
 interface TextMetrics {
-	var actualBoundingBoxAscent: String
-	var actualBoundingBoxDescent: String
-	var actualBoundingBoxLeft: String
-	var actualBoundingBoxRight: String
-	var alphabeticBaseline: String
-	var emHeightAscent: String
-	var emHeightDescent: String
-	var fontBoundingBoxAscent: String
-	var fontBoundingBoxDescent: String
-	var hangingBaseline: String
-	var ideographicBaseline: String
-	var width: String
+	var actualBoundingBoxAscent: Double
+	var actualBoundingBoxDescent: Double
+	var actualBoundingBoxLeft: Double
+	var actualBoundingBoxRight: Double
+	var alphabeticBaseline: Double
+	val emHeightAscent: Int
+	val emHeightDescent: Int
+	val fontBoundingBoxAscent: Int
+	val fontBoundingBoxDescent: Int
+	var hangingBaseline: Double
+	var ideographicBaseline: Int
+	var width: Int
 	
 }

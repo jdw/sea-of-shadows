@@ -55,15 +55,11 @@ private fun Interface.renderBase(): List<Code> {
     code.add("message $name {")
     code.indent()
     code.add("uint64 parent = 1;")
-    properties.forEachIndexed { idx, property ->
+    properties.sortedBy { it.name }.forEachIndexed { idx, property ->
         val allowedValuesName = "${property.name.capitalizeFirstLetter()}Value"
         property.renderAllowedValues(allowedValuesName, File("${simpleName.lowercase()}/$allowedValuesName.proto"), qualifiedName).forEach { ret.add(it) }
-        var type = when (property.type) {
-            "String" -> "string"
-            "Int" -> "int32"
-            "HTMLCanvasElement" -> "HTMLCanvasElement"
-            else -> "<TODO: parameter.typeName = ${property.type}>"
-        }
+        var type = kotlinTypeToProtobufType(property.type)
+            ?: parameterNameToType(property.name)
         if (property.allowedValues.isNotEmpty()) type = "${property.name.capitalizeFirstLetter()}Value"
         val name = property.name.toProtobufFieldName()
         val pidx = idx + 2
@@ -101,6 +97,37 @@ fun Property.renderAllowedValues(name: String, file: File, qualifiedName: String
     return listOf(code)
 }
 
+
+private fun kotlinTypeToProtobufType(kotlinType: String): String? {
+    val smallcaps = setOf("string", "double", "float")
+
+    if (smallcaps.contains(kotlinType.lowercase())) return kotlinType.lowercase()
+
+    //TODO Map the rest https://protobuf.dev/programming-guides/proto3/#scalar
+    return when (kotlinType) {
+        "Int" -> "int32"
+        "Long" -> "int64"
+        "UInt" -> "uint32"
+        "Boolean" -> "bool"
+        "ByteString" -> "bytes"
+        else -> null
+    }
+}
+
+
+private fun parameterNameToType(parameterName: String): String? {
+    return when (parameterName) {
+        "x",
+        "y",
+        "z",
+        "w" -> "double"
+        "height",
+        "width" -> "int32"
+        else -> null
+    }
+}
+
+
 private fun Interface.renderMembers(): List<Code> {
     val ret: MutableList<Code> = mutableListOf()
 
@@ -116,17 +143,10 @@ private fun Interface.renderMembers(): List<Code> {
 
         method.parameters.forEach { kparameter ->
             val parameter = kparameter as Parameter
-            val type = when (parameter.typeName) {
-                "String" -> "string"
-                "Int" -> "int32"
-                else -> when (parameter.name) {
-                    "x",
-                    "y",
-                    "z",
-                    "w" -> "int32"
-                    else -> "<TODO: parameter.typeName = ${parameter.typeName}>"
-                }
-            }
+            val type = kotlinTypeToProtobufType(parameter.typeName)
+                ?: parameterNameToType(parameter.name!!)
+            if (null == type) Glob.debug("Could not set type for parameter '${parameter.name}' belonging to method '${method.name}'!")
+
             val name = parameter.name!!.toProtobufFieldName()
             val idx = parameter.index + 2
             code.add("$type $name = $idx;")
@@ -147,19 +167,10 @@ private fun Interface.renderMembers(): List<Code> {
         var latestIdx = 1
         method.parameters.sortedBy { it.index }.forEach { kparameter ->
             val parameter = kparameter as Parameter
-            val type = when (parameter.typeName) {
-                "String" -> "string"
-                "Int" -> "int32"
-                else -> when (parameter.name) {
-                    "x",
-                    "y",
-                    "z",
-                    "w",
-                    "height",
-                    "width" -> "int32"
-                    else -> "<TODO: parameter.typeName = ${parameter.typeName}>"
-                }
-            }
+            val type = kotlinTypeToProtobufType(parameter.typeName)
+                ?: parameterNameToType(parameter.name!!)
+            if (null == type) Glob.debug("Could not set type for parameter '${parameter.name}' belonging to method '${method.name}'!")
+
             val name = parameter.name!!.toProtobufFieldName()
             val idx = parameter.index + 2
             latestIdx = idx

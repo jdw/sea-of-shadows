@@ -6,10 +6,10 @@ package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
 
 message ArcToResponse {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> x1 = 2;
-	<TODO: parameter.typeName = Number> y1 = 3;
-	<TODO: parameter.typeName = Number> x2 = 4;
-	<TODO: parameter.typeName = Number> y2 = 5;
-	<TODO: parameter.typeName = Number> radius = 6;
+	string x1 = 2;
+	string y1 = 3;
+	string x2 = 4;
+	string y2 = 5;
+	string radius = 6;
 	string result = 7;
 }

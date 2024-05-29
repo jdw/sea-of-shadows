@@ -6,6 +6,6 @@ package com.github.jdw.seaofshadows.canvas2d.offscreencanvas;
 
 message GetContextRequest {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> context_type = 2;
-	<TODO: parameter.typeName = Number> context_attributes = 3;
+	string context_type = 2;
+	string context_attributes = 3;
 }

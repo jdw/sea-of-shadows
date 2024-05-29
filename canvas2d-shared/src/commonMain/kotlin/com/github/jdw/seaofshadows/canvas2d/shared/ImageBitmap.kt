@@ -18,8 +18,8 @@ package com.github.jdw.seaofshadows.canvas2d.shared
  * * [transferable object](https://developer.mozilla.org/en-US/docs/Web/API/en-US/docs/Web/API/Web_Workers_API/Transferable_objects)
  */
 interface ImageBitmap {
-	var height: String
-	var width: String
+	var height: Int
+	var width: Int
 	
 	/**
 	 *  The [ImageBitmap].[close] method disposes of all graphical resources associated

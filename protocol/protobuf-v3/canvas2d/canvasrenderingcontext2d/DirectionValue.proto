@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
+
+// Generated with Sea of Shadows version 0.0.6-SNAPSHOT
+
+enum DirectionValue {
+	/**
+	 * The text direction is inherited from the <canvas> element or the Document as appropriate. Default value.
+	 */
+	INHERIT = 0;
+	
+	/**
+	 * The text direction is left-to-right.
+	 */
+	LTR = 1;
+	
+	/**
+	 * The text direction is right-to-left.
+	 */
+	RTL = 2;
+}

@@ -6,9 +6,9 @@ package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
 
 message GetImageDataResponse {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> sx = 2;
-	<TODO: parameter.typeName = Number> sy = 3;
-	<TODO: parameter.typeName = Number> sw = 4;
-	<TODO: parameter.typeName = Number> sh = 5;
+	string sx = 2;
+	string sy = 3;
+	string sw = 4;
+	string sh = 5;
 	string result = 6;
 }

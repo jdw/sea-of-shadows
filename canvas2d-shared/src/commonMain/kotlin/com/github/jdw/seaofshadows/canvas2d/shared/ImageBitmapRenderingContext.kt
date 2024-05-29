@@ -38,7 +38,7 @@ interface ImageBitmapRenderingContext {
 	 *
 	 * @param bitmap An ImageBitmap object to transfer.
 	 */
-	fun transferFromImageBitmap(bitmap: Number)
+	fun transferFromImageBitmap(bitmap: String)
 	
 	
 }

@@ -26,8 +26,8 @@ package com.github.jdw.seaofshadows.canvas2d.shared
  * * [transferable object](https://developer.mozilla.org/en-US/docs/Web/API/en-US/docs/Web/API/Web_Workers_API/Transferable_objects)
  */
 interface OffscreenCanvas {
-	var height: String
-	var width: String
+	var height: Int
+	var width: Int
 	
 	/**
 	 *  Note: This feature is available in Web Workers. The
@@ -92,7 +92,7 @@ interface OffscreenCanvas {
 	 * failIfMajorPerformanceCaveat Boolean that indicates if a context will be created
 	 * if the system performance is low.
 	 */
-	fun getContext(contextType: Number, contextAttributes: Number)
+	fun getContext(contextType: String, contextAttributes: String)
 	
 	
 }

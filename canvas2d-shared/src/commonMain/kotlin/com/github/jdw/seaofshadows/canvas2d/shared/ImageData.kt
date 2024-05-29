@@ -27,7 +27,7 @@ package com.github.jdw.seaofshadows.canvas2d.shared
 interface ImageData {
 	var colorSpace: String
 	var data: String
-	var height: String
-	var width: String
+	var height: Int
+	var width: Int
 	
 }

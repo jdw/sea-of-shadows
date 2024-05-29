@@ -6,6 +6,6 @@ package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
 
 message CreatePatternRequest {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> image = 2;
-	<TODO: parameter.typeName = Number> repetition = 3;
+	string image = 2;
+	string repetition = 3;
 }

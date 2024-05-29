@@ -38,7 +38,7 @@ interface CanvasGradient {
 	 * @param offset A number between 0 and 1, inclusive, representing the position of the color stop. 0 represents the start of the gradient and 1 represents the end.
 	 * @param color A CSS <color> value representing the color of the stop.
 	 */
-	fun addColorStop(offset: Number, color: Number)
+	fun addColorStop(offset: String, color: String)
 	
 	
 }

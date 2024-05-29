@@ -6,10 +6,10 @@ package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
 
 message RoundRectResponse {
 	uint64 parent = 1;
-	int32 x = 2;
-	int32 y = 3;
-	int32 width = 4;
-	int32 height = 5;
-	<TODO: parameter.typeName = Number> radii = 6;
+	string x = 2;
+	string y = 3;
+	string width = 4;
+	string height = 5;
+	string radii = 6;
 	string result = 7;
 }

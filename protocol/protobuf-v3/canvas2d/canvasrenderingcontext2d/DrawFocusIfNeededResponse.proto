@@ -6,6 +6,6 @@ package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
 
 message DrawFocusIfNeededResponse {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> element = 2;
+	string element = 2;
 	string result = 3;
 }

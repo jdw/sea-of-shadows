@@ -6,10 +6,10 @@ package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
 
 message SetTransformRequest {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> a = 2;
-	<TODO: parameter.typeName = Number> b = 3;
-	<TODO: parameter.typeName = Number> c = 4;
-	<TODO: parameter.typeName = Number> d = 5;
-	<TODO: parameter.typeName = Number> e = 6;
-	<TODO: parameter.typeName = Number> f = 7;
+	string a = 2;
+	string b = 3;
+	string c = 4;
+	string d = 5;
+	string e = 6;
+	string f = 7;
 }

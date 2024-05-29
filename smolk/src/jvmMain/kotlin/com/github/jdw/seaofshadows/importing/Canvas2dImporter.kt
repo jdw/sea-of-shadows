@@ -109,6 +109,14 @@ class Canvas2dImporter(var renderBlock: (Interface) -> Unit = defaultRenderBlock
 
 
         private fun buildProperty(builder: PropertyBuilder) {
+            //TODO https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
+            //TODO min max https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalAlpha
+            //TODO ignored values https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineWidth
+            //TODO ignored values https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/miterLimit
+            //TODO max min ignored values https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowBlur
+            //TODO default value https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowColor
+            //TODO ignored values https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/shadowOffsetX
+
             builder.documentationBlock = {
                 var ret = ""
                 val doc = Glob.fetchDocument(urls["Mozilla"]!!)
@@ -120,16 +128,51 @@ class Canvas2dImporter(var renderBlock: (Interface) -> Unit = defaultRenderBlock
                         ret += p.text()
                     }
 
-                type =
-                    if (ret.contains("positive integer")) "Int"
-                    else if (ret.contains("This string uses")) "String"
-                    else if (name == "canvas") "HTMLCanvasElement"
-                    else if (name == "globalCompositeOperation") "String"
-                    else type
+                type = when (name) {
+                    "canvas" -> "HTMLCanvasElement"
+                    "lineDashOffset",
+                    "lineWidth",
+                    "miterLimit",
+                    "shadowBlur",
+                    "shadowOffsetX",
+                    "shadowOffsetY",
+                    "globalAlpha" -> "Double"
+                    "imageSmoothingEnabled" -> "Boolean"
+                    "width",
+                    "emHeightAscent",
+                    "emHeightDescent",
+                    "fontBoundingBoxAscent",
+                    "fontBoundingBoxDescent",
+                    "ideographicBaseline",
+                    "height" -> "Int"
+                    "actualBoundingBoxDescent",
+                    "actualBoundingBoxLeft",
+                    "actualBoundingBoxRight",
+                    "alphabeticBaseline",
+                    "hangingBaseline",
+                    "actualBoundingBoxAscent" -> "Double"
+                    else -> "String"
+                }
+
+                defaultValue = when (name) {
+                    "imageSmoothingEnabled" -> "true"
+                    "wordSpacing",
+                    "letterSpacing" -> "0px"
+                    "lineDashOffset" -> "0.0"
+                    "lineWidth" -> "1.0"
+                    "miterLimit" -> "10.0"
+                    "shadowBlur",
+                    "shadowOffsetY",
+                    "shadowOffsetX" -> "0.0"
+                    "textAlign" -> "start"
+                    "textBaseline" -> "alphabetic"
+                    else -> null
+                }
 
                 doc
                     .getElementById("value")?.let {
                         if ("fontStretch" == name) {
+                            builder.defaultValue = "normal"
                             it
                                 .getElementsByTag("code")
                                 .forEach { code -> allowedValues[code.text()] = "" }
@@ -150,6 +193,26 @@ class Canvas2dImporter(var renderBlock: (Interface) -> Unit = defaultRenderBlock
                                     allowedValues[dt.id()] = dox
                                 }
                         }
+                        else if ("imageSmoothingQuality" == name) {
+                            builder.defaultValue = "low"
+                            it
+                                .nextElementSibling()!!
+                                .getElementsByTag("dt")
+                                .forEach { dt ->
+                                    val dox = dt.nextElementSibling()!!.text()
+                                    allowedValues[dt.id()] = dox
+                                }
+                        }
+                        else if ("direction" == name) {
+                            builder.defaultValue = "inherit"
+                            it
+                                .nextElementSibling()!!
+                                .getElementsByTag("dt")
+                                .forEach { dt ->
+                                    val dox = dt.nextElementSibling()!!.text()
+                                    allowedValues[dt.id()] = dox
+                                }
+                        }
                         else if ("lineJoin" == name) {
                             builder.defaultValue = "miter"
                             it
@@ -160,25 +223,21 @@ class Canvas2dImporter(var renderBlock: (Interface) -> Unit = defaultRenderBlock
                                     allowedValues[dt.id()] = dox
                                 }
                         }
-                        else if ("lineDashOffset" == name) {
-                            defaultValue = "0.0"
-                            type = "Number" //TODO or Double
+                        else if ("width" == name && builder.parent!!.simpleName == "TextMetrics") {
+                            mutable = false
                         }
-                        else if ("lineWidth" == name) {
-                            defaultValue = "1.0"
-                            type = "Number"
-                        }
-                        else if ("shadowBlur" == name) {
-                            defaultValue = "0"
-                            type = "Number"
-                        }
-                        else if ("shadowOffsetX" == name) {
-                            defaultValue = "0"
-                            type = "Number"
-                        }
-                        else if ("shadowOffsetY" == name) {
-                            defaultValue = "0"
-                            type = "Number"
+                        else if ("actualBoundingBoxAscent" == name ||
+                            "actualBoundingBoxDescent" == name ||
+                            "actualBoundingBoxLeft" == name ||
+                            "actualBoundingBoxRight" == name ||
+                            "alphabeticBaseline" == name ||
+                            "emHeightAscent" == name ||
+                            "emHeightDescent" == name ||
+                            "fontBoundingBoxAscent" == name ||
+                            "fontBoundingBoxDescent" == name ||
+                            "hangingBaseline" == name ||
+                            "ideographicBaseline" == name) {
+                            mutable = false
                         }
                     }
                 ret
@@ -219,7 +278,7 @@ class Canvas2dImporter(var renderBlock: (Interface) -> Unit = defaultRenderBlock
                                 .apply { isOptional = false }
                                 .apply { kind = KParameter.Kind.VALUE }
                                 .apply { index = parent!!.nextParameterIndex() }
-                                .apply { typeName = "Number" }
+                                .apply { typeName = "String" }
                                 .apply { nullable = false }
 
                             buildParameter(parameterBuilder)

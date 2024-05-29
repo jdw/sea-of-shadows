@@ -6,16 +6,16 @@ package com.github.jdw.seaofshadows.canvas2d;
 
 message TextMetrics {
 	uint64 parent = 1;
-	string actual_bounding_box_ascent = 2;
-	string actual_bounding_box_descent = 3;
-	string actual_bounding_box_left = 4;
-	string actual_bounding_box_right = 5;
-	string alphabetic_baseline = 6;
-	string em_height_ascent = 7;
-	string em_height_descent = 8;
-	string font_bounding_box_ascent = 9;
-	string font_bounding_box_descent = 10;
-	string hanging_baseline = 11;
-	string ideographic_baseline = 12;
-	string width = 13;
+	double actual_bounding_box_ascent = 2;
+	double actual_bounding_box_descent = 3;
+	double actual_bounding_box_left = 4;
+	double actual_bounding_box_right = 5;
+	double alphabetic_baseline = 6;
+	int32 em_height_ascent = 7;
+	int32 em_height_descent = 8;
+	int32 font_bounding_box_ascent = 9;
+	int32 font_bounding_box_descent = 10;
+	double hanging_baseline = 11;
+	int32 ideographic_baseline = 12;
+	int32 width = 13;
 }

@@ -6,9 +6,9 @@ package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
 
 message QuadraticCurveToResponse {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> cpx = 2;
-	<TODO: parameter.typeName = Number> cpy = 3;
-	int32 x = 4;
-	int32 y = 5;
+	string cpx = 2;
+	string cpy = 3;
+	string x = 4;
+	string y = 5;
 	string result = 6;
 }

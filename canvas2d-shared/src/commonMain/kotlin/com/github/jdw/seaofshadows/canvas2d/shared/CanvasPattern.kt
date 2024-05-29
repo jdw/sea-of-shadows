@@ -33,7 +33,7 @@ interface CanvasPattern {
 	 *
 	 * @param matrix A DOMMatrix to use as the pattern's transformation matrix.
 	 */
-	fun setTransform(matrix: Number)
+	fun setTransform(matrix: String)
 	
 	
 }

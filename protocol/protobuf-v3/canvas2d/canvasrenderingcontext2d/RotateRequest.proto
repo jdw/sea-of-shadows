@@ -6,5 +6,5 @@ package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
 
 message RotateRequest {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> angle = 2;
+	string angle = 2;
 }

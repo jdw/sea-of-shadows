@@ -29,7 +29,7 @@ interface Path2D {
 	 *
 	 * @param path A [Path2D] path to add.
 	 */
-	fun addPath(path: Number)
+	fun addPath(path: String)
 	
 	
 }

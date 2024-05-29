@@ -6,5 +6,5 @@ package com.github.jdw.seaofshadows.canvas2d.htmlcanvaselement;
 
 message GetContextRequest {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> context_type = 2;
+	string context_type = 2;
 }

@@ -6,6 +6,6 @@ package com.github.jdw.seaofshadows.canvas2d.path2d;
 
 message AddPathResponse {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> path = 2;
+	string path = 2;
 	string result = 3;
 }

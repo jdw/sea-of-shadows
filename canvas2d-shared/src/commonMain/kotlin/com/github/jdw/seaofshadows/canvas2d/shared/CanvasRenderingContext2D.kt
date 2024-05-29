@@ -26,7 +26,25 @@ package com.github.jdw.seaofshadows.canvas2d.shared
  */
 interface CanvasRenderingContext2D {
 	var canvas: HTMLCanvasElement
-	var direction: String
+	enum class DirectionValue {
+		/**
+		 * The text direction is inherited from the <canvas> element or the Document as appropriate. Default value.
+		 */
+		INHERIT,
+		
+		
+		/**
+		 * The text direction is left-to-right.
+		 */
+		LTR,
+		
+		
+		/**
+		 * The text direction is right-to-left.
+		 */
+		RTL
+	}
+	var direction: String// = DirectionValue.INHERIT
 	var fillStyle: String
 	var filter: String
 	var font: String
@@ -49,7 +67,7 @@ interface CanvasRenderingContext2D {
 		NORMAL
 	}
 	var fontKerning: String
-	var fontStretch: String
+	var fontStretch: String// = normal
 	enum class FontVariantCapsValue {
 		/**
 		 * Enables display of petite capitals for both upper and lowercase letters (OpenType features: c2pc, pcap).
@@ -93,7 +111,7 @@ interface CanvasRenderingContext2D {
 		UNICASE
 	}
 	var fontVariantCaps: String
-	var globalAlpha: String
+	var globalAlpha: Double
 	enum class GlobalCompositeOperationValue {
 		/**
 		 * Preserves the luma of the bottom layer, while adopting the hue and chroma of the top layer.
@@ -251,9 +269,27 @@ interface CanvasRenderingContext2D {
 		XOR
 	}
 	var globalCompositeOperation: String
-	var imageSmoothingEnabled: String
-	var imageSmoothingQuality: String
-	var letterSpacing: String
+	var imageSmoothingEnabled: Boolean// = true
+	enum class ImageSmoothingQualityValue {
+		/**
+		 * High quality.
+		 */
+		HIGH,
+		
+		
+		/**
+		 * Low quality.
+		 */
+		LOW,
+		
+		
+		/**
+		 * Medium quality.
+		 */
+		MEDIUM
+	}
+	var imageSmoothingQuality: String// = ImageSmoothingQualityValue.LOW
+	var letterSpacing: String// = 0px
 	enum class LineCapValue {
 		/**
 		 * The ends of lines are squared off at the endpoints. Default value.
@@ -273,7 +309,7 @@ interface CanvasRenderingContext2D {
 		SQUARE
 	}
 	var lineCap: String
-	var lineDashOffset: Number// = 0.0
+	var lineDashOffset: Double// = 0.0
 	enum class LineJoinValue {
 		/**
 		 * Fills an additional triangular area between the common endpoint of connected segments, and the separate outside rectangular corners of each segment.
@@ -293,12 +329,12 @@ interface CanvasRenderingContext2D {
 		ROUND
 	}
 	var lineJoin: String// = LineJoinValue.MITER
-	var lineWidth: Number// = 1.0
-	var miterLimit: String
-	var shadowBlur: Number// = 0
+	var lineWidth: Double// = 1.0
+	var miterLimit: Double// = 10.0
+	var shadowBlur: Double// = 0.0
 	var shadowColor: String
-	var shadowOffsetX: Number// = 0
-	var shadowOffsetY: Number// = 0
+	var shadowOffsetX: Double// = 0.0
+	var shadowOffsetY: Double// = 0.0
 	enum class StrokeStyleValue {
 		/**
 		 * A string parsed as CSS <color> value.
@@ -348,7 +384,7 @@ interface CanvasRenderingContext2D {
 		 */
 		START
 	}
-	var textAlign: String
+	var textAlign: String// = TextAlignValue.START
 	enum class TextBaselineValue {
 		/**
 		 * The text baseline is the normal alphabetic baseline. Default value.
@@ -385,7 +421,7 @@ interface CanvasRenderingContext2D {
 		 */
 		TOP
 	}
-	var textBaseline: String
+	var textBaseline: String// = TextBaselineValue.ALPHABETIC
 	enum class TextRenderingValue {
 		/**
 		 * The browser makes educated guesses about when to optimize for speed, legibility, and geometric precision while drawing text.
@@ -411,7 +447,7 @@ interface CanvasRenderingContext2D {
 		OPTIMIZESPEED
 	}
 	var textRendering: String
-	var wordSpacing: String
+	var wordSpacing: String// = 0px
 	
 	/**
 	 *  The [CanvasRenderingContext2D].[beginPath] method of the Canvas 2D API starts a
@@ -621,7 +657,7 @@ interface CanvasRenderingContext2D {
 	 * @param startAngle The angle at which the [arc] starts in radians, measured from the positive x-axis.
 	 * @param endAngle The angle at which the [arc] ends in radians, measured from the positive x-axis.
 	 */
-	fun arc(x: Number, y: Number, radius: Number, startAngle: Number, endAngle: Number)
+	fun arc(x: String, y: String, radius: String, startAngle: String, endAngle: String)
 	
 	
 	/**
@@ -644,7 +680,7 @@ interface CanvasRenderingContext2D {
 	 * @param y2 The y-axis coordinate of the second control point.
 	 * @param radius The arc's radius. Must be non-negative.
 	 */
-	fun arcTo(x1: Number, y1: Number, x2: Number, y2: Number, radius: Number)
+	fun arcTo(x1: String, y1: String, x2: String, y2: String, radius: String)
 	
 	
 	/**
@@ -665,7 +701,7 @@ interface CanvasRenderingContext2D {
 	 * @param x The x-axis coordinate of the end point.
 	 * @param y The y-axis coordinate of the end point.
 	 */
-	fun bezierCurveTo(cp1x: Number, cp1y: Number, cp2x: Number, cp2y: Number, x: Number, y: Number)
+	fun bezierCurveTo(cp1x: String, cp1y: String, cp2x: String, cp2y: String, x: String, y: String)
 	
 	
 	/**
@@ -684,7 +720,7 @@ interface CanvasRenderingContext2D {
 	 * @param width The rectangle's [width]. Positive values are to the right, and negative to the left.
 	 * @param height The rectangle's [height]. Positive values are down, and negative are up.
 	 */
-	fun clearRect(x: Number, y: Number, width: Number, height: Number)
+	fun clearRect(x: String, y: String, width: String, height: String)
 	
 	
 	/**
@@ -703,7 +739,7 @@ interface CanvasRenderingContext2D {
 	 * @param x The x-axis coordinate of the center of the gradient.
 	 * @param y The y-axis coordinate of the center of the gradient.
 	 */
-	fun createConicGradient(startAngle: Number, x: Number, y: Number)
+	fun createConicGradient(startAngle: String, x: String, y: String)
 	
 	
 	/**
@@ -718,7 +754,7 @@ interface CanvasRenderingContext2D {
 	 * @param width The [width] to give the new [ImageData] object. A negative value flips the rectangle around the vertical axis.
 	 * @param height The [height] to give the new [ImageData] object. A negative value flips the rectangle around the horizontal axis.
 	 */
-	fun createImageData(width: Number, height: Number)
+	fun createImageData(width: String, height: String)
 	
 	
 	/**
@@ -747,7 +783,7 @@ interface CanvasRenderingContext2D {
 	 * @param x1 The x-axis coordinate of the end point.
 	 * @param y1 The y-axis coordinate of the end point.
 	 */
-	fun createLinearGradient(x0: Number, y0: Number, x1: Number, y1: Number)
+	fun createLinearGradient(x0: String, y0: String, x1: String, y1: String)
 	
 	
 	/**
@@ -766,7 +802,7 @@ interface CanvasRenderingContext2D {
 	 * @param image An image to be used as the pattern's image. It can be any of the following: HTMLImageElement (<img>) SVGImageElement (<image>) HTMLVideoElement (<video>, by using the capture of the video) [HTMLCanvasElement] [canvas] [ImageBitmap] [OffscreenCanvas] VideoFrame
 	 * @param repetition A string indicating how to repeat the pattern's image. Possible values are: "repeat" (both directions) "repeat-x" (horizontal only) "repeat-y" (vertical only) "no-repeat" (neither [direction] If repetition is specified as an empty string ("") or null (but not undefined), a value of "repeat" will be used.
 	 */
-	fun createPattern(image: Number, repetition: Number)
+	fun createPattern(image: String, repetition: String)
 	
 	
 	/**
@@ -789,7 +825,7 @@ interface CanvasRenderingContext2D {
 	 * @param y1 The y-axis coordinate of the end circle.
 	 * @param r1 The radius of the end circle. Must be non-negative and finite.
 	 */
-	fun createRadialGradient(x0: Number, y0: Number, r0: Number, x1: Number, y1: Number, r1: Number)
+	fun createRadialGradient(x0: String, y0: String, r0: String, x1: String, y1: String, r1: String)
 	
 	
 	/**
@@ -803,7 +839,7 @@ interface CanvasRenderingContext2D {
 	 *
 	 * @param element The element to check whether it is focused or not.
 	 */
-	fun drawFocusIfNeeded(element: Number)
+	fun drawFocusIfNeeded(element: String)
 	
 	
 	/**
@@ -818,7 +854,7 @@ interface CanvasRenderingContext2D {
 	 * @param dx The x-axis coordinate in the destination [canvas] at which to place the top-left corner of the source image.
 	 * @param dy The y-axis coordinate in the destination [canvas] at which to place the top-left corner of the source image.
 	 */
-	fun drawImage(image: Number, dx: Number, dy: Number)
+	fun drawImage(image: String, dx: String, dy: String)
 	
 	
 	/**
@@ -837,7 +873,7 @@ interface CanvasRenderingContext2D {
 	 * @param startAngle The eccentric angle at which the [ellipse] starts, measured clockwise from the positive x-axis and expressed in radians.
 	 * @param endAngle The eccentric angle at which the [ellipse] ends, measured clockwise from the positive x-axis and expressed in radians.
 	 */
-	fun ellipse(x: Number, y: Number, radiusX: Number, radiusY: Number, rotation: Number, startAngle: Number, endAngle: Number)
+	fun ellipse(x: String, y: String, radiusX: String, radiusY: String, rotation: String, startAngle: String, endAngle: String)
 	
 	
 	/**
@@ -855,7 +891,7 @@ interface CanvasRenderingContext2D {
 	 * @param width The rectangle's [width]. Positive values are to the right, and negative to the left.
 	 * @param height The rectangle's [height]. Positive values are down, and negative are up.
 	 */
-	fun fillRect(x: Number, y: Number, width: Number, height: Number)
+	fun fillRect(x: String, y: String, width: String, height: String)
 	
 	
 	/**
@@ -878,7 +914,7 @@ interface CanvasRenderingContext2D {
 	 * @param x The x-axis coordinate of the point at which to begin drawing the text, in pixels.
 	 * @param y The y-axis coordinate of the baseline on which to begin drawing the text, in pixels.
 	 */
-	fun fillText(text: Number, x: Number, y: Number)
+	fun fillText(text: String, x: String, y: String)
 	
 	
 	/**
@@ -901,7 +937,7 @@ interface CanvasRenderingContext2D {
 	 * @param sw The [width] of the rectangle from which the [ImageData] will be extracted. Positive values are to the right, and negative to the left.
 	 * @param sh The [height] of the rectangle from which the [ImageData] will be extracted. Positive values are down, and negative are up.
 	 */
-	fun getImageData(sx: Number, sy: Number, sw: Number, sh: Number)
+	fun getImageData(sx: String, sy: String, sw: String, sh: String)
 	
 	
 	/**
@@ -915,7 +951,7 @@ interface CanvasRenderingContext2D {
 	 * @param x The x-axis coordinate of the point to check, unaffected by the current transformation of the context.
 	 * @param y The y-axis coordinate of the point to check, unaffected by the current transformation of the context.
 	 */
-	fun isPointInPath(x: Number, y: Number)
+	fun isPointInPath(x: String, y: String)
 	
 	
 	/**
@@ -930,7 +966,7 @@ interface CanvasRenderingContext2D {
 	 * @param x The x-axis coordinate of the point to check.
 	 * @param y The y-axis coordinate of the point to check.
 	 */
-	fun isPointInStroke(x: Number, y: Number)
+	fun isPointInStroke(x: String, y: String)
 	
 	
 	/**
@@ -947,7 +983,7 @@ interface CanvasRenderingContext2D {
 	 * @param x The x-axis coordinate of the line's end point.
 	 * @param y The y-axis coordinate of the line's end point.
 	 */
-	fun lineTo(x: Number, y: Number)
+	fun lineTo(x: String, y: String)
 	
 	
 	/**
@@ -961,7 +997,7 @@ interface CanvasRenderingContext2D {
 	 *
 	 * @param text The text string to measure.
 	 */
-	fun measureText(text: Number)
+	fun measureText(text: String)
 	
 	
 	/**
@@ -975,7 +1011,7 @@ interface CanvasRenderingContext2D {
 	 * @param x The x-axis (horizontal) coordinate of the point.
 	 * @param y The y-axis (vertical) coordinate of the point.
 	 */
-	fun moveTo(x: Number, y: Number)
+	fun moveTo(x: String, y: String)
 	
 	
 	/**
@@ -995,7 +1031,7 @@ interface CanvasRenderingContext2D {
 	 * @param dx Horizontal position (x coordinate) at which to place the image [data] in the destination [canvas].
 	 * @param dy Vertical position (y coordinate) at which to place the image [data] in the destination [canvas].
 	 */
-	fun putImageData(imageData: Number, dx: Number, dy: Number)
+	fun putImageData(imageData: String, dx: String, dy: String)
 	
 	
 	/**
@@ -1014,7 +1050,7 @@ interface CanvasRenderingContext2D {
 	 * @param x The x-axis coordinate of the end point.
 	 * @param y The y-axis coordinate of the end point.
 	 */
-	fun quadraticCurveTo(cpx: Number, cpy: Number, x: Number, y: Number)
+	fun quadraticCurveTo(cpx: String, cpy: String, x: String, y: String)
 	
 	
 	/**
@@ -1033,7 +1069,7 @@ interface CanvasRenderingContext2D {
 	 * @param width The rectangle's [width]. Positive values are to the right, and negative to the left.
 	 * @param height The rectangle's [height]. Positive values are down, and negative are up.
 	 */
-	fun rect(x: Number, y: Number, width: Number, height: Number)
+	fun rect(x: String, y: String, width: String, height: String)
 	
 	
 	/**
@@ -1046,7 +1082,7 @@ interface CanvasRenderingContext2D {
 	 *
 	 * @param angle The rotation angle, clockwise in radians. You can use degree * Math.PI / 180 to calculate a radian from a degree.
 	 */
-	fun rotate(angle: Number)
+	fun rotate(angle: String)
 	
 	
 	/**
@@ -1067,7 +1103,7 @@ interface CanvasRenderingContext2D {
 	 * @param height The rectangle's [height]. Positive values are down, and negative are up.
 	 * @param radii A number or list specifying the radii of the circular [arc] to be used for the corners of the rectangle. The number and order of the radii function in the same way as the border-radius CSS property when [width] and [height] are positive: all-corners [all-corners] [top-left-and-bottom-right, top-right-and-bottom-left] [top-left, top-right-and-bottom-left, bottom-right] [top-left, top-right, bottom-right, bottom-left] If [width] is negative the rounded rectangle is flipped horizontally, so the radius values that normally apply to the left corners are used on the right and vice versa. Similarly, when [height] is negative, the rounded [rect] is flipped vertically. The specified radii may be scaled (reduced) if any of the edges are shorter than the combined radius of the vertices on either end. The radii parameter can also be a DOMPoint or DOMPointReadOnly instance, or an object containing the same properties ({x: 0, y: 0}), or a list of such objects, or a list mixing numbers and such objects.
 	 */
-	fun roundRect(x: Number, y: Number, width: Number, height: Number, radii: Number)
+	fun roundRect(x: String, y: String, width: String, height: String, radii: String)
 	
 	
 	/**
@@ -1086,7 +1122,7 @@ interface CanvasRenderingContext2D {
 	 * @param x Scaling factor in the horizontal [direction]. A negative value flips pixels across the vertical axis. A value of 1 results in no horizontal scaling.
 	 * @param y Scaling factor in the vertical [direction]. A negative value flips pixels across the horizontal axis. A value of 1 results in no vertical scaling.
 	 */
-	fun scale(x: Number, y: Number)
+	fun scale(x: String, y: String)
 	
 	
 	/**
@@ -1102,7 +1138,7 @@ interface CanvasRenderingContext2D {
 	 *
 	 * @param segments An Array of numbers that specify distances to alternately draw a line and a gap (in coordinate space units). If the number of elements in the array is odd, the elements of the array get copied and concatenated. For example, [5, 15, 25] will become [5, 15, 25, 5, 15, 25]. If the array is empty, the line dash list is cleared and line strokes return to being solid.
 	 */
-	fun setLineDash(segments: Number)
+	fun setLineDash(segments: String)
 	
 	
 	/**
@@ -1124,7 +1160,7 @@ interface CanvasRenderingContext2D {
 	 * @param e The cell in the first row and third column of the matrix.
 	 * @param f The cell in the second row and third column of the matrix.
 	 */
-	fun setTransform(a: Number, b: Number, c: Number, d: Number, e: Number, f: Number)
+	fun setTransform(a: String, b: String, c: String, d: String, e: String, f: String)
 	
 	
 	/**
@@ -1143,7 +1179,7 @@ interface CanvasRenderingContext2D {
 	 * @param width The rectangle's [width]. Positive values are to the right, and negative to the left.
 	 * @param height The rectangle's [height]. Positive values are down, and negative are up.
 	 */
-	fun strokeRect(x: Number, y: Number, width: Number, height: Number)
+	fun strokeRect(x: String, y: String, width: String, height: String)
 	
 	
 	/**
@@ -1164,7 +1200,7 @@ interface CanvasRenderingContext2D {
 	 * @param x The x-axis coordinate of the point at which to begin drawing the text.
 	 * @param y The y-axis coordinate of the point at which to begin drawing the text.
 	 */
-	fun strokeText(text: Number, x: Number, y: Number)
+	fun strokeText(text: String, x: String, y: String)
 	
 	
 	/**
@@ -1185,7 +1221,7 @@ interface CanvasRenderingContext2D {
 	 * @param e The cell in the first row and third column of the matrix.
 	 * @param f The cell in the second row and third column of the matrix.
 	 */
-	fun transform(a: Number, b: Number, c: Number, d: Number, e: Number, f: Number)
+	fun transform(a: String, b: String, c: String, d: String, e: String, f: String)
 	
 	
 	/**
@@ -1199,7 +1235,7 @@ interface CanvasRenderingContext2D {
 	 * @param x Distance to move in the horizontal [direction]. Positive values are to the right, and negative to the left.
 	 * @param y Distance to move in the vertical [direction]. Positive values are down, and negative are up.
 	 */
-	fun translate(x: Number, y: Number)
+	fun translate(x: String, y: String)
 	
 	
 }

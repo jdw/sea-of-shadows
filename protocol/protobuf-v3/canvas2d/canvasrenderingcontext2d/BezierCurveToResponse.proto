@@ -6,11 +6,11 @@ package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
 
 message BezierCurveToResponse {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> cp1x = 2;
-	<TODO: parameter.typeName = Number> cp1y = 3;
-	<TODO: parameter.typeName = Number> cp2x = 4;
-	<TODO: parameter.typeName = Number> cp2y = 5;
-	int32 x = 6;
-	int32 y = 7;
+	string cp1x = 2;
+	string cp1y = 3;
+	string cp2x = 4;
+	string cp2y = 5;
+	string x = 6;
+	string y = 7;
 	string result = 8;
 }

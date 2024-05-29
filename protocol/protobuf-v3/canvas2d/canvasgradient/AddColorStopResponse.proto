@@ -6,7 +6,7 @@ package com.github.jdw.seaofshadows.canvas2d.canvasgradient;
 
 message AddColorStopResponse {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> offset = 2;
-	<TODO: parameter.typeName = Number> color = 3;
+	string offset = 2;
+	string color = 3;
 	string result = 4;
 }

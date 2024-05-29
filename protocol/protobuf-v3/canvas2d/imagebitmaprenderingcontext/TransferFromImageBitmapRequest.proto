@@ -6,5 +6,5 @@ package com.github.jdw.seaofshadows.canvas2d.imagebitmaprenderingcontext;
 
 message TransferFromImageBitmapRequest {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> bitmap = 2;
+	string bitmap = 2;
 }

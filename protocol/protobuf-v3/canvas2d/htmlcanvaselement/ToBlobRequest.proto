@@ -6,5 +6,5 @@ package com.github.jdw.seaofshadows.canvas2d.htmlcanvaselement;
 
 message ToBlobRequest {
 	uint64 parent = 1;
-	<TODO: parameter.typeName = Number> callback = 2;
+	string callback = 2;
 }

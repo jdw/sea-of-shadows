@@ -6,6 +6,6 @@ package com.github.jdw.seaofshadows.canvas2d.canvasrenderingcontext2d;
 
 message TranslateRequest {
 	uint64 parent = 1;
-	int32 x = 2;
-	int32 y = 3;
+	string x = 2;
+	string y = 3;
 }
