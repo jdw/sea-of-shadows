@@ -115,4 +115,7 @@ object Glob {
             path.readText()
         }
     }
+
+
+    fun error(message: String) = println("⁉\uFE0F  $message")
 }

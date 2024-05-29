@@ -1,13 +1,11 @@
-package com.github.jdw.seaofshadows.subcommandos.rosetta
+package com.github.jdw.seaofshadows.subcommandos
 
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
-import com.github.ajalt.clikt.parameters.options.required
 import com.github.ajalt.clikt.parameters.types.file
 import com.github.jdw.seaofshadows.Glob
-import com.github.jdw.seaofshadows.subcommandos.supportedValues
 import com.github.jdw.seaofshadows.utils.doch
 import com.github.jdw.seaofshadows.utils.echt
 import java.io.File

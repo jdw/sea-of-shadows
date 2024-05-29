@@ -6,6 +6,7 @@ import com.github.jdw.seaofshadows.subcommandos.rosetta.rowhandlers.ClassRowHand
 import com.github.jdw.seaofshadows.subcommandos.rosetta.rowhandlers.InterfaceRowHandler
 import com.github.jdw.seaofshadows.importing.types.Type
 import com.github.jdw.seaofshadows.importing.types.renderKotlin
+import com.github.jdw.seaofshadows.subcommandos.ApiSubcommand
 import com.github.jdw.seaofshadows.utils.throws
 import com.github.jdw.seaofshadows.webgl.shared.ArrayBuffer
 import com.github.jdw.seaofshadows.webgl.shared.ArrayBufferView
@@ -19,7 +20,7 @@ import java.io.File
 import kotlin.reflect.full.createType
 
 
-class WebGL1(val path: File, val language: String) {
+class WebGL1: ApiSubcommand(help = "Import WebGL v1 data.", defaultPath = File("webgl1-shared/src/commonMain/kotlin/com/github/jdw/seaofshadows/webgl/shared")) {
     private val irh = InterfaceRowHandler()
     private val crh = ClassRowHandler()
 
@@ -57,7 +58,8 @@ class WebGL1(val path: File, val language: String) {
     }
 
 
-    fun run() {
+    override fun run() {
+        handleDeletion()
         var rowCnt = 1
         val rows = Glob.fetchCache(Glob.KHRONOS_WEBGL1_IDL).split("\n")
         for (idx in rows.indices) {
