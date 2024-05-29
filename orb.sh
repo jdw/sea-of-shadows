@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-./gradlew :smolk:jvmJar > /dev/null
+./gradlew :orb:jvmJar > /dev/null
 
 if [ $? -ne 0 ]; then
     exit $?
@@ -9,4 +9,4 @@ fi
 VERSION=$(cat gradle.properties | grep "^VERSION" | awk -F "=" '{print $2}')
 
 
-java -jar smolk/output/smolk-jvm-$VERSION.jar $@
+java -jar orb/output/orb-jvm-$VERSION.jar $@

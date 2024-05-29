@@ -27,11 +27,10 @@ include(":webgl-shared")
 include(":webgl1-server-side")
 include(":webgl1-terminal")
 include(":canvas2d-shared")
-include(":smolk")
+include(":orb")
 
 val NAME: String by settings
 
 project(":core").name = "$NAME-core"
 project(":webgl1-server-side").name = "$NAME-canvas-webgl1"
-project(":smolk").name = "smolk"
 project(":webgl1-terminal").name = "$NAME-terminal-webgl1"
